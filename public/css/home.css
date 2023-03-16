@@ -1,0 +1,50 @@
+.navbar {
+    background: #11324D;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    background: #e0e0e0;
+}
+
+#logo {
+    position: absolute;
+    z-index: 999;
+    width: 330px;
+    height: 330px;
+}
+
+#side_bar {
+    height: 100vh;
+    position: fixed;
+    overflow-x: auto;
+    overflow-y: hidden;
+    z-index: 1000;
+    background: #164D7A;
+ }
+
+ .bg-custom {
+    background: #164D7A;
+    height: 100vh;
+ }
+
+ .img-custom {
+    border-radius: 50%;
+    border: 10px solid white;
+    width: 200px;
+    height: 200px;
+ }
+
+ .mc {
+    margin-left: 75px;
+ }
+
+ .nav-link:hover {
+    background: none;
+    color: #ECEFF1;
+    opacity: 0.6;
+ }
+
+ #bg {
+    background: #174E7B;
+ }
