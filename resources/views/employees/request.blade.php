@@ -111,7 +111,7 @@
 
                         {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
                         <div class="row mt-3">
-                            <label for="total" class="col-auto col-form-label">จำนวนเงินทั้งหมด : </label>
+                            <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                             <div class="col-sm-2">
                                 <input type="text" class="form-control text-end" value="{{ __('0') }}" readonly>
                             </div>
