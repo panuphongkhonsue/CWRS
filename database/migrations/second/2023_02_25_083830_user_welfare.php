@@ -12,18 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('user_welfare', function(Blueprint $table) {
-            $table->string('id')->primary();
-            $table->tinyInteger('status');
+        Schema::create('users_welfares', function(Blueprint $table) {
+            $table->id();
+            $table->tinyInteger('status')->default(0);
             $table->date('create_date');
-            $table->date('hr_approve_date');
+            $table->date('hr_approve_date')->nullable();
             $table->json('bill');
-            $table->string('hr_approver_id');
-            $table->string('user_id');
-            $table->foreignId('welfare_id')->constrained();
+            $table->json('item');
+            $table->json('price');
+            $table->text('note')->nullable();
+            $table->foreignId('hr_approver_id')->nullable()->constrained('users');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('welfare_id')->constrained('welfares');
 
-            $table->foreign('hr_approver_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

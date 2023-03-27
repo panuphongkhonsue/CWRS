@@ -18,10 +18,13 @@ return new class extends Migration
             $table->date('create_date');
             $table->date('hr_approve_date');
             $table->json('bill');
+            $table->json('item');
+            $table->json('price');
+            $table->text('note');
             $table->string('hr_approver_id');
             $table->string('user_id');
             $table->foreignId('welfare_id')->constrained();
-
+            
             $table->foreign('hr_approver_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
