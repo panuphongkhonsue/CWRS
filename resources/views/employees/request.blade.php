@@ -131,7 +131,7 @@
 
                         </div>
 
-                        {{-- ปุ่มส่งเบิห --}}
+                        {{-- ปุ่มส่งเบิก --}}
                         <div class="row mt-3">
                             <div class="col-sm-2 ms-auto">
                                 <button type="submit" class="btn btn-lg btn-success">ส่งคำขอ</button>
