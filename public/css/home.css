@@ -16,7 +16,7 @@ body {
 
 #side_bar {
     height: 100vh;
-    position: fixed;
+    position: relative;
     overflow-x: auto;
     overflow-y: hidden;
     z-index: 1000;
@@ -47,4 +47,46 @@ body {
 
  #bg {
     background: #174E7B;
+ }
+
+ #hamburMenu1{
+   font-size:45px;
+   color:white;
+   margin-left : 205px;
+   margin-bottom: 0px;
+ }
+
+ #hamburMenu2{
+   font-size:45px;
+   color:white;
+   margin-left : 10px;
+   margin-bottom: 0px;
+ }
+
+ #side_bar {
+   transition: margin-left .5s;
+   padding: 16px;
+ }
+
+ #side_bar {
+   height: 100%;
+   width: 300px;
+   position: fixed;
+   z-index: 1;
+   top: 0;
+   left: 0;
+   overflow-x: hidden;
+   transition: 0.5s;
+   padding-top: 60px;
+   background: #164D7A;
+ }
+
+ #hamburMenu1:hover {
+   -webkit-box: 5px 5px 3px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 3px 3px rgba(0, 0, 0, 0.3);
+ }
+
+ #hamburMenu2:hover {
+   -webkit-box: 5px 5px 3px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 3px 3px rgba(0, 0, 0, 0.3);
  }

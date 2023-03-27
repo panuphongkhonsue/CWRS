@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -22,7 +23,11 @@
 <body>
       <div class="container-fluid h-100">
     <div class="row h-100">
-      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-custom" id="side_bar" style="width: 280px">
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-custom" id="side_bar" style= "left: -300px"><!-- wait fix -->
+      <a href="javascript:void(0);" class="icon"> 
+      <i class="fa fa-bars" id = "hamburMenu1" onclick="closeNav()"></i>  <!-- Hamburger menu -->
+      </a>
+      <hr>
         <div class="text-center mb-3">
           <img class="img-custom my-3" src="{{ URL::asset('img/' . Auth::user()->id . '.jpg') }}" alt="">
           <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -67,9 +72,12 @@
                       @csrf
                   </form>
               </a>
+              
         </div>
 
           <nav class="navbar navbar-expand-lg navbar-light shadow-md">
+          <a href="javascript:void(0);" class="icon" > 
+          <i class="fa fa-bars" id = "hamburMenu2" onclick= "openNav()"></i>  <!-- Hamburger menu -->
             <a class="navbar-brand text-light" style="margin-left: 50%" href="{{ url('/') }}">
                 {{ __('ระบบเบิกสวัสดิการสำหรับพนักงาน') }}
             </a>
@@ -173,5 +181,20 @@
         </div>
       </div>
     </div> --}}
+    
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script>
+    function openNav() {
+      document.getElementById("side_bar").style.left = "0px";
+    }
+
+    function closeNav() {
+      document.getElementById("side_bar").style.left = "-300px";
+    }
+    </script>
+
+
 </body>
 </html>
