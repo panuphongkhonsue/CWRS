@@ -6,9 +6,18 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-13">
-            <div class="card">
-                <div class="card-header fs-4 py-3">{{ __('เบิกสวัสดิการแบบรายบุคคล') }}</div>
-                <div class="card-body">
+           {{--  กรอบพื้นหลัง --}}
+            <div class="big-box">
+                {{-- border:0 cellspacing:0 cellpadding:0 --}}
+                {{-- <div class="card-header fs-4 py-3">{{ __('เบิกสวัสดิการแบบรายบุคคล') }}</div> --}}
+                <div class="i" style="line-height:25px">{{ __('เบิกสวัสดิการแบบบุคคล') }}
+                    <hr width="355">
+                </div>
+
+                 <div class="card-body" style="padding: 0px 50px 50px 50px">
+                    {{-- กรอบขอมูล --}}
+                    <div class="box">
+
                     <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
 
@@ -37,6 +46,7 @@
                             </div>
                         </div>
 
+
                         {{-- แผนก --}}
                         <div class="row mt-4">
                             <label for="department" class="col-sm-2 col-form-label">{{ __('แผนก : ') }}</label>
@@ -44,9 +54,10 @@
                                 <input type="text" class="form-control" value="{{ Auth::user()->department->name }}" disabled>
                             </div>
                         </div>
+                    </div>
 
                         {{-- แถบเลือกประเภท --}}
-                        <div class="row mt-5">
+                        <div class="row mt-5 ">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
                                 <select class="form-control" name="welfare" id="welfare">
@@ -72,7 +83,7 @@
                         <div class="row mt-5 fs-5">
                             <div class="col-md-4">
                                 รายละเอียดการขอเบิกสวัสดิการ
-                                <hr>
+                                <hr width="255">
                             </div>
                             </div>
 
@@ -117,6 +128,11 @@
                                     <button class="btn btn-success add-file" type="button">+</button>
                                 </div>
                         </div>
+                        <div class="frame312-frame09">
+
+                            <span class="frame312-text48"><span>อัปโหลดไฟล์</span></span>
+
+                          </div>
 
                         {{-- ตรงนี้คือตอนกด + เพิ่มไฟล์ --}}
                         <div class="clone hide" hidden>
@@ -131,7 +147,7 @@
 
                         </div>
 
-                        {{-- ปุ่มส่งเบิห --}}
+                        {{-- ปุ่มส่งเบิก --}}
                         <div class="row mt-3">
                             <div class="col-sm-2 ms-auto">
                                 <button type="submit" class="btn btn-lg btn-success">ส่งคำขอ</button>
