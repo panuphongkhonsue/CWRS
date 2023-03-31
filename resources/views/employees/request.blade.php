@@ -10,58 +10,57 @@
             <div class="card">
                 {{-- border:0 cellspacing:0 cellpadding:0 --}}
                 {{-- <div class="card-header fs-4 py-3">{{ __('เบิกสวัสดิการแบบรายบุคคล') }}</div> --}}
-                <div class="i" style="line-height:25px">{{ __('เบิกสวัสดิการแบบบุคคล') }}
-                    <hr width="355">
+                <div class="i mx-5" style="line-height:20px">{{ __('เบิกสวัสดิการแบบบุคคล') }}
+                    <hr width="295" class="mb-2">
                 </div>
 
                  <div class="card-body" style="padding: 0px 50px 50px 50px">
 
                     {{-- กรอบขอมูล --}}
-
-                    <div class="card px-4 py-3 border-0 " style=" background-color: #eee;">
+                    <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
                     <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
 
                         {{-- วันที่ --}}
                         <div class="row">
-                            <label for="budget" class="col-auto col-form-label ms-auto fw-bolder fs-5">{{ __('วัน/เดือน/ปี : ') }}</label>
+                            <label for="budget" class="col-auto col-form-label ms-auto fw-bolder ">{{ __('วัน/เดือน/ปี : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" id="date" name="date" class="form-control border-0 bg-transparent fs-5" value="{{ date("d/m/Y") }}" >
+                                <input type="text" id="date" name="date" class="form-control border-0 bg-transparent fs-16px" value="{{ date("d/m/Y") }}" >
                             </div>
                         </div>
 
                         {{-- รหัสพนักงาน --}}
-                        <div class="row ms-3 mt-1">
-                            <label for="id" class="col-sm-2 col-form-label fw-bold fs-5">{{ __('รหัสพนักงาน : ') }}</label>
+                        <div class="row ms-5 mt-1">
+                            <label for="id" class="col-sm-2 col-form-label fw-bold">{{ __('รหัสพนักงาน : ') }}</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control border-0 bg-transparent fs-5" value="{{ Auth::user()->id }}" disabled>
+                                <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->id }}" disabled>
                             </div>
 
                         </div>
 
                         {{-- ชื่อ นามกุล --}}
-                        <div class="row ms-3 mt-1">
-                            <label for="name" class="col-sm-2 col-form-label fw-bold fs-5">{{ __('ชื่อ-สกุล : ') }}</label>
+                        <div class="row ms-5 mt-1">
+                            <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ __('ชื่อ-สกุล : ') }}</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control border-0 bg-transparent fs-5" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
+                                <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
                             </div>
                         </div>
 
 
                         {{-- แผนก --}}
-                        <div class="row ms-3 mt-1">
-                            <label for="department" class="col-sm-2 col-form-label fw-bold fs-5">{{ __('แผนก : ') }}</label>
+                        <div class="row ms-5 mt-1 ">
+                            <label for="department" class="col-sm-2 col-form-label fw-bold">{{ __('แผนก : ') }}</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control border-0 bg-transparent fs-5" value="{{ Auth::user()->department->name }}" disabled>
+                                <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->department->name }}" disabled>
                             </div>
                         </div>
                     </div>
 
                         {{-- แถบเลือกประเภท --}}
-                        <div class="row mt-5 ">
+                        <div class="row mt-3 mx-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
-                                <select class="form-control" name="welfare" id="welfare">
+                                <select class="form-control border-dark" name="welfare" id="welfare">
                                     <option selected disabled>เลือกประเภทสวัสดิการ</option>
 
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
@@ -73,7 +72,7 @@
                             </div>
 
                             {{-- จำนวนเงิน --}}
-                            <label for="budget" class="col-auto col-form-label ms-auto">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
+                            <label for="budget" class="col-auto col-form-label ms-auto ">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
                                 <input type="text" class="text-end form-control border-0" style=" background-color: #eee;"
                                  value="{{ __('2,000.00') }}" disabled>
@@ -82,7 +81,7 @@
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
                         </div>
 
-                        <div class="row mt-5 fs-5">
+                        <div class="row mt-3 fs-5 mx-5">
                             <div class="col-md-4">
                                 รายละเอียดการขอเบิกสวัสดิการ
                                 <hr width="255" class="mt-0">
@@ -90,15 +89,15 @@
                             </div>
                             </div>
 
-                        <div class="row mt-3 d-flex justify-content-center">
+                        <div class="row mt-2 d-flex justify-content-center">
                             <div class="col-lg-11">
                                 {{-- ตารางไว้ใส่รายละเอียด --}}
-                                <table id="detail" class="table table-bordered">
+                                <table id="detail" class="table table-bordered border-dark">
                                     <thead style="background-color: rgb(4, 62, 129)">
                                         <tr class="text-center">
                                             <th scope="col" class="col-lg-8 text-white">รายละเอียด</th>
                                             <th scope="col" class="text-white">จำนวนเงิน (บาท)</th>
-                                            <td><button class="btn btn-sm btn-success">เพิ่ม</button></td>
+                                                <td><button class="btn btn-sm btn-success">เพิ่ม</button></td>
                                         </tr>
                                     </thead>
 
@@ -113,32 +112,34 @@
                         </div>
 
                         {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
-                        <div class="row mt-3">
+                        <div class="row">
                             <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                             <div class="col-sm-2">
                                 <input type="text" class="form-control text-end border-0" style=" background-color: #eee;"
                                 value="{{ __('0') }}" readonly>
                             </div>
-                            <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
+                            <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}</label>
                         </div>
 
                         {{-- แถบอัปโหลดใบเสร็จ --}}
-                        <div class="row mt-3 control-group increment">
-                            <label for="bill" class="col-auto col-form-label">อัปโหลดใบเสร็จ : </label>
-                                <div class="col-sm-5">
-                                    <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์">
-                                </div>
-                                <div class="col-sm-2">
-                                    <button class="btn btn-success add-file" type="button">+</button>
-                                </div>
+                        <div class="card-body w-50 ">
+                            <div class="text-center">
+                        <div class="row">
+                            <div>
+                                อัปโหลดรายการใบเสร็จ
+                            </div>
+                            <input type="file" id="file_up">
+                            <div class="col mx-3 my-2">
+                                <label for="file_up" class="col-auto col-form-label border border-success px-2 text-success rounded-3">+ อัปโหลดไฟล์</label>
+                            </div>
+                            </div>
                         </div>
-                        <div class="frame312-frame09">
+                            </div>
+                        </div>
 
-                            <span class="frame312-text48"><span>อัปโหลดไฟล์</span></span>
-
-                          </div>
 
                         {{-- ตรงนี้คือตอนกด + เพิ่มไฟล์ --}}
+
                         <div class="clone hide" hidden>
                             <div class="row mt-3 control-group" style="margin-left: 120px">
                                 <div class="col-sm-5">
@@ -152,7 +153,7 @@
                         </div>
 
                         {{-- ปุ่มส่งเบิก --}}
-                        <div class="row mt-3">
+                        <div class="row mb-4">
                             <div class="col-sm-2 ms-auto">
                                 <button type="submit" class="btn btn-lg btn-success">ส่งเบิก</button>
                             </div>

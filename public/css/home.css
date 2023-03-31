@@ -63,7 +63,7 @@ body {
 .i {
     padding: 30px  60px 15px 55px;
     /* text-decoration: underline; */
-    font-size: 36px;
+    font-size: 30px;
 }
 
 /* ตัวหนา */
@@ -76,3 +76,17 @@ body {
     background-color: white;
 
 }
+
+input[type="file"]{
+    display: none;
+}
+
+.upload{
+    display: inline-black;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    background: green;
+
+}
+
