@@ -59,16 +59,19 @@ body {
     border-radius: 10px 10px 10px 10px;
 }
 
+/* หัวข้อใบเบิก */
 .i {
-    padding: 20px  60px 20px 60px;
+    padding: 30px  60px 15px 55px;
     /* text-decoration: underline; */
     font-size: 36px;
 }
 
+/* ตัวหนา */
 .b {
     font-weight: bold;
 }
 
+/* กล่องขนาดใหญ่ */
 .big-box {
     background-color: white;
 

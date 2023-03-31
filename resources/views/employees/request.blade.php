@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-13">
            {{--  กรอบพื้นหลัง --}}
-            <div class="big-box">
+            <div class="card">
                 {{-- border:0 cellspacing:0 cellpadding:0 --}}
                 {{-- <div class="card-header fs-4 py-3">{{ __('เบิกสวัสดิการแบบรายบุคคล') }}</div> --}}
                 <div class="i" style="line-height:25px">{{ __('เบิกสวัสดิการแบบบุคคล') }}
@@ -15,43 +15,44 @@
                 </div>
 
                  <div class="card-body" style="padding: 0px 50px 50px 50px">
-                    {{-- กรอบขอมูล --}}
-                    <div class="box">
 
+                    {{-- กรอบขอมูล --}}
+
+                    <div class="card px-4 py-3 border-0 " style=" background-color: #eee;">
                     <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
 
                         {{-- วันที่ --}}
-                        <div class="row mt-2">
-                            <label for="budget" class="col-auto col-form-label ms-auto">{{ __('วัน/เดือน/ปี : ') }}</label>
+                        <div class="row">
+                            <label for="budget" class="col-auto col-form-label ms-auto fw-bolder fs-5">{{ __('วัน/เดือน/ปี : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" id="date" name="date" class="form-control" value="{{ date("d/m/Y") }}" disabled>
+                                <input type="text" id="date" name="date" class="form-control border-0 bg-transparent fs-5" value="{{ date("d/m/Y") }}" >
                             </div>
                         </div>
 
                         {{-- รหัสพนักงาน --}}
-                        <div class="row mt-4">
-                            <label for="id" class="col-sm-2 col-form-label">{{ __('รหัสพนักงาน : ') }}</label>
+                        <div class="row ms-3 mt-1">
+                            <label for="id" class="col-sm-2 col-form-label fw-bold fs-5">{{ __('รหัสพนักงาน : ') }}</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" value="{{ Auth::user()->id }}" disabled>
+                                <input type="text" class="form-control border-0 bg-transparent fs-5" value="{{ Auth::user()->id }}" disabled>
                             </div>
 
                         </div>
 
                         {{-- ชื่อ นามกุล --}}
-                        <div class="row mt-4">
-                            <label for="name" class="col-sm-2 col-form-label">{{ __('ชื่อ-สกุล : ') }}</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
+                        <div class="row ms-3 mt-1">
+                            <label for="name" class="col-sm-2 col-form-label fw-bold fs-5">{{ __('ชื่อ-สกุล : ') }}</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control border-0 bg-transparent fs-5" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
                             </div>
                         </div>
 
 
                         {{-- แผนก --}}
-                        <div class="row mt-4">
-                            <label for="department" class="col-sm-2 col-form-label">{{ __('แผนก : ') }}</label>
+                        <div class="row ms-3 mt-1">
+                            <label for="department" class="col-sm-2 col-form-label fw-bold fs-5">{{ __('แผนก : ') }}</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" value="{{ Auth::user()->department->name }}" disabled>
+                                <input type="text" class="form-control border-0 bg-transparent fs-5" value="{{ Auth::user()->department->name }}" disabled>
                             </div>
                         </div>
                     </div>
@@ -74,7 +75,8 @@
                             {{-- จำนวนเงิน --}}
                             <label for="budget" class="col-auto col-form-label ms-auto">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" class="text-end form-control" value="{{ __('2,000.00') }}" disabled>
+                                <input type="text" class="text-end form-control border-0" style=" background-color: #eee;"
+                                 value="{{ __('2,000.00') }}" disabled>
                             </div>
 
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
@@ -83,7 +85,8 @@
                         <div class="row mt-5 fs-5">
                             <div class="col-md-4">
                                 รายละเอียดการขอเบิกสวัสดิการ
-                                <hr width="255">
+                                <hr width="255" class="mt-0">
+
                             </div>
                             </div>
 
@@ -91,18 +94,18 @@
                             <div class="col-lg-11">
                                 {{-- ตารางไว้ใส่รายละเอียด --}}
                                 <table id="detail" class="table table-bordered">
-                                    <thead>
+                                    <thead style="background-color: rgb(4, 62, 129)">
                                         <tr class="text-center">
-                                            <th scope="col" class="col-lg-8">รายละเอียด</th>
-                                            <th scope="col" class="">จำนวนเงิน (บาท)</th>
+                                            <th scope="col" class="col-lg-8 text-white">รายละเอียด</th>
+                                            <th scope="col" class="text-white">จำนวนเงิน (บาท)</th>
                                             <td><button class="btn btn-sm btn-success">เพิ่ม</button></td>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <tr>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control text-end"></td>
+                                            <td><input type="text" class="form-control border-0"></td>
+                                            <td><input type="text" class="form-control text-end border-0"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -113,9 +116,10 @@
                         <div class="row mt-3">
                             <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control text-end" value="{{ __('0') }}" readonly>
+                                <input type="text" class="form-control text-end border-0" style=" background-color: #eee;"
+                                value="{{ __('0') }}" readonly>
                             </div>
-                            <label for="" class="col-auto col-form-label">{{ __('บาท') }}</label>
+                            <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
                         </div>
 
                         {{-- แถบอัปโหลดใบเสร็จ --}}
@@ -150,7 +154,7 @@
                         {{-- ปุ่มส่งเบิก --}}
                         <div class="row mt-3">
                             <div class="col-sm-2 ms-auto">
-                                <button type="submit" class="btn btn-lg btn-success">ส่งคำขอ</button>
+                                <button type="submit" class="btn btn-lg btn-success">ส่งเบิก</button>
                             </div>
                         </div>
                     </form>
