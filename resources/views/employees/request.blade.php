@@ -56,12 +56,15 @@
                         </div>
                     </div>
 
+                        {{-- <button class="px-2 py-auto rounded-circle">+</button> --}}
+
+
                         {{-- แถบเลือกประเภท --}}
                         <div class="row mt-3 mx-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
-                                <select class="form-control border-dark" name="welfare" id="welfare">
-                                    <option selected disabled>เลือกประเภทสวัสดิการ</option>
+                                <select class="form-control border-dark form-select" name="welfare" id="welfare">
+                                    <option selected disabled >เลือกประเภทสวัสดิการ</option>
 
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
                                     @foreach ($welfares as $welfare)
@@ -84,17 +87,17 @@
                         <div class="row mt-3 fs-5 mx-5">
                             <div class="col-md-4">
                                 รายละเอียดการขอเบิกสวัสดิการ
-                                <hr width="255" class="mt-0">
-
+                                <hr width="255" class="my-0">
+                                <div class="text-danger mb-2" style="font-size: 5px">จำนวนสูงสุด 10 รายการ</div>
                             </div>
                             </div>
 
                         <div class="row mt-2 d-flex justify-content-center">
                             <div class="col-lg-11">
                                 {{-- ตารางไว้ใส่รายละเอียด --}}
-                                <table id="detail" class="table table-bordered border-dark">
-                                    <thead style="background-color: rgb(4, 62, 129)">
-                                        <tr class="text-center">
+                                <table id="detail" class="table table-bordered border-dark" style="border-radius: 10px">
+                                    <thead id="bg" >
+                                        <tr class="text-center" >
                                             <th scope="col" class="col-lg-8 text-white">รายละเอียด</th>
                                             <th scope="col" class="text-white">จำนวนเงิน (บาท)</th>
                                                 <td><button class="btn btn-sm btn-success">เพิ่ม</button></td>
@@ -111,31 +114,67 @@
                             </div>
                         </div>
 
-                        {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
-                        <div class="row">
-                            <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
-                            <div class="col-sm-2">
-                                <input type="text" class="form-control text-end border-0" style=" background-color: #eee;"
-                                value="{{ __('0') }}" readonly>
+
+                        <div class="card mb-3  border-0">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                     {{-- แถบอัปโหลดใบเสร็จ --}}
+                                    <div class="card-body  text-center p-0">
+                                            <div>
+                                                อัปโหลดรายการใบเสร็จ
+                                            </div>
+                                                <input type="file" id="file_up">
+                                            <div class="col mx-3 my-2">
+                                                <label for="file_up" class="col col-form-label border border-success px-2 text-success rounded-3 ">+ อัปโหลดไฟล์</label>
+                                                <div class="text-danger" style="font-size: 5px">จำนวนสูงสุด 5 ไฟล์ (.jpg, .pdf)</div>
+                                            </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-8 ">
+                                    <div class="card-body p-0">
+                                        {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
+                                        <div class="row ">
+                                            <label for="total" class="card-text col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
+                                            <div class="col-sm-2">
+                                                <input type="text" class="form-control text-end border-0 " style=" background-color: #eee;"
+                                                value="{{ __('0') }}" readonly>
+                                            </div>
+                                            <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}</label>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
-                            <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}</label>
                         </div>
 
-                        {{-- แถบอัปโหลดใบเสร็จ --}}
-                        <div class="card-body w-50 ">
-                            <div class="text-center">
-                        <div class="row">
-                            <div>
-                                อัปโหลดรายการใบเสร็จ
-                            </div>
-                            <input type="file" id="file_up">
-                            <div class="col mx-3 my-2">
-                                <label for="file_up" class="col-auto col-form-label border border-success px-2 text-success rounded-3">+ อัปโหลดไฟล์</label>
-                            </div>
+
+                        <div class="card-body m-0 p-0">
+                            <div class="row ">
+                                <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control text-end border-0" style=" background-color: #eee;"
+                                    value="{{ __('0') }}" readonly>
+                                </div>
+                                <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}</label>
                             </div>
                         </div>
+
+
+                     {{--    <div class="card-body  text-center m-0 p-0" style="width: 500px; hight: 50px">
+                            <div class="row ">
+                                <div>
+                                    อัปโหลดรายการใบเสร็จ
+                                </div>
+                                    <input type="file" id="file_up">
+                                <div class="col mx-3 my-2">
+                                    <label for="file_up" class="col col-form-label border border-success px-2 text-success rounded-3 ">+ อัปโหลดไฟล์</label>
+                                    <div class="text-danger" style="font-size: 5px">จำนวนสูงสุด 5 ไฟล์ (.jpg, .pdf)</div>
+                                </div>
                             </div>
                         </div>
+ --}}
+
 
 
                         {{-- ตรงนี้คือตอนกด + เพิ่มไฟล์ --}}
