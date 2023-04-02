@@ -59,6 +59,6 @@ Route::group(['middleware' => 'auth'], function()
 
    Route::group(['middleware' => 'hrlead'], function()
    {
-        Route::get('/manage_request/{id}', [Manage_request_controller::class, 'show_request'])->name('approve');
+        Route::get('/manage_request/{id}', [Manage_request_controller::class, 'show_request'])->name('show_approve_request');
    });
 });
