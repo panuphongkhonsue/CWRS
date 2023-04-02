@@ -35,29 +35,34 @@
                                             @break
                                     @endswitch
                                     <td scope="col" class="text-center">{{ $text }}</td>
-                                    <td scope="col">{{ $welfare->title }}</td>
+                                    <td scope="col" id="title">{{ $welfare->title }}</td>
                                     <td scope="col" class="text-end">{{ $welfare->budget }}</td>
                                     <td scope="col" class="text-center">{{ $welfare->user->fname }}</td>
-                                    <td scope="col" class="text-center"><button type="button" class="btn btn-sm btn-warning text-light" data-toggle="modal" data-target="#modal-in">แก้ไข</button></td>
+                                    <td scope="col" class="text-center"><button type="button" id="show_data" class="btn btn-sm btn-warning text-light" data-bs-whatever="{{ $welfare->title }}" data-bs-toggle="modal" data-bs-target="#modal-in">แก้ไข</button></td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
 
                     <div class="modal fade" id="modal-in" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
                               <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
                             <div class="modal-body">
-
+                                <form action="">
+                                    <div class="col form-group" id="md-body">
+                                        <label for="" class="col-form-label">ชื่อสวัสดิการ :</label>
+                                        <div class="col"><input type="text" class="form-control" value="{{ $welfare->title }}"></div>
+                                    </div>
+                                </form>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                               <button type="button" class="btn btn-primary">Save changes</button>
                             </div>
                           </div>
@@ -69,4 +74,14 @@
         </div>
     </div>
 </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#show_data').click(function() {
+            var name = $("#title").val();
+            var str = name;
+            $("#md-body").html(str);
+        })
+    })
+</script>
 @endsection
