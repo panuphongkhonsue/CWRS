@@ -47,13 +47,14 @@
                                                 @php ($icon = 'cancel2.png')
                                                 @break
                                         @endswitch
+                                        
                                         <td class="text-center">{{ date("d/m/Y", strtotime($request->pivot->create_date)) }}</td>
                                         <td class="text-center">{{ $request->pivot->id }}</td>
                                         <td class="text-center">บุคคล</td>
                                         <td>{{ $request->title }}</td>
                                         <td class="text-end">{{ $request->budget }}</td>
                                         <td class="text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"></td>
-                                        <td class="text-center"><a href="{{ url('/history/'. $request->pivot->id) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
+                                        <td class="text-center"><a href="{{ route('show_history', ['id' => $request->pivot->id]) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

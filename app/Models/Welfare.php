@@ -18,4 +18,13 @@ class Welfare extends Model
     {
         return $this->belongsToMany(User::class, 'users_welfares', 'welfare_id', 'user_id');
     }
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'title',
+        'budget',
+        'type',
+        'creator_id'
+    ];
 }
