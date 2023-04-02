@@ -67,7 +67,7 @@
                                         <td scope="col" class="col-sm-2 text-end">{{ $request->get_welfare->budget }}</td>
                                         <td scope="col" class="col-sm-1 text-center"></td>
                                         <td scope="col" class="col-sm-1 text-center"><button type="button"
-                                            class="btn btn-sm btn-primary" style="font-size: 10px"><a href="{{ route('show_approve_request') }}"></a></button></td>
+                                            class="btn btn-sm btn-primary" style="font-size: 10px">แสดงรายการ</button></td>
                                     </tr>
                                 @endforeach
                             </tbody>
