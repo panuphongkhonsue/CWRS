@@ -7,49 +7,50 @@
     <div class="row justify-content-center">
         <div class="col-lg-13">
             <div class="card">
-                <div class="card-header fs-4 py-3 ">{{ __('เบิกสวัสดิการแบบสันทนาการ') }}</div>
+                <div class=" jumnum fs-4  ">{{ __('เบิกสวัสดิการแบบสันทนาการ') }} <hr width="295" class="mb-2" style="margin-top: 0px"></div>
 
                 <div class="card-body ">
+                    <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
                     <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
-                    <div class="phurin py-5 phurin">
-                         {{-- วันที่ --}}
-                     <div class="row mt-2 me-3">
-                        <label for="budget" class="col-auto col-form-label ms-auto ">{{ __('วัน/เดือน/ปี : ') }}</label>
-                        <div class="col-sm-2">
-                            <input type="text" id="date" name="date" class="form-control txt" value="{{ date("d/m/Y") }}" disabled>
+
+                        {{-- วันที่ --}}
+                        <div class="row">
+                            <label for="budget" class="col-auto col-form-label ms-auto fw-bolder ">{{ ('วัน/เดือน/ปี : ') }}</label>
+                            <div class="col-sm-2">
+                                <input type="text" id="date" name="date" class="form-control border-0 bg-transparent fs-16px" value="{{ date("d/m/Y") }}" >
+                            </div>
                         </div>
 
-                    <div class="row mt-4 ms-3">
-                        <label for="id" class="col-sm-2 col-form-label">{{ __('รหัสพนักงาน : ') }}</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" value="{{ Auth::user()->id }}" disabled>
+                        {{-- รหัสพนักงาน --}}
+                        <div class="row ms-5 mt-1">
+                            <label for="id" class="col-sm-2 col-form-label fw-bold">{{ ('รหัสพนักงาน : ') }}</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->id }}" disabled>
+                            </div>
+</div>
+
+                        {{-- ชื่อ นามกุล --}}
+                        <div class="row ms-5 mt-1">
+                            <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ ('ชื่อ-สกุล : ') }}</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
+                            </div>
                         </div>
 
-                    </div>
 
-                    {{-- ชื่อ นามกุล --}}
-                    <div class="row mt-4 ms-3">
-                        <label for="name" class="col-sm-2 col-form-label">{{ __('ชื่อ-สกุล : ') }}</label>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled >
+                        {{-- แผนก --}}
+                        <div class="row ms-5 mt-1 ">
+                            <label for="department" class="col-sm-2 col-form-label fw-bold">{{ ('แผนก : ') }}</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->department->name }}" disabled>
+                            </div>
                         </div>
                     </div>
-
-                    {{-- แผนก --}}
-                    <div class="row mt-4 ms-3">
-                        <label for="department" class="col-sm-2 col-form-label">{{ __('แผนก : ') }}</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" value="{{ Auth::user()->department->name }}" disabled>
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-
 
 
                         {{-- แถบเลือกประเภท --}}
-                        <div class="row mt-5">
+                        <div class="row  dropwalfare">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
                                 <select class="form-control" name="welfare" id="welfare">
@@ -69,71 +70,113 @@
                                 <input type="text" class="text-end form-control" value="{{ __('2,000.00') }}" disabled>
                             </div>
 
-                            <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
+                            <label for="id" class="col-auto col-form-label">{{ __('บาท') }}<label style="color:#fff">_______</label></label>
+
+
+                        </div><br>
+
+                        <div class="addpeople row ">
+                            <div class="col">
+                                <label>รายชื่อพนักงานเข้าร่วมกิจกรรม<hr style="margin-top: 0px"></label>
+                            </div>
+                        </div>
+                        <div class="addpeople row">
+                            <label for="budget" class="col-auto col-form-label">{{ __('เพิ่มสมาชิก : ') }}</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="{{ __('ชื่อ-นามสกุล,รหัสพนักงาน') }}">
+                            </div>
+                            <div class="col mt-1">
+                                <button type="button" class="border-0 bg-transparent add-table"><img src="{{ URL::asset('img/add.png') }}" width="20" height="20"></button>
+
+                            </div>
+                            <div class="row">
+                                <div class="col notation">
+                                    <label>เพิ่มได้สูงสุด 20 คน</label>
+
+                                </div>
+                            </div>
+
+
                         </div>
 
-                        <div class="row mt-5 fs-5">
-                            <div class="col-md-4">
-                                รายละเอียดการขอเบิกสวัสดิการ
-                                <hr>
-                            </div>
-                            </div>
 
-                        <div class="row mt-3 d-flex justify-content-center">
+                        <div >
+
+                        </div>
+
+
+
+
+                        <div class="row mt-3 d-flex justify-content-center g-0">
                             <div class="col-lg-11">
                                 {{-- ตารางไว้ใส่รายละเอียด --}}
-                                <table id="detail" class="table table-bordered">
-                                    <thead>
+                                <table id="detail" class="table table-bordered ms-5">
+                                    <thead class="bgcolor table-bordered ">
                                         <tr class="text-center">
-                                            <th scope="col" class="col-lg-8">ชื่อ-นามสกุล</th>
-                                            <th scope="col" class="">ตำแหน่ง</th>
-                                            <td><button type="button" class="add-table btn btn-sm btn-success">เพิ่ม</button></td>
+                                            <th>ชื่อ-นามสกุล</th>
+                                            <th>ตำแหน่ง</th>
                                         </tr>
                                     </thead>
 
-                                    <tbody id="item-body">
+                                    <tbody id="item-body" >
                                         <tr>
-                                            <td><input type="text" name="item[]" class="form-control"></td>
-                                            <td><input type="text" name="price[]" class="form-control text-end"></td>
-                                            <td class="text-center"><button type="button" class="remove-table btn btn-sm btn-danger">ลบ</button></td>
+                                            <td><input type="text" name="item[]" class="form-control tableadd"></td>
+                                            <td><input type="text" name="price[]" class="form-control text-end tableadd"></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="col ">
+                                <table class="deletetable">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="item-buttom_body">
+                                        <td>
+                                            <button type="button" class="remove-table border-0 bg-transparent mt-3 "><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button>
+                                        </td>
+                                    </tbody>
+                                </table>
+
+                            </div>
                         </div>
+
+
+
+                        {{-- จำนวนคนทั้งหมด ที่อยู่ข้างล่างตาราง --}}
+
+                            <div class="row mt-3 ">
+                                <label for="total" class="col-auto col-form-label ms-auto">จำนวนคนทั้งหมด : </label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control text-end" value="{{ __('0') }}" readonly disabled>
+                                </div>
+                                <label for="id" class="col-auto col-form-label">{{ __('คน') }}<label style="color:#fff">_______-</label></label>
+                            </div>
+
+
+
+
+
 
                         {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
-                        <div class="row mt-3">
-                            <label for="total" class="col-auto col-form-label">จำนวนเงินทั้งหมด : </label>
-                            <div class="col-sm-2">
-                                <input type="text" class="form-control text-end" value="{{ __('0') }}" readonly>
-                            </div>
-                            <label for="" class="col-auto col-form-label">{{ __('บาท') }}</label>
-                        </div>
 
-                        {{-- แถบอัปโหลดใบเสร็จ --}}
-                        <div class="row mt-3 control-group increment">
-                            <label for="bill" class="col-auto col-form-label">อัปโหลดใบเสร็จ : </label>
-                                <div class="col-sm-5">
-                                    <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์">
-                                </div>
+
+                            <div class="row mt-3">
+                                <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                                 <div class="col-sm-2">
-                                    <button class="btn btn-success add-file" type="button">+</button>
+                                    <input type="text" class="form-control text-end" value="{{ __('0.00') }}" readonly disabled>
                                 </div>
-                        </div>
+                                <label for="id" class="col-auto col-form-label">{{ __('บาท') }}<label style="color:#fff">______-</label></label>
+                            </div><br>
 
-                        {{-- ตรงนี้คือตอนกด + เพิ่มไฟล์ --}}
-                        <div class="clone hide" hidden>
-                            <div class="row mt-3 control-group" style="margin-left: 120px">
-                                <div class="col-sm-5">
-                                    <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์">
-                                </div>
-                                <div class="col-sm-2">
-                                    <button class="btn btn-danger remove-file" type="button">-</button>
-                                </div>
-                            </div>
 
-                        </div>
+
+
+
+
+
 
                         {{-- ปุ่มส่งเบิห --}}
                         <div class="row mt-3">
@@ -175,14 +218,33 @@
             {
                 $('#item-body').append(
                     `<tr>
-                        <td><input type="text" name="item[]" class="form-control"></td>
-                        <td><input type="text" name="price[]" class="form-control text-end"></td>
-                        <td class="text-center"><button type="button" class="remove-table btn btn-sm btn-danger">ลบ</button></td>
-                    </tr>`
+                        <td><input type="text" name="item[]" class="form-control tableadd"></td>
+                        <td><input type="text" name="price[]" class="form-control text-end tableadd"></td>
+                        </tr>`
+
+
+
                 )
+
                 rowTableCount++;
             }
         });
+        $(".add-table").click(function() {
+
+if (rowTableCount < 10)
+{
+    $('#item-buttom_body').append(
+        ` <td>
+             <button type="button" class="remove-table border-0 bg-transparent mt-3 "><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button>
+        </td>`
+
+
+
+    )
+
+    rowTableCount++;
+}
+});
 
         $("#item-body").on('click', '.remove-table', function(element) {
             if (rowTableCount > 1) {
