@@ -23,35 +23,35 @@
 
                         {{-- วันที่ --}}
                         <div class="row">
-                            <label for="budget" class="col-auto col-form-label ms-auto fw-bolder ">{{ __('วัน/เดือน/ปี : ') }}</label>
+                            <label for="budget" class="col-auto col-form-label ms-auto fw-bold ">{{ __('วัน/เดือน/ปี : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" id="date" name="date" class="form-control border-0 bg-transparent fs-16px" value="{{ date("d/m/Y") }}" >
+                                <input type="text" id="date" name="date" class="form-control border-0 bg-transparent " value="{{ date("d/m/Y") }}" >
                             </div>
                         </div>
 
                         {{-- รหัสพนักงาน --}}
-                        <div class="row ms-5 mt-1">
+                        <div class="row ms-3 mt-1">
                             <label for="id" class="col-sm-2 col-form-label fw-bold">{{ __('รหัสพนักงาน : ') }}</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->id }}" disabled>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control border-0 bg-transparent " value="{{ Auth::user()->id }}" disabled>
                             </div>
 
                         </div>
 
                         {{-- ชื่อ นามกุล --}}
-                        <div class="row ms-5 mt-1">
+                        <div class="row ms-3 mt-1">
                             <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ __('ชื่อ-สกุล : ') }}</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control border-0 bg-transparent " value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
                             </div>
                         </div>
 
 
                         {{-- แผนก --}}
-                        <div class="row ms-5 mt-1 ">
+                        <div class="row ms-3 mt-1 mb-2 ">
                             <label for="department" class="col-sm-2 col-form-label fw-bold">{{ __('แผนก : ') }}</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->department->name }}" disabled>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control border-0 bg-transparent" value="{{ Auth::user()->department->name }}" disabled>
                             </div>
                         </div>
                     </div>
@@ -92,15 +92,16 @@
                             </div>
                             </div>
 
-                        <div class="row mt-2 d-flex justify-content-center">
+
+                       {{--  <div class="row mt-2 d-flex justify-content-center">
                             <div class="col-lg-11">
-                                {{-- ตารางไว้ใส่รายละเอียด --}}
-                                <table id="detail" class="table table-bordered border-dark" style="border-radius: 10px">
+
+                                <table id="detail" class="table table-bordered border-dark">
                                     <thead id="bg" >
-                                        <tr class="text-center" >
+                                        <tr class="text-center text-white" >
                                             <th scope="col" class="col-lg-8 text-white">รายละเอียด</th>
                                             <th scope="col" class="text-white">จำนวนเงิน (บาท)</th>
-                                                <td><button class="btn btn-sm btn-success">เพิ่ม</button></td>
+
                                         </tr>
                                     </thead>
 
@@ -109,17 +110,96 @@
                                             <td><input type="text" class="form-control border-0"></td>
                                             <td><input type="text" class="form-control text-end border-0"></td>
                                         </tr>
+                                        <tr>
+                                            <td><input type="text" class="form-control border-0"></td>
+                                            <td><input type="text" class="form-control text-end border-0"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="form-control border-0"></td>
+                                            <td><input type="text" class="form-control text-end border-0"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div> --}}
 
 
-                        <div class="card mb-3  border-0">
+
+
+                            <div class="row wfh px-5">
+                                <div class="col-md-11">
+
+
+
+                                        <table id="detail" class="table table-bordered border-dark">
+                                            <thead id="bg" >
+                                                <tr class="text-center text-white" >
+                                                    <th scope="col" class="col-sm-7 text-white">รายละเอียด</th>
+                                                    <th scope="col" class="col-sm-4 text-white">จำนวนเงิน (บาท)</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td><input type="text" class="form-control border-0"></td>
+                                                    <td><input type="text" class="form-control text-end border-0"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" class="form-control border-0"></td>
+                                                    <td><input type="text" class="form-control text-end border-0"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" class="form-control border-0"></td>
+                                                    <td><input type="text" class="form-control text-end border-0"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+
+
+                                </div>
+                                <div class="col-md-1 p-0">
+
+
+                                    <table class="table mt-3">
+                                        <thead>
+                                            <tr>
+                                                <button class="border-0 bg-transparent">
+                                                    <img src="{{ URL::asset('img/add.png') }}" width="20" height="20">
+                                                </button>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody >
+                                            <tr>
+                                                <td class="border-0">
+                                                    <button class="border-0 bg-transparent">
+                                                        <img src="{{ URL::asset('img/delete.png') }}" width="35" height="35">
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border-0">
+                                                    <button class="border-0 bg-transparent">
+                                                        <img src="{{ URL::asset('img/delete.png') }}" width="35" height="35">
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+                            </div>
+
+
+
+
                             <div class="row g-0">
                                 <div class="col-md-4">
                                      {{-- แถบอัปโหลดใบเสร็จ --}}
-                                    <div class="card-body  text-center p-0">
+                                    <div class="text-center p-0">
                                             <div>
                                                 อัปโหลดรายการใบเสร็จ
                                             </div>
@@ -132,24 +212,26 @@
 
                                 </div>
                                 <div class="col-md-8 ">
-                                    <div class="card-body p-0">
+                                    <div class=" p-0">
                                         {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
                                         <div class="row ">
-                                            <label for="total" class="card-text col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
+                                            <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                                             <div class="col-sm-2">
                                                 <input type="text" class="form-control text-end border-0 " style=" background-color: #eee;"
-                                                value="{{ __('0') }}" readonly>
+                                                value="{{ __('0.00') }}" readonly>
                                             </div>
-                                            <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}</label>
+                                            <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }} <label style="color:#fff">_</label></label>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
 
-                        <div class="card-body m-0 p-0">
+
+
+
+                      {{--   <div class="card-body m-0 p-0">
                             <div class="row ">
                                 <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                                 <div class="col-sm-2">
@@ -159,7 +241,7 @@
                                 <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}</label>
                             </div>
                         </div>
-
+ --}}
 
                      {{--    <div class="card-body  text-center m-0 p-0" style="width: 500px; hight: 50px">
                             <div class="row ">

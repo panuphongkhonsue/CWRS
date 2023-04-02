@@ -18,7 +18,7 @@
 
                         {{-- ในส่วนของตาราง --}}
                         <table class="table table-bordered mx-3 align-items-center">
-                            <thead class="text-center text-light" id="bg">
+                            <thead class="text-center text-white" id="bg">
                                 <tr>
                                     <td scope="col" class="col-sm-1">วันที่</td>
                                     <td scope="col" class="col-sm-1">เลขที่</td>
