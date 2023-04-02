@@ -7,8 +7,12 @@
             <div class="card">
                 <div class="card-header fs-4 py-3">{{ __('จัดการสวัสดิการ') }}</div>
                 <div class="card-body">
-
-                    <table class="table table-bordered align-items-center">
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-primary">+ เพิ่มสวัสดิการ</button>
+                        </div>
+                    </div>
+                    <table class="table table-bordered align-items-center mt-3">
                         <thead class="text-center text-light" id="bg">
                             <tr>
                                 <td scope="col" class="col-sm-2">รูปแบบสวัสดิการ</td>
@@ -65,5 +69,4 @@
         </div>
     </div>
 </div>
-
 @endsection

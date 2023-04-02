@@ -35,7 +35,6 @@ class User extends Authenticatable
         ->withPivot('create_date', 'status', 'id')->orderBy('create_date', 'DESC');
     }
 
-
     /**
      * The attributes that are mass assignable.
      *

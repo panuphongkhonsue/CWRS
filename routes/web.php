@@ -53,11 +53,14 @@ Route::group(['middleware' => 'auth'], function()
         Route::get('/request/single', [Request_controller::class, 'single_request'])->name('s.request');
         Route::get('/history', [User_history_controller::class, 'index'])->name('history');
         Route::post('/create', [Request_controller::class, 'create_single'])->name('create.single');
-        Route::get('/history/{id}', [User_history_controller::class, 'show'])->name('show');
+        Route::get('/history/{id}', [User_history_controller::class, 'show_request'])->name('show');
         Route::get('/cancel/{id}', [User_history_controller::class, 'cancel'])->name('cancel');
    });
 
    Route::group(['middleware' => 'hrlead'], function()
    {
+        Route::get('/manage_request/{id}', [User_history_controller::class, 'show_approve'])->name('show_approve_request');
+        Route::get('/reject/{id}', [Manage_request_controller::class, 'reject_request']);
+        Route::get('/approve/{id}', [Manage_request_controller::class, 'approve_request']);
    });
 });

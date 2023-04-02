@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Welfare;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Single_request;
 use Illuminate\Support\Facades\DB;
 
 class User_history_controller extends Controller
@@ -40,9 +41,9 @@ class User_history_controller extends Controller
     * @author : Rawich Piboonsin 64160299
     * @Create Date : 2023-03-15
     */
-    public function show($id)
+    public function show_request($id)
     {
-        $history = DB::table('users_welfares')->where('id', $id)->first();
+        $history = Single_request::where('id', $id)->first();
 
         if ($history == NULL) {
             abort(404);
@@ -68,5 +69,16 @@ class User_history_controller extends Controller
             ]);
 
         return redirect()->route('history');
+    }
+
+    public function show_approve($id)
+    {
+        $history = Single_request::where('id', $id)->first();
+
+        if ($history == NULL) {
+            abort(404);
+        }
+
+        return view('v_show_approve', ['history' => $history]);
     }
 }

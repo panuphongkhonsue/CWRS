@@ -31,7 +31,7 @@
                         <div class="row mt-4">
                             <label for="id" class="col-sm-2 col-form-label">{{ __('รหัสพนักงาน : ') }}</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" value="{{ Auth::user()->id }}" disabled>
+                                <input type="text" class="form-control" value="{{ $history->get_user->id }}" disabled>
                             </div>
 
                         </div>
@@ -39,14 +39,14 @@
                         <div class="row mt-4">
                             <label for="name" class="col-sm-2 col-form-label">{{ __('ชื่อ-สกุล : ') }}</label>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
+                                <input type="text" class="form-control" value="{{ $history->get_user->fname }} {{ $history->get_user->lname }}" disabled>
                             </div>
                         </div>
 
                         <div class="row mt-4">
                             <label for="department" class="col-sm-2 col-form-label">{{ __('แผนก : ') }}</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" value="{{ Auth::user()->department->name }}" disabled>
+                                <input type="text" class="form-control" value="{{ $history->get_user->department->name }}" disabled>
                             </div>
                         </div>
 
@@ -114,8 +114,11 @@
                         </div>
 
                         <div class="row mt-3">
-                            <div class="col-sm-2 ms-auto">
-                                <a href="{{ url('cancel/'. $history->id) }}" method="POST" class="btn btn-lg btn-danger">ยกเลิก</a>
+                            <div class="col-sm-1 ms-auto">
+                                <a href="{{ url('reject/'. $history->id) }}" method="POST" class="btn btn-md btn-danger">ไม่อนุมัติ</a>
+                            </div>
+                            <div class="col-sm-1">
+                                <a href="{{ url('approve/'. $history->id) }}" method="POST" class="btn btn-md btn-success">อนุมัติ</a>
                             </div>
                         </div>
                     </form>

@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Welfare;
 use App\Models\Bill;
+use App\Models\Single_request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -26,8 +27,18 @@ class Request_controller extends Controller
     */
     public function single_request()
     {
-        $data['welfares'] = Welfare::all()->where('type', 'S');
-        return view('v_request', $data);
+        $user = Auth::user();
+        $requests = Single_request::where('user_id', $user->id)->get();
+
+        foreach ($requests as $request) {
+            if (date("Y", strtotime($request->create_date)) == date("Y")) {
+                $welfare_id[] = $request->welfare_id;
+            }
+        }
+
+        $data = Welfare::where('type', 'S')->whereNotIn('id', $welfare_id)->get();
+
+        return view('v_request', ['welfares' => $data]);
     }
 
     /*
@@ -39,7 +50,7 @@ class Request_controller extends Controller
     * @Create Date : 2023-03-15
     */
     public function create_single(Request $request)
-    {   
+    {
         $welfare = Welfare::find($request->welfare);
         $user = Auth::user();
         $date = date("Y-m-d");
