@@ -48,3 +48,7 @@ body {
  #bg {
     background: #174E7B;
  }
+
+.btn-custom:hover {
+   background: #f0f8ff;
+}

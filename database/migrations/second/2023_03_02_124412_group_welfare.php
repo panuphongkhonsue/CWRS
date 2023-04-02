@@ -12,20 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('group_welfare', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->tinyInteger('status');
+        Schema::create('groups_welfares', function (Blueprint $table) {
+            $table->id();
+            $table->tinyInteger('status')->default(0);
             $table->date('create_date');
-            $table->date('hr_approve_date');
-            $table->date('head_approve_date');
-            $table->string('hr_approver_id');
-            $table->string('head_approver_id');
-            $table->string('user_id');
-            $table->foreignId('welfare_id')->constrained();
-
-            $table->foreign('hr_approver_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('head_approver_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->date('hr_approve_date')->nullable();
+            $table->date('head_approve_date')->nullable();
+            $table->text('note')->nullable();
+            $table->foreignId('hr_approver_id')->nullable()->constrained('users');
+            $table->foreignId('head_approver_id')->nullable()->constrained('users');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('welfare_id')->constrained('welfares');
         });
 
     }

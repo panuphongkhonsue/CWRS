@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
         $users =
         [
             [
-                'id' => 'emp_0001',
+                'id' => '64160299',
                 'type' => 'M',
                 'fname' => 'Rawich',
                 'lname' => "Piboonsin",
@@ -29,7 +29,7 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('123456789')
             ],
             [
-                'id' => 'emp_0002',
+                'id' => '64160282',
                 'type' => 'E',
                 'fname' => 'Phanupong',
                 'lname' => 'Khonsue',
@@ -39,7 +39,7 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('123456789')
             ],
             [
-                'id' => 'emp_0003',
+                'id' => '64160284',
                 'type' => 'H',
                 'fname' => 'Phurin',
                 'lname' => 'Lamakul',
@@ -50,7 +50,7 @@ class UsersSeeder extends Seeder
             ],
             [
 
-                'id' => 'emp_0004',
+                'id' => '64160165',
                 'type' => 'H',
                 'fname' => 'Benchamaphon',
                 'lname' => 'Wongwiriya',
@@ -60,7 +60,7 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('123456789')
             ],
             [
-                'id' => 'emp_0005',
+                'id' => '64160287',
                 'type' => 'M',
                 'fname' => 'Sarun',
                 'lname' => 'Ruengtai',
@@ -70,7 +70,7 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('123456789')
             ],
             [
-                'id' => 'emp_0006',
+                'id' => '64160167',
                 'type' => 'E',
                 'fname' => 'Phanida',
                 'lname' => 'Thamwapee',
@@ -80,7 +80,7 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('123456789')
             ],
             [
-                'id' => 'emp_0007',
+                'id' => '64160060',
                 'type' => 'E',
                 'fname' => 'Chasita',
                 'lname' => 'Tochaona',
@@ -90,7 +90,7 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('123456789')
             ],
             [
-                'id' => 'emp_0008',
+                'id' => '64160160',
                 'type' => 'E',
                 'fname' => 'Nattapak',
                 'lname' => 'Jusuwansiri',

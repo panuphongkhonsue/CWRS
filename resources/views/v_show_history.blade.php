@@ -1,7 +1,6 @@
 {{-- หน้าแสดงประวัติ หลังจากกด แสดงรายการ --}}
 
-
-@extends('employees.empnav')
+@extends('employees.v_employee_nav')
 
 @section('content')
 <div class="container">
@@ -13,7 +12,17 @@
                     <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row mt-2">
-                            <label for="budget" class="col-auto col-form-label ms-auto">{{ __('วัน/เดือน/ปี : ') }}</label>
+
+                        </div>
+
+                        <div class="row mt-2">
+                            <label for="req-id" class="col-auto col-form-label ms-auto">{{ __('เลขที่ใบเบิก : ') }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="req-id" id="req-id" class="form-control" value="{{ $history->id }}" disabled>
+                                </div>
+                            </label>
+
+                            <label for="budget" class="col-auto col-form-label">{{ __('วัน/เดือน/ปี : ') }}</label>
                             <div class="col-sm-2">
                                 <input type="text" id="date" name="date" class="form-control" value="{{ date("d/m/Y", strtotime($history->create_date)) }}" disabled>
                             </div>
@@ -69,15 +78,17 @@
                                         <tr class="text-center">
                                             <th scope="col" class="col-lg-8">รายละเอียด</th>
                                             <th scope="col" class="">จำนวนเงิน (บาท)</th>
-                                            <td><button class="btn btn-sm btn-success">เพิ่ม</button></td>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control text-end"></td>
-                                        </tr>
+                                        @php ($price = json_decode($history->price))
+                                        @foreach (json_decode($history->item) as $index => $item)
+                                            <tr>
+                                                <td><input type="text" class="form-control" value="{{ $item }}" readonly></td>
+                                                <td><input type="text" class="form-control text-end" value="{{ $price[$index] }}" readonly></td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

@@ -15,11 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->char('type');
-            $table->string('detail')->default(NULL);
+            $table->string('detail')->nullable();
             $table->decimal('budget', 8, 2);
-            $table->string('creator_id')->nullable();
-
-            $table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('creator_id')->constrained('users');
         });
     }
 

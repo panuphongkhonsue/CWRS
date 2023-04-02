@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     public function welfares_request()
     {
-        return $this->belongsToMany(Welfare::class, 'user_welfare', 'user_id', 'welfare_id')
+        return $this->belongsToMany(Welfare::class, 'users_welfares', 'user_id', 'welfare_id')
         ->withPivot('create_date', 'status', 'id')->orderBy('create_date', 'DESC');
     }
 

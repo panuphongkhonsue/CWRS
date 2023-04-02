@@ -16,6 +16,6 @@ class Welfare extends Model
 
     public function users_request()
     {
-        return $this->belongsToMany(User::class, 'user_welfare', 'welfare_id', 'user_id');
+        return $this->belongsToMany(User::class, 'users_welfares', 'welfare_id', 'user_id');
     }
 }

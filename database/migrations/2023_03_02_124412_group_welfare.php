@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('create_date');
             $table->date('hr_approve_date');
             $table->date('head_approve_date');
+            $table->text('note');
             $table->string('hr_approver_id');
             $table->string('head_approver_id');
             $table->string('user_id');
