@@ -49,6 +49,52 @@ body {
     background: #174E7B;
  }
 
-.btn-custom:hover {
-   background: #f0f8ff;
+ .box {
+    background-color: #e9e9e9;
+   /*  border: dotted 2px cadetblue; */
+    padding: 20px 60px 20px 60px;
+    /* margin: auto; */
+    width: 1200px;
+    height: 280px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+/* หัวข้อใบเบิก */
+.i {
+    padding: 30px  60px 15px 55px;
+    /* text-decoration: underline; */
+    font-size: 30px;
+}
+
+/* ตัวหนา */
+.b {
+    font-weight: bold;
+}
+
+/* กล่องขนาดใหญ่ */
+.big-box {
+    background-color: white;
+
+}
+
+/* รับค่าไฟล์ใบเสร็จ */
+input[type="file"]{
+    display: none;
+}
+
+/* ปุ่มอัปโหลด */
+.upload{
+    display: inline-black;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    background: green;
+
+}
+
+/* ตาราง */
+table{
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
 }
