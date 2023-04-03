@@ -1,4 +1,4 @@
-{{-- หน้าแสดงประวัติขที่เป็นตารางๆ อะ --}}
+{{-- หน้าแสดงประวัติที่เป็นตารางๆ อะ --}}
 
 @extends('employees.v_employee_nav')
 
@@ -6,14 +6,45 @@
 
 <div class="container">
     <div class="col-lg-13">
-        <div class="card">
+        <div class="card">              
             <div class="card-header fs-4 py-3">{{ __('ประวัติการเบิกสวัสดิการ') }}</div>
             <div class="card-body">
-
                 <div class="row mt-3">
-                    {{-- ใส่แถบ ตัวกรอง ตรงนี้ --}}
+                    <label for="budget" class="col-auto col-form-label ms-auto"> สถานะ : </label>
+                    <div class="col-md-2">
+                        <select class="form-control form-select" name="welfare" id="welfare">
+                                    <option selected="" disabled=""> รออนุมัติ </option> 
+                                        <option value="1">ทั้งหมด</option>
+                                        <option value="2">รออนุมัติ</option>
+                                        <option value="3">อนุมัติ</option>
+                                        <option value="4">ไม่อนุมัติ</option>
+                                        <option value="5">ยกเลิก</option>                                            
+                        </select>
+                     </div>
+                    <label for="budget" class="col-auto col-form-label"> รูปแบบสวัสดิการ : </label>
+                    <div class="col-md-2">
+                        <select class="form-control form-select" name="welfare" id="welfare">
+                                    <option selected="" disabled=""> ทั้งหมด </option> 
+                                        <option value="1">ทั้งหมด</option>
+                                        <option value="2">บุคคล</option>
+                                        <option value="3">สันทนาการ</option>                                                              
+                        </select>
+
                 </div>
-                <div class="row mt-4">
+                <label for="budget" class="col-auto col-form-label"> ปี พ.ศ. : </label>
+                <div class="col-md-2">
+                        <select class="form-control form-select" name="welfare" id="welfare">
+                                    <option selected="" disabled=""> ทั้งหมด </option> 
+                                        <option value="1">ทั้งหมด</option>
+                                        <option value="2">2566</option>
+                                        <option value="3">2565</option>
+                                        <option value="4">2564</option>
+                                        <option value="5">2563</option>
+                                        <option value="6">2562</option>                                            
+                        </select>
+                </div>
+                </div>
+                <div class="row mt-3">
                     <div class="col-md-13">
 
                         {{-- ในส่วนของตาราง --}}
@@ -61,7 +92,23 @@
                         </table>
                     </div>
                 </div>
-                <div class="row mt-3">
+                    <div class="row mt-5">
+                        <div class="col-lg-6 ms-auto">
+                        <nav aria-label="ms-auto">
+                        <ul class="pagination" class="col-auto col-form-label ms-auto">หน้า
+                            &nbsp;<li class="page-item disabled">
+                            <a class="page-link">ก่อนหน้า</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                            <a class="page-link" href="#">ถัดไป</a>
+                            </li>
+                        </ul>
+                    </nav></div>
                     <div class="col-lg-5 ms-auto text-end">
                         {{ __('หมายเหตุ')  }}
                         &nbsp; {{ __(':')}}
