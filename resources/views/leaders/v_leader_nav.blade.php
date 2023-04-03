@@ -20,7 +20,7 @@
 
 </head>
 <body>
-      <div class="container-fluid h-100">
+    <div class="container-fluid h-100">
     <div class="row h-100">
       <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-custom" id="side_bar" style="width: 280px">
         <div class="text-center mb-3">

@@ -74,7 +74,7 @@
                                 รายละเอียดการขอเบิกสวัสดิการ
                                 <hr>
                             </div>
-                            </div>
+                        </div>
 
                         <div class="row mt-3 d-flex justify-content-center">
                             <div class="col-lg-11">

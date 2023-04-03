@@ -30,13 +30,19 @@ class Request_controller extends Controller
         $user = Auth::user();
         $requests = Single_request::where('user_id', $user->id)->get();
 
-        foreach ($requests as $request) {
+        $welfare_id[0] = NULL;
+
+        foreach ($requests as $index => $request) {
             if (date("Y", strtotime($request->create_date)) == date("Y")) {
-                $welfare_id[] = $request->welfare_id;
+                $welfare_id[$index] = $request->welfare_id;
             }
         }
 
-        $data = Welfare::where('type', 'S')->whereNotIn('id', $welfare_id)->get();
+        $data = Welfare::where('type', 'S')->get();
+
+        if ($welfare_id[0] != NULL) {
+            $data = Welfare::where('type', 'S')->whereNotIn('id', $welfare_id)->get();
+        }
 
         return view('v_request', ['welfares' => $data]);
     }
