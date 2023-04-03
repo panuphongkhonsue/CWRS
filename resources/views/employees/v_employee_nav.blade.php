@@ -45,20 +45,19 @@
             <hr>
 
             {{-- ตรงนี้คือ dropdown ตอนกดเมนู ขอเบิกสวัสดิการ แต่มันยังไม่เป็น dropdown ให้ --}}
-            <li class="nav-item dropdown">
-                <a href="{{ route('s.request') }}" class="nav-link dropdown-toggle text-light" id="navbarDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                    {{ _('ขอเบิกสวัสดิการ') }}
+            <li>
+                <a class="btn btn-toggle align-items-center rounded collapsed nav-link text-white" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false" fdprocessedid="xlnb4i">
+                  ขอเบิกสวัสดิการ
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="" class="dropdown-item">บุคคล</a>
-                    <a href="" class="dropdown-item">สันทนาการ</a>
+                <div class="collapse" id="home-collapse" style="" >
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li class="mt-2"><a href="{{ route('s.request') }}" class="link-dark rounded nav-link text-white" style="text-decoration: none">บุคคล</a></li>
+                    <li class="mt-2"><a href="" class="link-dark rounded text-white" style="text-decoration: none">สันทนาการ</a></li>
+                  </ul>
                 </div>
-            </li>
+              </li>
             <hr>
             <li>
-
                 {{-- ปุ่มประวัตื --}}
               <a href="{{ route('history') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>

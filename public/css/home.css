@@ -50,5 +50,9 @@ body {
  }
 
 .btn-custom:hover {
-   background: #f0f8ff;
+   background: #e9e8e8;
+}
+
+.selected {
+    background-color: #f0f8ff;
 }

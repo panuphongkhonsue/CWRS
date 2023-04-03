@@ -47,7 +47,7 @@
                                                 @php ($icon = 'cancel2.png')
                                                 @break
                                         @endswitch
-                                        
+
                                         <td class="text-center">{{ date("d/m/Y", strtotime($request->pivot->create_date)) }}</td>
                                         <td class="text-center">{{ $request->pivot->id }}</td>
                                         <td class="text-center">บุคคล</td>

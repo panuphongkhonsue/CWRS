@@ -4,7 +4,7 @@
 <div class="container">
     <div class="col-lg-13">
 
-        <livewire:show-request-filter/>
+        <livewire:request-filter/>
 
         <div class="card mt-3">
             <div class="card-body">
@@ -12,8 +12,8 @@
                     <div class="col-md-13">
 
                         {{-- ในส่วนของตาราง --}}
-                        <livewire:show-requests/>
-                        {!! $requests->links('pagination::bootstrap-5') !!}
+                            <livewire:request-show/>
+
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -38,9 +38,18 @@
                         {{ __('ยกเลิก') }}
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+{{-- <script type="text/javascript">
+    $(document).ready(function() {
+        $(".btn-custom").click(function() {
+            var selected = document.getElementById("selected");
+            selected.classList.remove("selected");
+            $(this).id = "selected";
+        })
+    })
+</script> --}}
 @endsection

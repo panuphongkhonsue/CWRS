@@ -1,24 +1,23 @@
 <div>
-    {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
     <table class="table table-bordered align-items-center">
-        <thead class="text-center text-light" id="bg">
-            <tr>
-                <td scope="col" class="col-sm-1">วันที่</td>
-                <td scope="col" class="col-sm-1">เลขที่</td>
-                <td scope="col" class="col-sm-1">รูปแบบ</td>
-                <td scope="col">ผู้เบิก</td>
-                <td scope="col" class="col-md-3">ประเภทสวัสดิการ</td>
-                <td scope="col" class="col-sm-2 ">จำนวนเงิน (บาท)</td>
-                <td scope="col" class="col-sm-1">สถานะ</td>
-                <td scope="col" class="col-sm-1">แสดงผล</td>
-            </tr>
-        </thead>
-        <tbody class="">
-            @foreach ($requests as $index => $request)
-                <tr>
-                    @switch($request->status)
-                        @case(0)
-                            @php ($icon = 'wait.png')
+    <thead class="text-center text-light" id="bg">
+        <tr>
+            <td scope="col" class="col-sm-1">วันที่</td>
+            <td scope="col" class="col-sm-1">เลขที่</td>
+            <td scope="col" class="col-sm-1">รูปแบบ</td>
+            <td scope="col">ผู้เบิก</td>
+            <td scope="col" class="col-md-3">ประเภทสวัสดิการ</td>
+            <td scope="col" class="col-sm-2 ">จำนวนเงิน (บาท)</td>
+            <td scope="col" class="col-sm-1">สถานะ</td>
+            <td scope="col" class="col-sm-1">แสดงผล</td>
+        </tr>
+    </thead>
+    <tbody class="">
+     @foreach ($requests as $index => $request)
+        <tr>
+            @switch($request->status)
+                @case(0)
+                        @php ($icon = 'wait.png')
                             @break
                         @case(-2)
                             @php ($icon = 'cancel.png')
@@ -50,6 +49,10 @@
                     </td>
                 </tr>
             @endforeach
-        </tbody>
+    </tbody>
     </table>
+    {!! $requests->links() !!}
 </div>
+
+
+
