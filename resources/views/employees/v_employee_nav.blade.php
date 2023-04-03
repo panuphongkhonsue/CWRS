@@ -46,13 +46,15 @@
 
             {{-- ตรงนี้คือ dropdown ตอนกดเมนู ขอเบิกสวัสดิการ แต่มันยังไม่เป็น dropdown ให้ --}}
             <li>
-                <a class="btn btn-toggle align-items-center rounded collapsed nav-link text-white" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false" fdprocessedid="xlnb4i">
+                <a class="btn nav-link text-white text-start dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false" fdprocessedid="xlnb4i">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
                   ขอเบิกสวัสดิการ
                 </a>
+                
                 <div class="collapse" id="home-collapse" style="" >
-                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li class="mt-2"><a href="{{ route('s.request') }}" class="link-dark rounded nav-link text-white" style="text-decoration: none">บุคคล</a></li>
-                    <li class="mt-2"><a href="" class="link-dark rounded text-white" style="text-decoration: none">สันทนาการ</a></li>
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ms-5">
+                    <li><a href="{{ route('s.request') }}" class="nav-link text-white" style="text-decoration: none">บุคคล</a></li>
+                    <li><a href="" class="nav-link text-white" style="text-decoration: none">สันทนาการ</a></li>
                   </ul>
                 </div>
               </li>
