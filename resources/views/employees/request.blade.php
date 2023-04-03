@@ -18,7 +18,7 @@
 
                  <div class="card-body" style="padding: 0px 50px 50px 50px">
 
-                    {{-- กรอบขอมูล --}}
+                    {{-- กรอบข้อมูล --}}
                     <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
                     <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
@@ -283,7 +283,7 @@
     </div>
 </div>
 
-{{-- ตรงนี้อย่านะไอสัส --}}
+{{-- ห้ามแตะต้อง --}}
 <script type="text/javascript">
     var rowCount = 1;
 
