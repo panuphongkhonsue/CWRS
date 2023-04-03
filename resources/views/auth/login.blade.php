@@ -50,7 +50,7 @@
                             </div>
                         </div>
 
-                            <!-- ปุ่ม Sig in -->
+                            <!-- ปุ่ม Sign in -->
                         <div class="row mb-0">
                             <div class="col text-center">
                                 <button type="submit" class="btn btn-success">
