@@ -77,10 +77,12 @@ body {
 
 }
 
+/* รับค่าไฟล์ใบเสร็จ */
 input[type="file"]{
     display: none;
 }
 
+/* ปุ่มอัปโหลด */
 .upload{
     display: inline-black;
     text-transform: uppercase;
@@ -90,6 +92,7 @@ input[type="file"]{
 
 }
 
+/* ตาราง */
 table{
     border-collapse: collapse;
     border-radius: 1em;

@@ -8,10 +8,12 @@
         <div class="col-lg-13">
            {{--  กรอบพื้นหลัง --}}
             <div class="card">
+
                 {{-- border:0 cellspacing:0 cellpadding:0 --}}
                 {{-- <div class="card-header fs-4 py-3">{{ __('เบิกสวัสดิการแบบรายบุคคล') }}</div> --}}
+                {{-- หัวข้อใบเบิก --}}
                 <div class="i mx-5" style="line-height:20px">{{ __('เบิกสวัสดิการแบบบุคคล') }}
-                    <hr width="295" class="mb-2">
+                    <hr width="295" class="mb-2">{{-- เส้นใต้ --}}
                 </div>
 
                  <div class="card-body" style="padding: 0px 50px 50px 50px">
@@ -84,6 +86,7 @@
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
                         </div>
 
+                        {{-- หัวข้อรายละเอียด + หมายเหตุ --}}
                         <div class="row mt-3 fs-5 mx-5">
                             <div class="col-md-4">
                                 รายละเอียดการขอเบิกสวัสดิการ
@@ -125,11 +128,9 @@
 
 
 
-
+                        {{-- ตารางรายละเอียด --}}
                             <div class="row wfh px-5">
                                 <div class="col-md-11">
-
-
 
                                         <table id="detail" class="table table-bordered border-dark">
                                             <thead id="bg" >
@@ -155,12 +156,10 @@
                                             </tbody>
                                         </table>
 
-
-
                                 </div>
                                 <div class="col-md-1 p-0">
 
-
+                                    {{-- ปุ่มรายเพิ่มตาราง ลบตาราง --}}
                                     <table class="table mt-3">
                                         <thead>
                                             <tr>
@@ -187,8 +186,6 @@
                                             </tr>
                                         </tbody>
                                     </table>
-
-
 
                                 </div>
                             </div>
