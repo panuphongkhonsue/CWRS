@@ -2,8 +2,11 @@
 
 @section('content')
 <div class="container">
+
+    <!-- รูปโลโก้บริษัท -->
     <div class="row justify-content-center" ><img id="logo" src="{{ URL::asset('img/clicknext.png') }}" class="rounded-circle bg-white" alt=""></div>
     <div class="row justify-content-center" style="margin-top: 13%">
+
         <div class="col-md-5">
             <div class="card" style="padding-top: 180px">
                 <div class="card-body col-md-7 align-self-center">
@@ -14,6 +17,8 @@
                                     {{ Session::get('message') }}
                                 </div>
                             @endif
+
+                            <!-- กล่องข้อความสำหรับกรอก Username -->
                         <div class="row mb-3">
                             <div class="col-md-2 input-group mb-3">
                                 <div class="input-group-prepend">
@@ -29,6 +34,7 @@
                             </div>
                         </div>
 
+                            <!-- กล่องข้อความสำหรับกรอก Password -->
                         <div class="row mb-3">
                             <div class="col input-group mb-3">
                                 <div class="input-group-prepend">
@@ -44,6 +50,7 @@
                             </div>
                         </div>
 
+                            <!-- ปุ่ม Sig in -->
                         <div class="row mb-0">
                             <div class="col text-center">
                                 <button type="submit" class="btn btn-success">
