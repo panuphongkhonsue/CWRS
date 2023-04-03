@@ -245,10 +245,12 @@
 if (rowTableCount < 10)
 {
     $('#item-buttom_body').append(
-        ` <td>
-             <button type="button" class="remove-table border-0 bg-transparent mt-3 "><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button>
-        </td>`
-
+        `<tr>
+            <td>
+                <button type="button" class="remove-table border-0 bg-transparent mt-3 "><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button>
+            </td>
+        </tr> `
+        
 
 
     )
