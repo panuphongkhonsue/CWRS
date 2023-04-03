@@ -8,7 +8,7 @@
         <div class="card-login" >
             <img src="/img/clicknext.png" alt="" class="img-login">
 
-            <div class="">
+            <div>
                     {{--  <div class="card bg-info" style="padding-top: 180px">
                             <div class="card-body bg-danger col-md-7 align-self-center"> --}}
                                 <form method="POST" action="{{ route('login') }}">
