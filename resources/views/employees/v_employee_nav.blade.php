@@ -19,6 +19,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ URL::asset('/css/home.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
 
 </head>
 <body>
@@ -45,24 +47,24 @@
             <hr>
 
             {{-- ตรงนี้คือ dropdown ตอนกดเมนู ขอเบิกสวัสดิการ แต่มันยังไม่เป็น dropdown ให้ --}}
-            <li class="nav-item dropdown">
-                <a href="{{ route('s.request') }}" class="nav-link dropdown-toggle text-light" id="navbarDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                    {{ _('ขอเบิกสวัสดิการ') }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="" class="dropdown-item">บุคคล</a>
-                    <a href="" class="dropdown-item">สันทนาการ</a>
-                </div>
-            </li>
-            <hr>
-            <li>
 
-                {{-- ปุ่มประวัตื --}}
+                   <div class= "nav-link text-white eiei" >ขอเบิกสวัสดิการ</div>
+                   <ul>
+                    <li class="dropbu"><a href="">บุคคล</a></li>
+                    <li class="dropbu"><a href="">สันทนาการ</a></li>
+                   </ul>
+                   <hr>
+
+
+                {{-- ปุ่มประวัติ --}}
               <a href="{{ route('history') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
                 {{ _('ประวัติของฉัน') }}
+              </a>
+
+              <a href="{{ route('group_request') }}" class="nav-link text-white">
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                {{ _('55555555555555') }}
               </a>
             </li>
           </ul>
@@ -87,10 +89,10 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse text-light" id="navbarSupportedContent">
+ar-collapse text-light" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav">
+                <ul class="navbar-na
+            <div class="collapse navbv">
 
                 </ul>
 
