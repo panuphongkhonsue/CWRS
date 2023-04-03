@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-13">
             <div class="card">
-                <div class=" jumnum fs-4  ">{{ __('เบิกสวัสดิการแบบสันทนาการ') }} <hr width="295" class="mb-2" style="margin-top: 0px"></div>
+                <div class="ti_wal fs-4">{{ __('เบิกสวัสดิการแบบสันทนาการ') }} <hr width="295" class="mb-2" style="margin-top: 0px"></div>
 
                 <div class="card-body ">
                     <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
@@ -18,6 +18,7 @@
                         <div class="row">
                             <label for="budget" class="col-auto col-form-label ms-auto fw-bolder ">{{ ('วัน/เดือน/ปี : ') }}</label>
                             <div class="col-sm-2">
+                                {{-- generate วันที่ --}}
                                 <input type="text" id="date" name="date" class="form-control border-0 bg-transparent fs-16px" value="{{ date("d/m/Y") }}" >
                             </div>
                         </div>
@@ -26,6 +27,7 @@
                         <div class="row ms-5 mt-1">
                             <label for="id" class="col-sm-2 col-form-label fw-bold">{{ ('รหัสพนักงาน : ') }}</label>
                             <div class="col-sm-3">
+                                {{-- generate รหัสพนักงาน --}}
                                 <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->id }}" disabled>
                             </div>
 </div>
@@ -34,6 +36,7 @@
                         <div class="row ms-5 mt-1">
                             <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ ('ชื่อ-สกุล : ') }}</label>
                             <div class="col-sm-3">
+                                {{-- generate ชื่อ-นามสกุล --}}
                                 <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
                             </div>
                         </div>
@@ -43,6 +46,7 @@
                         <div class="row ms-5 mt-1 ">
                             <label for="department" class="col-sm-2 col-form-label fw-bold">{{ ('แผนก : ') }}</label>
                             <div class="col-sm-3">
+                                {{-- generate แผนก --}}
                                 <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->department->name }}" disabled>
                             </div>
                         </div>
@@ -67,14 +71,17 @@
                             {{-- จำนวนเงิน --}}
                             <label for="budget" class="col-auto col-form-label ms-auto">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
+                                {{-- generate จำนวนตามวงเงินแต่ละประเภท --}}
                                 <input type="text" class="text-end form-control" value="{{ __('2,000.00') }}" disabled>
                             </div>
 
-                            <label for="id" class="col-auto col-form-label">{{ __('บาท') }}<label style="color:#fff">_______</label></label>
+                            <label for="id" class="col-auto col-form-label">{{ __('บาท/คน') }}<label style="color:#fff">_______</label></label>
 
 
                         </div><br>
 
+
+                        {{-- text-inputที่ใส่ชื่อหรือรหัสพนักงาน --}}
                         <div class="addpeople row ">
                             <div class="col">
                                 <label>รายชื่อพนักงานเข้าร่วมกิจกรรม<hr style="margin-top: 0px"></label>
@@ -83,6 +90,7 @@
                         <div class="addpeople row">
                             <label for="budget" class="col-auto col-form-label">{{ __('เพิ่มสมาชิก : ') }}</label>
                             <div class="col-sm-4">
+                                {{-- ช่องที่ต้องใส่หรือรหัสพนักงาน --}}
                                 <input type="text" class="form-control" placeholder="{{ __('ชื่อ-นามสกุล,รหัสพนักงาน') }}">
                             </div>
                             <div class="col mt-1">
@@ -106,10 +114,9 @@
 
 
 
-
+                         {{-- ตารางสามชิก  --}}
                         <div class="row mt-3 d-flex justify-content-center g-0">
                             <div class="col-lg-11">
-                                {{-- ตารางไว้ใส่รายละเอียด --}}
                                 <table id="detail" class="table table-bordered ms-5">
                                     <thead class="bgcolor table-bordered ">
                                         <tr class="text-center">
@@ -120,7 +127,9 @@
 
                                     <tbody id="item-body" >
                                         <tr>
+                                            {{-- ชื่อต้องแสดงตรงนี้ --}}
                                             <td><input type="text" name="item[]" class="form-control tableadd"></td>
+                                            {{-- และต้อง generate ตำแหน่ง --}}
                                             <td><input type="text" name="price[]" class="form-control text-end tableadd"></td>
                                         </tr>
                                     </tbody>
@@ -150,6 +159,7 @@
                             <div class="row mt-3 ">
                                 <label for="total" class="col-auto col-form-label ms-auto">จำนวนคนทั้งหมด : </label>
                                 <div class="col-sm-2">
+                                    {{-- คำนวณจำนวนคน --}}
                                     <input type="text" class="form-control text-end" value="{{ __('0') }}" readonly disabled>
                                 </div>
                                 <label for="id" class="col-auto col-form-label">{{ __('คน') }}<label style="color:#fff">_______-</label></label>
@@ -166,6 +176,7 @@
                             <div class="row mt-3">
                                 <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                                 <div class="col-sm-2">
+                                    {{-- คำนวณจำนวนเงิน --}}
                                     <input type="text" class="form-control text-end" value="{{ __('0.00') }}" readonly disabled>
                                 </div>
                                 <label for="id" class="col-auto col-form-label">{{ __('บาท') }}<label style="color:#fff">______-</label></label>
@@ -178,7 +189,7 @@
 
 
 
-                        {{-- ปุ่มส่งเบิห --}}
+                        {{-- ปุ่มส่งเบิก --}}
                         <div class="row mt-3">
                             <div class="col-sm-2 ms-auto">
                                 <button type="submit" class="btn btn-lg btn-success">ส่งคำขอ</button>
