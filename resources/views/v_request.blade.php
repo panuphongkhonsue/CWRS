@@ -1,6 +1,6 @@
 {{-- หน้าขอเบิกสวัสดิการแบบบุคคล --}}
 
-@extends('employees.empnav')
+@extends('employees.v_employee_nav')
 
 @section('content')
 <div class="container">

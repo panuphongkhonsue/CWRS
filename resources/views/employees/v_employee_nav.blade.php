@@ -50,7 +50,7 @@
 
                    <div class= "nav-link text-white eiei" >ขอเบิกสวัสดิการ</div>
                    <ul>
-                    <li class="dropbu"><a href="">บุคคล</a></li>
+                    <li class="dropbu"><a href="{{ route('s.request') }}">บุคคล</a></li>
                     <li class="dropbu"><a href="">สันทนาการ</a></li>
                    </ul>
                    <hr>

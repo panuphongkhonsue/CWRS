@@ -30,15 +30,29 @@ class Request_controller extends Controller
         $user = Auth::user();
         $requests = Single_request::where('user_id', $user->id)->get();
 
+        $welfare_id[] = NULL;
+
         foreach ($requests as $request) {
             if (date("Y", strtotime($request->create_date)) == date("Y")) {
                 $welfare_id[] = $request->welfare_id;
             }
         }
 
+        if ($welfare_id == NULL) {
+            $data = Welfare::where('type', 'S')->get();
+            return view('v_request', ['welfares' => $data]);
+        }
+
         $data = Welfare::where('type', 'S')->whereNotIn('id', $welfare_id)->get();
 
         return view('v_request', ['welfares' => $data]);
+    }
+
+    public function group_request()
+    {
+        $data = Welfare::where('type', 'G')->get();
+
+        return view('v_group_request', ['welfares' => $data]);
     }
 
     /*
