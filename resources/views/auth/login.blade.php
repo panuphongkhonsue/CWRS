@@ -2,11 +2,14 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center" style="padding-top : 5%"><img id="logo" src="{{ URL::asset('img/clicknext.png') }}" class="rounded-circle bg-white" alt=""></div>
+
+    <!-- รูปโลโก้บริษัท -->
+    <div class="row justify-content-center" ><img id="logo" src="{{ URL::asset('img/clicknext.png') }}" class="rounded-circle bg-white" alt=""></div>
     <div class="row justify-content-center" style="margin-top: 13%">
-        <div class="col-md-6">
+
+        <div class="col-md-5">
             <div class="card" style="padding-top: 180px">
-                <div class="card-body">
+                <div class="card-body col-md-7 align-self-center">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         @if(Session::has('message'))
@@ -14,12 +17,14 @@
                                     {{ Session::get('message') }}
                                 </div>
                             @endif
+
+                            <!-- กล่องข้อความสำหรับกรอก Username -->
                         <div class="row mb-3">
-                            <label for="id" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
-
-                            <div class="col-md-6">
-
-                                <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <div class="col-md-2 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><img src="{{ URL::asset('img/user.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
+                                </div>
+                                <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Username">
 
                                 @error('id')
                                     <span class="invalid-feedback" role="alert">
@@ -29,11 +34,13 @@
                             </div>
                         </div>
 
+                            <!-- กล่องข้อความสำหรับกรอก Password -->
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <div class="col input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><img src="{{ URL::asset('img/lock.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
+                                </div>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -43,21 +50,10 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
+                            <!-- ปุ่ม Sig in -->
                         <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Sign in  ') }}
                                 </button>
                             </div>
