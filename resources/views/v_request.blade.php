@@ -3,8 +3,7 @@
 @extends('employees.v_employee_nav')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-lg-13">
             <div class="card">
                 <div class="card-header fs-4 py-3">{{ __('เบิกสวัสดิการแบบรายบุคคล') }}</div>
@@ -74,7 +73,7 @@
                                 รายละเอียดการขอเบิกสวัสดิการ
                                 <hr>
                             </div>
-                            </div>
+                        </div>
 
                         <div class="row mt-3 d-flex justify-content-center">
                             <div class="col-lg-11">
@@ -143,7 +142,6 @@
             </div>
         </div>
     </div>
-</div>
 
 {{-- ตรงนี้อย่านะไอสัส --}}
 <script type="text/javascript">
@@ -190,3 +188,5 @@
     })
 </script>
 @endsection
+message.txt
+11 KB

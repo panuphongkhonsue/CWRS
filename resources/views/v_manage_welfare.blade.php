@@ -7,12 +7,33 @@
             <div class="card">
                 <div class="card-header fs-4 py-3">{{ __('จัดการสวัสดิการ') }}</div>
                 <div class="card-body">
+
                     <div class="row">
                         <div class="col">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add">+ เพิ่มสวัสดิการ</button>
+                            <div class="row">
+                                <label class="col-auto col-form-label">รูปแบบสวัสดิการ :</label>
+
+                                <!-- ตัวเลือกหลายรายการของรูปแบบสวัสดิการ -->
+                                <div class="col-sm-4">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected></option>
+                                        <option value="1">ทั้งหมด</option>
+                                        <option value="2">บุคคล</option>
+                                        <option value="3">สันทนาการ</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ปุ่มเพิ่มสวัสดิการ -->
+                        <div class="col text-end">
+                            <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#modal-add">+ เพิ่มสวัสดิการ</button>
                         </div>
                     </div>
+                    
                     <table class="table table-bordered align-items-center mt-3">
+
+                        <!-- หัวข้อตาราง -->
                         <thead class="text-center text-light" id="bg">
                             <tr>
                                 <td scope="col" class="col-sm-2">รูปแบบสวัสดิการ</td>
@@ -23,6 +44,7 @@
                             </tr>
                         </thead>
 
+                        <!-- ข้อมูลในตาราง -->
                         <tbody>
                             @foreach ($welfares as $welfare)
                                 <tr>
@@ -45,6 +67,7 @@
                         </tbody>
                     </table>
 
+                    <!-- หน้าต่างแสดงผลซ้อนของปุ่มแก้ไขสวัสดิการ -->
                     <div class="modal fade" id="modal-in" tabindex="-1" role="dialog" aria-labelledby="content" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered py-3" role="document">
                           <div class="modal-content">
@@ -56,14 +79,14 @@
                                     @csrf
                                     <input type="text" class="wel_id d-none" name="e_id">
                                     <div class="row">
-                                        <label for="" class="col-auto col-form-label">ชื่อสวัสดิการ :</label>
+                                        <label for="" class="col-auto col-form-label">ประเภทสวัสดิการ :</label>
                                         <div class="col">
                                             <input type="text" class="form-control wel_title" name="e_title">
                                         </div>
                                     </div>
 
                                     <div class="row mt-3">
-                                        <label for="" class="col-auto col-form-label">วงเงินที่เบิกได้ :</label>
+                                        <label for="" class="col-auto col-form-label">จำนวนเงินที่เบิกได้ :</label>
                                         <div class="col">
                                             <input type="text" class="form-control wel_budget" name="e_budget">
                                         </div>
@@ -86,14 +109,17 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="modal-footer mt-1">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+
+                            <!-- ปุ่มยกเลิกและบันทึกหน้าต่างแสดงผลซ้อนของปุ่มแก้ไข -->
+                            <div class="modal-footer border-0 mt-1">
+                                <button type="button" class="btn btn-danger me-md-5" data-bs-dismiss="modal">ยกเลิก</button>
                                 <button type="submit" form="welfare_edit" class="btn btn-success">บันทึก</button>
                             </div>
                           </div>
                         </div>
                     </div>
 
+                    <!-- หน้าต่างแสดงผลซ้อนของปุ่มเพิ่มสวัสดิการ -->
                     <div class="modal fade" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="content" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered py-3" role="document">
                           <div class="modal-content">
@@ -104,14 +130,14 @@
                                 <form id="welfare_add" action="{{ route('add_welfare') }}" method="POST">
                                     @csrf
                                     <div class="row">
-                                        <label for="" class="col-auto col-form-label">ชื่อสวัสดิการ :</label>
+                                        <label for="" class="col-auto col-form-label">ประเภทสวัสดิการ :</label>
                                         <div class="col">
                                             <input type="text" class="form-control" name="title">
                                         </div>
                                     </div>
 
                                     <div class="row mt-3">
-                                        <label for="" class="col-auto col-form-label">วงเงินที่เบิกได้ :</label>
+                                        <label for="" class="col-auto col-form-label">จำนวนเงินที่เบิกได้ :</label>
                                         <div class="col">
                                             <input type="text" class="form-control" name="budget">
                                         </div>
@@ -134,10 +160,15 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="modal-footer mt-1">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                                <button type="submit" form="welfare_add" class="btn btn-success" value="Submit">บันทึก</button>
+                            
+                            <!-- ปุ่มยกเลิกและบันทึกหน้าต่างแสดงผลซ้อนของปุ่มเพิ่มสวัสดิการ -->
+                            <div>
+                                <div class="modal-footer border-0 mt-1">
+                                    <button type="button" class="btn btn-danger me-md-5" data-bs-dismiss="modal">ยกเลิก</button>
+                                    <button type="submit" form="welfare_add" class="btn btn-success" value="Submit">บันทึก</button>
+                                </div>
                             </div>
+
                           </div>
                         </div>
                     </div>
