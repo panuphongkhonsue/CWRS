@@ -7,6 +7,7 @@ use App\Http\Controllers\Home_controller;
 use App\Http\Controllers\User_history_controller;
 use App\Http\Controllers\Manage_request_controller;
 use App\Http\Controllers\Welfare_controller;
+use App\Http\Controllers\Report_controller;
 use Psy\Command\HistoryCommand;
 use Termwind\Components\Hr;
 
@@ -48,6 +49,7 @@ Route::group(['middleware' => 'auth'], function()
         Route::get('/manage_request', [Manage_request_controller::class, 'index'])->name('manage_request');
         Route::post('/add_welfare', [Welfare_controller::class, 'add_welfare'])->name('add_welfare');
         Route::post('/manage_welfare/edit', [Welfare_controller::class, 'edit_welfare'])->name('edit_welfare');
+        Route::get('/report', [Report_controller::class, 'report'])->name('report');
    });
 
    Route::group(['middleware' => 'emplead'], function()

@@ -51,7 +51,7 @@
             </li>
             <hr>
             <li>
-              <a href="{{ route('history') }}" class="nav-link text-white">
+              <a href="{{ route('report') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
                 {{ _('รายงานเบิกสวัสดิการ') }}
               </a>
