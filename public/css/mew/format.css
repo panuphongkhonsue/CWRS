@@ -32,8 +32,12 @@ input[type="file"]{
 }
 
 /* ตาราง */
-table{
+.table-reques{
     border-collapse: collapse;
     border-radius: 1em;
     overflow: hidden;
+    border-color: black;
 }
+
+
+

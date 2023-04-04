@@ -96,43 +96,11 @@
                             </div>
 
 
-                       {{--  <div class="row mt-2 d-flex justify-content-center">
-                            <div class="col-lg-11">
-
-                                <table id="detail" class="table table-bordered border-dark">
-                                    <thead id="bg" >
-                                        <tr class="text-center text-white" >
-                                            <th scope="col" class="col-lg-8 text-white">รายละเอียด</th>
-                                            <th scope="col" class="text-white">จำนวนเงิน (บาท)</th>
-
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control border-0"></td>
-                                            <td><input type="text" class="form-control text-end border-0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" class="form-control border-0"></td>
-                                            <td><input type="text" class="form-control text-end border-0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" class="form-control border-0"></td>
-                                            <td><input type="text" class="form-control text-end border-0"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div> --}}
-
-
-
                         {{-- ตารางรายละเอียด --}}
-                            <div class="row wfh px-5">
-                                <div class="col-md-11">
+                            <div class="row wfh mx-5">
+                                <div class="col-sm-11 p-0 ">
 
-                                        <table id="detail" class="table table-bordered border-dark">
+                                        <table id="detail" class="table table-bordered table-reques w-100 bg-white">
                                             <thead id="bg" >
                                                 <tr class="text-center text-white" >
                                                     <th scope="col" class="col-sm-7 text-white">รายละเอียด</th>
@@ -140,7 +108,7 @@
                                                 </tr>
                                             </thead>
 
-                                            <tbody>
+                                            <tbody id="table_body">
                                                 <tr>
                                                     <td><input type="text" class="form-control border-0"></td>
                                                     <td><input type="text" class="form-control text-end border-0"></td>
@@ -157,33 +125,29 @@
                                         </table>
 
                                 </div>
-                                <div class="col-md-1 p-0">
+                                <div class="col-sm-1  p-0 mx-auto ">
 
                                     {{-- ปุ่มรายเพิ่มตาราง ลบตาราง --}}
-                                    <table class="table mt-3">
+                                    <table class="table">
                                         <thead>
                                             <tr>
-                                                <button class="border-0 bg-transparent">
+                                                <td class="border-0">
+                                                    <button class="border-0 bg-transparent" onclick="create_tr('table_body')">
                                                     <img src="{{ URL::asset('img/add.png') }}" width="20" height="20">
-                                                </button>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         </thead>
 
-                                        <tbody >
+                                        <tbody id="table-body">
                                             <tr>
                                                 <td class="border-0">
-                                                    <button class="border-0 bg-transparent">
-                                                        <img src="{{ URL::asset('img/delete.png') }}" width="35" height="35">
+                                                    <button class="border-0 bg-transparent" onclick="remove_tr('this')">
+                                                        <img src="{{ URL::asset('img/delete_group_requst.png') }}"  width="25" height="15">
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="border-0">
-                                                    <button class="border-0 bg-transparent">
-                                                        <img src="{{ URL::asset('img/delete.png') }}" width="35" height="35">
-                                                    </button>
-                                                </td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
 
