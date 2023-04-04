@@ -8,24 +8,27 @@
         <div class="col-lg-13">
             <div class="card">
                 <div class="card-header fs-4 py-3">{{ __('เบิกสวัสดิการแบบรายบุคคล') }}</div>
-                <div class="card-body">
+                <div class="card-body m-5 p-5">
                     <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="row mt-2">
-
-                        </div>
 
                         <div class="row mt-2">
-                            <label for="req-id" class="col-auto col-form-label ms-auto">{{ __('เลขที่ใบเบิก : ') }}</label>
+                            <div class="card px-4 py-3 pb-4 border-0" style=" background-color: #eee;">
+
+
+
+                        <div class="row mt-2 ">
+                            <label for="budget" class="col-auto col-form-label ms-auto">{{ __('วัน/เดือน/ปี : ') }}</label>
+                            <div class="col-sm-2">
+                                <input type="text" id="date" name="date" class="form-control" value="{{ date("d/m/Y", strtotime($history->create_date)) }}" disabled>
+                            </div>
+
+                            <label for="req-id" class="col-auto col-form-label ">{{ __('เลขที่ใบเบิก : ') }}</label>
                                 <div class="col-sm-2">
                                     <input type="text" name="req-id" id="req-id" class="form-control" value="{{ $history->id }}" disabled>
                                 </div>
                             </label>
 
-                            <label for="budget" class="col-auto col-form-label">{{ __('วัน/เดือน/ปี : ') }}</label>
-                            <div class="col-sm-2">
-                                <input type="text" id="date" name="date" class="form-control" value="{{ date("d/m/Y", strtotime($history->create_date)) }}" disabled>
-                            </div>
                         </div>
 
                         <div class="row mt-4">
@@ -48,6 +51,7 @@
                             <div class="col-sm-3">
                                 <input type="text" class="form-control" value="{{ $history->get_user->department->name }}" disabled>
                             </div>
+                        </div>
                         </div>
 
                         <div class="row mt-5">
@@ -113,17 +117,14 @@
                                 </div>
                         </div>
 
-                        <div class="row mt-3">
-                            <div class="col-sm-1 ms-auto">
-                                <a href="{{ url('reject/'. $history->id) }}" method="POST" class="btn btn-md btn-danger">ไม่อนุมัติ</a>
-                            </div>
-                            <div class="col-sm-1">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="{{ url('reject/'. $history->id) }}" method="POST" class="btn btn-md btn-danger  me-md-4">ไม่อนุมัติ</a>
                                 <a href="{{ url('approve/'. $history->id) }}" method="POST" class="btn btn-md btn-success">อนุมัติ</a>
                             </div>
                         </div>
                     </form>
                 </div>
-            </div>
+
         </div>
     </div>
 </div>
