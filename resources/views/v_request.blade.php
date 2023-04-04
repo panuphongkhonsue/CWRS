@@ -12,9 +12,8 @@
                 {{-- border:0 cellspacing:0 cellpadding:0 --}}
                 {{-- <div class="card-header fs-4 py-3">{{ __('เบิกสวัสดิการแบบรายบุคคล') }}</div> --}}
                 {{-- หัวข้อใบเบิก --}}
-                <div class="i mx-5" style="line-height:20px">{{ __('เบิกสวัสดิการแบบบุคคล') }}
-                    <hr width="295" class="mb-2">{{-- เส้นใต้ --}}
-                </div>
+                <div class="bold_header mx-5" style="line-height:20px">{{ __('เบิกสวัสดิการแบบบุคคล') }}
+                    <hr width="295" class="mb-2"></div>
 
                  <div class="card-body" style="padding: 0px 50px 50px 50px">
 
@@ -34,7 +33,7 @@
                         {{-- รหัสพนักงาน --}}
                         <div class="row ms-3 mt-1">
                             <label for="id" class="col-sm-2 col-form-label fw-bold">{{ __('รหัสพนักงาน : ') }}</label>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <input type="text" class="form-control border-0 bg-transparent " value="{{ Auth::user()->id }}" disabled>
                             </div>
 
@@ -43,7 +42,7 @@
                         {{-- ชื่อ นามกุล --}}
                         <div class="row ms-3 mt-1">
                             <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ __('ชื่อ-สกุล : ') }}</label>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <input type="text" class="form-control border-0 bg-transparent " value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
                             </div>
                         </div>
@@ -52,7 +51,7 @@
                         {{-- แผนก --}}
                         <div class="row ms-3 mt-1 mb-2 ">
                             <label for="department" class="col-sm-2 col-form-label fw-bold">{{ __('แผนก : ') }}</label>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <input type="text" class="form-control border-0 bg-transparent" value="{{ Auth::user()->department->name }}" disabled>
                             </div>
                         </div>
@@ -77,13 +76,14 @@
                             </div>
 
                             {{-- จำนวนเงิน --}}
-                            <label for="budget" class="col-auto col-form-label ms-auto ">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
-                            <div class="col-sm-2">
-                                <input type="text" class="text-end form-control border-0" style=" background-color: #eee;"
-                                 value="{{ __('2,000.00') }}" disabled>
-                            </div>
 
-                            <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
+                                <label for="budget" class="col-auto col-form-label ms-auto ">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
+                                <div class="col-sm-2 ">
+                                    <input type="text" class="text-end form-control border-0" style=" background-color: #eee;"
+                                     value="{{ __('2,000.00') }}" disabled>
+                                </div>
+                                <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
+
                         </div>
 
                         {{-- หัวข้อรายละเอียด + หมายเหตุ --}}
@@ -158,7 +158,7 @@
 
 
                             <div class="row g-0">
-                                <div class="col-md-4">
+                                <div class="col-md-4 my-3">
                                      {{-- แถบอัปโหลดใบเสร็จ --}}
                                     <div class="text-center p-0">
                                             <div>
@@ -172,21 +172,20 @@
                                     </div>
 
                                 </div>
-                                <div class="col-md-8 ">
-                                    <div class=" p-0">
+                                <div class="col-md-8 p-0">
                                         {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
-                                        <div class="row ">
+                                        <div class="row">
                                             <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                                             <div class="col-sm-2">
                                                 <input type="text" class="form-control text-end border-0 " style=" background-color: #eee;"
                                                 value="{{ __('0.00') }}" readonly>
                                             </div>
-                                            <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }} <label style="color:#fff">_</label></label>
+                                            <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }} </label>
                                         </div>
-
-                                    </div>
                                 </div>
                             </div>
+
+
 
 
 

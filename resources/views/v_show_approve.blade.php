@@ -7,8 +7,10 @@
     <div class="row justify-content-center">
         <div class="col-lg-13">
             <div class="card">
-                <div class="card-header fs-4 py-3">{{ __('เบิกสวัสดิการแบบรายบุคคล') }}</div>
-                <div class="card-body m-5 p-5">
+                <div class="bold_header mx-5" style="line-height:20px">{{ __('เบิกสวัสดิการแบบบุคคล') }}
+                    <hr width="295" class="mb-2"></div>
+
+                <div class="card-body mx-5 px-5 mb-0 border-0 p-0">
                     <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
 
@@ -18,38 +20,38 @@
 
 
                         <div class="row mt-2 ">
-                            <label for="budget" class="col-auto col-form-label ms-auto">{{ __('วัน/เดือน/ปี : ') }}</label>
+                            <label for="budget" class="col-auto col-form-label ms-auto fw-bold">{{ __('วัน/เดือน/ปี : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" id="date" name="date" class="form-control" value="{{ date("d/m/Y", strtotime($history->create_date)) }}" disabled>
+                                <input type="text" id="date" name="date" class="form-control border-0 bg-transparent " value="{{ date("d/m/Y", strtotime($history->create_date)) }}" disabled>
                             </div>
 
-                            <label for="req-id" class="col-auto col-form-label ">{{ __('เลขที่ใบเบิก : ') }}</label>
+                            <label for="req-id" class="col-auto col-form-label fw-bold">{{ __('เลขที่ใบเบิก : ') }}</label>
                                 <div class="col-sm-2">
-                                    <input type="text" name="req-id" id="req-id" class="form-control" value="{{ $history->id }}" disabled>
+                                    <input type="text" name="req-id" id="req-id" class="form-control border-0 bg-transparent " value="{{ $history->id }}" disabled>
                                 </div>
                             </label>
 
                         </div>
 
                         <div class="row mt-4">
-                            <label for="id" class="col-sm-2 col-form-label">{{ __('รหัสพนักงาน : ') }}</label>
+                            <label for="id" class="col-sm-2 col-form-label fw-bold">{{ __('รหัสพนักงาน : ') }}</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" value="{{ $history->get_user->id }}" disabled>
+                                <input type="text" class="form-control border-0 bg-transparent " value="{{ $history->get_user->id }}" disabled>
                             </div>
 
                         </div>
 
                         <div class="row mt-4">
-                            <label for="name" class="col-sm-2 col-form-label">{{ __('ชื่อ-สกุล : ') }}</label>
+                            <label for="name" class="col-sm-2 col-form-label fw-bold">{{ __('ชื่อ-สกุล : ') }}</label>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" value="{{ $history->get_user->fname }} {{ $history->get_user->lname }}" disabled>
+                                <input type="text" class="form-control border-0 bg-transparent " value="{{ $history->get_user->fname }} {{ $history->get_user->lname }}" disabled>
                             </div>
                         </div>
 
                         <div class="row mt-4">
-                            <label for="department" class="col-sm-2 col-form-label">{{ __('แผนก : ') }}</label>
+                            <label for="department" class="col-sm-2 col-form-label fw-bold">{{ __('แผนก : ') }}</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" value="{{ $history->get_user->department->name }}" disabled>
+                                <input type="text" class="form-control border-0 bg-transparent " value="{{ $history->get_user->department->name }}" disabled>
                             </div>
                         </div>
                         </div>
@@ -57,12 +59,12 @@
                         <div class="row mt-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
-                                <input type="text" class="form-control" value="{{ $history->get_welfare->title }}" name="" id="" readonly       >
+                                <input type="text" class="form-control bg-transparent " value="{{ $history->get_welfare->title }}" name="" id="" readonly       >
                             </div>
 
                             <label for="budget" class="col-auto col-form-label ms-auto">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" class="text-end form-control" value="{{ __('2,000.00') }}" disabled>
+                                <input type="text" class="text-end form-control border-0" value="{{ __('2,000.00') }}" disabled>
                             </div>
 
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
@@ -71,7 +73,7 @@
                         <div class="row mt-5 fs-5">
                             <div class="col-md-4">
                                 รายละเอียดการขอเบิกสวัสดิการ
-                                <hr>
+                                <hr width="255" class="my-0">
                             </div>
                             </div>
 
@@ -99,9 +101,9 @@
                         </div>
 
                         <div class="row mt-3">
-                            <label for="total" class="col-auto col-form-label">จำนวนเงินทั้งหมด : </label>
+                            <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control text-end" value="{{ __('0') }}" readonly>
+                                <input type="text" class="form-control text-end border-0" style=" background-color: #eee;" value="{{ __('0') }}" readonly>
                             </div>
                             <label for="" class="col-auto col-form-label">{{ __('บาท') }}</label>
                         </div>
@@ -117,7 +119,7 @@
                                 </div>
                         </div>
 
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
                                 <a href="{{ url('reject/'. $history->id) }}" method="POST" class="btn btn-md btn-danger  me-md-4">ไม่อนุมัติ</a>
                                 <a href="{{ url('approve/'. $history->id) }}" method="POST" class="btn btn-md btn-success">อนุมัติ</a>
                             </div>
