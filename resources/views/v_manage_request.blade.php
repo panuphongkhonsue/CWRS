@@ -4,7 +4,6 @@
 <div class="container">
     <div class="col-lg-13">
 
-        <livewire:show-request-filter/>
         <div class="row">
             <div class="col-md-3">
                 <div class="card btn btn-custom">
@@ -43,9 +42,11 @@
             <div class="card-body">
                 <div class="row mt-4">
                     <div class="col-md-13">
+                        <div>
+                            <label>(ชื่อ-นามสกุล,รหัสพนักงานมใบเบิก) </label>
+                        </div>
 
                         {{-- ในส่วนของตาราง --}}
-                        <livewire:show-requests/>
                         <table class="table table-bordered align-items-center">
                             <thead class="text-center text-light" id="bg">
                                 <tr>

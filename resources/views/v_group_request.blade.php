@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="container">
+
     <div class="row justify-content-center">
         <div class="col-lg-13">
             <div class="card">
@@ -122,6 +123,7 @@
                                         <tr class="text-center">
                                             <th>ชื่อ-นามสกุล</th>
                                             <th>ตำแหน่ง</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
 
@@ -131,24 +133,10 @@
                                             <td><input type="text" name="item[]" class="form-control tableadd"></td>
                                             {{-- และต้อง generate ตำแหน่ง --}}
                                             <td><input type="text" name="price[]" class="form-control text-end tableadd"></td>
+                                            <td><button type="button" class="remove-table border-0 bg-transparent"><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="col ">
-                                <table class="deletetable">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="item-buttom_body">
-                                        <td>
-                                            <button type="button" class="remove-table border-0 bg-transparent mt-3 "><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button>
-                                        </td>
-                                    </tbody>
-                                </table>
-
                             </div>
                         </div>
 
@@ -231,6 +219,7 @@
                     `<tr>
                         <td><input type="text" name="item[]" class="form-control tableadd"></td>
                         <td><input type="text" name="price[]" class="form-control text-end tableadd"></td>
+                        <td><button type="button" class="remove-table table-bordered bg-transparent border-0 table_delet"><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button></td>
                         </tr>`
 
 
@@ -240,24 +229,6 @@
                 rowTableCount++;
             }
         });
-        $(".add-table").click(function() {
-
-if (rowTableCount < 10)
-{
-    $('#item-buttom_body').append(
-        `<tr>
-            <td>
-                <button type="button" class="remove-table border-0 bg-transparent mt-3 "><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button>
-            </td>
-        </tr> `
-        
-
-
-    )
-
-    rowTableCount++;
-}
-});
 
         $("#item-body").on('click', '.remove-table', function(element) {
             if (rowTableCount > 1) {
