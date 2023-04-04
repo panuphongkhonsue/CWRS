@@ -1,7 +1,7 @@
 @extends('humanresources.v_humanresource_nav')
 
 @section('content')
-
+<div class="row">
     <div class="col-lg-13">
 
         <livewire:request-filter/>
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-
+</div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 {{-- <script type="text/javascript">
     $(document).ready(function() {

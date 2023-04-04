@@ -4,7 +4,6 @@
 
 @section('content')
 
-<div class="container">
     <div class="col-lg-13">
         <div class="card">
             <div class="card-header fs-4 py-3">{{ __('ประวัติการเบิกสวัสดิการ') }}</div>
@@ -86,5 +85,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

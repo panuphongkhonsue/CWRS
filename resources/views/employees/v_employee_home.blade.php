@@ -3,9 +3,8 @@
 @extends('employees.v_employee_nav')
 
 @section('content')
-<div class="container">
-        <div class="row">
-            <div class="col-lg-6">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
 
                 {{-- ข้อกำหนดแบบบุคคล --}}
                 <div class="card">
@@ -27,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-5">
 
                 {{-- ข้อกำหนดแบบสันทนาการ --}}
                 <div class="card">
@@ -49,5 +48,4 @@
                 </div>
             </div>
         </div>
-</div>
 @endsection
