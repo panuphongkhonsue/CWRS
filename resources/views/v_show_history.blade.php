@@ -58,7 +58,7 @@
 
                             <label for="budget" class="col-auto col-form-label ms-auto">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" class="text-end form-control" value="{{ __('2,000.00') }}" disabled>
+                                <input type="text" class="text-end form-control" value="{{ $history->get_welfare->budget }}" disabled>
                             </div>
 
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
@@ -83,10 +83,12 @@
 
                                     <tbody>
                                         @php ($price = json_decode($history->price))
+                                        @php ($price_total = 0)
                                         @foreach (json_decode($history->item) as $index => $item)
+                                            <!-- {{$price_total = $price[$index]}};-->
                                             <tr>
                                                 <td><input type="text" class="form-control" value="{{ $item }}" readonly></td>
-                                                <td><input type="text" class="form-control text-end" value="{{ $price[$index] }}" readonly></td>
+                                                <td><input type="text" class="form-control text-end" value="{{ number_format($price[$index],2) }}" readonly></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -97,7 +99,7 @@
                         <div class="row mt-3">
                             <label for="total" class="col-auto col-form-label">จำนวนเงินทั้งหมด : </label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control text-end" value="{{ __('0') }}" readonly>
+                                <input type="text" class="form-control text-end" value="{{ number_format($price_total,2) }}" readonly>
                             </div>
                             <label for="" class="col-auto col-form-label">{{ __('บาท') }}</label>
                         </div>
@@ -114,9 +116,11 @@
                         </div>
 
                         <div class="row mt-3">
+                            @if (($history->status) == 0)
                             <div class="col-sm-2 ms-auto">
                                 <a href="{{ url('cancel/'. $history->id) }}" method="POST" class="btn btn-lg btn-danger">ยกเลิก</a>
                             </div>
+                            @endif
                         </div>
                     </form>
                 </div>
