@@ -99,3 +99,68 @@ body {
    -webkit-box: 5px 5px 3px 3px rgba(0, 0, 0, 0.3);
     box-shadow: 5px 5px 3px 3px rgba(0, 0, 0, 0.3);
  }
+
+ /* หัวข้อใบเบิก */
+.i {
+    padding: 30px  60px 15px 55px;
+    /* text-decoration: underline; */
+    font-size: 30px;
+}
+
+/* ตัวหนา */
+.b {
+    font-weight: bold;
+}
+
+/* กล่องขนาดใหญ่ */
+.big-box {
+    background-color: white;
+
+}
+
+/* รับค่าไฟล์ใบเสร็จ */
+input[type="file"]{
+    display: none;
+}
+
+/* ปุ่มอัปโหลด */
+.upload{
+    display: inline-black;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    background: green;
+
+}
+
+/* ตาราง */
+table{
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.img-login{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    position: absolute;
+    top: -100px;
+    left: calc(50% - 120px);
+ }
+
+ .card-login{
+    background: white;
+    width: 350px;
+    height: 380px;
+    top: 50%; left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 170px 40px 5px 40px;
+    text-align: center;
+
+ }
+
+
+

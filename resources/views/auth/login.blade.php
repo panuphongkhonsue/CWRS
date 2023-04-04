@@ -2,58 +2,71 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center" style="padding-top : 5%"><img id="logo" src="{{ URL::asset('img/clicknext.png') }}" class="rounded-circle bg-white" alt=""></div>
-    <div class="row justify-content-center" style="margin-top: 13%">
-        <div class="col-md-6">
-            <div class="card" style="padding-top: 180px">
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        @if(Session::has('message'))
-                                <div class="alert alert-danger">
-                                    {{ Session::get('message') }}
-                                </div>
-                            @endif
-                        <div class="row mb-3">
-                            <label for="id" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
 
-                            <div class="col-md-6">
+    <!-- รูปโลโก้บริษัท -->
+    <div class="container">
+        <div class="card-login" >
+            <img src="/img/clicknext.png" alt="" class="img-login">
 
-                                <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ old('email') }}" required autocomplete="email" autofocus>
+            <div>
+                    {{--  <div class="card bg-info" style="padding-top: 180px">
+                            <div class="card-body bg-danger col-md-7 align-self-center"> --}}
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    @if(Session::has('message'))
+                                            <div class="alert alert-danger">
+                                                {{ Session::get('message') }}
+                                            </div>
+                                        @endif
 
-                                @error('id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                                        <!-- กล่องข้อความสำหรับกรอก Username -->
+                                    <div class="row">
+                                        <div class="col-md-2 input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><img src="{{ URL::asset('img/user.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
+                                            </div>
+                                            <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Username">
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                            @error('id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                        <!-- กล่องข้อความสำหรับกรอก Password -->
+                                    <div class="row mb-4">
+                                        <div class="col input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><img src="{{ URL::asset('img/lock.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
+                                            </div>
+                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-                        <div class="row mb-0 mt-4">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Sign in  ') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                                        <!-- ปุ่ม Sign in -->
+                                    <div class="row mb-0">
+                                        <div class="col text-center">
+                                            <button type="submit" class="btn btn-success">
+                                                {{ __('Sign in  ') }}
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                    </div>
+
         </div>
+    </div>
+
+
     </div>
 </div>
 @endsection
