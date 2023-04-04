@@ -23,7 +23,7 @@
 <body>
     <div class="container-fluid h-100">
     <div class="row h-100">
-      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-custom d-none" id="side_bar" style= "left: -300px"><!-- wait fix -->
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-custom" id="side_bar" style= "left: -300px"><!-- wait fix -->
       <a href="javascript:void(0);" class="icon">
       <i class="fa fa-bars" id = "hamburMenu1" onclick="closeNav()" style="font-size: 30px"></i>  <!-- Hamburger menu -->
       </a>
@@ -98,7 +98,7 @@
         </ul>
 
           <div class="row justify-content-center">
-            <main class="py-5 col-lg-10">
+            <main class="py-3 col-lg-10">
                 @yield('content')
               </main>
           </div>

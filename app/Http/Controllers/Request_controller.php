@@ -57,6 +57,7 @@ class Request_controller extends Controller
     */
     public function create_single(Request $request)
     {
+        return dd($request->item);
         $welfare = Welfare::find($request->welfare);
         $user = Auth::user();
         $date = date("Y-m-d");

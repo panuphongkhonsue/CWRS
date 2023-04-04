@@ -97,46 +97,46 @@
 
                         {{-- ตารางรายละเอียด --}}
                             <div class="row wfh mx-5">
-                                <div class="col-sm-11 p-0 ">
+                                <div class="col-sm-11 p-0">
 
-                                        <table id="detail" class="table table-bordered table-reques w-100 bg-white">
+                                        <table id="detail" class="table table-bordered table-reques w-100 bg-white" style="border-radius: 8px">
                                             <thead id="bg" >
                                                 <tr class="text-center text-white" >
                                                     <th scope="col" class="col-sm-7 text-white">รายละเอียด</th>
-                                                    <th scope="col" class="col-sm-4 text-white">จำนวนเงิน (บาท)</th>
+                                                    <th scope="col" classs="col-sm-4 text-white">จำนวนเงิน (บาท)</th>
                                                 </tr>
                                             </thead>
 
-                                            <tbody id="table_body">
+                                            <tbody id="b-detail-1">
                                                 <tr>
-                                                    <td><input type="text" class="form-control border-0"></td>
-                                                    <td><input type="text" class="form-control text-end border-0"></td>
+                                                    <td><input type="text" name="item[]" id="item" class="form-control border-0" placeholder="กรอกรายละเอียด"></td>
+                                                    <td><input type="text" name="price[]" id="price" class="form-control text-end border-0" placeholder="กรอกราคา"></td>
                                                 </tr>
 
                                             </tbody>
                                         </table>
 
                                 </div>
-                                <div class="col-sm-1  p-0 mx-auto ">
+                                <div class="col-sm-1 mx-auto ">
 
                                     {{-- ปุ่มรายเพิ่มตาราง ลบตาราง --}}
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <td class="border-0">
-                                                    <button class="border-0 bg-transparent" onclick="create_tr('table_body')">
-                                                    <img src="{{ URL::asset('img/add.png') }}" width="20" height="20">
+                                                    <button type="button" class="border-0 bg-transparent add-row ms-1">
+                                                        <img src="{{ URL::asset('img/add.png') }}" width="27" height="27">
                                                     </button>
                                                 </td>
                                             </tr>
                                         </thead>
 
-                                        <tbody id="table-body">
-                                            <tr>
+                                        <tbody id="b-detail-2">
+                                            <tr class="detail">
                                                 <td class="border-0">
-                                                    <button class="border-0 bg-transparent" onclick="remove_tr('this')">
-                                                        <img src="{{ URL::asset('img/delete_group_requst.png') }}"  width="25" height="15">
-                                                    </button>
+                                                    <button type="button" class="border-0 bg-transparent remove-row btn" onclick="deleteRow(this)">
+                                                        <img src="{{ URL::asset('img/delete_group_requst.png') }}"  width="27" height="17">
+                                                   </button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -147,14 +147,14 @@
                             <div class="row g-0">
                                 <div class="col-md-4">
                                      {{-- แถบอัปโหลดใบเสร็จ --}}
-                                    <div class="text-center p-0">
+                                    <div class="text-center p-0" id="file-list">
                                             <div>
                                                 อัปโหลดรายการใบเสร็จ
                                             </div>
                                                 <input type="file" id="file_up" name="filename[]" multiple hidden>
                                             <div class="col mx-3 my-2">
-                                                <label for="file_up" class="col col-form-label border border-success px-2 text-success rounded-3 ">+ อัปโหลดไฟล์</label>
-                                                <div class="text-danger" style="font-size: 13px">จำนวนสูงสุด 5 ไฟล์ (.jpg, .pdf)</div>
+                                                <label type="button" for="file_up" id="file_up" class="btn btn-outline-success">+ อัปโหลดไฟล์</label>
+                                                <div class="text-danger mt-1" style="font-size: 13px">จำนวนสูงสุด 5 ไฟล์ (.jpg, .pdf)</div>
                                             </div>
                                     </div>
 
@@ -202,9 +202,9 @@
 
 
                         {{-- ปุ่มส่งเบิก --}}
-                        <div class="row mb-4">
+                        <div class="row">
                             <div class="col-sm-2 ms-auto">
-                                <button type="submit" class="btn btn-lg btn-success">ส่งเบิก</button>
+                                <button type="submit" class="btn btn-success">ส่งเบิก</button>
                             </div>
                         </div>
                     </form>
@@ -214,26 +214,46 @@
     </div>
 
 {{-- ห้ามแตะต้อง --}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     var rowCount = 1;
 
     $(document).ready(function() {
-        $(".add-file").click(function() {
-            if (rowCount < 5)
-            {
-                var html = $(".clone").html();
-                $(".increment").after(html);
+        $(".add-row").click(function() {
+
+            if (rowCount < 10) {
+                $("#b-detail-1").append(
+                    `<tr>
+                        <td><input type="text" name="item[]" id="item" class="form-control border-0"></td>
+                        <td><input type="text" name="price[]" id="price" class="form-control text-end border-0"></td>
+                    </tr>`
+                )
+
+                $("#b-detail-2").append(
+                    `<tr class="detail">
+                        <td class="border-0">
+                            <button type="button" class="border-0 bg-transparent remove-row btn" onclick="deleteRow(this)">
+                                <img src="{{ URL::asset('img/delete_group_requst.png') }}"  width="27" height="17">
+                            </button>
+                        </td>
+                    </tr>`
+                )
                 rowCount++;
             }
 
-        });
-
-        $("body").on("click",".remove-file", function() {
-            rowCount--;
-            $(this).parents(".control-group").remove();
         })
-
-        $()
     })
+
+    function deleteRow(ele) {
+        if (rowCount > 1) {
+            var tb = ele.closest("tr");
+            let row = tb.rowIndex;
+
+            $(tb).remove();
+            document.getElementById("b-detail-1").deleteRow(row-1);
+            rowCount--;
+        }
+    }
+
 </script>
 @endsection

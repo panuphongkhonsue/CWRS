@@ -106,7 +106,7 @@
           </ul>
 
             <div class="row justify-content-center">
-              <main class="py-5 col-lg-10">
+              <main class="py-3 col-lg-10">
                   @yield('content')
                 </main>
             </div>
