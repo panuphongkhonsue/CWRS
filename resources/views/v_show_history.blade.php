@@ -107,7 +107,7 @@
                                 <div class="col-sm-5">
                                     @foreach (json_decode($history->bill) as $bill)
                                         <div class="row mt-3">
-                                            <a href="" for="" class="col-auto col-form-label">{{ $bill }}</a>
+                                            <a href="{{ URL::asset('/bills/'. $bill) }}" for="" class="col-auto col-form-label" target="blank">{{ $bill }}</a>
                                         </div>
                                     @endforeach
                                 </div>

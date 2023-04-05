@@ -140,10 +140,6 @@ body {
 }
 
 /* ตาราง */
-table{
-    border-collapse: collapse;
-    border-radius: 8px;
-}
 
 .img-login{
     width: 250px;
@@ -184,8 +180,7 @@ table{
 }
 #detail{
     border-collapse: collapse;
-    border-radius: 1em;
-    overflow: hidden;
+    border-radius: 8px;
     width: 95%;
 
 }
@@ -211,8 +206,34 @@ table{
 }
 .tableadd{
     border: #fff;
+}
+
+/* หัวข้อใบเบิก */
+.bold_header {
+    padding: 30px  60px 15px 55px;
+    /* text-decoration: underline; */
+    font-size: 30px;
+}
+
+/* ตัวหนา */
+.b {
+    font-weight: bold;
+}
+
+/* กล่องขนาดใหญ่ */
+.big-box {
+    background-color: white;
 
 }
+
+/* ตาราง */
+.table-reques{
+    border-collapse: collapse;
+    border-radius: 1em;
+    border-color: black;
+}
+
+
 
 
 

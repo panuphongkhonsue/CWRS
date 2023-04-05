@@ -12,7 +12,7 @@ class Manage_request_controller extends Controller
     public function index()
     {
         $requests = Single_request::where('status', 0)->orderBy('id', 'desc')->paginate(10);
-        
+
         return view('v_manage_request', ['requests' => $requests]);
     }
 

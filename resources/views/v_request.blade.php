@@ -61,7 +61,7 @@
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
                                 <select class="form-control border-dark form-select" name="welfare" id="welfare">
-                                    <option selected disabled >เลือกประเภทสวัสดิการ</option>
+                                    <option  selected disabled >เลือกประเภทสวัสดิการ</option>
 
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
                                     @foreach ($welfares as $welfare)
@@ -74,8 +74,8 @@
                             {{-- จำนวนเงิน --}}
                             <label for="budget" class="col-auto col-form-label ms-auto ">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" class="text-end form-control border-0" style=" background-color: #eee;"
-                                 value="{{ __('2,000.00') }}" disabled>
+                                <input type="text" id="money" class="text-end form-control border-0" style=" background-color: #eee;"
+                                 value="{{ __('2,000.00') }}">
                             </div>
 
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
@@ -95,7 +95,7 @@
                             <div class="row wfh mx-5">
                                 <div class="col-sm-11 p-0">
 
-                                        <table id="detail" class="table table-bordered w-100 bg-white" style="border-radius: 8px">
+                                        <table id="" class="table table-bordered border-dark rounded">
                                             <thead id="bg" >
                                                 <tr class="text-center text-white" >
                                                     <th scope="col" class="col-sm-7 text-white">รายละเอียด</th>
@@ -251,6 +251,12 @@
                 rowCount++;
             }
         });
+
+        /* $('select').change(function(element) {
+            var a = $(this).val();
+            console.log(a);
+            $("#money").append(a);
+        }) */
     });
 
 </script>

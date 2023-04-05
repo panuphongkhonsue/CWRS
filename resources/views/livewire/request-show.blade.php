@@ -1,6 +1,6 @@
 <div>
     <div wire:loading.remove>
-        <table class="table table-bordered align-items-center">
+        <table class="table table-bordered align-items-center table-striped">
             <thead class="text-center text-light" id="bg">
                 <tr>
                     <td scope="col" class="col-sm-1">วันที่</td>
@@ -30,7 +30,7 @@
                                 @php ($icon = 'cancel2.png')
                                 @break
                         @endswitch
-    
+
                         @switch($request->get_welfare->type)
                             @case('S')
                                 @php ($text = 'บุคคล')
