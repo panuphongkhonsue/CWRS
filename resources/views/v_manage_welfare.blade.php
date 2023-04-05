@@ -27,11 +27,11 @@
 
                         <!-- ปุ่มเพิ่มสวัสดิการ -->
                         <div class="col text-end">
-                            <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#modal-add">+ เพิ่มสวัสดิการ</button>
+                            <button type="button" class="btn rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-add" style="background:#D9D9D9">+ เพิ่มประเภทสวัสดิการ</button>
                         </div>
                     </div>
                     
-                    <table class="table table-bordered align-items-center mt-3">
+                    <table class="table table-bordered align-items-center mt-3 table-striped">
 
                         <!-- หัวข้อตาราง -->
                         <thead class="text-center text-light" id="bg">
