@@ -6,7 +6,7 @@
 
                 <!-- ตัวเลือกหลายรายการของรูปแบบสวัสดิการ -->
                 <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" wire:model="type" wire:change="render">
+                    <select class="form-select" aria-label="Default select example" wire:model="type" wire:change="filter">
                         <option value="999">ทั้งหมด</option>
                         <option value="S">บุคคล</option>
                         <option value="G">สันทนาการ</option>
@@ -56,6 +56,7 @@
             @endforeach
         </tbody>
     </table>
+    {!! $welfares->links() !!}
 
     <div class="modal fade" id="modal-in" tabindex="-1" role="dialog" aria-labelledby="content" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered py-3" role="document">
@@ -161,6 +162,6 @@
           </div>
         </div>
     </div>
-    {{ $welfares->links() }}
+
 </div>
 

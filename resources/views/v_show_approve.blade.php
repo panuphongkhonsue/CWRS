@@ -20,7 +20,7 @@
                         <div class="d-flex justify-content-end">
                             <div class="row text-right mt-2">
                                 <label for="budget" class="col-auto col-form-label ms-auto fw-bold ">{{ __('วัน/เดือน/ปี : ') }}</label>
-                                <div class="col-sm-2 ">
+                                <div class="col-sm-3 ">
                                     <input type="text" id="date" name="date" class="form-control border-0 bg-transparent " value="{{ date("d/m/Y", strtotime($history->create_date)) }}" disabled>
                                 </div>
 

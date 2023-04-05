@@ -18,8 +18,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('.show_data').click(function() {
-                let row = null;
                 row = $(this).parent().parent();
+                console.log(row.rowindex);
 
                 var type = row.find("td:eq(0)").text();
                 var name = row.find("td:eq(1)").text();

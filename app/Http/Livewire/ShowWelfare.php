@@ -23,4 +23,9 @@ class ShowWelfare extends Component
         return view('livewire.show-welfare', ['welfares' => Welfare::paginate(10)]);
     }
 
+    public function filter()
+    {
+        $this->resetPage();
+    }
+
 }
