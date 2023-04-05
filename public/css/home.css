@@ -57,4 +57,11 @@ body {
     background-color: #f0f8ff;
 }
 
+/* หัวข้อใบเบิก */
+.bold_header {
+   padding: 30px  60px 15px 55px;
+   /* text-decoration: underline; */
+   font-size: 30px;
+}
+
 
