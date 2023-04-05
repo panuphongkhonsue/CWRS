@@ -6,7 +6,7 @@
     <!-- รูปโลโก้บริษัท -->
     <div class="container">
         <div class="card-login" >
-            <img src="{{ URL::asset('/img/clicknext.png') }}" alt="" class="img-login">
+            <img src="./img/clicknext.png" alt="" class="img-login">
 
             <div>
                     {{--  <div class="card bg-info" style="padding-top: 180px">
