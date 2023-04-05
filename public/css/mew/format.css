@@ -1,6 +1,6 @@
 /* หัวข้อใบเบิก */
 .bold_header {
-    padding: 30px  60px 15px 55px;
+    padding: 30px 60px 15px 55px;
     /* text-decoration: underline; */
     font-size: 30px;
 }
@@ -17,27 +17,37 @@
 }
 
 /* รับค่าไฟล์ใบเสร็จ */
-input[type="file"]{
+input[type="file"] {
     display: none;
 }
 
 /* ปุ่มอัปโหลด */
-.upload{
+.upload {
     display: inline-black;
     text-transform: uppercase;
     text-align: center;
     color: white;
     background: green;
-
+    margin-top: -10px !important;
 }
 
 /* ตาราง */
-.table-reques{
-    border-collapse: collapse;
-    border-radius: 1em;
-    overflow: hidden;
-    border-color: black;
+.table-reques {
+    border-collapse: unset !important;
+    border: 1px solid black !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    border-spacing: 0;
 }
+
+/* .table-reques td {
+    border: 1px solid black !important;
+} */
+
+/* .table-reques tr {
+    border: 1px solid black !important;
+} */
+
 
 
 
