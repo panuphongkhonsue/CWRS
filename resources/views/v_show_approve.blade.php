@@ -19,21 +19,21 @@
 
 
 
-                        <div class="row mt-2 ">
+                        <div class="row mt-3">
                             <label for="budget" class="col-auto col-form-label ms-auto fw-bold">{{ __('วัน/เดือน/ปี : ') }}</label>
-                            <div class="col-sm-2">
+                            <div class="col-sm-2 ">
                                 <input type="text" id="date" name="date" class="form-control border-0 bg-transparent " value="{{ date("d/m/Y", strtotime($history->create_date)) }}" disabled>
                             </div>
 
                             <label for="req-id" class="col-auto col-form-label fw-bold">{{ __('เลขที่ใบเบิก : ') }}</label>
-                                <div class="col-sm-2">
+                                <div class="col-sm-2 ">
                                     <input type="text" name="req-id" id="req-id" class="form-control border-0 bg-transparent " value="{{ $history->id }}" disabled>
                                 </div>
                             </label>
 
                         </div>
 
-                        <div class="row mt-4">
+                        <div class="row">
                             <label for="id" class="col-sm-2 col-form-label fw-bold">{{ __('รหัสพนักงาน : ') }}</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control border-0 bg-transparent " value="{{ $history->get_user->id }}" disabled>
@@ -41,14 +41,14 @@
 
                         </div>
 
-                        <div class="row mt-4">
+                        <div class="row">
                             <label for="name" class="col-sm-2 col-form-label fw-bold">{{ __('ชื่อ-สกุล : ') }}</label>
                             <div class="col-md-3">
                                 <input type="text" class="form-control border-0 bg-transparent " value="{{ $history->get_user->fname }} {{ $history->get_user->lname }}" disabled>
                             </div>
                         </div>
 
-                        <div class="row mt-4">
+                        <div class="row">
                             <label for="department" class="col-sm-2 col-form-label fw-bold">{{ __('แผนก : ') }}</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control border-0 bg-transparent " value="{{ $history->get_user->department->name }}" disabled>
@@ -59,7 +59,7 @@
                         <div class="row mt-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
-                                <input type="text" class="form-control bg-transparent " value="{{ $history->get_welfare->title }}" name="" id="" readonly       >
+                                <input type="text" class="form-control bg-transparent border-dark" value="{{ $history->get_welfare->title }}" name="" id="" readonly       >
                             </div>
 
                             <label for="budget" class="col-auto col-form-label ms-auto">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
@@ -80,7 +80,7 @@
                         <div class="row mt-3 d-flex justify-content-center">
                             <div class="col-lg-11">
                                 <table id="detail" class="table table-bordered">
-                                    <thead>
+                                    <thead id="bg" class="text-hih">
                                         <tr class="text-center">
                                             <th scope="col" class="col-lg-8">รายละเอียด</th>
                                             <th scope="col" class="">จำนวนเงิน (บาท)</th>
@@ -91,8 +91,8 @@
                                         @php ($price = json_decode($history->price))
                                         @foreach (json_decode($history->item) as $index => $item)
                                             <tr>
-                                                <td><input type="text" class="form-control" value="{{ $item }}" readonly></td>
-                                                <td><input type="text" class="form-control text-end" value="{{ $price[$index] }}" readonly></td>
+                                                <td><input type="text" class="form-control border-0" value="{{ $item }}" readonly></td>
+                                                <td><input type="text" class="form-control text-end border-0" value="{{ $price[$index] }}" readonly></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -108,18 +108,29 @@
                             <label for="" class="col-auto col-form-label">{{ __('บาท') }}</label>
                         </div>
 
-                        <div class="row mt-3">
-                            <label for="bill" class="col-auto col-form-label">ไฟล์ใบเสร็จ : </label>
-                                <div class="col-sm-5">
-                                    @foreach (json_decode($history->bill) as $bill)
-                                        <div class="row mt-3">
-                                            <a href="" for="" class="col-auto col-form-label">{{ $bill }}</a>
-                                        </div>
-                                    @endforeach
+                        <div class="row mt-4">
+
+                            <div class="col-md-6">
+                                <label for="bill">ไฟล์ใบเสร็จ : </label>
+                                    <div class="card-text px-4 rounded me-3" style="background-color: #eee">
+                                        @foreach (json_decode($history->bill) as $bill)
+                                            <div class="row">
+                                                <a href="" for="" class="col-auto col-form-label">{{ $bill }}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label >หมายเหตุ : </label>
+                                    <div class="mt-">
+                                        <textarea name="message" style="width:400px; height:100px;" class="rounded"></textarea>
+                                    </div>
+
                                 </div>
                         </div>
 
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4 mt-5">
                                 <a href="{{ url('reject/'. $history->id) }}" method="POST" class="btn btn-md btn-danger  me-md-4">ไม่อนุมัติ</a>
                                 <a href="{{ url('approve/'. $history->id) }}" method="POST" class="btn btn-md btn-success">อนุมัติ</a>
                             </div>

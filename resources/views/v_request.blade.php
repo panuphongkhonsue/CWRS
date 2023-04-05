@@ -157,9 +157,9 @@
 
 
 
-                            <div class="row g-0">
+                         {{--    <div class="row g-0">
                                 <div class="col-md-4 my-3">
-                                     {{-- แถบอัปโหลดใบเสร็จ --}}
+
                                     <div class="text-center p-0">
                                             <div>
                                                 อัปโหลดรายการใบเสร็จ
@@ -173,8 +173,8 @@
 
                                 </div>
                                 <div class="col-md-8 p-0">
-                                        {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
-                                        <div class="row">
+
+                                        <div class="row bg-info">
                                             <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                                             <div class="col-sm-2">
                                                 <input type="text" class="form-control text-end border-0 " style=" background-color: #eee;"
@@ -184,14 +184,14 @@
                                         </div>
                                 </div>
                             </div>
+ --}}
 
 
 
 
 
 
-
-                      {{--   <div class="card-body m-0 p-0">
+                      <div class="card-body m-0 p-0">
                             <div class="row ">
                                 <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                                 <div class="col-sm-2">
@@ -201,9 +201,9 @@
                                 <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}</label>
                             </div>
                         </div>
- --}}
 
-                     {{--    <div class="card-body  text-center m-0 p-0" style="width: 500px; hight: 50px">
+
+                     <div class="card-body  text-center m-0 p-0" style="width: 500px; hight: 50px">
                             <div class="row ">
                                 <div>
                                     อัปโหลดรายการใบเสร็จ
@@ -215,7 +215,7 @@
                                 </div>
                             </div>
                         </div>
- --}}
+
 
 
 
