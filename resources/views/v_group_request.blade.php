@@ -145,9 +145,10 @@
                             <div class="col-sm-1  p-0 mx-auto ">
 
                                 {{-- ปุ่มรายเพิ่มตาราง ลบตาราง --}}
-                                <table class="table">
+                                <table class="table1">
                                     <thead>
                                         <tr>
+                                            <td></td>
 
                                         </tr>
                                     </thead>
@@ -155,6 +156,7 @@
                                     <tbody id="item-buttom-body">
                                         <tr>
                                             <td class="border-0">
+                                                <button type="button" class="remove-table border-0 bg-transparent deletetable" ><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button>
 
                                             </td>
                                         </tr>
