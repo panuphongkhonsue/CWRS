@@ -16,7 +16,6 @@
                                 <!-- ตัวเลือกหลายรายการของรูปแบบสวัสดิการ -->
                                 <div class="col-sm-4">
                                     <select class="form-select" aria-label="Default select example">
-                                        <option selected></option>
                                         <option value="1">ทั้งหมด</option>
                                         <option value="2">บุคคล</option>
                                         <option value="3">สันทนาการ</option>
@@ -27,7 +26,7 @@
 
                         <!-- ปุ่มเพิ่มสวัสดิการ -->
                         <div class="col text-end">
-                            <button type="button" class="btn rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-add" style="background:#D9D9D9">+ เพิ่มประเภทสวัสดิการ</button>
+                            <button type="button" class="btn rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-add" style="background:#e7e7e7">เพิ่มประเภทสวัสดิการ</button>
                         </div>
                     </div>
                     
