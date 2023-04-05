@@ -47,12 +47,6 @@ class Request_controller extends Controller
         return view('v_request', ['welfares' => $data]);
     }
 
-    public function group_request()
-    {
-        $data = Welfare::where('type', 'G')->get();
-
-        return view('v_group_request', ['welfares' => $data]);
-    }
 
 
     /*
@@ -88,4 +82,33 @@ class Request_controller extends Controller
 
         return redirect()->route('history');
     }
+
+    /*
+    * group_request()
+    * แสดงหน้าจอเบิกสวัสดิการแบบบุคคล
+    * @input : -
+    * @output : หน้าจอประวัติการเบิกสวัสดิการ
+    * @author : Rawich Piboonsin 64160299
+    * @Create Date : 2023-03-15
+    * @Update Date : 2023-03-15 Panuphong Khonsue 64160282 call data to show
+    */
+    public function group_request()
+    {
+
+        $user = Auth::user();
+        $requests = Single_request::where('user_id', $user->id)->get();
+        $welfare_id[0] = NULL;
+
+        foreach ($requests as $index => $request) {
+            if (date("Y", strtotime($request->create_date)) == date("Y")) {
+                $welfare_id[$index] = $request->welfare_id;
+            }
+        }
+
+        $data = Welfare::where('type', 'G')->get();
+
+        return view('v_group_request', ['welfares' => $data]);
+    }
+
+
 }
