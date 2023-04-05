@@ -16,6 +16,7 @@
         <tbody class="">
          @foreach ($requests as $index => $request)
             <tr>
+                @php ($total = number_format(array_sum(json_decode($request->price)), 2, ".", ","))
                 @switch($request->status)
                     @case(0)
                             @php ($icon = 'wait.png')
@@ -44,7 +45,7 @@
                         <td scope="col" class="col-sm-1 text-center">{{ $text }}</td>
                         <td scope="col" class="">{{ $request->get_user->fname }}</td>
                         <td scope="col" class="col-md-3">{{ $request->get_welfare->title }}</td>
-                        <td scope="col" class="col-sm-2 text-end">{{ $request->get_welfare->budget }}</td>
+                        <td scope="col" class="col-sm-2 text-end">{{ $total }}</td>
                         <td scope="col" class="col-sm-1 text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"</td>
                         <td scope="col" class="col-sm-1 text-center"><a href="{{ url('/manage_request/'. $request->id) }}" class="btn btn-sm btn-primary"  style="font-size: 10px">แสดงรายการ</a>
                         </td>

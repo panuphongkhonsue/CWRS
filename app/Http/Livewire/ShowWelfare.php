@@ -11,6 +11,8 @@ class ShowWelfare extends Component
     use WithPagination;
     public $type = 999;
 
+    protected $listeners = ['reload'];
+
     protected $paginationTheme = 'bootstrap';
 
     public function render()
@@ -23,9 +25,8 @@ class ShowWelfare extends Component
         return view('livewire.show-welfare', ['welfares' => Welfare::paginate(10)]);
     }
 
-    public function filter()
+    public function reload($type)
     {
-        $this->resetPage();
-        $this->dispatchBrowserEvent('type');
+        $this->type = $type;
     } 
 }

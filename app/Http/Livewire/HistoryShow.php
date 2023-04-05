@@ -24,11 +24,11 @@ class HistoryShow extends Component
             return view('livewire.history-show', ['requests' => Single_request::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
         }
         else {
-            return view('livewire.history-show', ['requests' => Single_request::where('status'  , $this->status,$this->walfare_year)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
+            return view('livewire.history-show', ['requests' => Single_request::where('status', $this->status)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
         }
     }
 
-    public function reload($status,$walfare_type,$walfare_year)
+    public function reload($status, $walfare_type, $walfare_year)
     {
         $this->resetPage();
         $this->status = $status;

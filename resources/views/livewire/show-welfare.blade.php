@@ -1,25 +1,4 @@
 <div>
-    <div class="row">
-        <div class="col">
-            <div class="row">
-                <label class="col-auto col-form-label">รูปแบบสวัสดิการ :</label>
-
-                <!-- ตัวเลือกหลายรายการของรูปแบบสวัสดิการ -->
-                <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" wire:model="type" wire:change="filter">
-                        <option value="999">ทั้งหมด</option>
-                        <option value="S">บุคคล</option>
-                        <option value="G">สันทนาการ</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <!-- ปุ่มเพิ่มสวัสดิการ -->
-        <div class="col text-end">
-            <button type="button" class="btn btn-light rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#modal-add">เพิ่มประเภทสวัสดิการ</button>
-        </div>
-    </div>
     {{-- Stop trying to control. --}}
     <table class="table table-bordered align-items-center mt-3 table-striped">
 

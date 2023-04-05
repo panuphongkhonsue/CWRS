@@ -19,7 +19,6 @@ class HistoryFilterStatus extends Component
     public function filter()
     {
 
-        $this->emitTo('history-show','reload', $this->emp_status,$this->walfare_type,$this->walfare_year);
-
+        $this->emitTo('history-show','reload', $this->emp_status, $this->walfare_type, $this->walfare_year);
     }
 }
