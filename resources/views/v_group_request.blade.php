@@ -16,7 +16,7 @@
 
                         {{-- วันที่ --}}
                         <div class="row">
-                            <label for="budget" class="col-auto col-form-label ms-auto fw-bolder ">{{ ('วัน/เดือน/ปี : ') }}</label>
+                            <label for="budget" class="col-auto col-form-label ms-auto fw-bolder ">{{ __('วัน/เดือน/ปี : ') }}</label>
                             <div class="col-sm-2">
                                 {{-- generate วันที่ --}}
                                 <input type="text" id="date" name="date" class="form-control border-0 bg-transparent fs-16px" value="{{ date("d/m/Y") }}" >
@@ -25,7 +25,7 @@
 
                         {{-- รหัสพนักงาน --}}
                         <div class="row ms-5 mt-1">
-                            <label for="id" class="col-sm-2 col-form-label fw-bold">{{ ('รหัสพนักงาน : ') }}</label>
+                            <label for="id" class="col-sm-2 col-form-label fw-bold">{{ __('รหัสพนักงาน : ') }}</label>
                             <div class="col-sm-3">
                                 {{-- generate รหัสพนักงาน --}}
                                 <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->id }}" disabled>
@@ -34,7 +34,7 @@
 
                         {{-- ชื่อ นามกุล --}}
                         <div class="row ms-5 mt-1">
-                            <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ ('ชื่อ-สกุล : ') }}</label>
+                            <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ __('ชื่อ-สกุล : ') }}</label>
                             <div class="col-sm-3">
                                 {{-- generate ชื่อ-นามสกุล --}}
                                 <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
@@ -44,7 +44,7 @@
 
                         {{-- แผนก --}}
                         <div class="row ms-5 mt-1 ">
-                            <label for="department" class="col-sm-2 col-form-label fw-bold">{{ ('แผนก : ') }}</label>
+                            <label for="department" class="col-sm-2 col-form-label fw-bold">{{ __('แผนก : ') }}</label>
                             <div class="col-sm-3">
                                 {{-- generate แผนก --}}
                                 <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->department->name }}" disabled>
@@ -250,7 +250,7 @@ if (rowTableCount < 10)
                 <button type="button" class="remove-table border-0 bg-transparent mt-3 "><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button>
             </td>
         </tr> `
-        
+
 
 
     )

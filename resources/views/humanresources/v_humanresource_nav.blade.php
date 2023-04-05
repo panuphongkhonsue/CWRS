@@ -26,7 +26,7 @@
         <div class="text-center mb-3">
           <img class="img-custom my-3" src="{{ URL::asset('img/' . Auth::user()->id . '.jpg') }}" alt="">
           <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <span class="fs-4 mc">{{ _('ฝ่ายบุคคล') }}</span>
+          <span class="fs-4 mc">{{ __('ฝ่ายบุคคล') }}</span>
           </a>
         </div>
           <hr>
@@ -34,14 +34,14 @@
             <li>
               <a href="{{ route('home') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                {{ _('คำขออนุมัติ') }}
+                {{ __('คำขออนุมัติ') }}
               </a>
             </li>
             <hr>
             <li class="nav-item dropdown">
               <a href="{{ route('manage_welfare') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                {{ _('จัดการประเภทสวัสดิการ') }}
+                {{ __('จัดการประเภทสวัสดิการ') }}
               </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a href="" class="dropdown-item">บุคคล</a>
@@ -52,7 +52,7 @@
             <li>
               <a href="{{ route('history') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                {{ _('รายงานเบิกสวัสดิการ') }}
+                {{ __('รายงานเบิกสวัสดิการ') }}
               </a>
             </li>
           </ul>

@@ -34,7 +34,7 @@
         <div class="text-center mb-3">
           <img class="img-custom my-3" src="{{ URL::asset('img/' . Auth::user()->id . '.jpg') }}" alt="">
           <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <span class="fs-4 mc">{{ _('พนักงาน') }}</span>
+          <span class="fs-4 mc">{{ __('พนักงาน') }}</span>
           </a>
         </div>
           <hr>
@@ -42,7 +42,7 @@
             <li>
               <a href="{{ route('home') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                {{ _('หน้าหลัก') }}
+                {{ __('หน้าหลัก') }}
               </a>
             </li>
             <hr>
@@ -60,12 +60,12 @@
                 {{-- ปุ่มประวัติ --}}
               <a href="{{ route('history') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                {{ _('ประวัติของฉัน') }}
+                {{ __('ประวัติของฉัน') }}
               </a>
 
               <a href="{{ route('group_request') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                {{ _('55555555555555') }}
+                {{ __('55555555555555') }}
               </a>
             </li>
           </ul>
@@ -90,7 +90,6 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
-ar-collapse text-light" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-na
             <div class="collapse navbv">

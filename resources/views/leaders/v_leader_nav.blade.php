@@ -34,7 +34,7 @@
             <li>
               <a href="{{ route('home') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                {{ _('คำขอรับรอง') }}
+                {{ __('คำขอรับรอง') }}
               </a>
             </li>
             <hr>
@@ -42,7 +42,7 @@
                 <a href="{{ route('s.request') }}" class="nav-link dropdown-toggle text-light" id="navbarDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                    {{ _('ขอเบิกสวัสดิการ') }}
+                    {{ __('ขอเบิกสวัสดิการ') }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a href="" class="dropdown-item">บุคคล</a>
@@ -53,7 +53,7 @@
             <li>
               <a href="{{ route('history') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                {{ _('ประวัติของฉัน') }}
+                {{ __('ประวัติของฉัน') }}
               </a>
             </li>
           </ul>
