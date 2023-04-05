@@ -27,8 +27,7 @@ class User_history_controller extends Controller
     */
     public function index()
     {
-        $user = Auth::user();
-        $requests = $user->welfares_request;
+        $requests = Single_request::where('user_id', Auth::user()->id)->orderBy('create_date', 'desc');
 
         return view('v_history', ['requests' => $requests]);
     }

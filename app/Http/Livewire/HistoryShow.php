@@ -21,10 +21,10 @@ class HistoryShow extends Component
     {
 
         if ($this->status == 999 && $this->walfare_year == 999) {
-            return view('livewire.history-show', ['requests' => Single_request::where('user_id', Auth::user()->id)->paginate(10)]);
+            return view('livewire.history-show', ['requests' => Single_request::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
         }
         else {
-            return view('livewire.history-show', ['requests' => Single_request::where('status'  , $this->status,$this->walfare_year)->where('user_id', Auth::user()->id)->paginate(10)]);
+            return view('livewire.history-show', ['requests' => Single_request::where('status'  , $this->status,$this->walfare_year)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
         }
     }
 
