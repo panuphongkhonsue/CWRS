@@ -61,11 +61,11 @@
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
                                 <select class="form-control border-dark form-select" name="welfare" id="welfare">
-                                    <option  selected disabled >เลือกประเภทสวัสดิการ</option>
+                                    <option selected disabled >เลือกประเภทสวัสดิการ</option>
 
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
                                     @foreach ($welfares as $welfare)
-                                        <option value="{{ $welfare->id }}">{{ $welfare->title }}</option>
+                                        <option value='{"id":{{ $welfare->id }}, "budget":{{ $welfare->budget }}}'>{{ $welfare->title }}</option>
                                     @endforeach
 
                                 </select>
@@ -75,7 +75,7 @@
                             <label for="budget" class="col-auto col-form-label ms-auto ">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
                                 <input type="text" id="money" class="text-end form-control border-0" style=" background-color: #eee;"
-                                 value="{{ __('2,000.00') }}">
+                                 value="{{ __('0.00') }}">
                             </div>
 
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
@@ -95,7 +95,7 @@
                             <div class="row wfh mx-5">
                                 <div class="col-sm-11 p-0">
 
-                                        <table id="" class="table table-bordered border-dark rounded">
+                                        <table id="tb" class="table table-bordered border-dark rounded">
                                             <thead id="bg" >
                                                 <tr class="text-center text-white" >
                                                     <th scope="col" class="col-sm-7 text-white">รายละเอียด</th>
@@ -106,7 +106,7 @@
                                             <tbody id="b-detail">
                                                 <tr>
                                                     <td><input type="text" name="item[]" class="form-control border-0" placeholder="กรอกรายละเอียด"></td>
-                                                    <td><input type="text" name="price[]" class="form-control text-end border-0" placeholder="กรอกราคา"></td>
+                                                    <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()" placeholder="กรอกราคา"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -146,7 +146,7 @@
                                         <div class="row ">
                                             <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                                             <div class="col-sm-2">
-                                                <input type="text" class="form-control text-end border-0 " style=" background-color: #eee;"
+                                                <input type="text" id="total" class="form-control text-end border-0" style=" background-color: #eee;"
                                                 value="{{ __('0.00') }}" readonly>
                                             </div>
                                             <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }} <label style="color:#fff">_</label></label>
@@ -210,6 +210,18 @@
         }
     }
 
+    function updateTotal() {
+        var col = document.getElementsByClassName("price");
+            let total = 0;
+            
+            for (let i = 0 ; i < col.length ; i++) {
+               total = total +  Number($(col[i]).val());
+            }
+
+            let fixed = total.toLocaleString('en-US') + ".00"
+            $("#total").val(fixed);
+    }
+
     $(document).ready(function() {
 
         $(".add-file").click(function() {
@@ -230,9 +242,9 @@
             if (rowCount < 10) {
                 $('#b-detail').append(
                     `
-                        <tr>
+                    <tr>
                         <td><input type="text" name="item[]" class="form-control border-0"></td>
-                        <td><input type="text" name="price[]" class="form-control text-end border-0"></td>
+                        <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()"></td>
                     </tr>
                     `
                 );
@@ -252,11 +264,14 @@
             }
         });
 
-        /* $('select').change(function(element) {
-            var a = $(this).val();
-            console.log(a);
-            $("#money").append(a);
-        }) */
+        $('#welfare').change(function() {
+            var val = $(this).val();
+            var text = JSON.parse(val);
+            var budget = Number(text.budget);
+            var fixed = budget.toFixed(2);
+
+            $("#money").val(Intl.NumberFormat('en-US').format(fixed));
+        })
     });
 
 </script>

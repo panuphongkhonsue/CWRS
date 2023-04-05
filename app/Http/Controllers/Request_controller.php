@@ -65,7 +65,8 @@ class Request_controller extends Controller
     */
     public function create_single(Request $request)
     {
-        $welfare = Welfare::find($request->welfare);
+        $json = json_decode($request->welfare);
+        $welfare = Welfare::find($json->id);
         $user = Auth::user();
         $date = date("Y-m-d");
 

@@ -16,6 +16,7 @@
 
             @foreach ($requests as $index => $request)
                 <tr>
+                    @php ($total = number_format(array_sum(json_decode($request->price)), 2, ".", ","))
                     @switch($request->status)
                     @case(0)
                             @php ($icon = 'wait.png')
@@ -42,7 +43,7 @@
                     <td class="text-center">{{ $request->id }}</td>
                     <td class="text-center">บุคคล</td>
                     <td>{{ $request->get_welfare->title }}</td>
-                    <td class="text-end">{{ $request->get_welfare->budget }}</td>
+                    <td class="text-end">{{ $total }}</td>
                     <td class="text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"></td>
                     <td class="text-center"><a href="{{ route('show_history', ['id' => $request->id]) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
                 </tr>
