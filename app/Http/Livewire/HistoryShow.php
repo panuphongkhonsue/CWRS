@@ -10,6 +10,8 @@ class HistoryShow extends Component
 {
     use WithPagination;
     public $status = 999;
+    public $walfare_type = 999;
+    public $walfare_year = 999;
     protected $listeners = ['reload'];
 
     protected $paginationTheme = 'bootstrap';
@@ -17,17 +19,19 @@ class HistoryShow extends Component
     public function render()
     {
         
-        if ($this->status == 999) {
+        if ($this->status == 999 && $this->walfare_year == 999) {
             return view('livewire.history-show', ['requests' => Single_request::whereNot('status')->paginate(10)]);
         }
         else {
-            return view('livewire.history-show', ['requests' => Single_request::where('status', $this->status)->paginate(10)]);
+            return view('livewire.history-show', ['requests' => Single_request::where('status'  , $this->status,$this->walfare_year)->paginate(10)]);
         }
     }
 
-    public function reload($status)
+    public function reload($status,$walfare_type,$walfare_year)
     {
         $this->resetPage();
         $this->status = $status;
+        $this->walfare_type = $walfare_type;
+        $this->walfare_year = $walfare_year;
     }
 }

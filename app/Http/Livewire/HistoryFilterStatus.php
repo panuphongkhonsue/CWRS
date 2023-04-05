@@ -7,7 +7,9 @@ use App\Models\Single_request;
 
 class HistoryFilterStatus extends Component
 {
-    public $welfare = 999; 
+    public $emp_status = 999; 
+    public $walfare_type = 999;
+    public $walfare_year = 999;
 
     public function render()
     {
@@ -17,7 +19,7 @@ class HistoryFilterStatus extends Component
     public function filter()
     {
         
-        $this->emitTo('history-show','reload', $this->welfare);
+        $this->emitTo('history-show','reload', $this->emp_status,$this->walfare_type,$this->walfare_year);
        
     }
 }

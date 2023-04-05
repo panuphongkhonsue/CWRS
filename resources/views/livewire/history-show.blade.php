@@ -1,5 +1,5 @@
 <div class="col-md-13" >
-    {{$status}}
+
                         {{-- ในส่วนของตาราง --}}
                         <table class="table table-bordered align-items-center">
                             <thead class="text-center text-light" id="bg">
