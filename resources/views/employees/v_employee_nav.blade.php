@@ -54,7 +54,7 @@
               <div class="collapse" id="home-collapse" style="" >
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ms-5">
                   <li><a href="{{ route('s.request') }}" class="nav-link text-white" style="text-decoration: none">บุคคล</a></li>
-                  <li><a href="" class="nav-link text-white" style="text-decoration: none">สันทนาการ</a></li>
+                  <li><a href="{{ route('group_request') }}" class="nav-link text-white" style="text-decoration: none">สันทนาการ</a></li>
                 </ul>
               </div>
             </li>

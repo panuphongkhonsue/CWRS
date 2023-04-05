@@ -40,7 +40,7 @@
                             <div class="row">5. ต้องเบิกเต็มจำนวนวงเงินทั้งหมดของประเภทสวัสดิการนั้นๆ</div><br>
                             <div class="row mt-4 justify-content-md-center">
                                 <div class="col-md-auto">
-                                    <button class="btn btn-primary">สันทนาการ</button>
+                                    <button class="btn btn-primary"><a href="{{ route('group_request') }}" class="text-light text-decoration-none" >สันทนาการ</a></button>
                                 </div>
                             </div>
                         </div>

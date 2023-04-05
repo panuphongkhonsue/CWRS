@@ -47,6 +47,14 @@ class Request_controller extends Controller
         return view('v_request', ['welfares' => $data]);
     }
 
+    public function group_request()
+    {
+        $data = Welfare::where('type', 'G')->get();
+
+        return view('v_group_request', ['welfares' => $data]);
+    }
+
+
     /*
     * create_single()
     * สร้างคำขอเบิกสวัสดิการแบบเดียว

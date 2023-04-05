@@ -26,6 +26,6 @@ class ShowWelfare extends Component
     public function filter()
     {
         $this->resetPage();
-    }
-
+        $this->dispatchBrowserEvent('type');
+    } 
 }
