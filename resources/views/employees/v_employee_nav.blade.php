@@ -52,22 +52,13 @@
                    <div class= "nav-link text-white eiei" >ขอเบิกสวัสดิการ</div>
                    <ul>
                     <li class="dropbu"><a href="{{ route('s.request') }}">บุคคล</a></li>
-                    <li class="dropbu"><a href="">สันทนาการ</a></li>
+                    <li class="dropbu"><a href="{{ route('group_request') }}">สันทนาการ</a></li>
                    </ul>
                    <hr>
 
 
                 {{-- ปุ่มประวัติ --}}
-              <a href="{{ route('history') }}" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                {{ _('ประวัติของฉัน') }}
-              </a>
-
-              <a href="{{ route('group_request') }}" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                {{ _('55555555555555') }}
-              </a>
-            </li>
+              <li class="dropbu"><a href="{{ route('history') }}">ประวัติของฉัน</a></li>
           </ul>
           <hr>
           {{-- ปุ่ม logout ไม่ต้องแก้หรอก --}}
