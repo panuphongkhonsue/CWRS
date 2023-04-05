@@ -7,143 +7,37 @@
                 <div class="card-header fs-4 py-3">{{ __('จัดการสวัสดิการ') }}</div>
                 <div class="card-body">
 
-                    
-
                     <livewire:show-welfare/>
 
                     <!-- หน้าต่างแสดงผลซ้อนของปุ่มแก้ไขสวัสดิการ -->
-                    <div class="modal fade" id="modal-in" tabindex="-1" role="dialog" aria-labelledby="content" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered py-3" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header navbar">
-                              <h5 class="modal-title ms-auto me-auto text-light" id="content">แก้ไขสวัสดิการ</h5>
-                            </div>
-                            <div class="modal-body mt-3 pb-3">
-                                <form id="welfare_edit" method="POST" action="{{ route('edit_welfare') }}">
-                                    @csrf
-                                    <input type="text" class="wel_id d-none" name="e_id">
-                                    <div class="row">
-                                        <label for="" class="col-auto col-form-label">ประเภทสวัสดิการ :</label>
-                                        <div class="col">
-                                            <input type="text" class="form-control wel_title" name="e_title">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mt-3">
-                                        <label for="" class="col-auto col-form-label">จำนวนเงินที่เบิกได้ :</label>
-                                        <div class="col">
-                                            <input type="text" class="form-control wel_budget" name="e_budget">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mt-3">
-                                        <label for="" class="col-auto form-check-label">รูปแบบสวัสดิการ :</label>
-                                        <div class="col-auto form-check form-check-inline ms-2">
-                                            <input class="form-check-input" type="radio" name="type_edit" id="single" disabled>
-                                            <label class="form-check-label" for="type1">
-                                              บุคคล
-                                            </label>
-                                          </div>
-                                          <div class="col form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="type_edit" id="group" disabled>
-                                            <label class="form-check-label" for="type2">
-                                              สันทนาการ
-                                            </label>
-                                          </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <!-- ปุ่มยกเลิกและบันทึกหน้าต่างแสดงผลซ้อนของปุ่มแก้ไข -->
-                            <div class="modal-footer border-0 mt-1">
-                                <button type="button" class="btn btn-danger me-md-5" data-bs-dismiss="modal">ยกเลิก</button>
-                                <button type="submit" form="welfare_edit" class="btn btn-success">บันทึก</button>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-
-                    <!-- หน้าต่างแสดงผลซ้อนของปุ่มเพิ่มสวัสดิการ -->
-                    <div class="modal fade" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="content" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered py-3" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header navbar">
-                              <h5 class="modal-title ms-auto me-auto text-light" id="content">เพิ่มสวัสดิการ</h5>
-                            </div>
-                            <div class="modal-body mt-3 pb-3">
-                                <form id="welfare_add" action="{{ route('add_welfare') }}" method="POST">
-                                    @csrf
-                                    <div class="row">
-                                        <label for="" class="col-auto col-form-label">ประเภทสวัสดิการ :</label>
-                                        <div class="col">
-                                            <input type="text" class="form-control" name="title">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mt-3">
-                                        <label for="" class="col-auto col-form-label">จำนวนเงินที่เบิกได้ :</label>
-                                        <div class="col">
-                                            <input type="text" class="form-control" name="budget">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mt-3">
-                                        <label for="" class="col-auto form-check-label">รูปแบบสวัสดิการ :</label>
-                                        <div class="col-auto form-check form-check-inline ms-2">
-                                            <input class="form-check-input" type="radio" name="type" id="single1" value="S">
-                                            <label class="form-check-label" for="type1">
-                                              บุคคล
-                                            </label>
-                                          </div>
-                                          <div class="col form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="type" id="group1" value="G">
-                                            <label class="form-check-label" for="type2">
-                                              สันทนาการ
-                                            </label>
-                                          </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <!-- ปุ่มยกเลิกและบันทึกหน้าต่างแสดงผลซ้อนของปุ่มเพิ่มสวัสดิการ -->
-                            <div>
-                                <div class="modal-footer border-0 mt-1">
-                                    <button type="button" class="btn btn-danger me-md-5" data-bs-dismiss="modal">ยกเลิก</button>
-                                    <button type="submit" form="welfare_add" class="btn btn-success" value="Submit">บันทึก</button>
-                                </div>
-                            </div>
-
-                          </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.show_data').click(function() {
-            var row = $(this).closest("tr");
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.show_data').click(function() {
+                let row = null;
+                row = $(this).parent().parent();
 
-            var type = row.find("td:eq(0)").text();
-            var name = row.find("td:eq(1)").text();
-            var budget = row.find("td:eq(2)").text();
-            var id = row.find("td:eq(5)").text();
+                var type = row.find("td:eq(0)").text();
+                var name = row.find("td:eq(1)").text();
+                var budget = row.find("td:eq(2)").text();
+                var id = row.find("td:eq(5)").text();
 
-            $(".wel_title").val(name);
-            $(".wel_budget").val(budget);
-            $(".wel_id").val(id);
+                $(".wel_title").val(name);
+                $(".wel_budget").val(budget);
+                $(".wel_id").val(id);
 
-            if (type == 'บุคคล') {
-                document.getElementById("single").checked = true
-            }
+                if (type == 'บุคคล') {
+                    document.getElementById("single").checked = true
+                }
 
-            if (type == 'สันทนาการ') {
-                document.getElementById("group").checked = true
-            }
+                if (type == 'สันทนาการ') {
+                    document.getElementById("group").checked = true
+                }
+            })
         })
-    })
-</script>
+    </script>
 @endsection

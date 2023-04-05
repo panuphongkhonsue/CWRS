@@ -15,10 +15,12 @@ class ShowWelfare extends Component
 
     public function render()
     {
+
         if ($this->type != 999) {
             return view('livewire.show-welfare', ['welfares' => Welfare::where('type', $this->type)->paginate(10)]);
         }
 
         return view('livewire.show-welfare', ['welfares' => Welfare::paginate(10)]);
     }
+
 }
