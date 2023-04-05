@@ -1,6 +1,6 @@
 {{-- หน้าแสดงประวัติขที่เป็นตารางๆ อะ --}}
 
-@extends('employees.v_employee_nav')
+@extends(((Auth::user()->type == "E") ? 'employees.v_employee_nav' : 'leaders.v_leader_nav'))
 
 @section('content')
 

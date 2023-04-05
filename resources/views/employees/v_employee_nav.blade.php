@@ -117,19 +117,16 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
     <script>
     function openNav() {
-      var side_bar = document.getElementById("side_bar");
-      side_bar.classList.remove("d-none");
-      side_bar.style.left = "0px";
+        var side_bar = document.getElementById("side_bar");
+        side_bar.classList.remove("d-none");
+        side_bar.style.left = "0px";
     }
 
     function closeNav() {
-      document.getElementById("side_bar").style.left = "-300px";
+        document.getElementById("side_bar").style.left = "-300px";
     }
     </script>
-
-
 </body>
 </html>

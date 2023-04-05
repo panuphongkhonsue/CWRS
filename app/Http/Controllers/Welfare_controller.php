@@ -10,7 +10,7 @@ class Welfare_controller extends Controller
 {
     public function index()
     {
-        $welfares = Welfare::all();
+        $welfares = Welfare::paginate(10);
 
         return view('v_manage_welfare', ['welfares' => $welfares]);
     }
@@ -33,7 +33,7 @@ class Welfare_controller extends Controller
         $welfare->title = $request->e_title;
         $welfare->budget = $request->e_budget;
         $welfare->save();
-        
+
         return redirect()->route('manage_welfare');
     }
 }
