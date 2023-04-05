@@ -10,7 +10,7 @@
                 <div class="ti_wal fs-4">{{ __('เบิกสวัสดิการแบบสันทนาการ') }} <hr width="295" class="mb-2" style="margin-top: 0px"></div>
 
                 <div class="card-body ">
-                    
+
                     <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
@@ -75,7 +75,7 @@
                                 <input type="text" class="text-end form-control" value="{{ __('2,000.00') }}" disabled>
                             </div>
 
-                            <label for="id" class="col-auto col-form-label">{{ __('บาท/คน') }}<label style="color:#fff">_______</label></label>
+                            <label for="id" class="bath col-auto col-form-label">{{ __('บาท/คน') }}<label style="color:#fff"></label></label>
 
 
                         </div><br>
@@ -121,7 +121,7 @@
                                             </thead>
 
                                             <tbody id="b-detail">
-                                                <tr > 
+                                                <tr >
                                                     <td><label id="tb-name"  type="text" name="item[]" class="form-control border-0"  style="color:#ffff">.</td>
                                                     <td><label type="text" name="price[]" class="form-control text-end border-0"></td>
                                                 </tr>
@@ -135,13 +135,13 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                               
+
                                                 <td class="border-0">
                                                     <button type="button" class="add-row border-0 bg-transparent ms-1">
                                                         <img src="{{ URL::asset('img/add.png') }}" width="27" height="27" hidden>
                                                     </button>
                                                 </td>
-                                              
+
                                             </tr>
                                         </thead>
 
@@ -231,8 +231,8 @@
     var fileCount = 1;
 
     function deleteRow(ele) {
-        
-       
+
+
         if (ele.id != '') {
             rowCount--;
            console.log("1");
@@ -247,7 +247,7 @@
             rowCount--;
         }
 
-    
+
     }
 
     $(document).ready(function() {
@@ -270,7 +270,7 @@
             if (rowCount < 20) {
                 if(rowCount > 1){
                     var l = $('#inp_add').val() /* เก็บค่าที่ Input มา */
-                
+
                 $('#b-detail').append(
                     `
                         <tr>
@@ -305,7 +305,7 @@
                 rowCount++;
             }
         });
-        
+
 
     });
 

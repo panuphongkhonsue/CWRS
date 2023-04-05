@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use App\Models\Welfare;
 use App\Models\Bill;
 use App\Models\Single_request;
+use App\Models\Group_request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -96,7 +97,7 @@ class Request_controller extends Controller
     {
 
         $user = Auth::user();
-        $requests = Single_request::where('user_id', $user->id)->get();
+        $requests = Group_request::where('user_id', $user->id)->get();
         $welfare_id[0] = NULL;
 
         foreach ($requests as $index => $request) {
@@ -107,8 +108,19 @@ class Request_controller extends Controller
 
         $data = Welfare::where('type', 'G')->get();
 
+        if ($welfare_id[0] != NULL) {
+            $data = Welfare::where('type', 'G')->whereNotIn('id', $welfare_id)->get();
+        }
+
+
+
         return view('v_group_request', ['welfares' => $data]);
     }
 
+    public function create_group(Request $request){
+
+        
+        return redirect()->route('history');
+    }
 
 }
