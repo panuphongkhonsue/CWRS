@@ -26,7 +26,7 @@
 
                         <!-- ปุ่มเพิ่มสวัสดิการ -->
                         <div class="col text-end">
-                            <button type="button" class="btn btn-light rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-add">เพิ่มประเภทสวัสดิการ</button>
+                            <button type="button" class="btn btn-light rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#modal-add">เพิ่มประเภทสวัสดิการ</button>
                         </div>
                     </div>
                     
