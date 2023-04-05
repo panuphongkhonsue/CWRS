@@ -18,20 +18,22 @@
                             <div class="card px-4 py-3 pb-4 border-0" style=" background-color: #eee;">
 
 
-
-                        <div class="row mt-3">
-                            <label for="budget" class="col-auto col-form-label ms-auto fw-bold">{{ __('วัน/เดือน/ปี : ') }}</label>
-                            <div class="col-sm-2 ">
-                                <input type="text" id="date" name="date" class="form-control border-0 bg-transparent " value="{{ date("d/m/Y", strtotime($history->create_date)) }}" disabled>
-                            </div>
-
-                            <label for="req-id" class="col-auto col-form-label fw-bold">{{ __('เลขที่ใบเบิก : ') }}</label>
+                        <div class="d-flex justify-content-end">
+                            <div class="row text-right mt-2">
+                                <label for="budget" class="col-auto col-form-label ms-auto fw-bold ">{{ __('วัน/เดือน/ปี : ') }}</label>
                                 <div class="col-sm-2 ">
-                                    <input type="text" name="req-id" id="req-id" class="form-control border-0 bg-transparent " value="{{ $history->id }}" disabled>
+                                    <input type="text" id="date" name="date" class="form-control border-0 bg-transparent " value="{{ date("d/m/Y", strtotime($history->create_date)) }}" disabled>
                                 </div>
-                            </label>
 
+                                <label for="req-id" class="col-auto col-form-label fw-bold">{{ __('เลขที่ใบเบิก : ') }}</label>
+                                    <div class="col-sm-2 ">
+                                        <input type="text" name="req-id" id="req-id" class="form-control border-0 bg-transparent top-0 end-0" value="{{ $history->id }}" disabled>
+                                    </div>
+                                </label>
+
+                            </div>
                         </div>
+
 
                         <div class="row">
                             <label for="id" class="col-sm-2 col-form-label fw-bold">{{ __('รหัสพนักงาน : ') }}</label>
@@ -79,8 +81,8 @@
 
                         <div class="row mt-3 d-flex justify-content-center">
                             <div class="col-lg-11">
-                                <table id="detail" class="table table-bordered">
-                                    <thead id="bg" class="text-hih">
+                                <table id="detail" class="table table-bordered border-dark" style="left: 20px">
+                                    <thead id="bg" class="text-white">
                                         <tr class="text-center">
                                             <th scope="col" class="col-lg-8">รายละเอียด</th>
                                             <th scope="col" class="">จำนวนเงิน (บาท)</th>
@@ -121,10 +123,10 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 ">
                                     <label >หมายเหตุ : </label>
                                     <div class="mt-">
-                                        <textarea name="message" style="width:400px; height:100px;" class="rounded"></textarea>
+                                        <textarea name="message" style="width:400px; height:100px;" class="rounded text-end"></textarea>
                                     </div>
 
                                 </div>
