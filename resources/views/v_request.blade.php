@@ -74,7 +74,7 @@
                             {{-- จำนวนเงิน --}}
                             <label for="budget" class="col-auto col-form-label ms-auto ">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" id="money" class="text-end form-control border-0" style=" background-color: #eee;"
+                                <input type="decimal(8,2)" id="money" class="text-end form-control border-0" style=" background-color: #eee;"
                                  value="{{ __('2,000.00') }}">
                             </div>
 

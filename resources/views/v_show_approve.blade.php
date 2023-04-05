@@ -65,7 +65,7 @@
 
                             <label for="budget" class="col-auto col-form-label ms-auto">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" class="text-end form-control border-0" value="{{ __('2,000.00') }}" disabled>
+                                <input type="text" class="text-end form-control border-0" value="{{ number_format($history->get_welfare->budget,2) }}" disabled>
                             </div>
 
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
@@ -89,22 +89,24 @@
                                     </thead>
 
                                     <tbody>
+                                        @php ($total = 0)
                                         @php ($price = json_decode($history->price))
                                         @foreach (json_decode($history->item) as $index => $item)
+                                        @php ($total = $total + $price[$index])
                                             <tr>
                                                 <td><input type="text" class="form-control border-0" value="{{ $item }}" readonly></td>
-                                                <td><input type="text" class="form-control text-end border-0" value="{{ $price[$index] }}" readonly></td>
+                                                <td><input type="text" class="form-control text-end border-0" value="{{ number_format($price[$index],2) }}" readonly></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
+        
                         <div class="row mt-3">
                             <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control text-end border-0" style=" background-color: #eee;" value="{{ __('0') }}" readonly>
+                                <input type="text" class="form-control text-end border-0" style=" background-color: #eee;" value="{{ number_format($total,2) }}" readonly>
                             </div>
                             <label for="" class="col-auto col-form-label">{{ __('บาท') }}</label>
                         </div>
@@ -125,16 +127,21 @@
                                 <div class="col-md-6 text-end">
                                     <label class="">หมายเหตุ : </label>
                                     <div class="">
+                                        @if(($history->status) == 0)
                                         <textarea name="message" style="width:400px; height:100px;" class="rounded text-start"></textarea>
+                                        @else
+                                        <textarea name="message" style="width:400px; height:100px;" class="rounded text-start" readonly></textarea>
+                                        @endif  
                                     </div>
 
                                 </div>
                         </div>
-
+                        @if(($history->status) == 0)
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4 mt-5">
                                 <a href="{{ url('reject/'. $history->id) }}" method="POST" class="btn btn-md btn-danger  me-md-4">ไม่อนุมัติ</a>
                                 <a href="{{ url('approve/'. $history->id) }}" method="POST" class="btn btn-md btn-success">อนุมัติ</a>
                             </div>
+                        @endif
                         </div>
                     </form>
                 </div>
