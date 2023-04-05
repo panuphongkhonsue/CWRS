@@ -116,27 +116,53 @@
 
 
                          {{-- ตารางสามชิก  --}}
-                        <div class="row mt-3 d-flex justify-content-center g-0">
-                            <div class="col-lg-11">
-                                <table id="detail" class="table table-bordered ms-5">
-                                    <thead class="bgcolor table-bordered ">
-                                        <tr class="text-center">
-                                            <th>ชื่อ-นามสกุล</th>
-                                            <th>ตำแหน่ง</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
 
-                                    <tbody id="item-body" >
-                                        <tr>
-                                            {{-- ชื่อต้องแสดงตรงนี้ --}}
+
+                        <div class="row wfh mx-5">
+                            <div class="col-sm-11 p-0 ">
+
+                                    <table id="detail" class="table table-bordered table-reques w-100 bg-white">
+                                        <thead id="bg" >
+                                            <tr class="text-center text-white" >
+                                                <th scope="col" class="col-sm-7 text-white">ชื่อ-นามสกุล</th>
+                                                <th scope="col" class="col-sm-4 text-white">ตำแหน่ง</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody id="item-body">
+                                            <tr>
+                                                {{-- ชื่อต้องแสดงตรงนี้ --}}
                                             <td><input type="text" name="item[]" class="form-control tableadd"></td>
                                             {{-- และต้อง generate ตำแหน่ง --}}
                                             <td><input type="text" name="price[]" class="form-control text-end tableadd"></td>
-                                            <td><button type="button" class="remove-table border-0 bg-transparent"><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                            </div>
+                            <div class="col-sm-1  p-0 mx-auto ">
+
+                                {{-- ปุ่มรายเพิ่มตาราง ลบตาราง --}}
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+
                                         </tr>
+                                    </thead>
+
+                                    <tbody id="item-buttom-body">
+                                        <tr>
+                                            <td class="border-0">
+                                                <button type="button" class="remove-table border-0 bg-transparent"><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button>
+
+                                            </td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
 
@@ -194,6 +220,7 @@
 <script type="text/javascript">
     var rowCount = 1;
     var rowTableCount = 1;
+    var rowbuttomCount = 1;
 
     $(document).ready(function() {
         $(".add-file").click(function() {
@@ -219,7 +246,6 @@
                     `<tr>
                         <td><input type="text" name="item[]" class="form-control tableadd"></td>
                         <td><input type="text" name="price[]" class="form-control text-end tableadd"></td>
-                        <td><button type="button" class="remove-table table-bordered bg-transparent border-0 table_delet"><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button></td>
                         </tr>`
 
 
@@ -230,12 +256,29 @@
             }
         });
 
-        $("#item-body").on('click', '.remove-table', function(element) {
-            if (rowTableCount > 1) {
-                $(this).parent().parent().remove();
-                rowTableCount--;
-            }
+        $(".add-table").click(function() {
+
+if (rowbuttomCount < 10)
+{
+    $('#item-buttom-body').append(
+        `<tr>
+            <td><button type="button" class="remove-table border-0 bg-transparent"><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button></td>
+            </tr>`
+
+
+
+    )
+
+    rowbuttomCount++;
+}
+});
+
+        $("item-buttom-body").on("click",".remove-file", function() {
+            rowCount--;
+            $(this).parents(".control-group").remove();
         })
-    })
+
+        $()
+    });
 </script>
 @endsection
