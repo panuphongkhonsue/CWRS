@@ -33,20 +33,155 @@
                             </div>
                         </div>
 
+                        <!-- แสดงสถานะ -1 คือ วันที่ถูกยกเลิก -->
+                                <!-- แสดงสถานะ 1 คือ วันที่ถูกอนุมัติ -->
+                                <!-- แสดงสถานะ -1 คือ วันที่ไม่ถูกอนุมัติ -->
+                                @if ($history->status == -1)
+                                <div class="row">
+                                    <div class="col-7">
+
+                                    </div>
+                                    <div class="col">
+                                        <small id="formGroupExampleInput" class="form-text text-muted ">{{ __('วันที่ถูกยกเลิก') }}</small>
+                                    </div>
+                                </div>
+
+                                @elseif($history->status == 1)
+                                <div class="row">
+                                    <div class="col-7">
+
+                                    </div>
+                                    <div class="col">
+                                        <small id="formGroupExampleInput" class="form-text text-muted ">{{ __('วันที่ถูกอนุมัติ') }}</small>
+                                    </div>
+                                </div>
+
+                                @elseif($history->status == -2)
+                                <div class="row">
+                                    <div class="col-7">
+
+                                    </div>
+                                    <div class="col">
+                                        <small id="formGroupExampleInput" class="form-text text-muted ">{{ __('วันที่ไม่ถูกอนุมัติ') }}</small>
+                                    </div>
+                                </div>
+                                @endif
 
                         <div class="row">
                             <label for="id" class="col-sm-2 col-form-label fw-bold">{{ __('รหัสพนักงาน : ') }}</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control border-0 bg-transparent " value="{{ $history->get_user->id }}" disabled>
                             </div>
+                                @if($history->status == 1)
+                                    <div class="col-sm form-group position-relative">
+                                        <div class="input-group position-absolute top-0 end-0">
+                                            <div class="input-group-prepend ">
+                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/tt11.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
+                                            </div>
+                                                <div class="col-xs-2">
+                                                    <input value="{{ date("d/m/Y", strtotime($history->hr_approve_date)) }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
+                                                </div>
+                                        </div>
+                                    </div>
 
+                                    <!-- แสดงรูปแล้วกรอบรูปของสถานะ -1 คือ ไม่ถูกอนุมัติ -->
+                                    @elseif($history->status <= -1)
+                                    <div class="col-sm form-group position-relative">
+                                        <div class="input-group position-absolute top-0 end-0">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/bg.png') }}" class="img-rounded" alt="" width="26" height="26"</span>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <input value="{{ date("d/m/Y", strtotime($history->hr_approve_date)) }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- แสดงรูปแล้วกรอบรูปของสถานะ คือ เมื่อผู้ใช้ยกเลิก -->
+                                    @else
+                                    <div class="col-sm form-group">
+                                        <div class="input-group mx-5">
+
+                                        </div>
+                                    </div>
+                                    @endif
                         </div>
+
+                        <!-- แสดงก็ต่อเมื่อสถานะ 1 คือ ผ่านการอนุมัติโดย -->
+                        @if($history->status == 1)
+                        <div class="row">
+                            <div class="col-7">
+
+                            </div>
+                            <div class="col">
+                                <small id="formGroupExampleInput" class="form-text text-muted ">{{ __('ผ่านการอนุมัติโดย') }}</small>
+                            </div>
+                        </div>
+
+                        <!-- แสดงก็ต่อเมื่อสถานะ -2 คือ ไม่ผ่านการอนุมัติโดย -->
+                        @elseif($history->status == -2)
+                        <div class="row">
+                            <div class="col-7">
+
+                            </div>
+                            <div class="col">
+                                <small id="formGroupExampleInput" class="form-text text-muted ">{{ __('ไม่ผ่านการอนุมัติโดย') }}</small>
+                            </div>
+                        </div>
+
+                        <!-- แสดงก็ต่อเมื่อผู้ใช้ยกเลิกการเบิก-->
+                        @else
+                        <div class="row">
+                            <div class="col-7">
+
+                            </div>
+                            <div class="col">
+
+                            </div>
+                        </div>
+                        @endif
 
                         <div class="row">
                             <label for="name" class="col-sm-2 col-form-label fw-bold">{{ __('ชื่อ-สกุล : ') }}</label>
                             <div class="col-md-3">
                                 <input type="text" class="form-control border-0 bg-transparent " value="{{ $history->get_user->fname }} {{ $history->get_user->lname }}" disabled>
                             </div>
+
+                            <!-- แสดงก็ต่อเมื่อสถานะ 1 คือ ผ่านการอนุมัติโดย -->
+                            @if($history->status == 1)
+                            <div class="col-sm form-group position-relative">
+                                <div class="input-group  position-absolute top-0 end-0">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/tt22.png') }}" class="img-rounded" alt="" width="26" height="26"</span>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <input value="{{ $history->get_approver->fname }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- แสดงก็ต่อเมื่อสถานะ -2 คือ ไม่ผ่านการอนุมัติโดย -->
+                            @elseif($history->status == -2)
+                            <div class="col-sm form-group position-relative">
+                                <div class="input-group  position-absolute top-0 end-0">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/tt33.png') }}" class="img-rounded" alt="" width="26" height="26"</span>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <input value="{{ $history->get_approver->fname }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- แสดงก็ต่อเมื่อผู้ใช้ยกเลิกการเบิก-->
+                            @else
+                            <div class="col-sm form-group position-relative">
+                                <div class="input-group  position-absolute top-0 end-0">
+
+                                </div>
+                            </div>
+                            @endif
+                           
                         </div>
 
                         <div class="row">
@@ -131,8 +266,6 @@
                                             <textarea name="note" style="width:400px; height:100px;" class="rounded text-start" readonly>{{ $history->note }}</textarea>
                                         @endif
                                     </div>
-
-
                                 </div>
                         </div>
 

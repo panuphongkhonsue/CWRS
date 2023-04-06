@@ -216,14 +216,14 @@
 
     function updateTotal() {
         var col = document.getElementsByClassName("price");
-            let total = 0;
+        let total = 0;
 
-            for (let i = 0 ; i < col.length ; i++) {
-               total = total +  Number($(col[i]).val());
-            }
+        for (let i = 0 ; i < col.length ; i++) {
+            total = total +  Number($(col[i]).val());
+        }
 
-            let fixed = total.toLocaleString('en-US') + ".00";
-            $("#total").val(fixed);
+        let fixed = total.toLocaleString('en-US') + ".00";
+        $("#total").val(fixed);
     }
 
     $(document).ready(function() {

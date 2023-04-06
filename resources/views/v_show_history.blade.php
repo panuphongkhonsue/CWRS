@@ -183,7 +183,7 @@
                                                 <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/tt33.png') }}" class="img-rounded" alt="" width="26" height="26"</span>
                                             </div>
                                             <div class="col-xs-2">
-                                                <input class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
+                                                <input value="{{ $history->get_approver->fname }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
                                             </div>
                                         </div>
                                     </div>
@@ -278,7 +278,18 @@
                                             </div>
                                         @endforeach
                                     </div>
+                            </div>
+
+                            <div class="col-md-6 text-end">
+                                <label class="">หมายเหตุ : </label>
+                                <div class="">
+                                    @if(($history->status) == 0)
+                                        <textarea name="note" style="width:400px; height:100px;" class="rounded text-start">{{ $history->note }}</textarea>
+                                    @else
+                                        <textarea name="note" style="width:400px; height:100px;" class="rounded text-start" readonly>{{ $history->note }}</textarea>
+                                    @endif
                                 </div>
+                            </div>
                         </div>
 
                         <!-- แสดงปุ่มยกเลิกก็ต่อเมื่อ สถานะเป็น 0  -->
