@@ -5,7 +5,7 @@
 /*
 * v_history.blade.php
 * แสดงประวัติของพนักงาน
-* @input : -
+* @input : กดแถบข้างเพื่อเข้าสู่หน้าประวัติ
 * @output : แสดงข้อมูลประวัติของฉันในส่วนของพนักงาน
 * @author : ชษิตา โตชาวนา 64160064 และรวิชญ์ พิบูลย์ศิลป์ 64160299
 * @Create Date : 2023-04-06
@@ -16,17 +16,19 @@
 @section('content')
 
     <div class="col-lg-13">
+        <!-- //กำหนดบรรทัด col ของหน้าจอ -->
         <div class="card">
             <div class="card-header fs-4 py-3">{{ __('ประวัติการเบิกสวัสดิการ') }}</div>
+            <!-- //กำหนดขนาดของหัวข้อ และสร้างคำหัวข้อ -->
             <div class="card-body">
-
                 <div class="row mt-3">
-                    {{-- ใส่แถบ ตัวกรอง ตรงนี้ --}}
+                    <!-- //ใส่แถบ ตัวกรอง ตรงนี้ -->
                 </div>
                 <div class="row mt-4">
+                    <!-- //กำหนดการเว้นระยะห่างจากส่วนข้างบน -->
                     <div class="col-md-13">
 
-                        {{-- ในส่วนของตาราง --}}
+                        <!-- //ในส่วนของตาราง -->
                         <table class="table table-bordered align-items-center">
                             <thead class="text-center text-light" id="bg">
                                 <tr>
@@ -39,6 +41,7 @@
                                     <td scope="col" class="col-sm-2">แสดงผล</td>
                                 </tr>
                             </thead>
+                            <!-- //กำหนดหัวข้อของตาราง -->
                             <tbody class="">
 
                                 @foreach ($requests as $request)
@@ -68,10 +71,12 @@
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <!-- //ข้อมูลในตาราง -->
                         </table>
                     </div>
                 </div>
                 <div class="row mt-3">
+                    <!-- //กำหนดการเว้นระยะห่างจากส่วนข้างบน -->
                     <div class="col-lg-5 ms-auto text-end">
                         {{ __('หมายเหตุ')  }}
                         &nbsp; {{ __(':')}}
@@ -92,6 +97,7 @@
                         &nbsp;
                         {{ __('ยกเลิก') }}
                     </div>
+                    <!-- //ระบุหมายเหตุต่าง ๆ ในส่วนของสถานะ -->
                 </div>
             </div>
         </div>
