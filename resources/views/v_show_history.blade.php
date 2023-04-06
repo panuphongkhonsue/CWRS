@@ -9,8 +9,9 @@
             <div class="card">
                 <div class="card-header fs-4 py-3">{{ __('เบิกสวัสดิการแบบรายบุคคล') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('cancel', ['id' => $history->id]) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('PATCH')
                         <div class="row mt-2">
 
                         </div>
@@ -53,7 +54,7 @@
                         <div class="row mt-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
-                                <input type="text" class="form-control" value="{{ $history->get_welfare->title }}" name="" id="" readonly       >
+                                <input type="text" class="form-control" value="{{ $history->welfare_name }}" name="" id="" readonly       >
                             </div>
 
                             <label for="budget" class="col-auto col-form-label ms-auto">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
@@ -115,7 +116,7 @@
 
                         <div class="row mt-3">
                             <div class="col-sm-2 ms-auto">
-                                <a href="{{ url('cancel/'. $history->id) }}" method="POST" class="btn btn-lg btn-danger">ยกเลิก</a>
+                                <button method="POST" class="btn btn-lg btn-danger">ยกเลิก</a>
                             </div>
                         </div>
                     </form>

@@ -59,13 +59,12 @@ class User_history_controller extends Controller
     * @author : Rawich Piboonsin 64160299
     * @Create Date : 2023-03-15
     */
-    public function cancel($id)
+    public function cancel($id, Request $request)
     {
-        DB::update(
-            'UPDATE users_welfares SET status=? WHERE id=?',
-            [
-                -1, $id
-            ]);
+        $requests = Single_request::where('id', $id)->first();
+        $requests->status = -1;
+        $requests->cancel_date = date("Y-m-d");
+        $requests->save();
 
         return redirect()->route('history');
     }

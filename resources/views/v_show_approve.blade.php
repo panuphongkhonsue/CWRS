@@ -10,9 +10,9 @@
                     <hr width="295" class="mb-2"></div>
 
                 <div class="card-body mx-5 px-5 mb-0 border-0 p-0">
-                    <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('confirm', ['id' => $history->id]) }}" enctype="multipart/form-data">
                         @csrf
-
+                        @method('PATCH')
                         <div class="row mt-2">
                             <div class="card px-4 py-3 pb-4 border-0" style=" background-color: #eee;">
 
@@ -60,12 +60,12 @@
                         <div class="row mt-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
-                                <input type="text" class="form-control bg-transparent border-dark" value="{{ $history->get_welfare->title }}" name="" id="" readonly       >
+                                <input type="text" class="form-control bg-transparent border-dark" value="{{ $history->welfare_name }}" name="" id="" readonly       >
                             </div>
 
                             <label for="budget" class="col-auto col-form-label ms-auto">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" class="text-end form-control border-0" value="{{ __('2,000.00') }}" disabled>
+                                <input type="text" class="text-end form-control border-0" value="{{ number_format($history->welfare_budget, 2) }}" disabled>
                             </div>
 
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
@@ -104,7 +104,7 @@
                         <div class="row mt-3">
                             <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด : </label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control text-end border-0" style=" background-color: #eee;" value="{{ __('0') }}" readonly>
+                                <input type="text" class="form-control text-end border-0" style=" background-color: #eee;" value="{{ number_format($history->total_price, 2) }}" readonly>
                             </div>
                             <label for="" class="col-auto col-form-label">{{ __('บาท') }}</label>
                         </div>
@@ -125,16 +125,24 @@
                                 <div class="col-md-6 text-end">
                                     <label class="">หมายเหตุ : </label>
                                     <div class="">
-                                        <textarea name="message" style="width:400px; height:100px;" class="rounded text-start"></textarea>
+                                        @if(($history->status) == 0)
+                                            <textarea name="note" style="width:400px; height:100px;" class="rounded text-start">{{ $history->note }}</textarea>
+                                        @else
+                                            <textarea name="note" style="width:400px; height:100px;" class="rounded text-start" readonly>{{ $history->note }}</textarea>
+                                        @endif
                                     </div>
+
 
                                 </div>
                         </div>
 
+                        @if(($history->status) == 0)
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4 mt-5">
-                                <a href="{{ url('reject/'. $history->id) }}" method="POST" class="btn btn-md btn-danger  me-md-4">ไม่อนุมัติ</a>
-                                <a href="{{ url('approve/'. $history->id) }}" method="POST" class="btn btn-md btn-success">อนุมัติ</a>
+                                <button name="dec" value="reject" class="btn btn-md btn-danger me-md-4">ไม่อนุมัติ</a>
+                                <button name="dec" value="accept" class="btn btn-md btn-success">อนุมัติ</a>
                             </div>
+                        @endif
+
                         </div>
                     </form>
                 </div>

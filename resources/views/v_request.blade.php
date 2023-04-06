@@ -192,8 +192,11 @@
                             </div>
                         </div>
                     </form>
+                 </div>
+            </div>
+        </div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     var rowCount = 1;
@@ -207,18 +210,19 @@
             $(tb).remove();
             document.getElementById("b-detail").deleteRow(row-1);
             rowCount--;
+            updateTotal();
         }
     }
 
     function updateTotal() {
         var col = document.getElementsByClassName("price");
             let total = 0;
-            
+
             for (let i = 0 ; i < col.length ; i++) {
                total = total +  Number($(col[i]).val());
             }
 
-            let fixed = total.toLocaleString('en-US') + ".00"
+            let fixed = total.toLocaleString('en-US') + ".00";
             $("#total").val(fixed);
     }
 
@@ -267,10 +271,9 @@
         $('#welfare').change(function() {
             var val = $(this).val();
             var text = JSON.parse(val);
-            var budget = Number(text.budget);
-            var fixed = budget.toFixed(2);
+            var fixed = text.budget.toLocaleString('en-US') + ".00";
 
-            $("#money").val(Intl.NumberFormat('en-US').format(fixed));
+            $("#money").val(fixed);
         })
     });
 

@@ -10,6 +10,7 @@ class Single_request extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'users_welfares';
 
     public function get_welfare()

@@ -12,6 +12,7 @@ use App\Models\Bill;
 use App\Models\Single_request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -78,15 +79,27 @@ class Request_controller extends Controller
             }
         }
 
+        $total = array_sum($request->price);
+
         $value = [
             'create_date' => $date,
             'bill' => json_encode($filename, JSON_UNESCAPED_UNICODE),
             'item' => json_encode($request->item, JSON_UNESCAPED_UNICODE),
-            'price' => json_encode($request->price, JSON_UNESCAPED_UNICODE)
+            'price' => json_encode($request->price, JSON_UNESCAPED_UNICODE),
+            'welfare_budget' => $welfare->budget,
+            'total_price' => $total,
+            'welfare_name' => $welfare->title
         ];
 
         $welfare->users_request()->attach($user, $value);
 
         return redirect()->route('history');
+    }
+
+    public function autocomplete(Request $request)
+    {
+        $user = Auth::user();
+        $data = User::select("name")->where('name', 'LIKE', '%'. $request->autoname)->get();
+        return response()->json($data);
     }
 }

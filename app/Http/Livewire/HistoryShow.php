@@ -20,14 +20,14 @@ class HistoryShow extends Component
     public function render()
     {
 
-        if ($this->status == 999 && $this->walfare_year == 999) {
+        if ($this->status == 999) {
             return view('livewire.history-show', ['requests' => Single_request::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
         }
         else {
             return view('livewire.history-show', ['requests' => Single_request::where('status', $this->status)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
         }
     }
-
+// whereYear('create_date', $this->walfare_year)->
     public function reload($status, $walfare_type, $walfare_year)
     {
         $this->resetPage();

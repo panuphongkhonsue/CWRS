@@ -50,11 +50,14 @@ return new class extends Migration
             $table->json('bill');
             $table->json('item');
             $table->json('price');
+            $table->decimal('total_price', 8, 2);
+            $table->decimal('welfare_budget', 8, 2);
+            $table->string('welfare_name');
             $table->text('note')->nullable();
+            $table->date('cancel_date')->nullable();
             $table->foreignId('hr_approver_id')->nullable()->constrained('users');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('welfare_id')->constrained('welfares');
-
         });
 
         Schema::create('groups_welfares', function (Blueprint $table) {
@@ -63,7 +66,11 @@ return new class extends Migration
             $table->date('create_date');
             $table->date('hr_approve_date')->nullable();
             $table->date('head_approve_date')->nullable();
+            $table->decimal('total_price', 8, 2);
+            $table->decimal('welfare_budget', 8, 2);
+            $table->string('welfare_name');
             $table->text('note')->nullable();
+            $table->date('cancel_date')->nullable();
             $table->foreignId('hr_approver_id')->nullable()->constrained('users');
             $table->foreignId('head_approver_id')->nullable()->constrained('users');
             $table->foreignId('user_id')->constrained('users');

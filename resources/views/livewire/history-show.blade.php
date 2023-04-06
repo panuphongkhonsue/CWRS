@@ -16,7 +16,6 @@
 
             @foreach ($requests as $index => $request)
                 <tr>
-                    @php ($total = number_format(array_sum(json_decode($request->price)), 2, ".", ","))
                     @switch($request->status)
                     @case(0)
                             @php ($icon = 'wait.png')
@@ -39,13 +38,23 @@
                             @php ($text = 'สันทนาการ')
                             @break
                         @endswitch
-                    <td class="text-center">{{ date("d/m/Y", strtotime($request->create_date)) }}</td>
-                    <td class="text-center">{{ $request->id }}</td>
-                    <td class="text-center">บุคคล</td>
-                    <td>{{ $request->get_welfare->title }}</td>
-                    <td class="text-end">{{ $total }}</td>
-                    <td class="text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"></td>
-                    <td class="text-center"><a href="{{ route('show_history', ['id' => $request->id]) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
+                        @if ($walfare_year =='999')
+                            <td class="text-center">{{ date("d/m/Y", strtotime($request->create_date)) }}</td>
+                            <td class="text-center">{{ $request->id }}</td>
+                            <td class="text-center">บุคคล</td>
+                            <td>{{ $request->welfare_name }}</td>
+                            <td class="text-end">{{ number_format($request->total_price, 2) }}</td>
+                            <td class="text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"></td>
+                            <td class="text-center"><a href="{{ route('show_history', ['id' => $request->id]) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
+                        @elseif ($walfare_year == date("Y",strtotime($request->create_date)))
+                            <td class="text-center">{{ date("d/m/Y", strtotime($request->create_date)) }}</td>
+                            <td class="text-center">{{ $request->id }}</td>
+                            <td class="text-center">บุคคล</td>
+                            <td>{{ $request->welfare_name }}</td>
+                            <td class="text-end">{{ number_format($request->total_price, 2) }}</td>
+                            <td class="text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"></td>
+                            <td class="text-center"><a href="{{ route('show_history', ['id' => $request->id]) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
+                        @endif
                 </tr>
             @endforeach
         </tbody>
