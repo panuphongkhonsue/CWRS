@@ -34,7 +34,8 @@ class Request_controller extends Controller
         $welfare_id[0] = NULL;
 
         foreach ($requests as $index => $request) {
-            if (date("Y", strtotime($request->create_date)) == date("Y")) {
+            if (date("Y", strtotime($request->create_date)) == date("Y")
+                && ($request->status == 0 || $request->status == 1)) {
                 $welfare_id[$index] = $request->welfare_id;
             }
         }
@@ -54,7 +55,6 @@ class Request_controller extends Controller
 
         return view('v_group_request', ['welfares' => $data]);
     }
-
 
     /*
     * create_single()

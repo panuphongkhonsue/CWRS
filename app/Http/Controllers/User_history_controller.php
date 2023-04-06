@@ -63,7 +63,7 @@ class User_history_controller extends Controller
     {
         $requests = Single_request::where('id', $id)->first();
         $requests->status = -1;
-        $requests->cancel_date = date("Y-m-d");
+        $requests->hr_approve_date = date("Y-m-d");
         $requests->save();
 
         return redirect()->route('history');

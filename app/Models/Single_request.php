@@ -22,4 +22,9 @@ class Single_request extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function get_approver()
+    {
+        return $this->belongsTo(User::class, 'hr_approver_id');
+    }
 }

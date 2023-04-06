@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-
+    
     <!-- รูปโลโก้บริษัท -->
     <div class="container">
         <div class="card-login bot">
@@ -63,11 +63,9 @@
 
                                     </div>
                                 </form>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-
     </div>
 </div>
 @endsection
