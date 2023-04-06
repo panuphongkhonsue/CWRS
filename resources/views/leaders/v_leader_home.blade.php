@@ -14,7 +14,6 @@
 
 @section('content')
 
-<div class="container bodycard">
     <!-- //ตัวแปรตั้งค่าโครง -->
     <div class="col-lg-20">
         <!-- //กำหนดบรรทัด col ของหน้าจอ -->
@@ -105,7 +104,6 @@
                         </table>
                     </div>
                 </div>
-                    </div>
                 </div>
             </div>
         </div>
