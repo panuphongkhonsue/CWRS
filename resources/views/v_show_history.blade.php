@@ -58,7 +58,7 @@
 
                             <label for="budget" class="col-auto col-form-label ms-auto">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" class="text-end form-control" value="{{ __('2,000.00') }}" disabled>
+                                <input type="text" class="text-end form-control" value="{{ $history->get_welfare->budget }}" disabled>
                             </div>
 
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
@@ -105,6 +105,7 @@
                         <div class="row mt-3">
                             <label for="bill" class="col-auto col-form-label">ไฟล์ใบเสร็จ : </label>
                                 <div class="col-sm-5">
+                                    @$total = 0;
                                     @foreach (json_decode($history->bill) as $bill)
                                         <div class="row mt-3">
                                             <a href="{{ URL::asset('/bills/'. $bill) }}" for="" class="col-auto col-form-label" target="blank">{{ $bill }}</a>
