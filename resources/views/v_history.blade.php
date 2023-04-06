@@ -1,5 +1,16 @@
 {{-- หน้าแสดงประวัติขที่เป็นตารางๆ อะ --}}
 
+
+<!-- 
+/*
+* v_history.blade.php
+* แสดงประวัติของพนักงาน
+* @input : -
+* @output : แสดงข้อมูลประวัติของฉันในส่วนของพนักงาน
+* @author : ชษิตา โตชาวนา 64160064 และรวิชญ์ พิบูลย์ศิลป์ 64160299
+* @Create Date : 2023-04-06
+*/ -->
+
 @extends(((Auth::user()->type == "E") ? 'employees.v_employee_nav' : 'leaders.v_leader_nav'))
 
 @section('content')
