@@ -4,36 +4,53 @@
 <div class="container">
     <div class="col-lg-13">
 
-        <livewire:show-request-filter/>
+       {{--
+        /*
+        * v_manage_request
+        * แสดงรายการคำขอเบิกสวัสดิการพนักงาน
+        * @input : ฟอร์มใบเบิกสวัสดิการพนักงาน
+        * @output : -
+        * @auther : ภูรินทร์ ลามากุล 64160284 , รวิชญ์ พิบูลย์
+
+        * @Create Date : 2023-04-05
+        */
+
+        --}}
+
+        {{--  --}}
         <div class="row">
             <div class="col-md-3">
-                <div class="card btn btn-custom">
+                <div class="card btn hov_buttom ">
                     <div class="card-body">
-                        <div class="text-center text-primary">ทั้งหมด</div>
+                        <div class="text-center text-primary fs-5 "><img class="status_b "src="{{ URL::asset('img/image.png') }}" width="60" height="60">ทั้งหมด</div>
+                        <div><input type="text" class="ee" value="219" readonly></div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card btn btn-custom">
+                <div class="card btn hov_buttom">
                     <div class="card-body">
-                        <div class="text-center text-warning">รออนุมัติ</div>
+                        <div class="text-center text-warning fs-5"><img class="status_b" src="{{ URL::asset('img/pending-approval.png') }}" width="60" height="60" style="">รออนุมัติ</div>
+                            <div><input type="text" class="ee" value="219" readonly></div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card btn btn-custom">
+                <div class="card btn hov_buttom p-0">
                     <div class="card-body">
-                        <div class="text-center text-success">อนุมัติ</div>
+                        <div class="text-center text-success fs-5"><img class="status_b" src="{{ URL::asset('img/อนุมัติ.png') }}" width="60" height="60">อนุมัติ</div>
+                        <div><input type="text" class="ee" value="219" readonly></div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card btn btn-custom">
+                <div class="card btn hov_buttom p-0">
                     <div class="card-body">
-                        <div class="text-center text-danger">ไม่อนุมัติ</div>
+                        <div class="text-center text-danger fs-5 mt-3 "><img class="status_b" src="{{ URL::asset('img/ไม่อนุมัติ.png') }}" width="60" height="60">ไม่อนุมัติ</div>
+                        <div><input type="text" class="ee" value="219" readonly></div>
                     </div>
                 </div>
             </div>
@@ -44,8 +61,79 @@
                 <div class="row mt-4">
                     <div class="col-md-13">
 
-                        {{-- ในส่วนของตาราง --}}
-                        <livewire:show-requests/>
+                        <div class="row">
+                            {{-- ข้อความ --}}
+                            <div class="aa col-auto mt-2">
+                                <label>(ชื่อ-นามสกุล,รหัสพนักงาน,เลขที่ใบเบิก) :</label>
+                            </div>
+
+                             {{-- กล่องค้นหา --}}
+                            <div class="col-auto ll mt-2">
+                                <input type="text" class="form-control  jj" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            </div>
+
+                            {{-- ปุ่มค้นหา --}}
+                              <div class="ll col-auto ">
+                                <button class="btn" type="button" id="button-addon2"><img class="status_b" src="{{ URL::asset('img/image1.png') }}" width="18" height="18"></button>
+                              </div>
+
+                              {{-- ข้อความ --}}
+                              <div class="col-auto oo mt-1">
+                                <label for="budget" class="col-auto col-form-label"> รูปแบบสวัสดิการ : </label>
+                              </div>
+
+
+                              {{-- ตัวเลือกรายหลายการ : รูปแบบสวัสดิการ --}}
+                              <div class="col-auto mt-2">
+                                <select class="form-control form-select colortext" name="welfare" id="welfare" style="height: 34px">
+                                            <option selected=""value ="1" > ทั้งหมด </option>
+
+                                                <option value="2">บุคคล</option>
+                                                <option value="3">สันทนาการ</option>
+                                </select>
+
+                              </div>
+
+                              {{-- ข้อความ --}}
+                              <div class="col-auto mt-1">
+                                <label for="budget" class="col-auto col-form-label"> ปี พ.ศ. : </label>
+                              </div>
+
+                              {{-- ตัวเลือกรายหลายการ : ปีพ.ศ.ย้อนหลัง5ปี รวมปีปัจจุบัน --}}
+                              <div class="col-auto mt-2 ">
+                                <select class="form-control form-select colortext" name="welfare" id="welfare" style="height: 34px" >
+                                                <option selected="" value="1">ทั้งหมด</option>
+                                                <option value="2">2566</option>
+                                                <option value="3">2565</option>
+                                                <option value="4">2564</option>
+                                                <option value="5">2563</option>
+                                                <option value="6">2562</option>
+                                </select>
+                        </div>
+
+
+
+
+                        </div><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        {{-- ในส่วนคอลัมของตาราง --}}
+
                         <table class="table table-bordered align-items-center">
                             <thead class="text-center text-light" id="bg">
                                 <tr>
@@ -60,6 +148,7 @@
                                 </tr>
                             </thead>
                             <tbody class="">
+                                {{-- แสดงรายใบเบิกสวัสดิการพนักงานพนักงาน --}}
                                 @foreach ($requests as $index => $request)
                                     <tr>
                                         <td scope="col" class="col-sm-1 text-center">{{ date("d/m/Y", strtotime($request->create_date)) }}</td>
@@ -78,6 +167,8 @@
                         {!! $requests->links('pagination::bootstrap-5') !!}
                     </div>
                 </div>
+
+                {{-- อธิบายสัญลักษณ์สถานะ --}}
                 <div class="row mt-3">
                     <div class="col-lg-5 ms-auto text-end">
                         {{ __('หมายเหตุ')  }}

@@ -250,7 +250,7 @@ if (rowTableCount < 10)
                 <button type="button" class="remove-table border-0 bg-transparent mt-3 "><img src="{{ URL::asset('img/delete.png') }}" width="25" height="20"></button>
             </td>
         </tr> `
-        
+
 
 
     )
