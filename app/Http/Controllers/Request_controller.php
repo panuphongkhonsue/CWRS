@@ -119,7 +119,7 @@ class Request_controller extends Controller
 
     public function create_group(Request $request){
 
-        
+
         return redirect()->route('history');
     }
 

@@ -37,7 +37,8 @@
                             <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ ('ชื่อ-สกุล : ') }}</label>
                             <div class="col-sm-3">
                                 {{-- generate ชื่อ-นามสกุล --}}
-                                <input type="text" class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
+                                <input type="text" class="form-control border-0 bg-transpa
+                                rent fs-16px" value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
                             </div>
                         </div>
 
@@ -52,33 +53,31 @@
                         </div>
                     </div>
 
+                    {{-- แถบเลือกประเภท --}}
+                    <div class="row mt-3 mx-5">
+                        <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
+                        <div class="col-md-5">
+                            <select class="form-control border-dark form-select" name="welfare" id="welfare">
+                                <option selected disabled >เลือกประเภทสวัสดิการ</option>
 
-                        {{-- แถบเลือกประเภท --}}
-                        <div class="row  dropwalfare">
-                            <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
-                            <div class="col-md-5">
-                                <select class="form-control" name="welfare" id="welfare">
-                                    <option selected disabled>เลือกประเภทสวัสดิการ</option>
+                                {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
+                                @foreach ($welfares as $welfare)
+                                    <option value='{"id":{{ $welfare->id }}, "budget":{{ $welfare->budget }}}'>{{ $welfare->title }}</option>
+                                @endforeach
 
-                                    {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
-                                    @foreach ($welfares as $welfare)
-                                        <option value="{{ $welfare->id }}">{{ $welfare->title }}</option>
-                                    @endforeach
+                            </select>
+                        </div>
 
-                                </select>
-                            </div>
+                        {{-- จำนวนเงิน --}}
+                        <label for="budget" class="col-auto col-form-label ms-auto ">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
+                        <div class="col-sm-2">
+                            <input type="text" id="money" class="text-end form-control border-0" style=" background-color: #eee;"
+                            value="{{ __('0.00') }}">
+                        </div>
 
-                            {{-- จำนวนเงิน --}}
-                            <label for="budget" class="col-auto col-form-label ms-auto">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
-                            <div class="col-sm-2">
-                                {{-- generate จำนวนตามวงเงินแต่ละประเภท --}}
-                                <input type="text" class="text-end form-control" value="{{ __('2,000.00') }}" disabled>
-                            </div>
-
-                            <label for="id" class="bath col-auto col-form-label">{{ __('บาท/คน') }}<label style="color:#fff"></label></label>
-
-
-                        </div><br>
+                        <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
+                    </div>
+                    <br>
 
 
                         {{-- text-inputที่ใส่ชื่อหรือรหัสพนักงาน --}}
@@ -183,35 +182,6 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-7 mx-5">
-                                     {{-- แถบอัปโหลดใบเสร็จ --}}
-                                    {{-- แถบอัปโหลดใบเสร็จ --}}
-                                <div class="row mt-3 control-group increment">
-                                    <label for="bill" class="col-auto col-form-label">อัปโหลดใบเสร็จ : </label>
-                                        <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-success add-file" type="button">+</button>
-                                        </div>
-                                </div>
-
-                                {{-- ตรงนี้คือตอนกด + เพิ่มไฟล์ --}}
-                                <div class="clone hide" hidden>
-                                    <div class="row mt-3 control-group" style="margin-left: 120px">
-                                        <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-danger remove-file" type="button">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-
-
                         {{-- ปุ่มส่งเบิก --}}
                         <div class="row">
                             <div class="col-sm-2 ms-auto">
@@ -270,11 +240,11 @@
             if (rowCount < 20) {
                 if(rowCount > 1){
                     var l = $('#inp_add').val() /* เก็บค่าที่ Input มา */
-
+                    var i = rowCount;
                 $('#b-detail').append(
                     `
                         <tr>
-                        <td><label type="text" id="label_gen" name="item[]" class="form-control border-0" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td><label type="text" id="label_gen`+i+`" name="item[]" class="form-control border-0" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
                         <td><label type="text" name="price[]" class="form-control text-end border-0" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
                     </tr>
                     `
@@ -291,7 +261,7 @@
                     `
                 );
                 if( $('#inp_add').val() != null){ /* นำค่าที่ Input มาใช้ */
-                    $('#label_gen ').html(l )
+                    $('#label_gen'+i).html(l )
                 $('#label_gen ').css("color", "black" )
                 }
 
@@ -306,6 +276,14 @@
             }
         });
 
+        $('#welfare').change(function() {
+            var val = $(this).val();
+            var text = JSON.parse(val);
+            var budget = Number(text.budget);
+            var fixed = budget.toFixed(2);
+
+            $("#money").val(Intl.NumberFormat('en-US').format(fixed));
+        })
 
     });
 
