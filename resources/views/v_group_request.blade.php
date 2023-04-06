@@ -91,8 +91,8 @@
                                 {{-- ช่องที่ต้องใส่หรือรหัสพนักงาน --}}
                                 <select class="get_user_name form-control" name="userselect" id="get_user">
                                     <option selected disabled>ชื่อ-นามสกุล,รหัสพนักงาน</option>
-                                    @foreach ($departments as $user)
-                                    <option value="{{$user->id}}" data-id="{{$user->id}}" data-fname="{{$user->fname}}" data-lname="{{$user->lname}}">{{$user->id}} - {{$user->fname}} {{$user->lname}}</option>
+                                    @foreach ($departments_user as $user)
+                                    <option value='{"user_id":{{$user->id}}, "user_fname":"{{$user->fname}}" , "user_lname":"{{$user->lname}}" , "user_role":"{{$user->role->name}}"}'>{{$user->id}} - {{$user->fname}} {{$user->lname}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -125,8 +125,8 @@
 
                                             <tbody id="b-detail">
                                                 <tr >
-                                                    <td><label id="tb-name"  type="text" name="item[]" class="form-control border-0"  style="color:#ffff">.</td>
-                                                    <td><label type="text" name="price[]" class="form-control text-end border-0"></td>
+                                                    <td><label id="tb-name"  type="text" name="user_info[]" class="form-control border-0"  style="color:#ffff">.</td>
+                                                    <td><label id="tb-role" type="text" name="role[]" class="form-control text-end border-0"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -201,7 +201,7 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-    var rowCount = 1;
+    var rowCount = 0;
     var fileCount = 1;
 
     function deleteRow(ele) {
@@ -209,16 +209,18 @@
 
         if (ele.id != '') {
             rowCount--;
-           console.log("1");
+           console.log(rowCount);
            $("#tb-name").html('.')
            $("#tb-name").css('color','white')
+           $("#tb-role").html('.')
+           $("#tb-role").css('color','white')
         } else {
             var tb = ele.closest("tr");
             let row = tb.rowIndex;
             $(tb).remove();
             document.getElementById("b-detail").deleteRow(row-1);
             rowCount--;
-            rowCount--;
+            console.log(rowCount);
         }
 
 
@@ -226,31 +228,17 @@
 
     $(document).ready(function() {
 
-        $(".add-file").click(function() {
-            if (fileCount < 5)
-            {
-                var html = $(".clone").html();
-                $(".increment").after(html);
-                fileCount++;
-            }
-        });
-
-        $("body").on("click",".remove-file", function() {
-            fileCount--;
-            $(this).parents(".control-group").remove();
-        });
-
         $("#btn_add").click(function() {
             if (rowCount < 20) {
-                if(rowCount > 1){
-                    var l = $('#get_user').val() /* เก็บค่าที่ Input มา */
+                if(rowCount > 0){
+                    var l = $('#get_user').val();/* เก็บค่าที่ Input มา */
                     var i = rowCount;
                     console.log(l)
                 $('#b-detail').append(
                     `
                         <tr>
                         <td><label type="text" id="label_gen`+i+`" name="item[]" class="form-control border-0" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
-                        <td><label type="text" name="price[]" class="form-control text-end border-0" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td><label type="text" id ="role_gen`+i+`" name="price[]" class="form-control text-end border-0" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
                     </tr>
                     `
                 );
@@ -266,24 +254,36 @@
                     `
                 );
                 if( $('#get_user').val() != null){ /* นำค่าที่ Input มาใช้ */
-                    $('#label_gen'+i).html(l )
-                $('#label_gen ').css("color", "black" )
+                    var text = JSON.parse(l);
+                    var name = text.user_fname +" "+ text.user_lname;
+                    var role = text.user_role;
+                    $('#label_gen'+i).html(name)
+                    $('#label_gen ').css("color", "black" )
+                    $('#role_gen'+i).html(role)
+                    $('#role_gen ').css("color", "black" )
                 }
 
             }
-            else if(rowCount == 1){
-                var x = $('#get_user').val()
-                console.log(x);
-                $('#tb-name ').html(x )
+            else if(rowCount == 0){
+                var x = $('#get_user').val();
+                var text = JSON.parse(x);
+                console.log(text);
+                var name = text.user_fname + " " +text.user_lname;
+                var role = text.user_role;
+                $('#tb-name ').html(name)
                 $('#tb-name ').css("color", "black" )
+                $('#tb-role ').html(role)
+                $('#tb-role ').css("color", "black" )
             }
                 rowCount++;
+                console.log(rowCount);
             }
         });
 
         $('#welfare').change(function() {
             var val = $(this).val();
             var text = JSON.parse(val);
+            console.log(text);
             var budget = Number(text.budget);
             var fixed = budget.toFixed(2);
 

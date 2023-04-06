@@ -120,7 +120,7 @@ class Request_controller extends Controller
 
 
 
-        return view('v_group_request', ['welfares' => $data],['departments'=> $department_user]);
+        return view('v_group_request', ['welfares' => $data],['departments_user'=> $department_user]);
     }
 
     public function create_group(Request $request){
