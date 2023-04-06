@@ -11,6 +11,9 @@ use App\Models\Welfare;
 use App\Models\Bill;
 use App\Models\Single_request;
 use App\Models\Group_request;
+use App\Models\Department;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -25,6 +28,7 @@ class Request_controller extends Controller
     * @output : ข้อมูลสวัสดิการแบบเดี่ยว
     * @author : Rawich Piboonsin 64160299
     * @Create Date : 2023-03-15
+    *
     */
     public function single_request()
     {
@@ -45,7 +49,7 @@ class Request_controller extends Controller
             $data = Welfare::where('type', 'S')->whereNotIn('id', $welfare_id)->get();
         }
 
-        return view('v_request', ['welfares' => $data]);
+        return view('v_request', ['welfares' => $data],);
     }
 
 
@@ -91,13 +95,15 @@ class Request_controller extends Controller
     * @output : หน้าจอประวัติการเบิกสวัสดิการ
     * @author : Rawich Piboonsin 64160299
     * @Create Date : 2023-03-15
-    * @Update Date : 2023-03-15 Panuphong Khonsue 64160282 call data to show
+    * @Update Date : 2023-04-05 Panuphong Khonsue 64160282 call data to show
+    * @Update Date : 2023-04-06 Panuphong Khonsue 64160282 Query Data To Show in Table
     */
     public function group_request()
     {
 
         $user = Auth::user();
         $requests = Group_request::where('user_id', $user->id)->get();
+        $department_user = User::where('department_id', $user->department_id)->get();
         $welfare_id[0] = NULL;
 
         foreach ($requests as $index => $request) {
@@ -114,7 +120,7 @@ class Request_controller extends Controller
 
 
 
-        return view('v_group_request', ['welfares' => $data]);
+        return view('v_group_request', ['welfares' => $data],['departments'=> $department_user]);
     }
 
     public function create_group(Request $request){

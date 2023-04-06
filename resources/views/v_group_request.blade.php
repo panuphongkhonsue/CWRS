@@ -3,7 +3,6 @@
 @extends(((Auth::user()->type == "E") ? 'employees.v_employee_nav' : 'leaders.v_leader_nav'))
 
 @section('content')
-
     <div class="row justify-content-center">
         <div class="col-lg-13">
             <div class="card">
@@ -88,11 +87,16 @@
                         </div>
                         <div class="addpeople row">
                             <label for="budget" class="col-auto col-form-label">{{ __('เพิ่มสมาชิก : ') }}</label>
-                            <div class="col-sm-4">
+                            <div class="col-sm-4 mt-2">
                                 {{-- ช่องที่ต้องใส่หรือรหัสพนักงาน --}}
-                                <input type="text" class="form-control" placeholder="{{ __('ชื่อ-นามสกุล,รหัสพนักงาน') }}" id = "inp_add">
+                                <select class="get_user_name form-control" name="userselect" id="get_user">
+                                    <option selected disabled>ชื่อ-นามสกุล,รหัสพนักงาน</option>
+                                    @foreach ($departments as $user)
+                                    <option value="{{$user->id}}" data-id="{{$user->id}}" data-fname="{{$user->fname}}" data-lname="{{$user->lname}}">{{$user->id}} - {{$user->fname}} {{$user->lname}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <div class="col mt-1">
+                            <div class="col mt-2 mr-2 ps-1">
                                 <button type="button" class="border-0 bg-transparent add-table"><img src="{{ URL::asset('img/add.png') }}" width="20" height="20" id = "btn_add"></button>
                             </div>
                             <div class="row">
@@ -239,8 +243,9 @@
         $("#btn_add").click(function() {
             if (rowCount < 20) {
                 if(rowCount > 1){
-                    var l = $('#inp_add').val() /* เก็บค่าที่ Input มา */
+                    var l = $('#get_user').val() /* เก็บค่าที่ Input มา */
                     var i = rowCount;
+                    console.log(l)
                 $('#b-detail').append(
                     `
                         <tr>
@@ -260,14 +265,14 @@
                     </tr>
                     `
                 );
-                if( $('#inp_add').val() != null){ /* นำค่าที่ Input มาใช้ */
+                if( $('#get_user').val() != null){ /* นำค่าที่ Input มาใช้ */
                     $('#label_gen'+i).html(l )
                 $('#label_gen ').css("color", "black" )
                 }
 
             }
             else if(rowCount == 1){
-                var x = $('#inp_add').val()
+                var x = $('#get_user').val()
                 console.log(x);
                 $('#tb-name ').html(x )
                 $('#tb-name ').css("color", "black" )
@@ -285,7 +290,12 @@
             $("#money").val(Intl.NumberFormat('en-US').format(fixed));
         })
 
+        $('.get_user_name').select2({
+            inimumResultsForSearch: 5
+        });
+
     });
+
 
 </script>
 @endsection
