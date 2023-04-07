@@ -121,8 +121,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link href="{{ asset('dist/css/select2.min.css') }}" rel="stylesheet" />
-    <script src="{{ asset('dist/js/select2.min.js') }}"></script>
+    <link href="{{ url('./dist/css/select2.min.css') }}" rel="stylesheet" />
+    <script src="{{ url('./dist/js/select2.min.js') }}"></script>
     <script>
     function openNav() {
         var side_bar = document.getElementById("side_bar");
