@@ -18,7 +18,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{ URL::asset('/css/home.css') }}">
+    <link rel="stylesheet" href="./css/home.css">
 
     @livewireStyles
 
@@ -73,7 +73,7 @@
               <a class="d-flex nav-link text-white" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
-                  <img class="" src="{{ URL::asset('/img/logout.png') }}" alt="" width="32" height="32" class="">&ensp;
+                  <img class="" src="./img/logout.png" alt="" width="32" height="32" class="">&ensp;
                   {{ __('Logout') }}
                   <form id="logout-form" action="{{ route('logout') }}" method="POST">
                       @csrf
