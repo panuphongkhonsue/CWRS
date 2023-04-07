@@ -40,7 +40,7 @@
                             {{-- ชื่อ นามกุล --}}
                             <div class="row ms-3 mt-1">
                                 <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ __('ชื่อ-สกุล : ') }}</label>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <input type="text" class="form-control border-0 bg-transparent " value="{{ Auth::user()->fname }} {{ Auth::user()->lname }}" disabled>
                                 </div>
                             </div>

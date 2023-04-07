@@ -29,7 +29,7 @@
       </a>
       <hr>
         <div class="text-center mb-3">
-          <img class="img-custom my-3" src="{{ asset('./img/' . Auth::user()->id . '.jpg') }}" alt="">
+          <img class="img-custom my-3" src="{{ URL::asset('./img/' . Auth::user()->id . '.jpg') }}" alt="">
           <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <span class="fs-4 ms-auto me-auto">{{ __('ฝ่ายบุคคล') }}</span>
           </a>
