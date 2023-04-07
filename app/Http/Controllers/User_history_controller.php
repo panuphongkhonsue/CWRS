@@ -27,8 +27,7 @@ class User_history_controller extends Controller
     */
     public function index()
     {
-        $user = Auth::user();
-        $requests = $user->welfares_request;
+        $requests = Single_request::where('user_id', Auth::user()->id)->orderBy('create_date', 'desc');
 
         return view('v_history', ['requests' => $requests]);
     }
@@ -60,13 +59,12 @@ class User_history_controller extends Controller
     * @author : Rawich Piboonsin 64160299
     * @Create Date : 2023-03-15
     */
-    public function cancel($id)
+    public function cancel($id, Request $request)
     {
-        DB::update(
-            'UPDATE users_welfares SET status=? WHERE id=?',
-            [
-                -1, $id
-            ]);
+        $requests = Single_request::where('id', $id)->first();
+        $requests->status = -1;
+        $requests->hr_approve_date = date("Y-m-d");
+        $requests->save();
 
         return redirect()->route('history');
     }
