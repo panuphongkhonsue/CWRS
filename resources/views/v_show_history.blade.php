@@ -17,7 +17,7 @@
                 <div class="card-body mx-5 px-5 mb-0 border-0 p-0">
 
                     <!-- กรอบข้อมูล -->
-                    <form method="POST" action="{{ route('cancel', ['id' => $history->id]) }}" enctype="multipart/form-data">
+                    <form id="cancel-req" method="POST" action="{{ route('cancel', ['id' => $history->id]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="row mt-2">
@@ -292,7 +292,7 @@
                         <div class="row mt-3">
                             @if (($history->status) == 0)
                             <div class="col-sm-2 ms-auto">
-                                <button class="btn btn-lg btn-danger mb-5">ยกเลิก</a>
+                                <button type="button" id="cancelreq" class="btn btn-lg btn-danger mb-5">ยกเลิก</a>
                             </div>
                             @endif
                         </div>
@@ -301,4 +301,55 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#cancelreq').click(function() {
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่ ?',
+                    text: 'คุณต้องการยกเลิกคำขอเบิกสวัสดิการหรือไม่',
+                    imageUrl: '{{ URL('./img/alert1.png') }} ',
+                    imageWidth: 150,
+                    imageHeight: 150,
+                    denyButtonText: 'ยกเลิก',
+                    confirmButtonText: 'ยืนยัน',
+                    confirmButtonColor: '#32cd32',
+                    denyButtonColor: '#ff0000',
+                    showDenyButton: true,
+                    showCloseButton: true,
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: 'confirm-button-class',
+                        denyButton: 'deny-button-class'
+                    },
+                    preConfirm: () => {
+                        document.getElementById('cancel-req').submit();
+                    }
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                    Swal.fire({
+                        imageUrl: '{{ URL('./img/correct1.png') }} ',
+                        title: 'สำเร็จ',
+                        text: 'ยกเลิกคำขอเบิกสวัสดิการสำเร็จ',
+                        showConfirmButton: false,
+                        imageWidth: 150,
+                        imageHeight: 150,
+                        timer: 1500
+                })
+                } else if (result.isDenied) {
+                    Swal.fire({
+                    imageUrl: '{{ URL('./img/cancelreq.png') }} ',
+                    title: 'ไม่สำเร็จ',
+                    showConfirmButton: false,
+                    text: 'ยกเลิกคำขอเบิกสวัสดิการไม่สำเร็จ',
+                    imageWidth: 150,
+                    imageHeight: 150,
+                    timer: 1500
+                    })
+                    }
+                })
+            })
+        })
+    </script>
 @endsection
