@@ -102,8 +102,8 @@
 
                                             <tbody id="b-detail">
                                                 <tr>
-                                                    <td><input type="text" name="item[]" class="form-control border-0" placeholder="กรอกรายละเอียด" required></td>
-                                                    <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()" placeholder="กรอกราคา" required></td>
+                                                    <td><input type="text" name="item[]" class="form-control border-0" placeholder="กรอกรายละเอียด" required autofocus></td>
+                                                    <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()" placeholder="กรอกราคา" required autofocus></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -153,6 +153,12 @@
                                 </div>
                             </div>
 
+                            @error('filename')
+                                <div class="row mx-5">
+                                    <div class="col-md-3 alert alert-danger fs-7">{{ $message }}</div>
+                                </div>
+                            @enderror
+
                             <div class="row">
                                 <div class="col-md-7 mx-5">
                                      {{-- แถบอัปโหลดใบเสร็จ --}}
@@ -160,7 +166,7 @@
                                 <div class="row mt-3 control-group increment">
                                     <label for="bill" class="col-auto col-form-label">อัปโหลดใบเสร็จ : </label>
                                         <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์" required accept=".jpeg, .pdf, .jpg">
+                                            <input type="file" name="filename[]" class="form-control file @error('filename') is-invalid @enderror" value="อัปโหลดไฟล์" accept=".jpeg, .pdf, .jpg">
                                         </div>
                                         <div class="col-sm-2">
                                             <button class="btn btn-success add-file" type="button">+</button>
@@ -171,10 +177,10 @@
                                 <div class="clone hide" hidden>
                                     <div class="row mt-3 control-group" style="margin-left: 120px">
                                         <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์" required required accept=".jpeg, .pdf, .jpg">
+                                            <input type="file" name="filename[]" class="form-control file  @error('filename') is-invalid @enderror" value="อัปโหลดไฟล์" accept=".jpeg, .pdf, .jpg">
                                         </div>
                                         <div class="col-sm-2">
-                                            <button class="btn btn-danger remove-file" type="button">-</button>
+                                            <button type="button" class="btn btn-danger remove-file">-</button>
                                         </div>
                                     </div>
                                 </div>
@@ -244,8 +250,8 @@
                 $('#b-detail').append(
                     `
                     <tr>
-                        <td><input type="text" name="item[]" class="form-control border-0" required></td>
-                        <td><input type="number" name="price[]" class="form-control text-end border-0 price" required onchange="updateTotal()"></td>
+                        <td><input type="text" name="item[]" class="form-control border-0" required autofocus></td>
+                        <td><input type="number" name="price[]" class="form-control text-end border-0 price" required autofocus onchange="updateTotal()"></td>
                     </tr>
                     `
                 );

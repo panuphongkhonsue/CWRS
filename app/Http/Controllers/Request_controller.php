@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use App\Models\Welfare;
 use App\Models\Bill;
 use App\Models\Single_request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -31,18 +32,18 @@ class Request_controller extends Controller
         $user = Auth::user();
         $requests = Single_request::where('user_id', $user->id)->get();
 
-        $welfare_id[0] = NULL;
+        $welfare_id = NULL;
 
         foreach ($requests as $index => $request) {
             if (date("Y", strtotime($request->create_date)) == date("Y")
-                && ($request->status == 0 || $request->status == 1)) {
+                && ($request->status >= 0)) {
                 $welfare_id[$index] = $request->welfare_id;
             }
         }
 
         $data = Welfare::where('type', 'S')->get();
 
-        if ($welfare_id[0] != NULL) {
+        if ($welfare_id != NULL) {
             $data = Welfare::where('type', 'S')->whereNotIn('id', $welfare_id)->get();
         }
 
@@ -64,8 +65,12 @@ class Request_controller extends Controller
     * @author : Rawich Piboonsin 64160299
     * @Create Date : 2023-03-15
     */
-    public function create_single(Request $request)
+    public function create_single(Request $request): RedirectResponse
     {
+        $validated = $request->validate([
+            'filename' => 'required'
+        ]);
+
         $json = json_decode($request->welfare);
         $welfare = Welfare::find($json->id);
         $user = Auth::user();
