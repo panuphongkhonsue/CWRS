@@ -14,23 +14,7 @@
                 <div class="row mt-3">
                     <livewire:history-show/>
                 </div>
-                    <div class="row mt-5">
-                        <div class="col-lg-6 ms-auto">
-                        <nav aria-label="ms-auto">
-                        <ul class="pagination" class="col-auto col-form-label ms-auto">หน้า
-                            &nbsp;<li class="page-item disabled">
-                            <a class="page-link">ก่อนหน้า</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active" aria-current="page">
-                            <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                            <a class="page-link" href="#">ถัดไป</a>
-                            </li>
-                        </ul>
-                    </nav></div>
+                    
                     <div class="col-lg-5 ms-auto text-end">
                         {{ __('หมายเหตุ')  }}
                         &nbsp; {{ __(':')}}
