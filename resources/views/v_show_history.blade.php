@@ -270,7 +270,7 @@
                                     <div class="card-text px-4 rounded me-3 mb-5" style="background-color: #eee">
                                         @foreach (json_decode($history->bill) as $bill)
                                             <div class="row">
-                                                <a href="{{ URL::asset('./bills/'. $bill) }}" for="" class="col-auto col-form-label" target="blank">{{ $bill }}</a>
+                                                <a href="{{ asset('./bills/'. $bill) }}" for="" class="col-auto col-form-label" target="blank">{{ $bill }}</a>
                                             </div>
                                         @endforeach
                                     </div>
