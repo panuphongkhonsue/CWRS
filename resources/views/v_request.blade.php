@@ -17,7 +17,6 @@
                  <div class="card-body" style="padding: 0px 50px 50px 50px">
 
                     {{-- กรอบข้อมูล --}}
-
                     <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
@@ -46,7 +45,6 @@
                                 </div>
                             </div>
 
-
                             {{-- แผนก --}}
                             <div class="row ms-3 mt-1 mb-2 ">
                                 <label for="department" class="col-sm-2 col-form-label fw-bold">{{ __('แผนก : ') }}</label>
@@ -61,8 +59,7 @@
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
                                 <select class="form-control border-dark form-select" name="welfare" id="welfare">
-                                    <option selected disabled >เลือกประเภทสวัสดิการ</option>
-
+                                    <option disabled>เลือกประเภทสวัสดิการ</option>
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
                                     @foreach ($welfares as $welfare)
                                         <option value='{"id":{{ $welfare->id }}, "budget":{{ $welfare->budget }}}'>{{ $welfare->title }}</option>
@@ -105,8 +102,8 @@
 
                                             <tbody id="b-detail">
                                                 <tr>
-                                                    <td><input type="text" name="item[]" class="form-control border-0" placeholder="กรอกรายละเอียด"></td>
-                                                    <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()" placeholder="กรอกราคา"></td>
+                                                    <td><input type="text" name="item[]" class="form-control border-0" placeholder="กรอกรายละเอียด" required></td>
+                                                    <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()" placeholder="กรอกราคา" required></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -149,7 +146,7 @@
                                                 <input type="text" id="total" class="form-control text-end border-0" style=" background-color: #eee;"
                                                 value="{{ __('0.00') }}" readonly>
                                             </div>
-                                            <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }} <label style="color:#fff">_</label></label>
+                                            <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }} <label style="color:#fff">_</label>
                                         </div>
 
                                     </div>
@@ -163,7 +160,7 @@
                                 <div class="row mt-3 control-group increment">
                                     <label for="bill" class="col-auto col-form-label">อัปโหลดใบเสร็จ : </label>
                                         <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์">
+                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์" required accept=".jpeg, .pdf, .jpg">
                                         </div>
                                         <div class="col-sm-2">
                                             <button class="btn btn-success add-file" type="button">+</button>
@@ -174,7 +171,7 @@
                                 <div class="clone hide" hidden>
                                     <div class="row mt-3 control-group" style="margin-left: 120px">
                                         <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์">
+                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์" required required accept=".jpeg, .pdf, .jpg">
                                         </div>
                                         <div class="col-sm-2">
                                             <button class="btn btn-danger remove-file" type="button">-</button>
@@ -247,8 +244,8 @@
                 $('#b-detail').append(
                     `
                     <tr>
-                        <td><input type="text" name="item[]" class="form-control border-0"></td>
-                        <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()"></td>
+                        <td><input type="text" name="item[]" class="form-control border-0" required></td>
+                        <td><input type="number" name="price[]" class="form-control text-end border-0 price" required onchange="updateTotal()"></td>
                     </tr>
                     `
                 );
