@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function()
    Route::group(['middleware' => 'user:H'], function()
    {
         Route::get('/manage_welfare', [Welfare_controller::class, 'index'])->name('manage_welfare');
-        Route::get('/manage_request', [Manage_request_controller::class, 'index'])->name('manage_request');
+        Route::get('/manage/request', [Manage_request_controller::class, 'index'])->name('manage_request');
         Route::post('/add_welfare', [Welfare_controller::class, 'add_welfare'])->name('add_welfare');
         Route::post('/manage_welfare/edit', [Welfare_controller::class, 'edit_welfare'])->name('edit_welfare');
         Route::get('/report', [Report_controller::class, 'report'])->name('report');
