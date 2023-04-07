@@ -3,9 +3,8 @@
 @extends('employees.v_employee_nav')
 
 @section('content')
-<div class="container">
-        <div class="row">
-            <div class="col-lg-6">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
 
                 {{-- ข้อกำหนดแบบบุคคล --}}
                 <div class="card">
@@ -27,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-5">
 
                 {{-- ข้อกำหนดแบบสันทนาการ --}}
                 <div class="card">
@@ -41,7 +40,7 @@
                             <div class="row">5. ต้องเบิกเต็มจำนวนวงเงินทั้งหมดของประเภทสวัสดิการนั้นๆ</div><br>
                             <div class="row mt-4 justify-content-md-center">
                                 <div class="col-md-auto">
-                                    <button class="btn btn-primary">สันทนาการ</button>
+                                    <button class="btn btn-primary"><a href="{{ route('group_request') }}" class="text-light text-decoration-none" >สันทนาการ</a></button>
                                 </div>
                             </div>
                         </div>
@@ -49,5 +48,4 @@
                 </div>
             </div>
         </div>
-</div>
 @endsection

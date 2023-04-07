@@ -2,6 +2,15 @@
     background: #11324D;
 }
 
+
+.container::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+}
+
+.container::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+}
+
 body {
     font-family: 'Kanit', sans-serif;
     background: #e0e0e0;
@@ -14,9 +23,10 @@ body {
     height: 330px;
 }
 
+/* css */
 #side_bar {
     height: 100vh;
-    position: fixed;
+    position: relative;
     overflow-x: auto;
     overflow-y: hidden;
     z-index: 1000;
@@ -49,37 +59,112 @@ body {
     background: #174E7B;
  }
 
-.btn-custom:hover {
-   background: #f0f8ff;
+ .btn-custom:hover {
+    background: #e9e8e8;
+ }
+
+ .selected {
+     background-color: #f0f8ff;
+ }
+
+
+ #hamburMenu1{
+   font-size:45px;
+   color:white;
+   margin-left : 205px;
+   margin-bottom: 0px;
+ }
+
+ #hamburMenu2{
+   font-size:45px;
+   color:white;
+   margin-left : 10px;
+   margin-bottom: 0px;
+ }
+
+ #side_bar {
+   transition: margin-left .5s;
+   padding: 16px;
+ }
+
+ #side_bar {
+   height: 100%;
+   width: 300px;
+   position: fixed;
+   z-index: 999;
+   top: 0;
+   left: 0;
+   overflow-x: hidden;
+   transition: 0.5s;
+   padding-top: 60px;
+   background: #164D7A;
+ }
+
+ #hamburMenu1:hover {
+   -webkit-box: 5px 5px 3px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 3px 3px rgba(0, 0, 0, 0.3);
+ }
+
+ #hamburMenu2:hover {
+   -webkit-box: 5px 5px 3px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 3px 3px rgba(0, 0, 0, 0.3);
+ }
+
+ /* หัวข้อใบเบิก */
+.i {
+    padding: 30px  60px 15px 55px;
+    /* text-decoration: underline; */
+    font-size: 30px;
 }
 
-
-.menudrop {
-    color:#fff;
-    text-decoration:none;
-    position: relative;
-    display: block;
-    display: none;
-    background-color: #164D7A;
+/* ตัวหนา */
+.b {
+    font-weight: bold;
 }
 
-
-#dropbu {
-    display: none;
+/* กล่องขนาดใหญ่ */
+.big-box {
+    background-color: white;
 
 }
 
-.txt {
-    border: 0px;
-    background-color : #e0e0e0;
+/* รับค่าไฟล์ใบเสร็จ */
+
+/* ปุ่มอัปโหลด */
+.upload{
+    display: inline-black;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    background: green;
+
 }
 
-.navDropdown{
-    background: none;
-    color: #ECEFF1;
-    opacity: 0.6;
-}
-.notation{
+/* ตาราง */
+
+.img-login{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    position: absolute;
+    top: -100px;
+    left: calc(50% - 120px);
+ }
+
+ .card-login{
+    background: white;
+    width: 350px;
+    height: 440px;
+    top: 50%; left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 170px 40px 5px 40px;
+    text-align: center;
+    border-radius: 8px;
+ }
+
+ .notation{
     font-size: 12px;
     color: red;
 }
@@ -96,8 +181,7 @@ body {
 }
 #detail{
     border-collapse: collapse;
-    border-radius: 1em;
-    overflow: hidden;
+    border-radius: 8px;
     width: 95%;
 
 }
@@ -123,28 +207,90 @@ body {
 }
 .tableadd{
     border: #fff;
+}
+
+/* หัวข้อใบเบิก */
+.bold_header {
+    padding: 30px  60px 15px 55px;
+    /* text-decoration: underline; */
+    font-size: 30px;
+}
+
+/* ตัวหนา */
+.b {
+    font-weight: bold;
+}
+
+/* กล่องขนาดใหญ่ */
+.big-box {
+    background-color: white;
 
 }
- .img-login{
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    position: absolute;
-    top: -100px;
-    left: calc(50% - 120px);
- }
 
- .card-login{
-    background: white;
-    width: 350px;
-    height: 380px;
-    top: 50%; left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    padding: 170px 40px 5px 40px;
-    text-align: center;
+/* ตาราง */
+.table-reques{
+    border-collapse: collapse;
+    border-radius: 1em;
+    border-color: black;
+}
 
- }
+.deletetable{
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+
+
+.bath{
+    margin-right: 4em;
+}
+
+.status_b{
+    margin-right: 50px;
+
+   }
+   .text_s{
+       width: 50;
+   }
+   .aa{
+       margin-left: 10px
+
+   }
+   .bb{
+       margin-left: 640px;
+
+   }
+   .ee{
+       border:none;
+       background:none;
+   }
+   .jj{
+       border-radius: 1em;
+       padding: 0px 0px;
+   }
+   .hov_buttom:hover{
+       box-shadow: 0 12px 16px 0 rgba(31, 28, 28, 0.24),0 17px 50px 0 rgba(255, 255, 255, 0.19);
+   }
+   .ll{
+       padding: 0px 0px;
+   }
+   .colortext{
+       color: #a19f9f;
+       font-size: 18px;
+       width: 200px;
+   }
+   .btn_size{
+       padding: 0px 0px;
+   }
+   .oo{
+       font-size: 18px;
+   }
+   .pp{
+    margin-left: 500px;
+   }
+
+
+
+
 
 

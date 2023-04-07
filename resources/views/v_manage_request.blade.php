@@ -1,81 +1,69 @@
 @extends('humanresources.v_humanresource_nav')
 
 @section('content')
-<div class="container">
+<div class="row">
     <div class="col-lg-13">
 
-        <livewire:show-request-filter/>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card btn btn-custom">
-                    <div class="card-body">
-                        <div class="text-center text-primary">ทั้งหมด</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card btn btn-custom">
-                    <div class="card-body">
-                        <div class="text-center text-warning">รออนุมัติ</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card btn btn-custom">
-                    <div class="card-body">
-                        <div class="text-center text-success">อนุมัติ</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card btn btn-custom">
-                    <div class="card-body">
-                        <div class="text-center text-danger">ไม่อนุมัติ</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <livewire:request-filter/>
 
         <div class="card mt-3">
             <div class="card-body">
                 <div class="row mt-4">
                     <div class="col-md-13">
+                        <div class="row">
+                            {{-- ข้อความ --}}
+                            <div class="aa col-auto mt-2">
+                                <label class="oo">(ชื่อ-นามสกุล,รหัสพนักงาน,เลขที่ใบเบิก) :</label>
+                            </div>
+
+                             {{-- กล่องค้นหา --}}
+                            <div class="col-auto ll mt-2">
+                                <input type="text" class="form-control  jj" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2" style="height: 30px">
+                            </div>
+
+                            {{-- ปุ่มค้นหา --}}
+                              <div class="ll col-auto ">
+                                <button class="btn" type="button" id="button-addon2"><img src="{{ URL::asset('img/image1.png') }}" width="18" height="18"></button>
+                              </div>
+
+                              {{-- ข้อความ --}}
+                              <div class="col-auto  mt-1">
+                                <label for="budget" class="col-auto col-form-label oo" style="margin-left: 260px "> รูปแบบสวัสดิการ : </label>
+                              </div>
+
+                              {{-- ตัวเลือกรายหลายการ : รูปแบบสวัสดิการ --}}
+                              <div class="col-auto mt-2">
+                                <select class="form-control form-select colortext" name="welfare" id="welfare" style="height: 34px">
+                                            <option selected=""value ="1" > ทั้งหมด </option>
+
+                                                <option value="2">บุคคล</option>
+                                                <option value="3">สันทนาการ</option>
+                                </select>
+
+                              </div>
+
+                              {{-- ข้อความ --}}
+                              <div class="col-auto mt-1">
+                                <label for="budget" class="col-auto col-form-label oo"> ปี พ.ศ. : </label>
+                              </div>
+
+                              {{-- ตัวเลือกรายหลายการ : ปีพ.ศ.ย้อนหลัง5ปี รวมปีปัจจุบัน --}}
+                              <div class="col-auto mt-2 ">
+                                <select class="form-control form-select colortext " name="welfare" id="welfare" style="height: 34px" >
+                                                <option selected="" value="1">ทั้งหมด</option>
+                                                <option value="2">2566</option>
+                                                <option value="3">2565</option>
+                                                <option value="4">2564</option>
+                                                <option value="5">2563</option>
+                                                <option value="6">2562</option>
+                                </select>
+                        </div>
+                        </div><br>
+
 
                         {{-- ในส่วนของตาราง --}}
-                        <livewire:show-requests/>
-                        <table class="table table-bordered align-items-center">
-                            <thead class="text-center text-light" id="bg">
-                                <tr>
-                                    <td scope="col" class="col-sm-1">วันที่</td>
-                                    <td scope="col" class="col-sm-1">เลขที่</td>
-                                    <td scope="col" class="col-sm-1">รูปแบบ</td>
-                                    <td scope="col">ผู้เบิก</td>
-                                    <td scope="col" class="col-md-3">ประเภทสวัสดิการ</td>
-                                    <td scope="col" class="col-sm-2 ">จำนวนเงิน (บาท)</td>
-                                    <td scope="col" class="col-sm-1">สถานะ</td>
-                                    <td scope="col" class="col-sm-1">แสดงผล</td>
-                                </tr>
-                            </thead>
-                            <tbody class="">
-                                @foreach ($requests as $index => $request)
-                                    <tr>
-                                        <td scope="col" class="col-sm-1 text-center">{{ date("d/m/Y", strtotime($request->create_date)) }}</td>
-                                        <td scope="col" class="col-sm-1 text-center">{{ $request->id }}</td>
-                                        <td scope="col" class="col-sm-1 text-center"></td>
-                                        <td scope="col" class="">{{ $request->get_user->fname }}</td>
-                                        <td scope="col" class="col-md-3">{{ $request->get_welfare->title }}</td>
-                                        <td scope="col" class="col-sm-2 text-end">{{ $request->get_welfare->budget }}</td>
-                                        <td scope="col" class="col-sm-1 text-center"></td>
-                                        <td scope="col" class="col-sm-1 text-center"><button type="button"
-                                            class="btn btn-sm btn-primary" style="font-size: 10px">แสดงรายการ</button></td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        {!! $requests->links('pagination::bootstrap-5') !!}
+                            <livewire:request-show/>
+
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -100,9 +88,19 @@
                         {{ __('ยกเลิก') }}
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+{{-- <script type="text/javascript">
+    $(document).ready(function() {
+        $(".btn-custom").click(function() {
+            var selected = document.getElementById("selected");
+            selected.classList.remove("selected");
+            $(this).id = "selected";
+        })
+    })
+</script> --}}
 @endsection

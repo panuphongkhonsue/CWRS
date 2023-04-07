@@ -12,28 +12,25 @@ class Manage_request_controller extends Controller
     public function index()
     {
         $requests = Single_request::where('status', 0)->orderBy('id', 'desc')->paginate(10);
-        
+
         return view('v_manage_request', ['requests' => $requests]);
     }
 
-    public function approve_request($id)
+    public function confirm_request($id, Request $request)
     {
-        DB::update(
-            'UPDATE users_welfares SET status=? WHERE id=?',
-            [
-                1, $id
-            ]);
+        $requests = Single_request::where('id', $id)->first();
 
-        return redirect()->route('manage_request');
-    }
+        if ($request->dec == "accept") {
+            $requests->status = 1;
+        }
+        else if ($request->dec == 'reject') {
+            $requests->status = -2;
+        }
 
-    public function reject_request($id)
-    {
-        DB::update(
-            'UPDATE users_welfares SET status=? WHERE id=?',
-            [
-                -2, $id
-            ]);
+        $requests->note = $request->note;
+        $requests->hr_approve_date = date("Y-m-d");
+        $requests->hr_approver_id = Auth::user()->id;
+        $requests->save();
 
         return redirect()->route('manage_request');
     }

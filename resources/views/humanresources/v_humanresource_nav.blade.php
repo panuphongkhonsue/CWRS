@@ -1,10 +1,11 @@
-{{-- แถบเมนูของ HR --}}
+{{-- แถบเมนูของหัวหน้าแผนก --}}
 
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -17,16 +18,20 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ URL::asset('/css/home.css') }}">
-
+    @livewireStyles
 </head>
 <body>
-  <div class="container-fluid h-100">
+    <div class="container-fluid h-100">
     <div class="row h-100">
-      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-custom" id="side_bar" style="width: 280px">
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-custom" id="side_bar" style= "left: -300px"><!-- wait fix -->
+      <a href="javascript:void(0);" class="icon">
+      <i class="fa fa-bars" id = "hamburMenu1" onclick="closeNav()" style="font-size: 30px"></i>  <!-- Hamburger menu -->
+      </a>
+      <hr>
         <div class="text-center mb-3">
           <img class="img-custom my-3" src="{{ URL::asset('img/' . Auth::user()->id . '.jpg') }}" alt="">
           <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <span class="fs-4 mc">{{ __('ฝ่ายบุคคล') }}</span>
+          <span class="fs-4 ms-auto me-auto">{{ __('ฝ่ายบุคคล') }}</span>
           </a>
         </div>
           <hr>
@@ -38,21 +43,18 @@
               </a>
             </li>
             <hr>
-            <li class="nav-item dropdown">
-              <a href="{{ route('manage_welfare') }}" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                {{ __('จัดการประเภทสวัสดิการ') }}
-              </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="" class="dropdown-item">บุคคล</a>
-                    <a href="" class="dropdown-item">สันทนาการ</a>
-                </div>
-            </li>
-            <hr>
             <li>
-              <a href="{{ route('history') }}" class="nav-link text-white">
+                <a href="{{ route('manage_welfare') }}" class="nav-link text-white">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                  {{ _('จัดการสวัสดิการ') }}
+                </a>
+              </li>
+            <hr>
+
+            <li>
+              <a href="{{ route('report') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                {{ __('รายงานเบิกสวัสดิการ') }}
+                {{ _('ดูรายงานสรุปการเบิก') }}
               </a>
             </li>
           </ul>
@@ -68,10 +70,14 @@
               </a>
         </div>
 
-          <nav class="navbar navbar-expand-lg navbar-light shadow-md">
-            <a class="navbar-brand text-light" style="margin-left: 50%" href="{{ url('/') }}">
-                {{ __('ระบบเบิกสวัสดิการสำหรับพนักงาน') }}
-            </a>
+          <ul class="navbar navbar-expand-lg navbar-light shadow-md justify-content-center py-2">
+          <a href="javascript:void(0);" class="icon">
+          <i class="fa fa-bars" id = "hamburMenu2" onclick= "openNav()" style="font-size: 30px"></i>  <!-- Hamburger menu -->
+            <li class="navbar-nav">
+                <a class="navbar-brand text-light"  href="{{ url('/') }}">
+
+                </a>
+            </li>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -84,22 +90,39 @@
 
                 <!-- Right Side Of Navbar -->
 
-                <ul class="navbar-nav ms-auto">
-
+                <ul class="navbar-nav ms-auto me-auto">
+                    <li class="fs-5">ระบบเบิกสวัสดิการพนักงาน</li>
                 </ul>
             </div>
-          </nav>
+        </ul>
 
-          <main class="py-5 col-10" style="margin-left: 15%">
-            @yield('content')
-          </main>
+          <div class="row justify-content-center">
+            <main class="py-3 col-lg-10">
+                @yield('content')
+              </main>
+          </div>
 
       </div>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+
     @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+    function openNav() {
+      var side_bar = document.getElementById("side_bar");
+      side_bar.classList.remove("d-none");
+      side_bar.style.left = "0px";
+    }
+
+    function closeNav() {
+      document.getElementById("side_bar").style.left = "-300px";
+    }
+    </script>
+
+
 </body>
 </html>
