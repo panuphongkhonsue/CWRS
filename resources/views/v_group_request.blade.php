@@ -28,8 +28,7 @@
 
                             {{-- รหัสพนักงาน --}}
                             <div class="row ms-5 mt-1">
-                                <label for="id"
-                                    class="col-sm-2 col-form-label fw-bold">{{ 'รหัสพนักงาน : ' }}</label>
+                                <label for="id" class="col-sm-2 col-form-label fw-bold">{{ 'รหัสพนักงาน : ' }}</label>
                                 <div class="col-sm-3">
                                     {{-- generate รหัสพนักงาน --}}
                                     <input type="text" class="form-control border-0 bg-transparent fs-16px"
@@ -39,8 +38,7 @@
 
                             {{-- ชื่อ นามกุล --}}
                             <div class="row ms-5 mt-1">
-                                <label for="name"
-                                    class="col-sm-2 col-form-label fw-bold ">{{ 'ชื่อ-สกุล : ' }}</label>
+                                <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ 'ชื่อ-สกุล : ' }}</label>
                                 <div class="col-sm-3">
                                     {{-- generate ชื่อ-นามสกุล --}}
                                     <input type="text"
@@ -66,7 +64,8 @@
                         <div class="row mt-3 mx-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
-                                <select class="form-control border-dark form-select" name="welfare" id="welfare" onclick="updateTotal()">
+                                <select class="form-control border-dark form-select" name="welfare" id="welfare"
+                                    onclick="updateTotal()">
                                     <option selected disabled>เลือกประเภทสวัสดิการ</option>
 
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
@@ -194,7 +193,7 @@
                                         <label for="total" class="col-auto col-form-label ms-auto">จำนวนคนทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control text-end border-0" id = "total_people"
+                                            <input type="text" class="form-control text-end border-0" id="total_people"
                                                 style=" background-color: #eee;" value="{{ __('0') }}" readonly>
                                         </div>
                                         <label for="id" class="col-auto col-form-label me-5">{{ 'คน' }}
@@ -204,7 +203,7 @@
                                         <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control text-end border-0" id = "total_money"
+                                            <input type="text" class="form-control text-end border-0" id="total_money"
                                                 style=" background-color: #eee;" value="{{ __('0.00') }}" readonly>
                                         </div>
                                         <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}
@@ -231,6 +230,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         var rowCount = 0;
+        let user_id = [];
+
         function deleteRow(ele) {
 
             if (ele.id != '') {
@@ -241,13 +242,13 @@
                 $("#tb-role").html('.')
                 $("#tb-role").css('color', 'white')
                 console.log(rowCount);
-            }
-            else{
+            } else {
 
                 var tb = ele.closest("tr");
                 let row = tb.rowIndex;
                 $(tb).remove();
                 document.getElementById("b-detail").deleteRow(row - 1);
+                console.log($('#tb-name'))
                 rowCount--;
                 console.log(rowCount);
             }
@@ -255,7 +256,7 @@
         }
 
         function updateTotal() {
-            let total = Number($("#money").val().replace(/[^0-9.-]+/g,"")) * rowCount;
+            let total = Number($("#money").val().replace(/[^0-9.-]+/g, "")) * rowCount;
             let fixed = total.toLocaleString('en-US') + ".00";
             $("#total_money").val(fixed);
             $("#total_people").val(rowCount);
@@ -263,11 +264,20 @@
         }
 
 
+        function disable_select() {
+            // Get the selected option element
+            var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+
+            // Disable the selected option
+            selected_option.disabled = true;
+            selected_option.classList.add("hidden");
+        }
+
         $(document).ready(function() {
 
             $("#btn_add").click(function() {
                 if (rowCount < 20) {
-                    if (rowCount > 0) {
+                    if (rowCount > 0 && $('#get_user').val() != null) {
                         var l = $('#get_user').val(); /* เก็บค่าที่ Input มา */
                         var i = rowCount;
                         console.log(l)
@@ -290,18 +300,20 @@
                     </tr>
                     `
                         );
-                        if ($('#get_user').val() != null) {
-                            /* นำค่าที่ Input มาใช้ */
-                            var text = JSON.parse(l);
+                        /* นำค่าที่ Input มาใช้ */
+                        var text = JSON.parse(l);
                             var name = text.user_fname + " " + text.user_lname;
                             var role = text.user_role;
                             $('#label_gen' + i).html(name)
                             $('#label_gen ').css("color", "black")
                             $('#role_gen' + i).html(role)
                             $('#role_gen ').css("color", "black")
-                        }
+                            disable_select();
+                            console.log(text);
+                            rowCount++;
 
-                    } else if (rowCount == 0) {
+
+                    } else if (rowCount == 0 && $('#get_user').val() != null) {
                         var x = $('#get_user').val();
                         var text = JSON.parse(x);
                         console.log(text);
@@ -311,8 +323,10 @@
                         $('#tb-name ').css("color", "black")
                         $('#tb-role ').html(role)
                         $('#tb-role ').css("color", "black")
+                        disable_select();
+                        rowCount++;
                     }
-                    rowCount++;
+
 
                 }
                 updateTotal();
