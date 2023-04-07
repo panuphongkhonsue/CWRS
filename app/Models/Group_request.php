@@ -10,13 +10,14 @@ use Illuminate\Database\Eloquent\Model;
     * Model ของ การเบิกแบบสันทนาการ
     * @input :
     * @output : ดึงข้อมูลจากตารางของการเบิกแบบสันทนาการ
-    * @author : Panuphong Khonsue 64160282
+    * @author : Sarun Reaungthai
     * @Create Date : 2023-04-05
 */
 class Group_request extends Model
 {
     use HasFactory;
     protected $table = 'groups_welfares';
+    public $timestamps = false;
 
     public function get_welfare()
     {

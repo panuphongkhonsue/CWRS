@@ -134,12 +134,24 @@ class Request_controller extends Controller
     * @Update Date : 2023-04-06 Panuphong Khonsue 64160282 Query Data To Show in Table
     */
     public function create_group(Request $request){
+        $welfareBudget = json_decode($request->budget);
+        $welfareId = json_decode($request->id);
+        /*return dd($request->emp_id);*/
+        // Retrieve the input values from the form
+        $group_userId = $request->input('user-id');
+        $group_dateCreate = $request->input('date');
+        $group_sumMoney = $request->input('sum-money');
+        $group_welfare = $request->input('welfare');
 
-
-
-
-
-
+        // Create a new group instance using the Eloquent model
+        $group = new Group_request;
+        $group->user_id = $group_userId;
+        $group->create_date = $group_dateCreate;
+        $group->total_price = $group_sumMoney;
+        $group->welfare_budget = $welfareBudget;
+        $group->welfare_id = $welfareId;
+        $group->save();
+        // Redirect to the history route after creating the group
         return redirect()->route('history');
     }
 

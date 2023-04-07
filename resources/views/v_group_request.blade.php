@@ -32,7 +32,7 @@
                                     class="col-sm-2 col-form-label fw-bold">{{ 'รหัสพนักงาน : ' }}</label>
                                 <div class="col-sm-3">
                                     {{-- generate รหัสพนักงาน --}}
-                                    <input type="text" class="form-control border-0 bg-transparent fs-16px"
+                                    <input name = "user-id" type="text" class="form-control border-0 bg-transparent fs-16px"
                                         value="{{ Auth::user()->id }}" disabled>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                             <label for="budget"
                                 class="col-auto col-form-label ms-auto ">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
-                                <input type="text" id="money" class="text-end form-control border-0"
+                                <input name = "wel-budget" type="text" id="money" class="text-end form-control border-0"
                                     style=" background-color: #eee;" value="{{ __('0.00') }} ">
                             </div>
 
@@ -204,7 +204,7 @@
                                         <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control text-end border-0" id = "total_money"
+                                            <input name = "sum-money" type="text" class="form-control text-end border-0" id = "total_money"
                                                 style=" background-color: #eee;" value="{{ __('0.00') }}" readonly>
                                         </div>
                                         <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}
