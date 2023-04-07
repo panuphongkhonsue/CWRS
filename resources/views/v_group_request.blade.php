@@ -66,7 +66,7 @@
                         <div class="row mt-3 mx-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
-                                <select class="form-control border-dark form-select" name="welfare" id="welfare">
+                                <select class="form-control border-dark form-select" name="welfare" id="welfare" onclick="updateTotal()">
                                     <option selected disabled>เลือกประเภทสวัสดิการ</option>
 
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
@@ -83,7 +83,7 @@
                                 class="col-auto col-form-label ms-auto ">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
                                 <input type="text" id="money" class="text-end form-control border-0"
-                                    style=" background-color: #eee;" value="{{ __('0.00') }}">
+                                    style=" background-color: #eee;" value="{{ __('0.00') }} ">
                             </div>
 
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
@@ -195,7 +195,7 @@
                                         </label>
                                         <div class="col-sm-2">
                                             <input type="text" class="form-control text-end border-0" id = "total_people"
-                                                style=" background-color: #eee;" value="{{ __('0.00') }}" readonly>
+                                                style=" background-color: #eee;" value="{{ __('0') }}" readonly>
                                         </div>
                                         <label for="id" class="col-auto col-form-label me-5">{{ 'คน' }}
                                             <label style="color:#fff">__</label></label>
@@ -233,7 +233,8 @@
         var rowCount = 0;
         function deleteRow(ele) {
 
-            if (ele.id = '') {
+            if (ele.id != '') {
+                rowCount = 0;
                 console.log(rowCount);
                 $("#tb-name").html('.')
                 $("#tb-name").css('color', 'white')
@@ -242,6 +243,7 @@
                 console.log(rowCount);
             }
             else{
+
                 var tb = ele.closest("tr");
                 let row = tb.rowIndex;
                 $(tb).remove();
@@ -250,7 +252,6 @@
                 console.log(rowCount);
             }
             updateTotal();
-
         }
 
         function updateTotal() {
