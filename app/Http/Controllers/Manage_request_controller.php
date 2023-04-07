@@ -27,8 +27,14 @@ class Manage_request_controller extends Controller
             $requests->status = -2;
         }
 
+        $month = date("m");
+        $year = date("Y") + 543;
+        $day = date("d");
+        $str = $year . $month . $day;
+        $date = strtotime($str);
+
         $requests->note = $request->note;
-        $requests->hr_approve_date = date("Y-m-d");
+        $requests->hr_approve_date = $date;
         $requests->hr_approver_id = Auth::user()->id;
         $requests->save();
 

@@ -39,7 +39,7 @@ class Request_controller extends Controller
         $welfare_id = NULL;
 
         foreach ($requests as $index => $request) {
-            if (date("Y", strtotime($request->create_date)) == date("Y")
+            if (date("Y", strtotime($request->create_date)) == (date("Y")+543)
                 && ($request->status >= 0)) {
                 $welfare_id[$index] = $request->welfare_id;
             }
@@ -65,15 +65,6 @@ class Request_controller extends Controller
     */
     public function create_single(Request $request): RedirectResponse
     {
-
-        
-        $month = date("m");
-        $year = date("Y") + 543;
-        $day = date("d");
-        $str = $year . $month . $day;
-        $date = strtotime($str);
-        return dd($date);
-
         $validated = $request->validate([
             'filename' => 'required'
         ]);
@@ -81,6 +72,12 @@ class Request_controller extends Controller
         $json = json_decode($request->welfare);
         $welfare = Welfare::find($json->id);
         $user = Auth::user();
+
+        $month = date("m");
+        $year = date("Y") + 543;
+        $day = date("d");
+        $str = $year . $month . $day;
+        $date = strtotime($str);
 
 
         if ($request->hasfile('filename')) {

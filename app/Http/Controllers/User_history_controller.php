@@ -61,9 +61,15 @@ class User_history_controller extends Controller
     */
     public function cancel($id, Request $request)
     {
+        $month = date("m");
+        $year = date("Y") + 543;
+        $day = date("d");
+        $str = $year . $month . $day;
+        $date = strtotime($str);
+
         $requests = Single_request::where('id', $id)->first();
         $requests->status = -1;
-        $requests->hr_approve_date = date("Y-m-d");
+        $requests->hr_approve_date = $date;
         $requests->save();
 
         return redirect()->route('history');
