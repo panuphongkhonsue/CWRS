@@ -71,7 +71,7 @@
               <a class="d-flex nav-link text-white" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
-                  <img class="" src="./img/logout.png" alt="" width="32" height="32" class="">&ensp;
+                  <img class="" src="{{ url('./img/logout.png') }}" alt="" width="32" height="32" class="">&ensp;
                   {{ __('Logout') }}
                   <form id="logout-form" action="{{ route('logout') }}" method="POST">
                       @csrf
