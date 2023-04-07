@@ -72,6 +72,8 @@ class User_history_controller extends Controller
         $requests->hr_approve_date = $date;
         $requests->save();
 
+        sleep(1);
+
         return redirect()->route('history');
     }
 

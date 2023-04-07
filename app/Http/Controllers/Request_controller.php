@@ -51,6 +51,8 @@ class Request_controller extends Controller
             $data = Welfare::where('type', 'S')->whereNotIn('id', $welfare_id)->get();
         }
 
+        sleep(1);
+
         return view('v_request', ['welfares' => $data],);
     }
 

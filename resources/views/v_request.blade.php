@@ -28,8 +28,8 @@
                                         $month = date("m");
                                         $year = date("Y") + 543;
                                         $day = date("d");
-                                        $str = $year . '/' . $month . '/' . $day;
-                                        $date = date("Y-m-d", strtotime($str));
+                                        $str = $day . '/' . $month . '/' . $year;
+                                        $date = date("d/m/Y", strtotime($str));
                                     @endphp
                                     <input type="text" id="date" name="date" class="form-control border-0 bg-transparent " value="{{ $date }}" >
                                 </div>

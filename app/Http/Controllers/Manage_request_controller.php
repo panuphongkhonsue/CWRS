@@ -38,6 +38,8 @@ class Manage_request_controller extends Controller
         $requests->hr_approver_id = Auth::user()->id;
         $requests->save();
 
+        sleep(1);
+
         return redirect()->route('manage_request');
     }
 }
