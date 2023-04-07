@@ -23,7 +23,7 @@
 
                             {{-- ปุ่มค้นหา --}}
                               <div class="ll col-auto ">
-                                <button class="btn" type="button" id="button-addon2"><img src="{{ URL('./img/image1.png') }}" width="18" height="18"></button>
+                                <button class="btn" type="button" id="button-addon2"><img src="./img/image1.png" width="18" height="18"></button>
                               </div>
 
                               {{-- ข้อความ --}}

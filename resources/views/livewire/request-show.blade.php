@@ -45,8 +45,8 @@
                         <td scope="col" class="">{{ $request->get_user->fname }}</td>
                         <td scope="col" class="col-md-3">{{ $request->welfare_name }}</td>
                         <td scope="col" class="col-sm-2 text-end">{{ number_format($request->total_price, 2) }}</td>
-                        <td scope="col" class="col-sm-1 text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"</td>
-                        <td scope="col" class="col-sm-1 text-center"><a href="{{ url('/manage_request/'. $request->id) }}" class="btn btn-sm btn-primary"  style="font-size: 10px">แสดงรายการ</a>
+                        <td scope="col" class="col-sm-1 text-center"><img src="{{ URL('./img/'. $icon) }}" width="32" height="32"</td>
+                        <td scope="col" class="col-sm-1 text-center"><a href="{{ url('./manage_request/'. $request->id) }}" class="btn btn-sm btn-primary"  style="font-size: 10px">แสดงรายการ</a>
                         </td>
                     </tr>
                 @endforeach
