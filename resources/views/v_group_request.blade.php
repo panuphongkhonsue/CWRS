@@ -1,6 +1,16 @@
 {{-- หน้าขอเบิกสวัสดิการแบบบุคคล --}}
 
 @extends(Auth::user()->type == 'E' ? 'employees.v_employee_nav' : 'leaders.v_leader_nav')
+{{--
+     /*
+    *v_group_request.blade.php
+    *หน้าจอแสดงฟอร์มใบเบิกสวัสดิการแบบสันทนาการ
+    *@input : -
+    *@output : แสดงรายการฟอร์มใบเบิกสวัสดิการพนักงาน
+    *@auther : ภูรินทร์ ลามากุล 64160284 และภานุพงศ์ คนซื่อ
+    *@Crete Date : -
+    */
+     --}}
 
 @section('content')
     <div class="row justify-content-center">
