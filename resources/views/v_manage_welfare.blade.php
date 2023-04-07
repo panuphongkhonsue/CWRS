@@ -11,16 +11,16 @@
                         <div class="col">
                             <div class="row">
                                 <label class="col-auto col-form-label">รูปแบบสวัสดิการ :</label>
-                
+
                                 <!-- ตัวเลือกหลายรายการของรูปแบบสวัสดิการ -->
                                 <div class="col-sm-4">
-                                    
+
                                     <livewire:filter-welfare/>
-                                    
+
                                 </div>
                             </div>
                         </div>
-                
+
                         <!-- ปุ่มเพิ่มสวัสดิการ -->
                         <div class="col text-end">
                             <button type="button" class="btn btn-light rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#modal-add">เพิ่มประเภทสวัสดิการ</button>
