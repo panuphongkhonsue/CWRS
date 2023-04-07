@@ -233,21 +233,13 @@
         var rowCount = 0;
         function deleteRow(ele) {
 
-            if (rowCount == 0) {
+            if (ele.id = '') {
                 console.log(rowCount);
                 $("#tb-name").html('.')
                 $("#tb-name").css('color', 'white')
                 $("#tb-role").html('.')
                 $("#tb-role").css('color', 'white')
                 console.log(rowCount);
-            }
-            else if(rowCount == 1){
-                var tb = ele.closest("tr");
-                let row = tb.rowIndex;
-                $(tb).remove();
-                document.getElementById("b-detail").deleteRow(row - 1);
-                console.log(rowCount);
-                rowCount--;
             }
             else{
                 var tb = ele.closest("tr");
