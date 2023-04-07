@@ -114,7 +114,7 @@
                             </div>
                             <div class="col mt-2 mr-2 ps-1">
                                 <button type="button" class="border-0 bg-transparent add-table"><img
-                                        src="./img/add.png" width="20" height="20"
+                                        src="{{ URL::asset('img/add.png') }}" width="20" height="20"
                                         id="btn_add"></button>
                             </div>
                             <div class="row">
@@ -162,7 +162,7 @@
 
                                             <td class="border-0">
                                                 <button type="button" class="add-row border-0 bg-transparent ms-1">
-                                                    <img src="./img/add.png" width="27"
+                                                    <img src="{{ URL::asset('img/add.png') }}" width="27"
                                                         height="27" hidden>
                                                 </button>
                                             </td>
@@ -176,7 +176,7 @@
                                                 <button type="button" id="btn_delete_1"
                                                     class="border-0 bg-transparent remove-row btn"
                                                     onclick="deleteRow(this)">
-                                                    <img src="./img/delete_group_requst.png"
+                                                    <img src="{{ URL::asset('img/delete_group_requst.png') }}"
                                                         width="27" height="17">
                                                 </button>
                                             </td>
@@ -284,7 +284,7 @@
                     <tr class="detail">
                         <td class="border-0">
                             <button type="button" class="btn_delete border-0 bg-transparent remove-row btn" onclick="deleteRow(this)">
-                                <img src="./img/delete_group_requst.png"  width="27" height="17">
+                                <img src="{{ URL::asset('img/delete_group_requst.png') }}"  width="27" height="17">
                             </button>
                         </td>
                     </tr>

@@ -117,7 +117,7 @@
                                             <tr>
                                                 <td class="border-0">
                                                     <button type="button" class="add-row border-0 bg-transparent ms-1">
-                                                        <img src="./img/add.png" width="27" height="27">
+                                                        <img src="{{ URL::asset('img/add.png') }}" width="27" height="27">
                                                     </button>
                                                 </td>
                                             </tr>
@@ -127,7 +127,7 @@
                                             <tr class="detail">
                                                 <td class="border-0">
                                                     <button type="button" class="border-0 bg-transparent remove-row btn" onclick="deleteRow(this)">
-                                                        <img src="./img/delete_group_requst.png"  width="27" height="17">
+                                                        <img src="{{ URL::asset('img/delete_group_requst.png') }}"  width="27" height="17">
                                                    </button>
                                                 </td>
                                             </tr>
@@ -261,7 +261,7 @@
                     <tr class="detail">
                         <td class="border-0">
                             <button type="button" class="border-0 bg-transparent remove-row btn" onclick="deleteRow(this)">
-                                <img src="./img/delete_group_requst.png"  width="27" height="17">
+                                <img src="{{ URL::asset('img/delete_group_requst.png') }}"  width="27" height="17">
                             </button>
                         </td>
                     </tr>
