@@ -30,8 +30,8 @@ class Manage_request_controller extends Controller
         $month = date("m");
         $year = date("Y") + 543;
         $day = date("d");
-        $str = $year . $month . $day;
-        $date = strtotime($str);
+        $str = $year . '/' . $month . '/' . $day;
+        $date = date("Y-m-d", strtotime($str));
 
         $requests->note = $request->note;
         $requests->hr_approve_date = $date;

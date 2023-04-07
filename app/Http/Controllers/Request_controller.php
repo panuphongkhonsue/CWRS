@@ -73,13 +73,6 @@ class Request_controller extends Controller
         $welfare = Welfare::find($json->id);
         $user = Auth::user();
 
-        $month = date("m");
-        $year = date("Y") + 543;
-        $day = date("d");
-        $str = $year . $month . $day;
-        $date = strtotime($str);
-
-
         if ($request->hasfile('filename')) {
             foreach ($request->file('filename') as $file) {
                 $name = $file->getClientOriginalName();
@@ -87,6 +80,12 @@ class Request_controller extends Controller
                 $filename[] = $name;
             }
         }
+
+        $month = date("m");
+        $year = date("Y") + 543;
+        $day = date("d");
+        $str = $year . '/' . $month . '/' . $day;
+        $date = date("Y-m-d", strtotime($str));
 
         $total = array_sum($request->price);
 

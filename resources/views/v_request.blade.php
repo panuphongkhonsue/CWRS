@@ -24,7 +24,14 @@
                             <div class="row">
                                 <label for="budget" class="col-auto col-form-label ms-auto fw-bold ">{{ __('วัน/เดือน/ปี : ') }}</label>
                                 <div class="col-sm-2">
-                                    <input type="text" id="date" name="date" class="form-control border-0 bg-transparent " value="{{ date("d/m/Y") }}" >
+                                    @php
+                                        $month = date("m");
+                                        $year = date("Y") + 543;
+                                        $day = date("d");
+                                        $str = $year . '/' . $month . '/' . $day;
+                                        $date = date("Y-m-d", strtotime($str));
+                                    @endphp
+                                    <input type="text" id="date" name="date" class="form-control border-0 bg-transparent " value="{{ $date }}" >
                                 </div>
                             </div>
 

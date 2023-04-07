@@ -64,8 +64,8 @@ class User_history_controller extends Controller
         $month = date("m");
         $year = date("Y") + 543;
         $day = date("d");
-        $str = $year . $month . $day;
-        $date = strtotime($str);
+        $str = $year . '/' . $month . '/' . $day;
+        $date = date("Y-m-d", strtotime($str));
 
         $requests = Single_request::where('id', $id)->first();
         $requests->status = -1;
