@@ -335,7 +335,7 @@
                         showConfirmButton: false,
                         imageWidth: 150,
                         imageHeight: 150,
-                        timer: 1500
+                        timer: 2000
                 })
                 } else if (result.isDenied) {
                     Swal.fire({
@@ -345,7 +345,7 @@
                     text: 'ยกเลิกคำขอเบิกสวัสดิการไม่สำเร็จ',
                     imageWidth: 150,
                     imageHeight: 150,
-                    timer: 1500
+                    timer: 2000
                     })
                     }
                 })

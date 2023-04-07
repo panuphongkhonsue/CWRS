@@ -72,7 +72,12 @@ class Request_controller extends Controller
         $json = json_decode($request->welfare);
         $welfare = Welfare::find($json->id);
         $user = Auth::user();
-        $date = date("Y-m-d");
+
+        $month = date("m");
+        $year = date("Y") + 543;
+        $day = date("d");
+        $str = $year . $month . $day;
+        $date = strtotime($str);
 
         if ($request->hasfile('filename')) {
             foreach ($request->file('filename') as $file) {
