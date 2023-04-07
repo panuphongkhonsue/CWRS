@@ -6,7 +6,7 @@
     <!-- รูปโลโก้บริษัท -->
     <div class="container">
         <div class="card-login bot">
-            <img src="/img/clicknext.png" alt="" class="img-login">
+            <img src="./img/clicknext.png" alt="" class="img-login">
 
             <div class="card-body">
                     {{--  <div class="card bg-info" style="padding-top: 180px">
@@ -25,7 +25,7 @@
                                     <div class="row">
                                         <div class="col-md-2 input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1"><img src="{{ URL::asset('img/user.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
+                                                <span class="input-group-text" id="basic-addon1"><img src="{{ asset('./img/user.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
                                             </div>
                                             <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Username">
 
