@@ -23,7 +23,7 @@
 
                             {{-- ปุ่มค้นหา --}}
                               <div class="ll col-auto ">
-                                <button class="btn" type="button" id="button-addon2"><img src="{{ URL::asset('img/image1.png') }}" width="18" height="18"></button>
+                                <button class="btn" type="button" id="button-addon2"><img src="{{ URL('./img/image1.png') }}" width="18" height="18"></button>
                               </div>
 
                               {{-- ข้อความ --}}
@@ -71,19 +71,19 @@
                         {{ __('หมายเหตุ')  }}
                         &nbsp; {{ __(':')}}
                         &nbsp;
-                        <img src="{{ URL::asset('img/approve.png') }}" width="25" height="25" alt="">
+                        <img src="./img/approve.png" width="25" height="25" alt="">
                         &nbsp;
                         {{ __('อนุมัติ') }}
                         &nbsp;
-                        <img src="{{ URL::asset('img/cancel.png') }}" width="25" height="25" alt="">
+                        <img src="./img/cancel.png" width="25" height="25" alt="">
                         &nbsp;
                         {{ __('ไม่อนุมัติ') }}
                         &nbsp;
-                        <img src="{{ URL::asset('img/wait.png') }}" width="25" height="25" alt="">
+                        <img src="./img/wait.png" width="25" height="25" alt="">
                         &nbsp;
                         {{ __('รออนุมัติ') }}
                         &nbsp;
-                        <img src="{{ URL::asset('img/cancel2.png') }}" width="25" height="25" alt="">
+                        <img src="./img/cancel2.png" width="25" height="25" alt="">
                         &nbsp;
                         {{ __('ยกเลิก') }}
                     </div>
