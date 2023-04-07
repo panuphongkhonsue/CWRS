@@ -190,7 +190,7 @@
                                 <div class="row mt-3 control-group increment">
                                     <label for="bill" class="col-auto col-form-label">อัปโหลดใบเสร็จ : </label>
                                         <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์">
+                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์" required accept=".jpeg, .pdf, .jpg">
                                         </div>
                                         <div class="col-sm-2">
                                             <button class="btn btn-success add-file" type="button">+</button>
@@ -201,7 +201,7 @@
                                 <div class="clone hide" hidden>
                                     <div class="row mt-3 control-group" style="margin-left: 120px">
                                         <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์">
+                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์" required accept=".jpeg, .pdf, .jpg">
                                         </div>
                                         <div class="col-sm-2">
                                             <button class="btn btn-danger remove-file" type="button">-</button>
