@@ -1,6 +1,6 @@
 {{-- หน้าขอเบิกสวัสดิการแบบบุคคล --}}
 
-@extends(((Auth::user()->type == 'E') ? 'employees.v_employee_nav' : 'leaders.v_leader_nav'))
+@extends(((Auth::user()->type == "E") ? 'employees.v_employee_nav' : 'leaders.v_leader_nav'))
 
 @section('content')
     <div class="row justify-content-center">
