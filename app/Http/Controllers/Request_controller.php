@@ -90,7 +90,7 @@ class Request_controller extends Controller
 
     /*
     * group_request()
-    * แสดงหน้าจอเบิกสวัสดิการแบบบุคคล
+    * แสดงหน้าจอเบิกสวัสดิการแบบสันทนาการ
     * @input : -
     * @output : หน้าจอประวัติการเบิกสวัสดิการ
     * @author : Rawich Piboonsin 64160299
@@ -123,7 +123,21 @@ class Request_controller extends Controller
         return view('v_group_request', ['welfares' => $data],['departments_user'=> $department_user]);
     }
 
+    /*
+    * group_request()
+    * แสดงหน้าจอเบิกสวัสดิการแบบสันทนาการ
+    * @input : User Info, Welfare Info , Member, Total Price , Total People
+    * @output : หน้าจอประวัติการเบิกสวัสดิการ
+    * @author : Rawich Piboonsin 64160299
+    * @Create Date : 2023-03-15
+    * @Update Date : 2023-04-05 Panuphong Khonsue 64160282 call data to show
+    * @Update Date : 2023-04-06 Panuphong Khonsue 64160282 Query Data To Show in Table
+    */
     public function create_group(Request $request){
+
+
+
+
 
 
         return redirect()->route('history');
