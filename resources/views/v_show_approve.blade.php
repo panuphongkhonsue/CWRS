@@ -76,7 +76,7 @@
                                     <div class="col-sm form-group position-relative">
                                         <div class="input-group position-absolute top-0 end-0">
                                             <div class="input-group-prepend ">
-                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/tt11.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
+                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="./img/tt11.png" class="img-rounded" alt="" width="26" height="26"></span>
                                             </div>
                                                 <div class="col-xs-2">
                                                     <input value="{{ date("d/m/Y", strtotime($history->hr_approve_date)) }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
@@ -89,7 +89,7 @@
                                     <div class="col-sm form-group position-relative">
                                         <div class="input-group position-absolute top-0 end-0">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/bg.png') }}" class="img-rounded" alt="" width="26" height="26"</span>
+                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="./img/bg.png" class="img-rounded" alt="" width="26" height="26"</span>
                                             </div>
                                             <div class="col-xs-2">
                                                 <input value="{{ date("d/m/Y", strtotime($history->hr_approve_date)) }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
@@ -152,7 +152,7 @@
                             <div class="col-sm form-group position-relative">
                                 <div class="input-group  position-absolute top-0 end-0">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/tt22.png') }}" class="img-rounded" alt="" width="26" height="26"</span>
+                                        <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="./img/tt22.png" class="img-rounded" alt="" width="26" height="26"</span>
                                     </div>
                                     <div class="col-xs-2">
                                         <input value="{{ $history->get_approver->fname }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
@@ -165,7 +165,7 @@
                             <div class="col-sm form-group position-relative">
                                 <div class="input-group  position-absolute top-0 end-0">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/tt33.png') }}" class="img-rounded" alt="" width="26" height="26"</span>
+                                        <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="./img/tt33.png" class="img-rounded" alt="" width="26" height="26"</span>
                                     </div>
                                     <div class="col-xs-2">
                                         <input value="{{ $history->get_approver->fname }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
@@ -181,7 +181,7 @@
                                 </div>
                             </div>
                             @endif
-                           
+
                         </div>
 
                         <div class="row">
@@ -251,7 +251,7 @@
                                     <div class="card-text px-4 rounded me-3" style="background-color: #eee">
                                         @foreach (json_decode($history->bill) as $bill)
                                             <div class="row">
-                                                <a href="{{ URL::asset('/bills/'. $bill) }}" for="" class="col-auto col-form-label" target="blank">{{ $bill }}</a>
+                                                <a href="{{ URL::asset('./bills/'. $bill) }}" for="" class="col-auto col-form-label" target="blank">{{ $bill }}</a>
                                             </div>
                                         @endforeach
                                     </div>
