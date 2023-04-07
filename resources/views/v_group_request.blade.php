@@ -284,7 +284,7 @@
                     <tr class="detail">
                         <td class="border-0">
                             <button type="button" class="btn_delete border-0 bg-transparent remove-row btn" onclick="deleteRow(this)">
-                                <img src="./img/delete_group_requst.png}"  width="27" height="17">
+                                <img src="{{ url('./img/delete_group_requst.png') }}"  width="27" height="17">
                             </button>
                         </td>
                     </tr>
