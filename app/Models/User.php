@@ -41,7 +41,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
-    public $incrementing = false;
+    public $timestamps = false;
 
     protected $fillable = [
         'name',
