@@ -66,6 +66,7 @@
 
                         <!-- //ในส่วนของตาราง -->
                         <table class="table table-bordered align-items-center" >
+                            <!-- //กำหนดขนาดและสีของตาราง -->
                             <thead class="text-center text-light " id="bg" >
                                 <tr>
                                     <th rowspan="2" class="col-sm-2" valign="middle" align="center">ประเภทสวัสดิการ</th>
@@ -87,7 +88,7 @@
                                         background-color: #DCDCDC;
                                         }
                                     </style >
-                                     <!-- //สร้างตารางสีขาวเทา -->
+                                     <!-- //สร้างตารางและกำหนดสีของตาราง -->
                                     <tr>
                                         <td scope="col">รวิชญ์</td>
                                         <td scope="col" class="text-end">2,000.00</td>
@@ -147,13 +148,20 @@
                         </table>
                     </div>
                 </div>
+                <div class="row mt-4"></div>
+                <div class="col-md-13"></div>
+                    <!-- //กำหนดการเว้นระยะห่างจากส่วนข้างบน -->
+                <center><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                <canvas id="myChart" style="width:300%;max-width:800px"></canvas></center>
             </div>
         </div>
     </div>
 </div>
 
-            <div class="container">
-            <!-- //ตัวแปรตั้งค่าโครง -->
+
+
+            <!-- <div class="container">
+            //ตัวแปรตั้งค่าโครง -->
             <div class="col-lg-13">
                 <!-- //กำหนดบรรทัด col ของหน้าจอ -->
                 <div class="card">
@@ -232,6 +240,7 @@
                                 </thead>
                                 <!-- //กำหนดหัวข้อของตาราง -->
                                 <table class="table table-striped">
+                                    <!-- //สร้างตารางและกำหนดสีของตาราง -->
                                     <tr>
                                         <td scope="col"></td>
                                     </tr>
@@ -252,4 +261,29 @@
                         </table>
                             </div>
                         </div>
+
+
+<script>
+var xValues = ["2566", "2565", "2564", "2563", "2562"];
+var yValues = [30, 49, 40, 24, 40];
+var barColors = ["DodgerBlue", "LightGray","DodgerBlue","LightGray","DodgerBlue"];
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "กราฟสรุปยอดเงินย้อนหลัง 5 ปี"
+    }
+  }
+});
+</script>
 @endsection
