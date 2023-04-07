@@ -1,5 +1,5 @@
 {{-- ในส่วนของตาราง --}}
-@if($walfare_year=='999')
+@if($report_year =='999')
 <table class="table table-bordered align-items-center" >
     <thead class="text-center text-light " id="bg" >
         <tr>
@@ -23,20 +23,7 @@
         @foreach ($requests as $index => $request)
                 <tr>
                     @php ($total = number_format(array_sum(json_decode($request->price)), 2))
-                        @switch($request->status)
-                        @case(0)
-                            @php ($icon = 'wait.png')
-                                @break
-                            @case(-2)
-                                @php ($icon = 'cancel.png')
-                                @break
-                            @case(1)
-                                @php ($icon = 'approve.png')
-                                @break
-                            @case(-1)
-                                @php ($icon = 'cancel2.png')
-                                @break
-                        @endswitch
+                        
                         @switch($request->get_welfare->type)
                         @case('S')
                             @php ($text = 'บุคคล')
@@ -45,15 +32,15 @@
                             @php ($text = 'สันทนาการ')
                             @break
                         @endswitch
-                        @if($walfare_year =='999')
+                        @if($report_year =='999')
                             <td class="text-center">{{ $request->get_welfare->title }}</td>
                             <td class="text-center">{{ $request->id }}</td>
                             <td class="text-center">บุคคล</td>
-                            <td>{{  }}</td>
+                            <td></td>
                             <td class="text-end">{{ $total }}</td>
-                            <td class="text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"></td>
-                            <td class="text-center"><a href="{{ route('show_history', ['id' => $request->id]) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
-                        @elseif($walfare_year==date("Y",strtotime($request->create_date)))
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                        @elseif($report_year==date("Y",strtotime($request->create_date)))
                             <td class="text-center">{{ date("d/m/Y", strtotime($request->create_date)) }}</td>
                             <td class="text-center">{{ $request->id }}</td>
                             <td class="text-center">บุคคล</td>
@@ -62,8 +49,9 @@
                             <td class="text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"></td>
                             <td class="text-center"><a href="{{ route('show_history', ['id' => $request->id]) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
                 @endif
-            @endforeach
+            
             </tr>
+            @endforeach
     </tbody>
  </table>
 
