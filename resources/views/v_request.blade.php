@@ -17,7 +17,7 @@
                  <div class="card-body" style="padding: 0px 50px 50px 50px">
 
                     {{-- กรอบข้อมูล --}}
-                    <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
+                    <form id = "form-reg" method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
                         {{-- วันที่ --}}
@@ -199,6 +199,7 @@
             </div>
         </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">
@@ -279,18 +280,11 @@
             $("#money").val(fixed);
         })
 
-        $('#alert').click(function() {
-            Swal.fire({
-                icon: 'error',
-                title: 'แน่ใจ ?'
-            })
-        })
-
         $("#btn-sendreq").click(function() {
             Swal.fire({
             title: 'คุณแน่ใจหรือไม่ ?',
             text: 'คุณต้องการยืนยันการเบิกสวัสดิการหรือไม่',
-            imageUrl: '{{ URL('./img/aleart1.png') }} ',
+            imageUrl: '{{ URL('./img/alert1.png') }} ',
             imageWidth: 150,
             imageHeight: 150,
             denyButtonText: 'ยกเลิก',
@@ -305,12 +299,12 @@
                 denyButton: 'deny-button-class'
             },
             preConfirm: () => {
-                document.getElementById('form_reimburse').submit();
+                document.getElementById('form-reg').submit();
             }
             }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                imageUrl: '{{ URL::asset('img/correct-1.png') }} ',
+                imageUrl: '{{ URL('./img/correct1.png') }} ',
                 title: 'สำเร็จ',
                 text: 'คุณยืนยันการเบิกสวัสดิการสำเร็จ',
                 showConfirmButton: false,
@@ -318,19 +312,19 @@
                 imageHeight: 150,
                 timer: 1500
             })
-            } else if (result.isDenied) {
-                Swal.fire({
-                imageUrl: '{{ URL::asset('img/cancel_welfare.png') }} ',
-                title: 'ไม่สำเร็จ',
-                showConfirmButton: false,
-                text: 'คุณยืนยันการเบิกสวัสดิการไม่สำเร็จ',
-                imageWidth: 150,
-                imageHeight: 150,
-                timer: 1500
+        } else if (result.isDenied) {
+            Swal.fire({
+            imageUrl: '{{ URL('./img/cancelreq.png') }} ',
+            title: 'ไม่สำเร็จ',
+            showConfirmButton: false,
+            text: 'คุณยืนยันการเบิกสวัสดิการไม่สำเร็จ',
+            imageWidth: 150,
+            imageHeight: 150,
+            timer: 1500
             })
             }
-            })
-            });
+        })
+});
     });
 
 </script>

@@ -10,7 +10,7 @@
                     <hr width="295" class="mb-2"></div>
 
                 <div class="card-body mx-5 px-5 mb-0 border-0 p-0">
-                    <form method="POST" action="{{ route('confirm', ['id' => $history->id]) }}" enctype="multipart/form-data">
+                    <form id="confirm-req" method="POST" action="{{ route('confirm', ['id' => $history->id]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="row mt-2">
@@ -271,10 +271,12 @@
 
                         @if(($history->status) == 0)
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4 mt-5">
-                                <button name="dec" value="reject" class="btn btn-md btn-danger me-md-4">ไม่อนุมัติ</a>
-                                <button name="dec" value="accept" class="btn btn-md btn-success">อนุมัติ</a>
+                                <button type="button" name="" id="rej" value="reject" class="btn btn-md btn-danger me-md-4 confirm">ไม่อนุมัติ</button>
+                                <button type="button" name="" id="acc" value="accept" class="btn btn-md btn-success confirm">อนุมัติ</button>
                             </div>
                         @endif
+
+                        <input type="text" name="dec" id="dec" hidden>
 
                         </div>
                     </form>
@@ -282,5 +284,110 @@
 
         </div>
     </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $("#acc").click(function() {
+            var des = document.getElementById("dec");
+            des.value = "accept";
+
+            Swal.fire({
+                title: 'คุณแน่ใจหรือไม่ ?',
+                text: 'คุณต้องการอนุมัติคำขอเบิกสวัสดิการนี้หรือไม่',
+                imageUrl: '{{ URL('./img/alert1.png') }} ',
+                imageWidth: 150,
+                imageHeight: 150,
+                denyButtonText: 'ยกเลิก',
+                confirmButtonText: 'ยืนยัน',
+                confirmButtonColor: '#32cd32',
+                denyButtonColor: '#ff0000',
+                showDenyButton: true,
+                showCloseButton: true,
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: 'confirm-button-class',
+                    denyButton: 'deny-button-class'
+                },
+                preConfirm: () => {
+                    document.getElementById("confirm-req").submit();
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        imageUrl: '{{ URL('./img/correct1.png') }} ',
+                        title: 'สำเร็จ',
+                        text: 'อนุมัติคำขอเบิกสวัสดิการสำเร็จ',
+                        showConfirmButton: false,
+                        imageWidth: 150,
+                        imageHeight: 150,
+                        timer: 1500,
+                    })
+                } else if (result.isDenied) {
+                    Swal.fire({
+                        imageUrl: '{{ URL('./img/cancelreq.png') }} ',
+                        title: 'ไม่สำเร็จ',
+                        showConfirmButton: false,
+                        text: 'ยกเลิกการอนุมัติคำขอ',
+                        imageWidth: 150,
+                        imageHeight: 150,
+                        timer: 1500
+                    })
+                }
+            })
+        })
+
+        $("#rej").click(function() {
+            var des = document.getElementById("dec");
+            des.value = "reject";
+            Swal.fire({
+                title: 'คุณแน่ใจหรือไม่ ?',
+                text: 'คุณต้องการอนุมัติคำขอเบิกสวัสดิการนี้หรือไม่',
+                imageUrl: '{{ URL('./img/alert1.png') }} ',
+                imageWidth: 150,
+                imageHeight: 150,
+                denyButtonText: 'ยกเลิก',
+                confirmButtonText: 'ยืนยัน',
+                confirmButtonColor: '#32cd32',
+                denyButtonColor: '#ff0000',
+                showDenyButton: true,
+                showCloseButton: true,
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: 'confirm-button-class',
+                    denyButton: 'deny-button-class'
+                },
+                preConfirm: () => {
+                    document.getElementById("confirm-req").submit();
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        imageUrl: '{{ URL('./img/correct1.png') }} ',
+                        title: 'สำเร็จ',
+                        text: 'ปฏิเสธคำขอเบิกสวัสดิการสำเร็จ',
+                        showConfirmButton: false,
+                        imageWidth: 150,
+                        imageHeight: 150,
+                        timer: 1500
+                    })
+                } else if (result.isDenied) {
+                    Swal.fire({
+                        imageUrl: '{{ URL('./img/cancelreq.png') }} ',
+                        title: 'ไม่สำเร็จ',
+                        showConfirmButton: false,
+                        text: 'ยกเลิกการปฏิเสธคำขอ',
+                        imageWidth: 150,
+                        imageHeight: 150,
+                        timer: 1500
+                    })
+                }
+            })
+        })
+    })
+</script>
 @endsection
 
