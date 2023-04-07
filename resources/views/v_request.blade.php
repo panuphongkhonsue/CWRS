@@ -191,7 +191,7 @@
                         {{-- ปุ่มส่งเบิก --}}
                         <div class="row">
                             <div class="col-sm-2 ms-auto">
-                                <button type="submit" class="btn btn-success">ส่งเบิก</button>
+                                <button type="button" id="btn-sendreq" class="btn btn-success">ส่งเบิก</button>
                             </div>
                         </div>
                     </form>
@@ -278,6 +278,59 @@
 
             $("#money").val(fixed);
         })
+
+        $('#alert').click(function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'แน่ใจ ?'
+            })
+        })
+
+        $("#btn-sendreq").click(function() {
+            Swal.fire({
+            title: 'คุณแน่ใจหรือไม่ ?',
+            text: 'คุณต้องการยืนยันการเบิกสวัสดิการหรือไม่',
+            imageUrl: '{{ URL('./img/aleart1.png') }} ',
+            imageWidth: 150,
+            imageHeight: 150,
+            denyButtonText: 'ยกเลิก',
+            confirmButtonText: 'ยืนยัน',
+            confirmButtonColor: '#32cd32',
+            denyButtonColor: '#ff0000',
+            showDenyButton: true,
+            showCloseButton: true,
+            reverseButtons: true,
+            customClass: {
+                confirmButton: 'confirm-button-class',
+                denyButton: 'deny-button-class'
+            },
+            preConfirm: () => {
+                document.getElementById('form_reimburse').submit();
+            }
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                imageUrl: '{{ URL::asset('img/correct-1.png') }} ',
+                title: 'สำเร็จ',
+                text: 'คุณยืนยันการเบิกสวัสดิการสำเร็จ',
+                showConfirmButton: false,
+                imageWidth: 150,
+                imageHeight: 150,
+                timer: 1500
+            })
+            } else if (result.isDenied) {
+                Swal.fire({
+                imageUrl: '{{ URL::asset('img/cancel_welfare.png') }} ',
+                title: 'ไม่สำเร็จ',
+                showConfirmButton: false,
+                text: 'คุณยืนยันการเบิกสวัสดิการไม่สำเร็จ',
+                imageWidth: 150,
+                imageHeight: 150,
+                timer: 1500
+            })
+            }
+            })
+            });
     });
 
 </script>
