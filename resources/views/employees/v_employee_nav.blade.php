@@ -17,9 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet"/>
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ URL::asset('/css/home.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
+    <link rel="stylesheet" href="{{ URL::asset('/css/home.css') }}">
 
     @livewireStyles
 
@@ -43,7 +42,7 @@
             <li>
               <a href="{{ route('home') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                {{ __('หน้าหลัก') }}
+                {{ _('หน้าหลัก') }}
               </a>
             </li>
             <hr>
@@ -66,12 +65,7 @@
             <li>
               <a href="{{ route('history') }}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                {{ __('ประวัติของฉัน') }}
-              </a>
-
-              <a href="{{ route('group_request') }}" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                {{ __('55555555555555') }}
+                {{ _('ประวัติของฉัน') }}
               </a>
             </li>
           </ul>
@@ -98,9 +92,10 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <div class="collapse navbar-collapse text-light" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-na
-            <div class="collapse navbv">
+                <ul class="navbar-nav">
 
                 </ul>
 
@@ -126,8 +121,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link href="{{ asset('dist/css/select2.min.css') }}" rel="stylesheet" />
-    <script src="{{ asset('dist/js/select2.min.js') }}"></script>
     <script>
     function openNav() {
         var side_bar = document.getElementById("side_bar");

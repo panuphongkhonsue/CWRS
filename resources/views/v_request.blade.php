@@ -8,6 +8,7 @@
            {{--  กรอบพื้นหลัง --}}
             <div class="card">
 
+
                 {{-- หัวข้อใบเบิก --}}
                 <div class="i mx-5" style="line-height:20px">{{ __('เบิกสวัสดิการแบบบุคคล') }}
                     <hr width="295" class="mb-2">{{-- เส้นใต้ --}}
@@ -52,17 +53,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                        {{-- <button class="px-2 py-auto rounded-circle">+</button> --}}
-
 
                         {{-- แถบเลือกประเภท --}}
                         <div class="row mt-3 mx-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
                                 <select class="form-control border-dark form-select" name="welfare" id="welfare">
-                                    <option disabled>เลือกประเภทสวัสดิการ</option>
+                                    <option selected disabled>เลือกประเภทสวัสดิการ</option>
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
                                     @foreach ($welfares as $welfare)
                                         <option value='{"id":{{ $welfare->id }}, "budget":{{ $welfare->budget }}}'>{{ $welfare->title }}</option>
@@ -88,7 +85,7 @@
                                 <hr width="255" class="my-0">
                                 <div class="text-danger mb-2" style="font-size: 13px">จำนวนสูงสุด 10 รายการ</div>
                             </div>
-                        </div> --}}
+                        </div>
 
 
                         {{-- ตารางรายละเอียด --}}
