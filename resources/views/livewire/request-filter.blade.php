@@ -5,7 +5,7 @@
                 <button wire:click="filter({{ 999 }})" type="button" class="btn btn-custom" value="999">
                     <div class="card-body">
                         <div class="row justify-content-center">
-                            <div class="col text-start ms-3"><img  class="" src="'./img/image.png" width="80" height="80"></div>
+                            <div class="col text-start ms-3"><img  class="" src="./img/image.png" width="80" height="80"></div>
                             <div class="col text-center me-5 mt-2">
                                 <div class="text-primary fs-5">ทั้งหมด</div>
                                 <div class="fs-5">219</div>
