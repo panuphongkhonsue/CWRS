@@ -28,5 +28,6 @@ class ShowWelfare extends Component
     public function reload($type)
     {
         $this->type = $type;
-    } 
+        $this->resetPage();
+    }
 }

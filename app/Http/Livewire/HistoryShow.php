@@ -27,7 +27,7 @@ class HistoryShow extends Component
             return view('livewire.history-show', ['requests' => Single_request::where('status', $this->status)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
         }
     }
-
+// whereYear('create_date', $this->walfare_year)->
     public function reload($status, $walfare_type, $walfare_year)
     {
         $this->resetPage();

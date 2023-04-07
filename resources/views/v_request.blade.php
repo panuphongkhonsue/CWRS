@@ -17,7 +17,6 @@
                  <div class="card-body" style="padding: 0px 50px 50px 50px">
 
                     {{-- กรอบข้อมูล --}}
-
                     <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
@@ -46,7 +45,6 @@
                                 </div>
                             </div>
 
-
                             {{-- แผนก --}}
                             <div class="row ms-3 mt-1 mb-2 ">
                                 <label for="department" class="col-sm-2 col-form-label fw-bold">{{ __('แผนก : ') }}</label>
@@ -61,8 +59,7 @@
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
                                 <select class="form-control border-dark form-select" name="welfare" id="welfare">
-                                    <option selected disabled >เลือกประเภทสวัสดิการ</option>
-
+                                    <option disabled>เลือกประเภทสวัสดิการ</option>
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
                                     @foreach ($welfares as $welfare)
                                         <option value='{"id":{{ $welfare->id }}, "budget":{{ $welfare->budget }}}'>{{ $welfare->title }}</option>
@@ -105,8 +102,8 @@
 
                                             <tbody id="b-detail">
                                                 <tr>
-                                                    <td><input type="text" name="item[]" class="form-control border-0" placeholder="กรอกรายละเอียด"></td>
-                                                    <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()" placeholder="กรอกราคา"></td>
+                                                    <td><input type="text" name="item[]" class="form-control border-0" placeholder="กรอกรายละเอียด" required autofocus></td>
+                                                    <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()" placeholder="กรอกราคา" required autofocus></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -149,12 +146,18 @@
                                                 <input type="text" id="total" class="form-control text-end border-0" style=" background-color: #eee;"
                                                 value="{{ __('0.00') }}" readonly>
                                             </div>
-                                            <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }} <label style="color:#fff">_</label></label>
+                                            <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }} <label style="color:#fff">_</label>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
+
+                            @error('filename')
+                                <div class="row mx-5">
+                                    <div class="col-md-3 alert alert-danger fs-7">{{ $message }}</div>
+                                </div>
+                            @enderror
 
                             <div class="row">
                                 <div class="col-md-7 mx-5">
@@ -163,7 +166,7 @@
                                 <div class="row mt-3 control-group increment">
                                     <label for="bill" class="col-auto col-form-label">อัปโหลดใบเสร็จ : </label>
                                         <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์">
+                                            <input type="file" name="filename[]" class="form-control file @error('filename') is-invalid @enderror" value="อัปโหลดไฟล์" accept=".jpeg, .pdf, .jpg">
                                         </div>
                                         <div class="col-sm-2">
                                             <button class="btn btn-success add-file" type="button">+</button>
@@ -174,10 +177,10 @@
                                 <div class="clone hide" hidden>
                                     <div class="row mt-3 control-group" style="margin-left: 120px">
                                         <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file" value="อัปโหลดไฟล์">
+                                            <input type="file" name="filename[]" class="form-control file  @error('filename') is-invalid @enderror" value="อัปโหลดไฟล์" accept=".jpeg, .pdf, .jpg">
                                         </div>
                                         <div class="col-sm-2">
-                                            <button class="btn btn-danger remove-file" type="button">-</button>
+                                            <button type="button" class="btn btn-danger remove-file">-</button>
                                         </div>
                                     </div>
                                 </div>
@@ -192,8 +195,11 @@
                             </div>
                         </div>
                     </form>
+                 </div>
+            </div>
+        </div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     var rowCount = 1;
@@ -207,19 +213,20 @@
             $(tb).remove();
             document.getElementById("b-detail").deleteRow(row-1);
             rowCount--;
+            updateTotal();
         }
     }
 
     function updateTotal() {
         var col = document.getElementsByClassName("price");
-            let total = 0;
-            
-            for (let i = 0 ; i < col.length ; i++) {
-               total = total +  Number($(col[i]).val());
-            }
+        let total = 0;
 
-            let fixed = total.toLocaleString('en-US') + ".00"
-            $("#total").val(fixed);
+        for (let i = 0 ; i < col.length ; i++) {
+            total = total +  Number($(col[i]).val());
+        }
+
+        let fixed = total.toLocaleString('en-US') + ".00";
+        $("#total").val(fixed);
     }
 
     $(document).ready(function() {
@@ -243,8 +250,8 @@
                 $('#b-detail').append(
                     `
                     <tr>
-                        <td><input type="text" name="item[]" class="form-control border-0"></td>
-                        <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()"></td>
+                        <td><input type="text" name="item[]" class="form-control border-0" required autofocus></td>
+                        <td><input type="number" name="price[]" class="form-control text-end border-0 price" required autofocus onchange="updateTotal()"></td>
                     </tr>
                     `
                 );
@@ -267,10 +274,9 @@
         $('#welfare').change(function() {
             var val = $(this).val();
             var text = JSON.parse(val);
-            var budget = Number(text.budget);
-            var fixed = budget.toFixed(2);
+            var fixed = text.budget.toLocaleString('en-US') + ".00";
 
-            $("#money").val(Intl.NumberFormat('en-US').format(fixed));
+            $("#money").val(fixed);
         })
     });
 
