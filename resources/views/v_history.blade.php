@@ -14,7 +14,7 @@
                 <div class="row mt-3">
                     <livewire:history-show/>
                 </div>
-                    
+
                     <div class="col-lg-5 ms-auto text-end">
                         {{ __('หมายเหตุ')  }}
                         &nbsp; {{ __(':')}}
@@ -41,8 +41,8 @@
         </div>
     </div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-{{-- <script type="text/javascript">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    {{-- <script type="text/javascript">
     $(document).ready(function() {
         $(".btn-custom").click(function() {
             var selected = document.getElementById("selected");
