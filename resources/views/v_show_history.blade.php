@@ -154,7 +154,7 @@
                                 @endif
 
                                 <!-- ชื่อ-นามกสุล -->
-                                <div class="row mb-4">
+                                <div class="row">
                                     <div class="col-sm-2">
                                         <label for="name" class="col-form-label fw-bold">{{ __('ชื่อ-สกุล : ') }}</label>
                                     </div>
@@ -190,11 +190,7 @@
 
                                     <!-- แสดงก็ต่อเมื่อผู้ใช้ยกเลิกการเบิก-->
                                     @else
-                                    <div class="col-sm form-group position-relative">
-                                        <div class="input-group  position-absolute top-0 end-0">
 
-                                        </div>
-                                    </div>
                                     @endif
                                 </div>
 
