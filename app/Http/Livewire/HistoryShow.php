@@ -41,4 +41,3 @@ class HistoryShow extends Component
         $this->walfare_year = $walfare_year;
     }
 }
- 
