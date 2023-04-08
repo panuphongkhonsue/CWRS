@@ -6,13 +6,15 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Single_request;
 use Livewire\WithPagination;
+use App\Models\Welfare;
 
 class ReportShow extends Component
 {
     use WithPagination;
     public $report_status = 1;
-    public $report_type = 999;
+    public $report_type = "S";
     public $report_year = 999;
+    public $total_year = '{{welfare->title}}';
     protected $listeners = ['reload'];
 
     protected $paginationTheme = 'bootstrap';
@@ -21,7 +23,7 @@ class ReportShow extends Component
     {
 
         if ($this->report_status == 1) {
-            return view('livewire.report-show', ['requests' => Single_request::where('status', 1)->groupBy('date("Y",strtotime($request->create_date))')->paginate(10)]);
+            return view('livewire.report-show', ['requests' => Single_request::where('status', 1)->paginate(10)]);
         }
         else {
             return view('livewire.report-show', ['requests' => Single_request::where('status', 0)->paginate(10)]);

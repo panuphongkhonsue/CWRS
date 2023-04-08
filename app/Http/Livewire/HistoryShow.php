@@ -20,7 +20,7 @@ class HistoryShow extends Component
     public function render()
     {
 
-        if ($this->status == 999) {
+        if ($this->status == 999 ) {
             return view('livewire.history-show', ['requests' => Single_request::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
         }
         else {

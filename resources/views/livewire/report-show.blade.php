@@ -20,7 +20,8 @@
             background-color: #DCDCDC;
             }
         </style >
-        @foreach ($requests as $index => $request)
+        <!-- @foreach ($requests as $index => $request)
+            
                 <tr>
                     @php ($total = number_format(array_sum(json_decode($request->price)), 2))
                         
@@ -34,7 +35,7 @@
                         @endswitch
                         @if($report_year =='999')
                             <td class="text-center">{{ $request->get_welfare->title }}</td>
-                            <td class="text-center">{{ $request->id }}</td>
+                            <td class="text-center">{{ $total_year }}</td>
                             <td class="text-center">บุคคล</td>
                             <td></td>
                             <td class="text-end">{{ $total }}</td>
@@ -51,6 +52,24 @@
                 @endif
             
             </tr>
+            @endforeach -->
+            @foreach ($welfares as $welfare)
+                <tr>
+                    @switch($welfare->type)
+                        @case('S')
+                            @php ($text = "บุคคล")
+                            @break
+                        @case('G')
+                            @php ($text = "สันทนาการ")
+                            @break
+                    @endswitch
+                    <td scope="col" class="text-center">{{ $text }}</td>
+                    <td scope="col" class="title">{{ $welfare->title }}</td>
+                    <td scope="col" class="text-end budget">{{ $welfare->budget }}</td>
+                    <td scope="col" class="text-center">{{ $welfare->user->fname }}</td>
+                    <td scope="col" class="text-center"><button type="button" class="show_data btn btn-sm btn-warning text-light" data-bs-toggle="modal" data-bs-target="#modal-in">แก้ไข</button></td>
+                    <td class="d-none">{{ $welfare->id }}</td>
+                </tr>
             @endforeach
     </tbody>
  </table>
