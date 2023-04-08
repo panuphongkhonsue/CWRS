@@ -147,8 +147,9 @@
                                         <tr>
                                             <td class="count_people"><input id="tb-name" type="text" name="user_info[]"
                                                     class="form-control border-0 bg-white us" style="color:#ffff"></td>
-                                            <td><label id="tb-role" type="text" name="role[]"
-                                                    class="form-control text-end border-0 bg-white"></td>
+                                            <td class="count_role form-control text-end border-0"><label id="tb-role"
+                                                    type="text" name="role[]" class="form-control text-end border-0">
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -175,7 +176,7 @@
                                         <tr class="detail">
                                             <td class="border-0">
                                                 <button type="button" id="btn_delete_1"
-                                                    class="border-0 bg-transparent remove-row btn"
+                                                    class="btn_delete border-0 bg-transparent remove-row btn"
                                                     onclick="deleteRow(this)">
                                                     <img src="{{ URL::asset('img/delete_group_requst.png') }}"
                                                         width="27" height="17">
@@ -238,30 +239,27 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         var rowCount = 0;
-        let user_id = [];
-        let selected = [];
+        var num1 = '';
+        var num2 = '';
         var id = [];
+        var element_name = [];
 
         function deleteRow(ele) {
-            if (ele.id != '') {
-                if (rowCount > -1) { // only splice array when item is found
-                    id.splice(rowCount-1, 1); // 2nd parameter means remove one item only
-                }
+            var btn_del = $('.btn_delete').length;
+            var selected_option = document.getElementById("get_user").options[document.getElementById("get_user")
+                .selectedIndex];
+            var selected_near_option = document.getElementById("get_user");
+
+            if (btn_del == 1 || rowCount == 0) {
+                var button_index = getRowIndex(ele)
                 var selected_option = document.getElementById("get_user").options[document.getElementById("get_user")
                     .selectedIndex];
-
-                console.log("ss")
-                $("#tb-name").val('.')
+                $("#tb-name").html('.')
                 $("#tb-name").css('color', 'white')
-                $("#tb-role").html('.')
+                $("#tb.role").html('.')
                 $("#tb-role").css('color', 'white')
-                // selected_option.removeAttribute('disabled');
-                selected_option.disabled = false;
-
+                num1 = 'a';
                 rowCount = 0;
-
-                console.log(rowCount);
-
                 if (rowCount == 0) {
                     var selected_option = document.getElementById("get_user");
                     for (let index = 0; index < selected_option.length; index++) {
@@ -275,29 +273,29 @@
                 if (rowCount > -1) { // only splice array when item is found
                     id.splice(0, 1); //
                 }
+                console.log("Rowcount = " + rowCount);
                 $("#us_id").val(id);
-                console.log($("#us_id").val())
-
+                console.log("index = " + button_index);
             } else {
-                var selected_option = document.getElementById("get_user").options[document.getElementById("get_user")
-                    .selectedIndex];
+                var button_index = getRowIndex(ele)
+                //เรียกฟังก์ชันหา indexจากปุ่มที่กด
                 var tb = ele.closest("tr");
                 let row = tb.rowIndex;
                 $(tb).remove();
                 document.getElementById("b-detail").deleteRow(row - 1);
-                // console.log($('#tb-name'))
                 rowCount--;
+                console.log("RowCount = " + rowCount);
+
+                // console.log($('#tb-name'))
                 selected_option.disabled = false;
                 updateTotal();
-                console.log(rowCount);
                 if (rowCount > -1) { // only splice array when item is found
-                    var index = rowCount
-                    id.splice(index, 1); //
+                    id.splice(button_index - 1, 1);
                 }
+                num2 = 's';
                 $("#us_id").val(id);
+                console.log("index = " + button_index);
             }
-            console.log(id);
-            console.log($("#us_id").val())
         }
 
         function updateTotal() {
@@ -307,6 +305,14 @@
             $("#total_people").val(rowCount);
 
         }
+
+        //ฟังก์ชันหา index ของ ปุ่มลบ
+        function getRowIndex(button) {
+            var row = button.parentNode.parentNode;
+            var rowIndex = row.rowIndex;
+            return rowIndex;
+        }
+
 
 
         // function disable_select() {
@@ -326,7 +332,6 @@
 
         $(document).ready(function() {
             $("#btn_add").click(function() {
-
                 if (rowCount < 20) {
                     if (rowCount > 0 && $('#get_user').val() != null) {
                         var l = $('#get_user').val(); /* เก็บค่าที่ Input มา */
@@ -334,17 +339,17 @@
                         $('#b-detail').append(
                             `
                         <tr>
-                        <td><input type="text" id="label_gen` + i + `" name="user_info[]" class="form-control border-0 bg-white us" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
-                        <td><label type="text" id ="role_gen` + i + `" name="role[]" class="form-control text-end border-0" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td class="count_people"><label type="text" id="label_gen" name="user_info[]" class="form-control border-0" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td class="count_role"><label type="text" id ="role_gen" name="role[]" class="form-control text-end border-0" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
                     </tr>
                     `
                         );
                         $('#b-detail-2').append(
                             `
                     <tr class="detail">
-                        <td class="border-0">
+                    <td class="border-0">
                             <button type="button" class="btn_delete border-0 bg-transparent remove-row btn" onclick="deleteRow(this)">
-                                <img src="{{ URL::asset('img/delete_group_requst.png') }}"  width="27" height="17">
+                                <img src="{{ url('./img/delete_group_requst.png') }}"  width="27" height="17">
                             </button>
                         </td>
                     </tr>
@@ -358,21 +363,17 @@
                         var name = text[1] + " " + text[2];
                         var role = text[3];
                         id.push(text[0]);
-
-                        $('#label_gen' + i).val(name)
-                        console.log(id)
-                        $('#label_gen ').css("color", "black")
-                        $('#role_gen' + i).html(role)
-                        $('#role_gen ').css("color", "black")
-                        // disable_select();
+                        $('#label_gen').html(name)
+                        $('#label_gen').css("color", "black")
+                        $('#role_gen').html(role)
+                        $('#role_gen').css("color", "black")
                         rowCount++;
                         selected_option.disabled = true;
-                        console.log(rowCount);
-                         updateTotal();
+
+                        updateTotal();
                     } else if (rowCount == 0 && $('#get_user').val() != null) {
                         var selected_option = document.getElementById("get_user").options[document
                             .getElementById("get_user").selectedIndex];
-
                         var x = $('#get_user').val();
                         var text = x.split('|');
                         var name = text[1] + " " + text[2];
@@ -386,7 +387,7 @@
                         // disable_select();
                         rowCount++;
                         selected_option.disabled = true;
-                        console.log(rowCount);
+
                         updateTotal();
                     }
                     $("#us_id").val(id);

@@ -103,7 +103,7 @@ class Request_controller extends Controller
     {
 
         $user = Auth::user();
-        $requests = Group_request::where('user_id', $user->id)->get();
+        $requests = User_group_welfare::where('user_id', $user->id)->get();
         $department_user = User::where('department_id', $user->department_id)->get();
         $welfare_id[0] = NULL;
 
@@ -141,8 +141,8 @@ class Request_controller extends Controller
         $date = date("Y-m-d");
         $selected_user_id = $request->input('get_user_id'); // get the value of the input field
         $welfare_obj1 = json_decode($request->welfare);
-
         $user_id = explode(',', $request->get_user_id[0]);
+        return dd(user_id);
         $welfareBudget = $welfare_obj1->budget;
         $welfareObj2 = json_decode($request->welfare);
         $welfareId = $welfareObj2->id;
@@ -170,7 +170,7 @@ class Request_controller extends Controller
         $group->save();
         // Redirect to the history route after creating the group
 
-        
+
         foreach($user_id as $index => $user2){
             $group1 = new User_group_welfare;
             $group1->group_welfare_id = $welfareId;
