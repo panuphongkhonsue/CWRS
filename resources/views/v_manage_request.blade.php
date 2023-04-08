@@ -3,9 +3,13 @@
 @section('content')
 <div class="row">
     <div class="col-lg-13">
-
-        <livewire:request-filter/>
-
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card ">
+                    <livewire:request-filter/>
+                </div>
+            </div>
+        </div>
         <div class="card mt-3">
             <div class="card-body">
                 <div class="row mt-4">

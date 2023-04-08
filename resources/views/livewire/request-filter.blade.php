@@ -1,7 +1,5 @@
 <div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card ">
+
                 <button wire:click.prevent="filter({{ 999 }})" type="button" class="btn btn-custom ft" value="999">
                     <div class="card-body">
                         <div class="row justify-content-center">
@@ -67,8 +65,6 @@
 
                     </div>
                 </button>
-            </div>
-        </div>
-    </div>
+
 
 </div>
