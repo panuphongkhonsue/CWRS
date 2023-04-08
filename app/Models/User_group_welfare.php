@@ -10,4 +10,5 @@ class User_group_welfare extends Model
     use HasFactory;
     
     protected $table = 'users_groups_welfares';
+    public $timestamps = false;
 }

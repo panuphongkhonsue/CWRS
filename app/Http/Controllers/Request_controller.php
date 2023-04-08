@@ -143,7 +143,6 @@ class Request_controller extends Controller
         $welfare_obj1 = json_decode($request->welfare);
 
         $user_id = explode(',', $request->get_user_id[0]);
-
         $welfareBudget = $welfare_obj1->budget;
         $welfareObj2 = json_decode($request->welfare);
         $welfareId = $welfareObj2->id;
@@ -158,7 +157,7 @@ class Request_controller extends Controller
         // Create a new group instance using the Eloquent model
 
         $group = new Group_request;
-        if(user->type == "E"){
+        if($user->type == "E"){
             $group->status = 2;
         }
         $group->user_id = $user->id;
@@ -171,13 +170,14 @@ class Request_controller extends Controller
         $group->save();
         // Redirect to the history route after creating the group
 
-        $users_id = json_decode($request->userselect);
-        $group1 = new User_group_welfare;
-        foreach($user_id as $user){
+        
+        foreach($user_id as $index => $user2){
+            $group1 = new User_group_welfare;
             $group1->group_welfare_id = $welfareId;
-            $group1->user_id = $user;
+            $group1->user_id = $user2;
+            $group1->save();
         }
-        $group1->save();
+
         return redirect()->route('history');
     }
 
