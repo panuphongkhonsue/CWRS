@@ -94,13 +94,14 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-{{-- <script type="text/javascript">
-    $(document).ready(function() {
-        $(".btn-custom").click(function() {
-            var selected = document.getElementById("selected");
-            selected.classList.remove("selected");
-            $(this).id = "selected";
+<script type="text/javascript">
+    var head = document.getElementsByClassName("ft");
+    for (let i = 0 ; i < head.length ; i++) {
+        btns[i].addEventListener("click", function() {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
         })
-    })
-</script> --}}
+    }
+</script>
 @endsection

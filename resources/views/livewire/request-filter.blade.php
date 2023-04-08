@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="card ">
-                <button wire:click="filter({{ 999 }})" type="button" class="btn btn-custom" value="999">
+                <button wire:click="filter({{ 999 }})" type="button" class="btn btn-custom ft" value="999">
                     <div class="card-body">
                         <div class="row justify-content-center">
                             <div class="col text-start ms-3"><img  class="" src="./img/image.png" width="80" height="80"></div>
@@ -18,7 +18,7 @@
 
         <div class="col-md-3">
             <div class="card">
-                <button wire:click="filter({{ 0 }})" type="button" id="selected" class="btn btn-custom" value="0">
+                <button wire:click="filter({{ 0 }})" type="button" id="selected" class="btn btn-custom ft active" value="0">
                     <div class="card-body">
                         <div class="row justify-content-center">
                             <div class="col text-start ms-3"><img  class="" src="./img/pending-approval.png" width="80" height="80"></div>
@@ -35,7 +35,7 @@
 
         <div class="col-md-3">
             <div class="card">
-                <button wire:click="filter({{ 1 }})" type="button" class="btn btn-custom" value="1">
+                <button wire:click="filter({{ 1 }})" type="button" class="btn btn-custom ft" value="1">
                     <div class="card-body">
 
 
@@ -54,7 +54,7 @@
 
         <div class="col-md-3">
             <div class="card">
-                <button wire:click="filter({{ -2 }})" type="button" class="btn btn-custom" value="-1">
+                <button wire:click="filter({{ -2 }})" type="button" class="btn btn-custom ft" value="-1">
                     <div class="card-body">
 
                         <div class="row justify-content-center">
