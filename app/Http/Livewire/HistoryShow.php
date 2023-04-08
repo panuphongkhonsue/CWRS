@@ -26,7 +26,7 @@ class HistoryShow extends Component
         }
 
         else if ($this->walfare_year != 999) {
-            return view('livewire.history-show', ['requests' => Group_request::where('user_id', Auth::user()->id)->orderBy('id', 'desc')]);
+            return view('livewire.history-show', ['requests' => Group_request::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
         }
 
         else {
