@@ -65,8 +65,8 @@
                         <div class="row mt-3 mx-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
-                                <select class="form-control border-dark form-select" name="welfare" id="welfare">
-                                    <option selected disabled>เลือกประเภทสวัสดิการ</option>
+                                <select class="form-control border-dark form-select required" name="welfare" id="welfare">
+                                    <option value="" selected disabled>เลือกประเภทสวัสดิการ</option>
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
                                     @foreach ($welfares as $welfare)
                                         <option value='{"id":{{ $welfare->id }}, "budget":{{ $welfare->budget }}}'>{{ $welfare->title }}</option>
@@ -109,8 +109,8 @@
 
                                             <tbody id="b-detail">
                                                 <tr>
-                                                    <td><input type="text" name="item[]" class="form-control border-0" placeholder="กรอกรายละเอียด" required></td>
-                                                    <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()" placeholder="กรอกราคา" required></td>
+                                                    <td><input type="text" name="item[]" class="form-control border-0 required" placeholder="กรอกรายละเอียด" required></td>
+                                                    <td><input type="number" name="price[]" class="form-control text-end border-0 price required" onchange="updateTotal()" placeholder="กรอกราคา" required></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -173,7 +173,7 @@
                                 <div class="row mt-3 control-group increment">
                                     <label for="bill" class="col-auto col-form-label">อัปโหลดใบเสร็จ : </label>
                                         <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file @error('filename') is-invalid @enderror" value="อัปโหลดไฟล์" accept=".jpeg, .pdf, .jpg">
+                                            <input type="file" name="filename[]" class="form-control file @error('filename') is-invalid @enderror required" value="อัปโหลดไฟล์" accept=".jpeg, .pdf, .jpg">
                                         </div>
                                         <div class="col-sm-2">
                                             <button class="btn btn-success add-file" type="button">+</button>
@@ -182,7 +182,7 @@
 
                                 {{-- ตรงนี้คือตอนกด + เพิ่มไฟล์ --}}
                                 <div class="clone hide" hidden>
-                                    <div class="row mt-3 control-group" style="margin-left: 120px">
+                                    <div class="row mt-3 control-group required" style="margin-left: 120px">
                                         <div class="col-sm-5">
                                             <input type="file" name="filename[]" class="form-control file  @error('filename') is-invalid @enderror" value="อัปโหลดไฟล์" accept=".jpeg, .pdf, .jpg">
                                         </div>
@@ -258,8 +258,8 @@
                 $('#b-detail').append(
                     `
                     <tr>
-                        <td><input type="text" name="item[]" class="form-control border-0" required autofocus></td>
-                        <td><input type="number" name="price[]" class="form-control text-end border-0 price" required autofocus onchange="updateTotal()"></td>
+                        <td><input type="text" name="item[]" class="form-control border-0 required" required autofocus></td>
+                        <td><input type="number" name="price[]" class="form-control text-end border-0 price required" required autofocus onchange="updateTotal()"></td>
                     </tr>
                     `
                 );
@@ -290,15 +290,28 @@
         $("#btn-sendreq").click(function() {
             var valid = true;
 
-            $("input.required").each(function() {
+            $("select.required").each(function() {
                 if ($.trim($(this).val()).length == 0) {
-                    $(this).addClass("border border-danger");
+                    $(this).addClass("needs-validation");
                     valid = false;
                 }
                 else {
-                    $(this).removeClass("border border-danger");
+                    $(this).removeClass("needs-validation");
                 }
             })
+
+            $("input.required").each(function() {
+                if ($.trim($(this).val()).length == 0) {
+                    valid = false;
+                }
+                else {
+                    $(this).removeClass("needs-validation");
+                }
+            })
+
+            if (valid == false) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+            }
 
             if (valid) {
                 Swal.fire({
