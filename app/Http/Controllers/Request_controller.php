@@ -17,6 +17,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User_group_welfare;
 
 
 class Request_controller extends Controller
@@ -149,16 +150,27 @@ class Request_controller extends Controller
         $group_welfare = $request->input('welfare');
 
         // Create a new group instance using the Eloquent model
+        /*
         $group = new Group_request;
         $group->user_id = $user->id;
         $group->create_date = $date;
         $group->total_price = $group_sumMoney;
         $group->welfare_budget = $welfareBudget;
         $group->welfare_id = $welfareId;
-        $group->total_price = $welfareTotal;
-        $group->welfare_name = $welfareName;
+        $group->total_price = (str_replace(",","",$welfareTotal));
+        $group->welfare_name = $welfareName->title;
         $group->save();
+        */
         // Redirect to the history route after creating the group
+
+        $users_id = json_decode($request->userselect);
+        $data = [];
+        foreach($users_id as $user_id ){
+            $data[] = [$user_id->id];
+        }
+        return dd($users_id);
+        $group1 = new User_group_welfare;
+        $group1->group_welfare_id = $welfareId;
         return redirect()->route('history');
     }
 
