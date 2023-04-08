@@ -139,11 +139,12 @@ class Request_controller extends Controller
     public function create_group(Request $request){
         $user = Auth::user();
         $date = date("Y-m-d");
-        $selected_user_id = $request->input('user_info');
+        $selected_user_id = $request->input('get_user_id'); // get the value of the input field
         $welfare_obj1 = json_decode($request->welfare);
 
-        return dd($selected_user_id);
-        $welfareBudget = $welfareObj1->budget;
+        $user_id = explode(',', $request->get_user_id[0]);
+
+        $welfareBudget = $welfare_obj1->budget;
         $welfareObj2 = json_decode($request->welfare);
         $welfareId = $welfareObj2->id;
         $welfareTotal = $request->total_money;
@@ -155,7 +156,7 @@ class Request_controller extends Controller
         $group_welfare = $request->input('welfare');
 
         // Create a new group instance using the Eloquent model
-        /*
+
         $group = new Group_request;
         $group->user_id = $user->id;
         $group->create_date = $date;
@@ -165,17 +166,16 @@ class Request_controller extends Controller
         $group->total_price = (str_replace(",","",$welfareTotal));
         $group->welfare_name = $welfareName->title;
         $group->save();
-        */
+
         // Redirect to the history route after creating the group
 
         $users_id = json_decode($request->userselect);
-        $data = [];
-        foreach($users_id as $user_id ){
-            $data[] = [$user_id->id];
-        }
-        return dd($users_id);
         $group1 = new User_group_welfare;
-        $group1->group_welfare_id = $welfareId;
+        foreach($user_id as $user){
+            $group1->group_welfare_id = $welfareId;
+            $group1->user_id = $user;
+        }
+        $group1->save();
         return redirect()->route('history');
     }
 

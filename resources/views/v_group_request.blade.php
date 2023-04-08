@@ -28,19 +28,18 @@
 
                             {{-- รหัสพนักงาน --}}
                             <div class="row ms-5 mt-1">
-                                <label for="id"
-                                    class="col-sm-2 col-form-label fw-bold">{{ 'รหัสพนักงาน : ' }}</label>
+                                <label for="id" class="col-sm-2 col-form-label fw-bold">{{ 'รหัสพนักงาน : ' }}</label>
                                 <div class="col-sm-3">
                                     {{-- generate รหัสพนักงาน --}}
-                                    <input name = "user-id" type="text" class="form-control border-0 bg-transparent fs-16px"
-                                        value="{{ Auth::user()->id }}" disabled>
+                                    <input name="user-id" type="text"
+                                        class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->id }}"
+                                        disabled>
                                 </div>
                             </div>
 
                             {{-- ชื่อ นามกุล --}}
                             <div class="row ms-5 mt-1">
-                                <label for="name"
-                                    class="col-sm-2 col-form-label fw-bold ">{{ 'ชื่อ-สกุล : ' }}</label>
+                                <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ 'ชื่อ-สกุล : ' }}</label>
                                 <div class="col-sm-3">
                                     {{-- generate ชื่อ-นามสกุล --}}
                                     <input type="text"
@@ -66,7 +65,8 @@
                         <div class="row mt-3 mx-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
-                                <select class="form-control border-dark form-select" name="welfare" id="welfare" onclick="updateTotal()">
+                                <select class="form-control border-dark form-select" name="welfare" id="welfare"
+                                    onclick="updateTotal()">
                                     <option selected disabled>เลือกประเภทสวัสดิการ</option>
 
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
@@ -82,8 +82,9 @@
                             <label for="budget"
                                 class="col-auto col-form-label ms-auto ">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
-                                <input name = "wel-budget" type="text" id="money" class="text-end form-control border-0"
-                                    style=" background-color: #eee;" value="{{ __('0.00') }} ">
+                                <input name="wel-budget" type="text" id="money"
+                                    class="text-end form-control border-0" style=" background-color: #eee;"
+                                    value="{{ __('0.00') }} ">
                             </div>
 
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
@@ -107,7 +108,7 @@
                                     <option selected disabled>ชื่อ-นามสกุล,รหัสพนักงาน</option>
                                     @foreach ($departments_user as $user)
                                         <option
-                                            value="{{ $user->id }}|{{ $user->fname }}|{{$user->lname}}|{{$user->role->name}}">
+                                            value="{{ $user->id }}|{{ $user->fname }}|{{ $user->lname }}|{{ $user->role->name }}">
                                             {{ $user->id }} - {{ $user->fname }} {{ $user->lname }}</option>
                                     @endforeach
                                 </select>
@@ -145,7 +146,7 @@
                                     <tbody id="b-detail">
                                         <tr>
                                             <td class="count_people"><input id="tb-name" type="text" name="user_info[]"
-                                                    class="form-control border-0 bg-white" style="color:#ffff"></td>
+                                                    class="form-control border-0 bg-white us" style="color:#ffff"></td>
                                             <td><label id="tb-role" type="text" name="role[]"
                                                     class="form-control text-end border-0 bg-white"></td>
                                         </tr>
@@ -190,12 +191,17 @@
                             <div class="col-md-8 ms-auto">
                                 <div class=" p-0">
                                     {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
+                                    <div class="get_user">
+                                        <input type="text" id="us_id" class="id_user_table" name="get_user_id[]"
+                                            hidden>
+                                    </div>
                                     <div class="row ">
                                         <label for="total" class="col-auto col-form-label ms-auto">จำนวนคนทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
-                                            <input name ="num_peo" type="text" class="form-control text-end border-0" id = "total_people"
-                                                style=" background-color: #eee;" value="{{ __('0') }}" readonly>
+                                            <input name="num_peo" type="text" class="form-control text-end border-0"
+                                                id="total_people" style=" background-color: #eee;"
+                                                value="{{ __('0') }}" readonly>
                                         </div>
                                         <label for="id" class="col-auto col-form-label me-5">{{ 'คน' }}
                                             <label style="color:#fff">__</label></label>
@@ -204,7 +210,8 @@
                                         <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
-                                            <input name = "total_money" type="text" class="form-control text-end border-0" id = "total_money"
+                                            <input name="total_money" type="text"
+                                                class="form-control text-end border-0" id="total_money"
                                                 style=" background-color: #eee;" value="{{ __('0.00') }}" readonly>
                                         </div>
                                         <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}
@@ -233,15 +240,18 @@
         var rowCount = 0;
         let user_id = [];
         let selected = [];
+        var id = [];
 
         function deleteRow(ele) {
             if (ele.id != '') {
-                var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+                if (rowCount > -1) { // only splice array when item is found
+                    id.splice(rowCount-1, 1); // 2nd parameter means remove one item only
+                }
+                var selected_option = document.getElementById("get_user").options[document.getElementById("get_user")
+                    .selectedIndex];
 
                 console.log("ss")
-
-
-                $("#tb-name").html('.')
+                $("#tb-name").val('.')
                 $("#tb-name").css('color', 'white')
                 $("#tb-role").html('.')
                 $("#tb-role").css('color', 'white')
@@ -249,36 +259,45 @@
                 selected_option.disabled = false;
 
                 rowCount = 0;
+
                 console.log(rowCount);
 
-                if(rowCount == 0){
+                if (rowCount == 0) {
                     var selected_option = document.getElementById("get_user");
-                for (let index = 0; index < selected_option.length; index++) {
-                    if (index != 0) {
-                        selected_option.options[index].disabled = false;
+                    for (let index = 0; index < selected_option.length; index++) {
+                        if (index != 0) {
+                            selected_option.options[index].disabled = false;
 
+                        }
                     }
                 }
+                updateTotal();
+                if (rowCount > -1) { // only splice array when item is found
+                    id.splice(0, 1); //
                 }
-
-
-
+                $("#us_id").val(id);
+                console.log($("#us_id").val())
 
             } else {
-                var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+                var selected_option = document.getElementById("get_user").options[document.getElementById("get_user")
+                    .selectedIndex];
                 var tb = ele.closest("tr");
                 let row = tb.rowIndex;
                 $(tb).remove();
                 document.getElementById("b-detail").deleteRow(row - 1);
                 // console.log($('#tb-name'))
                 rowCount--;
-                console.log(selected_option);
                 selected_option.disabled = false;
-                console.log('2');
-
+                updateTotal();
+                console.log(rowCount);
+                if (rowCount > -1) { // only splice array when item is found
+                    var index = rowCount
+                    id.splice(index, 1); //
+                }
+                $("#us_id").val(id);
             }
-
-            updateTotal();
+            console.log(id);
+            console.log($("#us_id").val())
         }
 
         function updateTotal() {
@@ -298,26 +317,24 @@
         //     selected_option.disabled = true;
         // }
 
-        function check_table(){
-            if(rowCount <2){
+        function check_table() {
+            if (rowCount < 2) {
                 alert("ต้องมีสมาชิก 2 คนขึ้นไป");
             }
         }
 
 
         $(document).ready(function() {
-
             $("#btn_add").click(function() {
 
                 if (rowCount < 20) {
                     if (rowCount > 0 && $('#get_user').val() != null) {
                         var l = $('#get_user').val(); /* เก็บค่าที่ Input มา */
                         var i = rowCount;
-                        console.log(l)
                         $('#b-detail').append(
                             `
                         <tr>
-                        <td><input type="text" id="label_gen` + i + `" name="user_info[]" class="form-control border-0 bg-white" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td><input type="text" id="label_gen` + i + `" name="user_info[]" class="form-control border-0 bg-white us" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
                         <td><label type="text" id ="role_gen` + i + `" name="role[]" class="form-control text-end border-0" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
                     </tr>
                     `
@@ -334,28 +351,34 @@
                     `
                         );
                         /* นำค่าที่ Input มาใช้ */
-                        var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+                        var selected_option = document.getElementById("get_user").options[document
+                            .getElementById("get_user").selectedIndex];
 
-                            var text = l.split('|');
-                            var name = text[1] + " " + text[2];
-                            var role = text[3];
-                            $('#label_gen' + i).val(name)
-                            console.log($('#label_gen' + i).val(name))
-                            $('#label_gen ').css("color", "black")
-                            $('#role_gen' + i).html(role)
-                            $('#role_gen ').css("color", "black")
-                            // disable_select();
-                            rowCount++;
-                            selected_option.disabled = true;
+                        var text = l.split('|');
+                        var name = text[1] + " " + text[2];
+                        var role = text[3];
+                        id.push(text[0]);
+
+                        $('#label_gen' + i).val(name)
+                        console.log(id)
+                        $('#label_gen ').css("color", "black")
+                        $('#role_gen' + i).html(role)
+                        $('#role_gen ').css("color", "black")
+                        // disable_select();
+                        rowCount++;
+                        selected_option.disabled = true;
+                        console.log(rowCount);
+                         updateTotal();
                     } else if (rowCount == 0 && $('#get_user').val() != null) {
-                        var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+                        var selected_option = document.getElementById("get_user").options[document
+                            .getElementById("get_user").selectedIndex];
 
                         var x = $('#get_user').val();
                         var text = x.split('|');
                         var name = text[1] + " " + text[2];
                         var role = text[3];
+                        id.push(text[0]);
                         $('#tb-name').val(name)
-                        console.log($('#tb_name').val())
                         $('#tb-name').css("color", "black")
                         $('#tb-role').html(role)
                         $('#tb-role').css("color", "black")
@@ -363,11 +386,12 @@
                         // disable_select();
                         rowCount++;
                         selected_option.disabled = true;
+                        console.log(rowCount);
+                        updateTotal();
                     }
-
-
+                    $("#us_id").val(id);
+                    console.log($("#us_id").val())
                 }
-                updateTotal();
             });
 
             $('#welfare').change(function() {
