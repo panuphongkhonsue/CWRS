@@ -8,7 +8,7 @@
                             <div class="col text-start ms-3"><img  class="" src="./img/image.png" width="80" height="80"></div>
                             <div class="col text-center me-5 mt-2">
                                 <div class="text-primary fs-5">ทั้งหมด</div>
-                                <div class="fs-5">219</div>
+                                <div class="fs-5">{{ $countAll }}</div>
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                             <div class="col text-start ms-3"><img  class="" src="./img/pending-approval.png" width="80" height="80"></div>
                             <div class="col text-center me-5 mt-2">
                                 <div class="text-warning fs-5">รออนุมัติ</div>
-                                <div class="fs-5">219</div>
+                                <div class="fs-5">{{ $countWait }}</div>
                             </div>
                         </div>
 
@@ -41,7 +41,7 @@
                             <div class="col text-start ms-3"><img  class="" src="./img/อนุมัติ.png" width="80" height="80"></div>
                             <div class="col text-center me-5 mt-2">
                                 <div class="text-success fs-5">อนุมัติ</div>
-                                <div class="fs-5">219</div>
+                                <div class="fs-5">{{ $countApp }}</div>
                             </div>
                         </div>
 
@@ -59,7 +59,7 @@
                             <div class="col text-start ms-3"><img  class="" src="./img/ไม่อนุมัติ.png" width="80" height="80"></div>
                             <div class="col text-center me-5 mt-2">
                                 <div class="text-danger fs-5">ไม่อนุมัติ</div>
-                                <div class="fs-5">219</div>
+                                <div class="fs-5">{{ $countRej }}</div>
                             </div>
                         </div>
 

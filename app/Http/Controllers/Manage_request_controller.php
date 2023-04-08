@@ -7,13 +7,14 @@ use App\Models\Single_request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class Manage_request_controller extends Controller
 {
     public function index()
     {
-        $requests = Single_request::where('status', 0)->orderBy('id', 'desc')->paginate(10);
-
+        $requests = Single_request::where('status', 0)->get();
+        // Check for search input
         return view('v_manage_request', ['requests' => $requests]);
     }
 
@@ -23,8 +24,7 @@ class Manage_request_controller extends Controller
 
         if ($request->dec == "accept") {
             $requests->status = 1;
-        }
-        else if ($request->dec == 'reject') {
+        } else if ($request->dec == 'reject') {
             $requests->status = -2;
         }
 

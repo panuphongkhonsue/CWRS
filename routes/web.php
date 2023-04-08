@@ -11,6 +11,7 @@ use App\Http\Controllers\Report_controller;
 use Psy\Command\HistoryCommand;
 use Termwind\Components\Hr;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
