@@ -29,9 +29,9 @@ class HistoryShow extends Component
 // whereYear('create_date', $this->walfare_year)->
     public function reload($status, $walfare_type, $walfare_year)
     {
-        $this->resetPage();
         $this->status = $status;
         $this->walfare_type = $walfare_type;
         $this->walfare_year = $walfare_year;
+        $this->resetPage();
     }
 }
