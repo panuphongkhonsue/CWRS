@@ -6,7 +6,7 @@
 
     <div class="col-lg-13">
         <div class="card">
-            <div class="card-header fs-4 py-3">{{ __('ประวัติการเบิกสวัสดิการ') }}</div>
+            <div class="fs-4 py-3 ms-3 mb-0">{{ __('ประวัติการเบิกสวัสดิการ') }} <hr></div>
             <div class="card-body">
                 <div class="row mt-1">
                     <livewire:history-filter-status/>

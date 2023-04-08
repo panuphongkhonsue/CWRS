@@ -194,12 +194,12 @@
                                         <label for="total" class="col-auto col-form-label ms-auto">จำนวนคนทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control text-end border-0" id = "total_people"
-                                                style=" background-color: #eee;" value="{{ __('0') }}" readonly>
+                                            <input type="text" class="form-control text-end border-0 " id = "total_people"
+                                                style=" background-color: #eee;" value="{{ __('0') }}" readonly >
                                         </div>
-                                        <label for="id" class="col-auto col-form-label me-5">{{ 'คน' }}
-                                            <label style="color:#fff">__</label></label>
-                                    </div>
+                                        <label for="id" class="col-auto col-form-label mar">{{ 'คน' }}
+                                            </label>
+                                    </div><br>
                                     <div class="row ">
                                         <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด :
                                         </label>
@@ -208,16 +208,17 @@
                                                 style=" background-color: #eee;" value="{{ __('0.00') }}" readonly>
                                         </div>
                                         <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}
-                                            <label style="color:#fff">_</label></label>
+                                            </label>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
 
+
                         {{-- ปุ่มส่งเบิก --}}
                         <div class="row">
-                            <div class="col-sm-2 ms-auto">
+                            <div class="col-sm-2  mt-5 botton_s  mb-4">
                                 <button type="submit" class="btn btn-success">ส่งเบิก</button>
                             </div>
                         </div>
