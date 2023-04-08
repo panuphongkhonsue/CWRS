@@ -109,7 +109,9 @@
                                             value='{"user_id":{{ $user->id }}, "user_fname":"{{ $user->fname }}" , "user_lname":"{{ $user->lname }}" , "user_role":"{{ $user->role->name }}"}'>
                                             {{ $user->id }} - {{ $user->fname }} {{ $user->lname }}</option>
                                     @endforeach
+
                                 </select>
+
                             </div>
                             <div class="col mt-2 mr-2 ps-1">
                                 <button type="button" class="border-0 bg-transparent add-table"><img
@@ -173,7 +175,7 @@
                                         <tr class="detail">
                                             <td class="border-0">
                                                 <button type="button" id="btn_delete_1"
-                                                    class="border-0 bg-transparent remove-row btn"
+                                                    class="btn_delete border-0 bg-transparent remove-row btn"
                                                     onclick="deleteRow(this)">
                                                     <img src="{{ URL::asset('img/delete_group_requst.png') }}"
                                                         width="27" height="17">
@@ -231,27 +233,52 @@
     <script type="text/javascript">
         var rowCount = 0;
         let user_id = [];
+        let selected = [];
 
         function deleteRow(ele) {
-
             if (ele.id != '') {
-                rowCount = 0;
-                console.log(rowCount);
+                var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+
+                console.log("ss")
+
+
                 $("#tb-name").html('.')
                 $("#tb-name").css('color', 'white')
                 $("#tb-role").html('.')
                 $("#tb-role").css('color', 'white')
-                console.log(rowCount);
-            } else {
+                // selected_option.removeAttribute('disabled');
+                selected_option.disabled = false;
 
+                rowCount = 0;
+                console.log(rowCount);
+
+                if(rowCount == 0){
+                    var selected_option = document.getElementById("get_user");
+                for (let index = 0; index < selected_option.length; index++) {
+                    if (index != 0) {
+                        selected_option.options[index].disabled = false;
+
+                    }
+                }
+                }
+
+
+
+
+            } else {
+                var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
                 var tb = ele.closest("tr");
                 let row = tb.rowIndex;
                 $(tb).remove();
                 document.getElementById("b-detail").deleteRow(row - 1);
-                console.log($('#tb-name'))
+                // console.log($('#tb-name'))
                 rowCount--;
-                console.log(rowCount);
+                console.log(selected_option);
+                selected_option.disabled = false;
+                console.log('2');
+
             }
+
             updateTotal();
         }
 
@@ -260,22 +287,22 @@
             let fixed = total.toLocaleString('en-US') + ".00";
             $("#total_money").val(fixed);
             $("#total_people").val(rowCount);
-            console.log(rowCount);
+
         }
 
 
-        function disable_select() {
-            // Get the selected option element
-            var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+        // function disable_select() {
+        //     // Get the selected option element
+        //     var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
 
-            // Disable the selected option
-            selected_option.disabled = true;
-            selected_option.classList.add("hidden");
-        }
+        //     // Disable the selected option
+        //     selected_option.disabled = true;
+        // }
 
         $(document).ready(function() {
 
             $("#btn_add").click(function() {
+
                 if (rowCount < 20) {
                     if (rowCount > 0 && $('#get_user').val() != null) {
                         var l = $('#get_user').val(); /* เก็บค่าที่ Input มา */
@@ -301,6 +328,10 @@
                     `
                         );
                         /* นำค่าที่ Input มาใช้ */
+                        var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+
+// Disable the selected option
+
                         var text = JSON.parse(l);
                             var name = text.user_fname + " " + text.user_lname;
                             var role = text.user_role;
@@ -308,12 +339,19 @@
                             $('#label_gen ').css("color", "black")
                             $('#role_gen' + i).html(role)
                             $('#role_gen ').css("color", "black")
-                            disable_select();
+                            // disable_select();
+
                             console.log(text);
                             rowCount++;
 
+                            selected_option.disabled = true;
+
 
                     } else if (rowCount == 0 && $('#get_user').val() != null) {
+                        var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+
+// Disable the selected option
+
                         var x = $('#get_user').val();
                         var text = JSON.parse(x);
                         console.log(text);
@@ -323,8 +361,11 @@
                         $('#tb-name ').css("color", "black")
                         $('#tb-role ').html(role)
                         $('#tb-role ').css("color", "black")
-                        disable_select();
+
+                        // disable_select();
                         rowCount++;
+                        selected_option.disabled = true;
+                        console.log(selected_option);
                     }
 
 
