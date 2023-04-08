@@ -1,0 +1,39 @@
+/* หัวข้อใบเบิก */
+.i {
+    padding: 30px  60px 15px 55px;
+    /* text-decoration: underline; */
+    font-size: 30px;
+}
+
+/* ตัวหนา */
+.b {
+    font-weight: bold;
+}
+
+/* กล่องขนาดใหญ่ */
+.big-box {
+    background-color: white;
+
+}
+
+/* รับค่าไฟล์ใบเสร็จ */
+input[type="file"]{
+    display: none;
+}
+
+/* ปุ่มอัปโหลด */
+.upload{
+    display: inline-black;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    background: green;
+
+}
+
+/* ตาราง */
+table{
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}

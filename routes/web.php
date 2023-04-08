@@ -11,6 +11,7 @@ use App\Http\Controllers\Report_controller;
 use Psy\Command\HistoryCommand;
 use Termwind\Components\Hr;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,26 +41,30 @@ Route::group(['middleware' => 'auth'], function()
 
    Route::group(['middleware' => 'user:M'], function()
    {
-
+        Route::get('/manage-request-head', [Manage_request_controller::class, 'headindex'])->name('lead_manage_request');
    });
 
    Route::group(['middleware' => 'user:H'], function()
    {
-        Route::get('/manage_welfare', [Welfare_controller::class, 'index'])->name('manage_welfare');
-        Route::get('/manage_request', [Manage_request_controller::class, 'index'])->name('manage_request');
-        Route::post('/add_welfare', [Welfare_controller::class, 'add_welfare'])->name('add_welfare');
-        Route::post('/manage_welfare/edit', [Welfare_controller::class, 'edit_welfare'])->name('edit_welfare');
+        Route::get('/manage-welfare', [Welfare_controller::class, 'index'])->name('manage_welfare');
+        Route::get('/manage-request', [Manage_request_controller::class, 'index'])->name('manage_request');
+        Route::post('/add-welfare', [Welfare_controller::class, 'add_welfare'])->name('add_welfare');
+        Route::post('/manage-welfare/edit', [Welfare_controller::class, 'edit_welfare'])->name('edit_welfare');
         Route::get('/report', [Report_controller::class, 'report'])->name('report');
    });
 
    Route::group(['middleware' => 'emplead'], function()
    {
-        Route::get('/request/single', [Request_controller::class, 'single_request'])->name('s.request');
+        Route::get('/request-single', [Request_controller::class, 'single_request'])->name('s.request');
         Route::post('/request/single/create', [Request_controller::class, 'create_single'])->name('create.single');
-        Route::get('/request/group', [Request_controller::class, 'group_request'])->name('group_request');
+        Route::get('/request-group', [Request_controller::class, 'group_request'])->name('group_request');
         Route::get('/history', [User_history_controller::class, 'index'])->name('history');
         Route::get('/history/{id}', [User_history_controller::class, 'show_request'])->name('show_history');
         Route::patch('/history/{id}/cancel', [User_history_controller::class, 'cancel'])->name('cancel');
+        Route::get('/history', [User_history_controller::class, 'index'])->name('history');
+        Route::post('/request/single/create', [Request_controller::class, 'create_single'])->name('create.single');
+        Route::get('/history/{id}', [User_history_controller::class, 'show_request'])->name('show_history');
+        Route::post('/request/group/create', [Request_controller::class, 'create_group'])->name('create.group');
    });
 
    Route::group(['middleware' => 'hrlead'], function()

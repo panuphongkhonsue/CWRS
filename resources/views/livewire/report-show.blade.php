@@ -20,22 +20,11 @@
             background-color: #DCDCDC;
             }
         </style >
-            @php ($count = count($requests))
-            @for ($i = 0; $i<$count-1;$i++)
-            @for ($j = $i+1; $j<$count;$j++)
-                @if(date("d/m/Y", strtotime($requests[$i]->create_date)) == date("d/m/Y", strtotime($requests[$j]->create_date)))
-                    @if($requests[$i]->welfare_id == $requests[$j]->welfare_id)
-                        @php ($requests[$i]->total_price = $requests[$i]->total_price + $requests[$j]->total_price)
-                        @php ($requests[$j]->total_price = 0)
-                    @endif
-                @endif
-            @endfor
-        @endfor
-        @foreach ($requests as $index => $request)
-            @php ($total_year = number_format(array_sum(json_decode($request->price)), 2))
+            @foreach ($requests as $index => $request)
+
                 <tr>
                     @php ($total = number_format(array_sum(json_decode($request->price)), 2))
-                        
+
                         @switch($request->get_welfare->type)
                         @case('S')
                             @php ($text = 'บุคคล')
@@ -61,8 +50,26 @@
                             <td class="text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"></td>
                             <td class="text-center"><a href="{{ route('show_history', ['id' => $request->id]) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
                 @endif
-            
+
             </tr>
+            @endforeach
+            @foreach ($welfares as $welfare)
+                <tr>
+                    @switch($welfare->type)
+                        @case('S')
+                            @php ($text = "บุคคล")
+                            @break
+                        @case('G')
+                            @php ($text = "สันทนาการ")
+                            @break
+                    @endswitch
+                    <td scope="col" class="text-center">{{ $text }}</td>
+                    <td scope="col" class="title">{{ $welfare->title }}</td>
+                    <td scope="col" class="text-end budget">{{ $welfare->budget }}</td>
+                    <td scope="col" class="text-center">{{ $welfare->user->fname }}</td>
+                    <td scope="col" class="text-center"><button type="button" class="show_data btn btn-sm btn-warning text-light" data-bs-toggle="modal" data-bs-target="#modal-in">แก้ไข</button></td>
+                    <td class="d-none">{{ $welfare->id }}</td>
+                </tr>
             @endforeach
     </tbody>
  </table>
@@ -89,7 +96,7 @@
                     <td class="col-sm-1">ก.ย.</td>
                     <td class="col-sm-1">ต.ค.</td>
                     <td class="col-sm-1">พ.ย.</td>
-                    <td class="col-sm-1">ธ.ค.</td>                    
+                    <td class="col-sm-1">ธ.ค.</td>
                 </tr>
             </thead>
         </table>

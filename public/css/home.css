@@ -23,6 +23,7 @@ body {
     height: 330px;
 }
 
+/* css */
 #side_bar {
     height: 100vh;
     position: relative;
@@ -239,6 +240,54 @@ body {
 
 }
 
+
+.bath{
+    margin-right: 4em;
+}
+
+.status_b{
+    margin-right: 50px;
+
+   }
+   .text_s{
+       width: 50;
+   }
+   .aa{
+       margin-left: 10px
+
+   }
+   .bb{
+       margin-left: 640px;
+
+   }
+   .ee{
+       border:none;
+       background:none;
+   }
+   .jj{
+       border-radius: 1em;
+       padding: 0px 0px;
+   }
+   .hov_buttom:hover{
+       box-shadow: 0 12px 16px 0 rgba(31, 28, 28, 0.24),0 17px 50px 0 rgba(255, 255, 255, 0.19);
+   }
+   .ll{
+       padding: 0px 0px;
+   }
+   .colortext{
+       color: #a19f9f;
+       font-size: 18px;
+       width: 200px;
+   }
+   .btn_size{
+       padding: 0px 0px;
+   }
+   .oo{
+       font-size: 18px;
+   }
+   .pp{
+    margin-left: 500px;
+   }
 
 
 

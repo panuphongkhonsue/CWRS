@@ -17,14 +17,21 @@
                  <div class="card-body" style="padding: 0px 50px 50px 50px">
 
                     {{-- กรอบข้อมูล --}}
-                    <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
+                    <form id = "form-reg" method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
                         {{-- วันที่ --}}
                             <div class="row">
                                 <label for="budget" class="col-auto col-form-label ms-auto fw-bold ">{{ __('วัน/เดือน/ปี : ') }}</label>
                                 <div class="col-sm-2">
-                                    <input type="text" id="date" name="date" class="form-control border-0 bg-transparent " value="{{ date("d/m/Y") }}" >
+                                    @php
+                                        $month = date("m");
+                                        $year = date("Y") + 543;
+                                        $day = date("d");
+                                        $str = $day . '/' . $month . '/' . $year;
+                                        $date = date("d/m/Y", strtotime($str));
+                                    @endphp
+                                    <input type="text" id="date" name="date" class="form-control border-0 bg-transparent " value="{{ $date }}" >
                                 </div>
                             </div>
 
@@ -58,8 +65,8 @@
                         <div class="row mt-3 mx-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
-                                <select class="form-control border-dark form-select" name="welfare" id="welfare">
-                                    <option disabled selected="">เลือกประเภทสวัสดิการ</option>
+                                <select class="form-control border-dark form-select required" name="welfare" id="welfare">
+                                    <option value="" selected disabled>เลือกประเภทสวัสดิการ</option>
                                     {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
                                     @foreach ($welfares as $welfare)
                                         <option value='{"id":{{ $welfare->id }}, "budget":{{ $welfare->budget }}}'>{{ $welfare->title }}</option>
@@ -102,8 +109,8 @@
 
                                             <tbody id="b-detail">
                                                 <tr>
-                                                    <td><input type="text" name="item[]" class="form-control border-0" placeholder="กรอกรายละเอียด" required autofocus></td>
-                                                    <td><input type="number" name="price[]" class="form-control text-end border-0 price" onchange="updateTotal()" placeholder="กรอกราคา" required autofocus></td>
+                                                    <td><input type="text" name="item[]" class="form-control border-0 required" placeholder="กรอกรายละเอียด" required></td>
+                                                    <td><input type="number" name="price[]" class="form-control text-end border-0 price required" onchange="updateTotal()" placeholder="กรอกราคา" required></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -117,7 +124,7 @@
                                             <tr>
                                                 <td class="border-0">
                                                     <button type="button" class="add-row border-0 bg-transparent ms-1">
-                                                        <img src="{{ URL::asset('img/add.png') }}" width="27" height="27">
+                                                        <img src="./img/add.png" width="27" height="27">
                                                     </button>
                                                 </td>
                                             </tr>
@@ -127,7 +134,7 @@
                                             <tr class="detail">
                                                 <td class="border-0">
                                                     <button type="button" class="border-0 bg-transparent remove-row btn" onclick="deleteRow(this)">
-                                                        <img src="{{ URL::asset('img/delete_group_requst.png') }}"  width="27" height="17">
+                                                        <img src="./img/delete_group_requst.png"  width="27" height="17">
                                                    </button>
                                                 </td>
                                             </tr>
@@ -166,7 +173,7 @@
                                 <div class="row mt-3 control-group increment">
                                     <label for="bill" class="col-auto col-form-label">อัปโหลดใบเสร็จ : </label>
                                         <div class="col-sm-5">
-                                            <input type="file" name="filename[]" class="form-control file @error('filename') is-invalid @enderror" value="อัปโหลดไฟล์" accept=".jpeg, .pdf, .jpg">
+                                            <input type="file" name="filename[]" class="form-control file @error('filename') is-invalid @enderror required" value="อัปโหลดไฟล์" accept=".jpeg, .pdf, .jpg">
                                         </div>
                                         <div class="col-sm-2">
                                             <button class="btn btn-success add-file" type="button">+</button>
@@ -175,7 +182,7 @@
 
                                 {{-- ตรงนี้คือตอนกด + เพิ่มไฟล์ --}}
                                 <div class="clone hide" hidden>
-                                    <div class="row mt-3 control-group" style="margin-left: 120px">
+                                    <div class="row mt-3 control-group required" style="margin-left: 120px">
                                         <div class="col-sm-5">
                                             <input type="file" name="filename[]" class="form-control file  @error('filename') is-invalid @enderror" value="อัปโหลดไฟล์" accept=".jpeg, .pdf, .jpg">
                                         </div>
@@ -191,7 +198,7 @@
                         {{-- ปุ่มส่งเบิก --}}
                         <div class="row">
                             <div class="col-sm-2 ms-auto">
-                                <button type="submit" class="btn btn-success">ส่งเบิก</button>
+                                <button type="button" id="btn-sendreq" class="btn btn-success">ส่งเบิก</button>
                             </div>
                         </div>
                     </form>
@@ -199,8 +206,9 @@
             </div>
         </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">
     var rowCount = 1;
     var fileCount = 1;
@@ -250,8 +258,8 @@
                 $('#b-detail').append(
                     `
                     <tr>
-                        <td><input type="text" name="item[]" class="form-control border-0" required autofocus></td>
-                        <td><input type="number" name="price[]" class="form-control text-end border-0 price" required autofocus onchange="updateTotal()"></td>
+                        <td><input type="text" name="item[]" class="form-control border-0 required" required autofocus></td>
+                        <td><input type="number" name="price[]" class="form-control text-end border-0 price required" required autofocus onchange="updateTotal()"></td>
                     </tr>
                     `
                 );
@@ -261,7 +269,7 @@
                     <tr class="detail">
                         <td class="border-0">
                             <button type="button" class="border-0 bg-transparent remove-row btn" onclick="deleteRow(this)">
-                                <img src="{{ URL::asset('img/delete_group_requst.png') }}"  width="27" height="17">
+                                <img src="./img/delete_group_requst.png"  width="27" height="17">
                             </button>
                         </td>
                     </tr>
@@ -277,6 +285,79 @@
             var fixed = text.budget.toLocaleString('en-US') + ".00";
 
             $("#money").val(fixed);
+        })
+
+        $("#btn-sendreq").click(function() {
+            var valid = true;
+
+            $("select.required").each(function() {
+                if ($.trim($(this).val()).length == 0) {
+                    $(this).addClass("needs-validation");
+                    valid = false;
+                }
+                else {
+                    $(this).removeClass("needs-validation");
+                }
+            })
+
+            $("input.required").each(function() {
+                if ($.trim($(this).val()).length == 0) {
+                    valid = false;
+                }
+                else {
+                    $(this).removeClass("needs-validation");
+                }
+            })
+
+            if (valid == false) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน')
+            }
+
+            if (valid) {
+                Swal.fire({
+                title: 'คุณแน่ใจหรือไม่ ?',
+                text: 'คุณต้องการยืนยันการเบิกสวัสดิการหรือไม่',
+                imageUrl: '{{ URL('./img/alert1.png') }} ',
+                imageWidth: 150,
+                imageHeight: 150,
+                denyButtonText: 'ยกเลิก',
+                confirmButtonText: 'ยืนยัน',
+                confirmButtonColor: '#32cd32',
+                denyButtonColor: '#ff0000',
+                showDenyButton: true,
+                showCloseButton: true,
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: 'confirm-button-class',
+                    denyButton: 'deny-button-class'
+                },
+                preConfirm: () => {
+                    document.getElementById('form-reg').submit();
+                }
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                    imageUrl: '{{ URL('./img/correct1.png') }} ',
+                    title: 'สำเร็จ',
+                    text: 'คุณยืนยันการเบิกสวัสดิการสำเร็จ',
+                    showConfirmButton: false,
+                    imageWidth: 150,
+                    imageHeight: 150,
+                    timer: 1500
+                })
+                } else if (result.isDenied) {
+                        Swal.fire({
+                        imageUrl: '{{ URL('./img/cancelreq.png') }} ',
+                        title: 'ไม่สำเร็จ',
+                        showConfirmButton: false,
+                        text: 'คุณยืนยันการเบิกสวัสดิการไม่สำเร็จ',
+                        imageWidth: 150,
+                        imageHeight: 150,
+                        timer: 1500
+                        })
+                    }
+                    })
+        }
         })
     });
 

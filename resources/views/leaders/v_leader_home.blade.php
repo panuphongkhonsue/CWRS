@@ -1,6 +1,6 @@
 {{-- หน้าหลักของหัวหน้าแผนกลบแก้ใหม่ก็ได้ --}}
 
-<!-- 
+<!--
 /*
 * v_leader_home.blade.php
 * แสดงหน้าหลักของหัวหน้าแผนก
@@ -34,7 +34,7 @@
                         <div class ="col-auto mt-2 ">
                             <button class="btn p-0 status_b" type="button" id="button-addon2"><img class="status_b p-0" src="{{ URL::asset('img/image.png') }}" width="15" height="15"></button>
                             <!-- //ไอคอนสำหรับค้นหาา -->
-                        </div>                    
+                        </div>
                     <label for="budget" class="col-auto mt-3"> สถานะ : </label>
                     <!-- //กำหนด col และสร้างคำสถานะ -->
                     <div class="col-md-2">
@@ -44,7 +44,7 @@
                                         <option value="2">รออนุมัติ</option>
                                         <option value="3">อนุมัติ</option>
                                         <option value="4">ไม่อนุมัติ</option>
-                                        <option value="5">ยกเลิก</option>             
+                                        <option value="5">ยกเลิก</option>
                         </select>
                         <!-- //ตัวเลือกสำหรับสถานะ -->
                      </div>
@@ -82,22 +82,12 @@
                                 <!-- //กำหนดหัวข้อของตาราง -->
                             </thead>
                                 <table class="table table-striped">
+                                    <tr class="text-center">
                                     <!-- //สร้างตารางและกำหนดสีของตาราง -->
-                                    <tr>
-                                        <td scope="col"></td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="col"></td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="col"></td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="col"></td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="col"></td>
-                                    </tr>
+                                    @if (Session::has('message'))
+                                        <td class="text-center">{{ Session::get('message') }}</td>
+                                    @endif
+                                </tr>
                                 </table>
                                 <!-- //ข้อความที่จะแสดง -->
                         </table>

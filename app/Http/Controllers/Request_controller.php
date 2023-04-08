@@ -11,9 +11,12 @@ use App\Models\Welfare;
 use App\Models\Bill;
 use App\Models\Single_request;
 use Illuminate\Http\RedirectResponse;
+use App\Models\Group_request;
+use App\Models\Department;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -26,6 +29,7 @@ class Request_controller extends Controller
     * @output : ข้อมูลสวัสดิการแบบเดี่ยว
     * @author : Rawich Piboonsin 64160299
     * @Create Date : 2023-03-15
+    *
     */
     public function single_request()
     {
@@ -35,7 +39,7 @@ class Request_controller extends Controller
         $welfare_id = NULL;
 
         foreach ($requests as $index => $request) {
-            if (date("Y", strtotime($request->create_date)) == date("Y")
+            if (date("Y", strtotime($request->create_date)) == (date("Y")+543)
                 && ($request->status >= 0)) {
                 $welfare_id[$index] = $request->welfare_id;
             }
@@ -47,15 +51,9 @@ class Request_controller extends Controller
             $data = Welfare::where('type', 'S')->whereNotIn('id', $welfare_id)->get();
         }
 
-        return view('v_request', ['welfares' => $data]);
+        return view('v_request', ['welfares' => $data],);
     }
 
-    public function group_request()
-    {
-        $data = Welfare::where('type', 'G')->get();
-
-        return view('v_group_request', ['welfares' => $data]);
-    }
 
     /*
     * create_single()
@@ -74,7 +72,6 @@ class Request_controller extends Controller
         $json = json_decode($request->welfare);
         $welfare = Welfare::find($json->id);
         $user = Auth::user();
-        $date = date("Y-m-d");
 
         if ($request->hasfile('filename')) {
             foreach ($request->file('filename') as $file) {
@@ -83,6 +80,12 @@ class Request_controller extends Controller
                 $filename[] = $name;
             }
         }
+
+        $month = date("m");
+        $year = date("Y") + 543;
+        $day = date("d");
+        $str = $year . '/' . $month . '/' . $day;
+        $date = date("Y-m-d", strtotime($str));
 
         $total = array_sum($request->price);
 
@@ -98,13 +101,49 @@ class Request_controller extends Controller
 
         $welfare->users_request()->attach($user, $value);
 
+        sleep(1);
+
         return redirect()->route('history');
     }
 
-    public function autocomplete(Request $request)
+    /*
+    * group_request()
+    * แสดงหน้าจอเบิกสวัสดิการแบบบุคคล
+    * @input : -
+    * @output : หน้าจอประวัติการเบิกสวัสดิการ
+    * @author : Rawich Piboonsin 64160299
+    * @Create Date : 2023-03-15
+    * @Update Date : 2023-04-05 Panuphong Khonsue 64160282 call data to show
+    * @Update Date : 2023-04-06 Panuphong Khonsue 64160282 Query Data To Show in Table
+    */
+    public function group_request()
     {
+
         $user = Auth::user();
-        $data = User::select("name")->where('name', 'LIKE', '%'. $request->autoname)->get();
-        return response()->json($data);
+        $requests = Group_request::where('user_id', $user->id)->get();
+        $department_user = User::where('department_id', $user->department_id)->get();
+        $welfare_id[0] = NULL;
+
+        foreach ($requests as $index => $request) {
+            if (date("Y", strtotime($request->create_date)) == date("Y")) {
+                $welfare_id[$index] = $request->welfare_id;
+            }
+        }
+
+        $data = Welfare::where('type', 'G')->get();
+
+        if ($welfare_id[0] != NULL) {
+            $data = Welfare::where('type', 'G')->whereNotIn('id', $welfare_id)->get();
+        }
+
+
+
+        return view('v_group_request', ['welfares' => $data],['departments_user'=> $department_user]);
     }
+
+    public function create_group(Request $request)
+    {
+        return redirect()->route('history');
+    }
+
 }

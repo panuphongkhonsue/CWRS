@@ -21,11 +21,11 @@
     <div class="col-md-2">
         <select class="form-control form-select" wire:model="walfare_year" wire:change="filter">
             <option selected="" value="999">ทั้งหมด</option>
-            <option value="2023">2566</option>
-            <option value="2022">2565</option>
-            <option value="2021">2564</option>
-            <option value="2020">2563</option>
-            <option value="2019">2562</option>
+            <option value="2566">2566</option>
+            <option value="2565">2565</option>
+            <option value="2564">2564</option>
+            <option value="2563">2563</option>
+            <option value="2562">2562</option>
         </select>
     </div>
 </div>

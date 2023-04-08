@@ -17,7 +17,7 @@
                 <div class="card-body mx-5 px-5 mb-0 border-0 p-0">
 
                     <!-- กรอบข้อมูล -->
-                    <form method="POST" action="{{ route('cancel', ['id' => $history->id]) }}" enctype="multipart/form-data">
+                    <form id="cancel-req" method="POST" action="{{ route('cancel', ['id' => $history->id]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="row mt-2">
@@ -88,7 +88,7 @@
                                     <div class="col-sm form-group position-relative">
                                         <div class="input-group position-absolute top-0 end-0">
                                             <div class="input-group-prepend ">
-                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/tt11.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
+                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ url('./img/tt11.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
                                             </div>
                                                 <div class="col-xs-2">
                                                     <input value="{{ date("d/m/Y", strtotime($history->hr_approve_date)) }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
@@ -101,7 +101,7 @@
                                     <div class="col-sm form-group position-relative">
                                         <div class="input-group position-absolute top-0 end-0">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/bg.png') }}" class="img-rounded" alt="" width="26" height="26"</span>
+                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ url('./img/bg.png') }}" class="img-rounded" alt="" width="26" height="26"</span>
                                             </div>
                                             <div class="col-xs-2">
                                                 <input value="{{ date("d/m/Y", strtotime($history->hr_approve_date)) }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
@@ -167,7 +167,7 @@
                                     <div class="col-sm form-group position-relative">
                                         <div class="input-group  position-absolute top-0 end-0">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/tt22.png') }}" class="img-rounded" alt="" width="26" height="26"</span>
+                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ url('./img/tt22.png') }}" class="img-rounded" alt="" width="26" height="26"</span>
                                             </div>
                                             <div class="col-xs-2">
                                                 <input value="{{ $history->get_approver->fname }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
@@ -180,7 +180,7 @@
                                     <div class="col-sm form-group position-relative">
                                         <div class="input-group  position-absolute top-0 end-0">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ URL::asset('img/tt33.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
+                                                <span class="input-group-text-sm mx-2" id="basic-addon1"><img src="{{ url('./img/tt33.png') }}" class="img-rounded" alt="" width="26" height="26"></span>
                                             </div>
                                             <div class="col-xs-2">
                                                 <input value="{{ $history->get_approver->fname }}" class="form-control form-control-sm" type="text" aria-label=".form-control-sm example" style=" background-color: #D9D9D9;">
@@ -270,7 +270,7 @@
                                     <div class="card-text px-4 rounded me-3 mb-5" style="background-color: #eee">
                                         @foreach (json_decode($history->bill) as $bill)
                                             <div class="row">
-                                                <a href="{{ URL::asset('/bills/'. $bill) }}" for="" class="col-auto col-form-label" target="blank">{{ $bill }}</a>
+                                                <a href="{{ URL('./bills/'. $bill) }}" for="" class="col-auto col-form-label" target="blank">{{ $bill }}</a>
                                             </div>
                                         @endforeach
                                     </div>
@@ -292,7 +292,7 @@
                         <div class="row mt-3">
                             @if (($history->status) == 0)
                             <div class="col-sm-2 ms-auto">
-                                <button class="btn btn-lg btn-danger mb-5">ยกเลิก</a>
+                                <button type="button" id="cancelreq" class="btn btn-lg btn-danger mb-5">ยกเลิก</a>
                             </div>
                             @endif
                         </div>
@@ -301,4 +301,55 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#cancelreq').click(function() {
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่ ?',
+                    text: 'คุณต้องการยกเลิกคำขอเบิกสวัสดิการหรือไม่',
+                    imageUrl: '{{ URL('./img/alert1.png') }} ',
+                    imageWidth: 150,
+                    imageHeight: 150,
+                    denyButtonText: 'ยกเลิก',
+                    confirmButtonText: 'ยืนยัน',
+                    confirmButtonColor: '#32cd32',
+                    denyButtonColor: '#ff0000',
+                    showDenyButton: true,
+                    showCloseButton: true,
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: 'confirm-button-class',
+                        denyButton: 'deny-button-class'
+                    },
+                    preConfirm: () => {
+                        document.getElementById('cancel-req').submit();
+                    }
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                    Swal.fire({
+                        imageUrl: '{{ URL('./img/correct1.png') }} ',
+                        title: 'สำเร็จ',
+                        text: 'ยกเลิกคำขอเบิกสวัสดิการสำเร็จ',
+                        showConfirmButton: false,
+                        imageWidth: 150,
+                        imageHeight: 150,
+                        timer: 2000
+                })
+                } else if (result.isDenied) {
+                    Swal.fire({
+                    imageUrl: '{{ URL('./img/cancelreq.png') }} ',
+                    title: 'ไม่สำเร็จ',
+                    showConfirmButton: false,
+                    text: 'ยกเลิกคำขอเบิกสวัสดิการไม่สำเร็จ',
+                    imageWidth: 150,
+                    imageHeight: 150,
+                    timer: 2000
+                    })
+                    }
+                })
+            })
+        })
+    </script>
 @endsection

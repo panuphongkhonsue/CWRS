@@ -11,16 +11,16 @@
                         <div class="col">
                             <div class="row">
                                 <label class="col-auto col-form-label">รูปแบบสวัสดิการ :</label>
-                
+
                                 <!-- ตัวเลือกหลายรายการของรูปแบบสวัสดิการ -->
                                 <div class="col-sm-4">
-                                    
+
                                     <livewire:filter-welfare/>
-                                    
+
                                 </div>
                             </div>
                         </div>
-                
+
                         <!-- ปุ่มเพิ่มสวัสดิการ -->
                         <div class="col text-end">
                             <button type="button" class="btn btn-light rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#modal-add">เพิ่มประเภทสวัสดิการ</button>
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.show_data').click(function() {

@@ -1,0 +1,11 @@
+1. แตกไฟล์ให้เป็นโฟลเดอร์ camp
+
+2. เปิดโปรเจกต์ใน vs code
+
+3. พิมพ์คำสั่ง composer install
+
+4. พิมพ์คำสั่ง php artisan migrate --path=database/migrations/kuytok
+
+5. พิมพ์คำสั่ง php artisan db:seed
+
+6. เปิดเซิฟด้วยคำสั่ง php artisan serve

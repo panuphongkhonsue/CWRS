@@ -1,6 +1,6 @@
-{{-- หน้าแสดงประวัติขที่เป็นตารางๆ อะ --}}
+{{-- หน้าแสดงประวัติที่เป็นตารางๆ อะ --}}
 
-<!-- 
+<!--
 /*
 * v_history.blade.php
 * แสดงประวัติของพนักงาน
@@ -32,19 +32,19 @@
                         {{ __('หมายเหตุ')  }}
                         &nbsp; {{ __(':')}}
                         &nbsp;
-                        <img src="{{ URL::asset('img/approve.png') }}" width="25" height="25" alt="">
+                        <img src="./img/approve.png" width="25" height="25" alt="">
                         &nbsp;
                         {{ __('อนุมัติ') }}
                         &nbsp;
-                        <img src="{{ URL::asset('img/cancel.png') }}" width="25" height="25" alt="">
+                        <img src="./img/cancel.png" width="25" height="25" alt="">
                         &nbsp;
                         {{ __('ไม่อนุมัติ') }}
                         &nbsp;
-                        <img src="{{ URL::asset('img/wait.png') }}" width="25" height="25" alt="">
+                        <img src="./img/wait.png" width="25" height="25" alt="">
                         &nbsp;
                         {{ __('รออนุมัติ') }}
                         &nbsp;
-                        <img src="{{ URL::asset('img/cancel2.png') }}" width="25" height="25" alt="">
+                        <img src="./img/cancel2.png" width="25" height="25" alt="">
                         &nbsp;
                         {{ __('ยกเลิก') }}
                     </div>
@@ -55,8 +55,8 @@
         </div>
     </div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-{{-- <script type="text/javascript">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    {{-- <script type="text/javascript">
     $(document).ready(function() {
         $(".btn-custom").click(function() {
             var selected = document.getElementById("selected");

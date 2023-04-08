@@ -18,10 +18,7 @@ class SingleRequestFactory extends Factory
     public function definition(): array
     {
         return [
-            'status' => rand(-2, -1),
-            'hr_approve_date' => date("d/m/Y"),
-            'bill' => Str::random(12) . ".pdf",
-            'item' => Str::random
+
         ];
     }
 }
