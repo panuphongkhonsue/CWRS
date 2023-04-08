@@ -1,4 +1,4 @@
-<div>
+<div wire:loading.remove>
     <div class="row">
         <div class="col-md-3">
             <div class="card ">
