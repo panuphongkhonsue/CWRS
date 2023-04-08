@@ -1,3 +1,70 @@
+<div class="row justify-content-evenly">
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2566 </center> 
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title">5,000 บาท</h5>
+            </div>
+          </div>
+        </div>
+ 
+       <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-secondary mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2565 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 900,000 บาท</h5>
+            </div>
+          </div>
+        </div>
+ 
+       
+       <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2564 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title">9,999 บาท</h5>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-secondary mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2563 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2562 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
+            </div>
+          </div>
+        </div>
+      </div> <!-- //row -->
+      
+
+
+
+
 <center><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
                 <canvas id="myChart" style="width:300%;max-width:800px"></canvas></center>
 <div class="row mt-3">
@@ -21,54 +88,173 @@
                                     <td class="col-sm-1">2563</td>
                                     <td class="col-sm-1">2562</td></tr>
                             </thead>
-                            <!-- //กำหนดหัวข้อของตาราง -->
-                                <tbody>
-                                    <style >
-                                        tr:nth-child(even) {
-                                        background-color: #DCDCDC;
-                                        }
-                                    </style >
-                                     <!-- //สร้างตารางและกำหนดสีของตาราง -->
-                                     @foreach ($requests as $index => $request)
-                                    <tr>
-                                                @switch($request->get_welfare->type)
-                                                    @case('S')
-                                                        @php ($text = 'บุคคล')
-                                                        @break
-                                                    @case('G')
-                                                        @php ($text = 'สันทนาการ')
-                                                        @break
-                                                @endswitch
-                                                <td scope="col" class="col-sm-1 text-center">{{ $request->get_welfare->title }}</td>
-                                                <td scope="col" class="col-sm-1 text-center">{{ $request->id }}</td>
-                                                <td scope="col" class="col-sm-1 text-center">{{ $text }}</td>
-                                                <td scope="col" class="">{{ $request->get_user->fname }}</td>
-                                                <td scope="col" class="col-md-3">{{ $request->get_welfare->title }}</td>
-                                                <td scope="col" class="col-sm-2 text-end">{{ $request->get_welfare->budget }}</td>
-                                                <td scope="col" class="col-sm-1 text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"></td>
-                                                <td scope="col" class="col-sm-1 text-center"><a href="{{ url('/manage_request/'. $request->id) }}" class="btn btn-sm btn-primary"  style="font-size: 10px">แสดงรายการ</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                {!! $requests->links() !!}
-                                 <!-- //ข้อความที่จะแสดง -->
+                            
                         </table>
                     </div>
                 </div>
                 <div class="row mt-4"></div>
                 <div class="col-md-13"></div>
                     <!-- //กำหนดการเว้นระยะห่างจากส่วนข้างบน -->
+
             
 
 
+                    <div class="row justify-content-evenly">
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2566 </center> 
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title">5,000 บาท</h5>
+            </div>
+          </div>
+        </div>
+ 
+       <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-secondary mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2565 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 900,000 บาท</h5>
+            </div>
+          </div>
+        </div>
+ 
+       
+       <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2564 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title">9,999 บาท</h5>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-secondary mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2563 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2562 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2562 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2562 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2562 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2562 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2562 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2562 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-text-end margitext mt-3 col-sm-2">
+          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
+            <div class="card-header">
+              <ion-icon name="people-outline"></ion-icon>
+              <center> พ.ศ. 2562 </center>
+          </div>
+            <div class="card-body">
+              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- //row -->
+
+      
 <center><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <canvas id="myChart02" style="width:500%;max-width:1000px"></canvas></center>
 <div class="row mt-3">
 <!-- //กำหนดการเว้นระยะห่างจากส่วนข้างบน -->
 <div class="col-md-13">
 <!-- //ในส่วนของตาราง -->
+<p style = "text-align: center" >ตารางสรุปยอดรายเดือนของแต่ละปี</p>
                             <table class="table table-bordered align-items-center" >
                                 <thead class="text-center text-light " id="bg" >
                                     <tr>

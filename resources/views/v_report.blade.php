@@ -26,69 +26,7 @@
             <livewire:report-filter/>
 
 
-        <div class="row align-items-center">
-        <div class="col-text-end margitext mt-3 col-sm-2">
-          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
-            <div class="card-header">
-              <ion-icon name="people-outline"></ion-icon>
-              <center> พ.ศ. 2566 </center> 
-          </div>
-            <div class="card-body">
-              <h5 class="text-center card-title">5,000 บาท</h5>
-            </div>
-          </div>
-        </div>
- 
-       <div class="col-text-end margitext mt-3 col-sm-2">
-          <div class="card text-white bg-secondary mb-3" style="max-width: 15rem;">
-            <div class="card-header">
-              <ion-icon name="people-outline"></ion-icon>
-              <center> พ.ศ. 2565 </center>
-          </div>
-            <div class="card-body">
-              <h5 class="text-center card-title"> 900,000 บาท</h5>
-            </div>
-          </div>
-        </div>
- 
-       
-       <div class="col-text-end margitext mt-3 col-sm-2">
-          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
-            <div class="card-header">
-              <ion-icon name="people-outline"></ion-icon>
-              <center> พ.ศ. 2564 </center>
-          </div>
-            <div class="card-body">
-              <h5 class="text-center card-title">9,999 บาท</h5>
-            </div>
-          </div>
-        </div>
- 
-        <div class="col-text-end margitext mt-3 col-sm-2">
-          <div class="card text-white bg-secondary mb-3" style="max-width: 15rem;">
-            <div class="card-header">
-              <ion-icon name="people-outline"></ion-icon>
-              <center> พ.ศ. 2563 </center>
-          </div>
-            <div class="card-body">
-              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-text-end margitext mt-3 col-sm-2">
-          <div class="card text-white bg-info mb-3" style="max-width: 15rem;">
-            <div class="card-header">
-              <ion-icon name="people-outline"></ion-icon>
-              <center> พ.ศ. 2562 </center>
-          </div>
-            <div class="card-body">
-              <h5 class="text-center card-title"> 11,500,000  บาท</h5>
-            </div>
-          </div>
-        </div>
-      </div> <!-- //row -->
-      
             <livewire:report-show/>
             
                 
