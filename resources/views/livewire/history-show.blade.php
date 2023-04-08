@@ -38,18 +38,18 @@
                             @php ($text = 'สันทนาการ')
                             @break
                         @endswitch
-                        @if ($walfare_year =='999')
+                        @if ($walfare_year =='999' && $walfare_type == '999')
                             <td class="text-center">{{ date("d/m/Y", strtotime($request->create_date)) }}</td>
                             <td class="text-center">{{ $request->id }}</td>
-                            <td class="text-center">บุคคล</td>
+                            <td class="text-center">{{$text}}</td>
                             <td>{{ $request->welfare_name }}</td>
                             <td class="text-end">{{ number_format($request->total_price, 2) }}</td>
                             <td class="text-center"><img src="{{ URL('./img/'. $icon) }}" width="32" height="32"></td>
                             <td class="text-center"><a href="{{ route('show_history', ['id' => $request->id]) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
-                        @elseif (($walfare_year + 543) == date("Y",strtotime($request->create_date)))
+                        @elseif (($walfare_year + 543) == date("Y",strtotime($request->create_date)))0
                             <td class="text-center">{{ date("d/m/Y", strtotime($request->create_date)) }}</td>
                             <td class="text-center">{{ $request->id }}</td>
-                            <td class="text-center">บุคคล</td>
+                            <td class="text-center">{{$text}}</td>
                             <td>{{ $request->welfare_name }}</td>
                             <td class="text-end">{{ number_format($request->total_price, 2) }}</td>
                             <td class="text-center"><img src="{{ URL('./img/'. $icon) }}" width="32" height="32"></td>

@@ -287,6 +287,10 @@
             $("#money").val(fixed);
         })
 
+        document.getElementById("btn-sendreq").addEventListener('click', function(e) {
+            e.preventDefault();
+        })
+
         $("#btn-sendreq").click(function() {
             Swal.fire({
             title: 'คุณแน่ใจหรือไม่ ?',
