@@ -20,8 +20,19 @@
             background-color: #DCDCDC;
             }
         </style >
-        <!-- @foreach ($requests as $index => $request)
-            
+            @php ($count = count($requests))
+            @for ($i = 0; $i<$count-1;$i++)
+            @for ($j = $i+1; $j<$count;$j++)
+                @if(date("d/m/Y", strtotime($requests[$i]->create_date)) == date("d/m/Y", strtotime($requests[$j]->create_date)))
+                    @if($requests[$i]->welfare_id == $requests[$j]->welfare_id)
+                        @php ($requests[$i]->total_price = $requests[$i]->total_price + $requests[$j]->total_price)
+                        @php ($requests[$j]->total_price = 0)
+                    @endif
+                @endif
+            @endfor
+        @endfor
+        @foreach ($requests as $index => $request)
+            @php ($total_year = number_format(array_sum(json_decode($request->price)), 2))
                 <tr>
                     @php ($total = number_format(array_sum(json_decode($request->price)), 2))
                         
@@ -52,24 +63,6 @@
                 @endif
             
             </tr>
-            @endforeach -->
-            @foreach ($welfares as $welfare)
-                <tr>
-                    @switch($welfare->type)
-                        @case('S')
-                            @php ($text = "บุคคล")
-                            @break
-                        @case('G')
-                            @php ($text = "สันทนาการ")
-                            @break
-                    @endswitch
-                    <td scope="col" class="text-center">{{ $text }}</td>
-                    <td scope="col" class="title">{{ $welfare->title }}</td>
-                    <td scope="col" class="text-end budget">{{ $welfare->budget }}</td>
-                    <td scope="col" class="text-center">{{ $welfare->user->fname }}</td>
-                    <td scope="col" class="text-center"><button type="button" class="show_data btn btn-sm btn-warning text-light" data-bs-toggle="modal" data-bs-target="#modal-in">แก้ไข</button></td>
-                    <td class="d-none">{{ $welfare->id }}</td>
-                </tr>
             @endforeach
     </tbody>
  </table>

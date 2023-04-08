@@ -21,7 +21,6 @@ class ReportShow extends Component
 
     public function render()
     {
-
         if ($this->report_status == 1) {
             return view('livewire.report-show', ['requests' => Single_request::where('status', 1)->paginate(10)]);
         }
