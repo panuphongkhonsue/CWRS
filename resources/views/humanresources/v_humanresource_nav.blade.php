@@ -71,7 +71,7 @@
               </a>
         </div>
 
-          <ul class="navbar navbar-expand-lg navbar-light shadow-md justify-content-center py-2">
+          <ul class="navbar navbar-expand-lg navbar-light shadow-md justify-content-center py-4 sticky">
           <a href="javascript:void(0);" class="icon">
           <i class="fa fa-bars" id = "hamburMenu2" onclick= "openNav()" style="font-size: 30px"></i>  <!-- Hamburger menu -->
             <li class="navbar-nav">
@@ -92,7 +92,7 @@
                 <!-- Right Side Of Navbar -->
 
                 <ul class="navbar-nav ms-auto me-auto">
-                    <li class="fs-5">ระบบเบิกสวัสดิการพนักงาน</li>
+                    <li class="fs-2">ระบบเบิกสวัสดิการพนักงาน</li>
                 </ul>
             </div>
         </ul>
