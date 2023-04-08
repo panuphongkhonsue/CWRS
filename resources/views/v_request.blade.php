@@ -287,55 +287,65 @@
             $("#money").val(fixed);
         })
 
-        document.getElementById("btn-sendreq").addEventListener('click', function(e) {
-            e.preventDefault();
-        })
-
         $("#btn-sendreq").click(function() {
-            Swal.fire({
-            title: 'คุณแน่ใจหรือไม่ ?',
-            text: 'คุณต้องการยืนยันการเบิกสวัสดิการหรือไม่',
-            imageUrl: '{{ URL('./img/alert1.png') }} ',
-            imageWidth: 150,
-            imageHeight: 150,
-            denyButtonText: 'ยกเลิก',
-            confirmButtonText: 'ยืนยัน',
-            confirmButtonColor: '#32cd32',
-            denyButtonColor: '#ff0000',
-            showDenyButton: true,
-            showCloseButton: true,
-            reverseButtons: true,
-            customClass: {
-                confirmButton: 'confirm-button-class',
-                denyButton: 'deny-button-class'
-            },
-            preConfirm: () => {
-                document.getElementById('form-reg').submit();
-            }
-            }).then((result) => {
-            if (result.isConfirmed) {
+            var valid = true;
+
+            $("input.required").each(function() {
+                if ($.trim($(this).val()).length == 0) {
+                    $(this).addClass("border border-danger");
+                    valid = false;
+                }
+                else {
+                    $(this).removeClass("border border-danger");
+                }
+            })
+
+            if (valid) {
                 Swal.fire({
-                imageUrl: '{{ URL('./img/correct1.png') }} ',
-                title: 'สำเร็จ',
-                text: 'คุณยืนยันการเบิกสวัสดิการสำเร็จ',
-                showConfirmButton: false,
+                title: 'คุณแน่ใจหรือไม่ ?',
+                text: 'คุณต้องการยืนยันการเบิกสวัสดิการหรือไม่',
+                imageUrl: '{{ URL('./img/alert1.png') }} ',
                 imageWidth: 150,
                 imageHeight: 150,
-                timer: 1500
-            })
-        } else if (result.isDenied) {
-            Swal.fire({
-            imageUrl: '{{ URL('./img/cancelreq.png') }} ',
-            title: 'ไม่สำเร็จ',
-            showConfirmButton: false,
-            text: 'คุณยืนยันการเบิกสวัสดิการไม่สำเร็จ',
-            imageWidth: 150,
-            imageHeight: 150,
-            timer: 1500
-            })
-            }
+                denyButtonText: 'ยกเลิก',
+                confirmButtonText: 'ยืนยัน',
+                confirmButtonColor: '#32cd32',
+                denyButtonColor: '#ff0000',
+                showDenyButton: true,
+                showCloseButton: true,
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: 'confirm-button-class',
+                    denyButton: 'deny-button-class'
+                },
+                preConfirm: () => {
+                    document.getElementById('form-reg').submit();
+                }
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                    imageUrl: '{{ URL('./img/correct1.png') }} ',
+                    title: 'สำเร็จ',
+                    text: 'คุณยืนยันการเบิกสวัสดิการสำเร็จ',
+                    showConfirmButton: false,
+                    imageWidth: 150,
+                    imageHeight: 150,
+                    timer: 1500
+                })
+                } else if (result.isDenied) {
+                        Swal.fire({
+                        imageUrl: '{{ URL('./img/cancelreq.png') }} ',
+                        title: 'ไม่สำเร็จ',
+                        showConfirmButton: false,
+                        text: 'คุณยืนยันการเบิกสวัสดิการไม่สำเร็จ',
+                        imageWidth: 150,
+                        imageHeight: 150,
+                        timer: 1500
+                        })
+                    }
+                    })
+        }
         })
-});
     });
 
 </script>
