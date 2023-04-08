@@ -97,7 +97,7 @@
 <script type="text/javascript">
     var head = document.getElementsByClassName("ft");
     for (let i = 0 ; i < head.length ; i++) {
-        btns[i].addEventListener("click", function() {
+        head[i].addEventListener("click", function() {
             var current = document.getElementsByClassName("active");
             current[0].className = current[0].className.replace(" active", "");
             this.className += " active";
