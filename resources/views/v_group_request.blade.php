@@ -299,6 +299,13 @@
         //     selected_option.disabled = true;
         // }
 
+        function check_table(){
+            if(rowCount <2){
+                alert("ต้องมีสมาชิก 2 คนขึ้นไป");
+            }
+        }
+
+
         $(document).ready(function() {
 
             $("#btn_add").click(function() {
