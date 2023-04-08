@@ -12,7 +12,7 @@
 
                 <div class="card-body ">
 
-                    <form method="POST" action="{{ route('create.single') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('create.group') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
                             {{-- วันที่ --}}

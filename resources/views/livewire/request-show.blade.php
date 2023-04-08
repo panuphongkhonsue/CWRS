@@ -1,5 +1,4 @@
-<div>
-    <div wire:loading.remove>
+<<div wire:loading.remove>
         <table class="table table-bordered align-items-center table-striped">
             <thead class="text-center text-light" id="bg">
                 <tr>
@@ -59,8 +58,6 @@
         <div wire:loading class=" spinner-border" style="width: 3rem; height: 3rem">
             <span class="visually-hidden">Loading...</span>
         </div>
-    </div>
-
 </div>
 
 
