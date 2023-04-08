@@ -158,6 +158,9 @@ class Request_controller extends Controller
         // Create a new group instance using the Eloquent model
 
         $group = new Group_request;
+        if(user->type == "E"){
+            $group->status = 2;
+        }
         $group->user_id = $user->id;
         $group->create_date = $date;
         $group->total_price = $group_sumMoney;
@@ -166,7 +169,6 @@ class Request_controller extends Controller
         $group->total_price = (str_replace(",","",$welfareTotal));
         $group->welfare_name = $welfareName->title;
         $group->save();
-
         // Redirect to the history route after creating the group
 
         $users_id = json_decode($request->userselect);
