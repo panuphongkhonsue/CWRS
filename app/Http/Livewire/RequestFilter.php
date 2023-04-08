@@ -9,11 +9,6 @@ class RequestFilter extends Component
 {
     public $req_status;
 
-    public function render()
-    {
-        return view('livewire.request-filter');
-    }
-
     public function filter($status)
     {
         $this->req_status = $status;
