@@ -16,7 +16,7 @@ class Home_controller extends Controller
     /*
     * home()
     * เข้าสู่หน้าหลัก โดยขึ้นอยู่กับประเภทของผู้ใช้
-    * @input : - 
+    * @input : -
     * @output : หน้าหลักของผู้ใช้
     * @author : Rawich Piboonsin 64160299
     * @Create Date : 2023-03-11
@@ -32,7 +32,7 @@ class Home_controller extends Controller
 
             else if (Auth::user()->type == "M")
             {
-                return view('leaders.v_leader_home');
+                return redirect()->route('lead_manage_request');
             }
 
             else if (Auth::user()->type == "H")

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group_request;
 use App\Models\Single_request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,5 +42,16 @@ class Manage_request_controller extends Controller
         sleep(1);
 
         return redirect()->route('manage_request');
+    }
+
+    public function headindex()
+    {
+        $requests = Group_request::where('status', 0)->orderBy('id', 'desc');
+
+        if (!$requests) {
+            return view('leaders.v_leader_home')->with('message', '--- ไม่มีรายการคำขอที่รอรับรอง ---');
+        }
+
+        return view('leaders.v_leader_home', ['requests' => $requests]);
     }
 }
