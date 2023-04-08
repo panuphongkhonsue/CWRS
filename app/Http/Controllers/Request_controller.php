@@ -141,9 +141,8 @@ class Request_controller extends Controller
         return view('v_group_request', ['welfares' => $data],['departments_user'=> $department_user]);
     }
 
-    public function create_group(Request $request){
-
-
+    public function create_group(Request $request)
+    {
         return redirect()->route('history');
     }
 

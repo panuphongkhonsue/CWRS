@@ -82,22 +82,12 @@
                                 <!-- //กำหนดหัวข้อของตาราง -->
                             </thead>
                                 <table class="table table-striped">
+                                    <tr class="text-center">
                                     <!-- //สร้างตารางและกำหนดสีของตาราง -->
-                                    <tr>
-                                        <td scope="col"></td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="col"></td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="col"></td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="col"></td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="col"></td>
-                                    </tr>
+                                    @if (Session::has('message'))
+                                        <td class="text-center">{{ Session::get('message') }}</td>
+                                    @endif
+                                </tr>
                                 </table>
                                 <!-- //ข้อความที่จะแสดง -->
                         </table>
