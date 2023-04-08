@@ -204,8 +204,8 @@
                                         <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
-                                            <input name = "sum-money" type="text" class="form-control text-end border-0" id = "total_money"
-                                                style=" background-color: #eee;" value="{{ __('0.00') }}" readonly>
+                                            <input name = "total_money" type="text" class="form-control text-end border-0" id = "total_money"
+                                                style=" background-color: #eee;" value="{{ __('0.00') }}" readonly> 
                                         </div>
                                         <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}
                                             <label style="color:#fff">_</label></label>
@@ -259,7 +259,7 @@
             let fixed = total.toLocaleString('en-US') + ".00";
             $("#total_money").val(fixed);
             $("#total_people").val(rowCount);
-            console.log(rowCount);
+            console.log($("#total_money").val());
         }
 
 
