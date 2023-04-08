@@ -107,7 +107,7 @@
                                     <option selected disabled>ชื่อ-นามสกุล,รหัสพนักงาน</option>
                                     @foreach ($departments_user as $user)
                                         <option
-                                            value='{"user_id":{{ $user->id }}, "user_fname":"{{ $user->fname }}" , "user_lname":"{{ $user->lname }}" , "user_role":"{{ $user->role->name }}"}'>
+                                            value="{{ $user->id }}|{{ $user->fname }}|{{$user->lname}}|{{$user->role->name}}">
                                             {{ $user->id }} - {{ $user->fname }} {{ $user->lname }}</option>
                                     @endforeach
                                 </select>
@@ -145,7 +145,7 @@
                                     <tbody id="b-detail">
                                         <tr>
                                             <td class="count_people"><input id="tb-name" type="text" name="user_info[]"
-                                                    class="form-control border-0 bg-white" style="color:#ffff">.</td>
+                                                    class="form-control border-0 bg-white" style="color:#ffff"></td>
                                             <td><label id="tb-role" type="text" name="role[]"
                                                     class="form-control text-end border-0 bg-white"></td>
                                         </tr>
@@ -205,7 +205,7 @@
                                         </label>
                                         <div class="col-sm-2">
                                             <input name = "total_money" type="text" class="form-control text-end border-0" id = "total_money"
-                                                style=" background-color: #eee;" value="{{ __('0.00') }}" readonly> 
+                                                style=" background-color: #eee;" value="{{ __('0.00') }}" readonly>
                                         </div>
                                         <label for="id" class="col-auto col-form-label me-5">{{ __('บาท') }}
                                             <label style="color:#fff">_</label></label>
@@ -336,12 +336,9 @@
                         /* นำค่าที่ Input มาใช้ */
                         var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
 
-// Disable the selected option
-
-                            var text = JSON.parse(l);
-                            var get_id = text.user_id;
-                            var name = text.user_fname + " " + text.user_lname;
-                            var role = text.user_role;
+                            var text = l.split('|');
+                            var name = text[1] + " " + text[2];
+                            var role = text[3];
                             $('#label_gen' + i).val(name)
                             console.log($('#label_gen' + i).val(name))
                             $('#label_gen ').css("color", "black")
@@ -353,12 +350,10 @@
                     } else if (rowCount == 0 && $('#get_user').val() != null) {
                         var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
 
-// Disable the selected option
-
                         var x = $('#get_user').val();
-                        var text = JSON.parse(x);
-                        var name = text.user_fname + " " + text.user_lname;
-                        var role = text.user_role;
+                        var text = x.split('|');
+                        var name = text[1] + " " + text[2];
+                        var role = text[3];
                         $('#tb-name').val(name)
                         console.log($('#tb_name').val())
                         $('#tb-name').css("color", "black")

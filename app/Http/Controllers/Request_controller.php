@@ -133,11 +133,16 @@ class Request_controller extends Controller
     * @Create Date : 2023-03-15
     * @Update Date : 2023-04-05 Panuphong Khonsue 64160282 call data to show
     * @Update Date : 2023-04-06 Panuphong Khonsue 64160282 Query Data To Show in Table
+    * @Update Date : 2023-04-08 Panuphong Khonsue 64160282 GetValue to save in DataBase
+    * @Update Date : 2023-04-08 Sarun Reaungthai 64160288 GetValue to save in DataBase
     */
     public function create_group(Request $request){
         $user = Auth::user();
         $date = date("Y-m-d");
-        $welfareObj1 = json_decode($request->welfare);
+        $selected_user_id = $request->input('user_info');
+        $welfare_obj1 = json_decode($request->welfare);
+
+        return dd($selected_user_id);
         $welfareBudget = $welfareObj1->budget;
         $welfareObj2 = json_decode($request->welfare);
         $welfareId = $welfareObj2->id;
