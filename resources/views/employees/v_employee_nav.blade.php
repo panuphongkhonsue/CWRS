@@ -25,7 +25,7 @@
 <body>
     <div class="container-fluid h-100" data-simplebar>
     <div class="row h-100">
-      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-custom" id="side_bar" style= "left: -300px"><!-- wait fix -->
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-custom zind" id="side_bar" style= "left: -300px"><!-- wait fix -->
       <a href="javascript:void(0);" class="icon">
       <i class="fa fa-bars" id = "hamburMenu1" onclick="closeNav()" style="font-size: 30px"></i>  <!-- Hamburger menu -->
       </a>
@@ -80,9 +80,9 @@
               </a>
         </div>
 
-          <ul class="navbar navbar-expand-lg navbar-light shadow-md justify-content-center py-2">
-          <a href="javascript:void(0);" class="icon">
-          <i class="fa fa-bars" id = "hamburMenu2" onclick= "openNav()" style="font-size: 30px"></i>  <!-- Hamburger menu -->
+          <ul class="navbar navbar-expand-lg navbar-light shadow-md justify-content-center py-4 sticky">
+            <a href="javascript:void(0);" class="icon">
+            <i class="fa fa-bars" id = "hamburMenu2" onclick= "openNav()" style="font-size: 30px"></i>  <!-- Hamburger menu -->
             <li class="navbar-nav">
                 <a class="navbar-brand text-light"  href="{{ url('/') }}">
 
@@ -101,7 +101,7 @@
                 <!-- Right Side Of Navbar -->
 
                 <ul class="navbar-nav ms-auto me-auto">
-                    <li class="fs-5">ระบบเบิกสวัสดิการพนักงาน</li>
+                    <li class="fs-2">ระบบเบิกสวัสดิการพนักงาน</li>
                 </ul>
             </div>
         </ul>
