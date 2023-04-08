@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Group_request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Single_request;
@@ -20,14 +19,9 @@ class HistoryShow extends Component
 
     public function render()
     {
-        if ($this->status == 999) {
+        if ($this->status == 999 ) {
             return view('livewire.history-show', ['requests' => Single_request::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
         }
-
-        else if ($this->walfare_type != 999) {
-            return view('livewire.history-show', ['requests' => Group_request::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
-        }
-
         else {
             return view('livewire.history-show', ['requests' => Single_request::where('status', $this->status)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
         }
