@@ -20,11 +20,11 @@
             background-color: #DCDCDC;
             }
         </style >
-        <!-- @foreach ($requests as $index => $request)
-            
+            @foreach ($requests as $index => $request)
+
                 <tr>
                     @php ($total = number_format(array_sum(json_decode($request->price)), 2))
-                        
+
                         @switch($request->get_welfare->type)
                         @case('S')
                             @php ($text = 'บุคคล')
@@ -50,9 +50,9 @@
                             <td class="text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"></td>
                             <td class="text-center"><a href="{{ route('show_history', ['id' => $request->id]) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
                 @endif
-            
+
             </tr>
-            @endforeach -->
+            @endforeach
             @foreach ($welfares as $welfare)
                 <tr>
                     @switch($welfare->type)
@@ -96,7 +96,7 @@
                     <td class="col-sm-1">ก.ย.</td>
                     <td class="col-sm-1">ต.ค.</td>
                     <td class="col-sm-1">พ.ย.</td>
-                    <td class="col-sm-1">ธ.ค.</td>                    
+                    <td class="col-sm-1">ธ.ค.</td>
                 </tr>
             </thead>
         </table>

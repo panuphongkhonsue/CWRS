@@ -18,7 +18,7 @@
 
         <div class="col-md-3">
             <div class="card">
-                <button wire:click.prevent="filter({{ 0 }})" type="button" id="selected" class="btn btn-custom ft active" value="0">
+                <button wire:click.prevent="filter({{ 0 }})" type="button" id="selected" class="btn btn-custom ft" value="0">
                     <div class="card-body">
                         <div class="row justify-content-center">
                             <div class="col text-start ms-3"><img  class="" src="./img/pending-approval.png" width="80" height="80"></div>
@@ -37,8 +37,6 @@
             <div class="card">
                 <button wire:click.prevent="filter({{ 1 }})" type="button" class="btn btn-custom ft" value="1">
                     <div class="card-body">
-
-
                         <div class="row justify-content-center">
                             <div class="col text-start ms-3"><img  class="" src="./img/อนุมัติ.png" width="80" height="80"></div>
                             <div class="col text-center me-5 mt-2">
