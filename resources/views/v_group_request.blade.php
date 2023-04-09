@@ -220,7 +220,7 @@
                         {{-- ปุ่มส่งเบิก --}}
                         <div class="row">
                             <div class="col-sm-2 ms-auto">
-                                <button type="submit" class="btn btn-success">ส่งเบิก</button>
+                                <button id = "sendForm" type="button" class="btn btn-success">ส่งเบิก</button>
                             </div>
                         </div>
                     </form>
