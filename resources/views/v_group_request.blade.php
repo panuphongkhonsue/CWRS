@@ -17,7 +17,7 @@
 
                 <div class="card-body ">
 
-                    <form id = "form_reGroup" method="POST" action="{{ route('create.group') }}" enctype="multipart/form-data">
+                    <form id = "form_reGroup" method="POST" action="{{ route('create_group') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
                             {{-- วันที่ --}}
@@ -297,12 +297,13 @@
                 selected_option.disabled = false;
                 updateTotal();
                 if (rowCount > -1) { // only splice array when item is found
-                    id.splice(button_index - 1, 1);
+                    id.splice(rowCount, 1);
                 }
                 num2 = 's';
-                // $("#us_id").val(id);
+                $("#us_id").val(id);
                 console.log("index = " + button_index);
             }
+            console.log(id)
         }
 
         function updateTotal() {
@@ -387,7 +388,7 @@
                         updateTotal();
                     }
                     $("#us_id").val(id);
-                    console.log($("#us_id").val())
+                    console.log(id)
                 }
             });
 
