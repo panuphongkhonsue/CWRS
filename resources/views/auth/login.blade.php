@@ -1,4 +1,13 @@
 @extends('layouts.app')
+<!--
+/*
+*login.blade.php
+*แสดงหน้า login เพื่อเข้าสู่ระบบ
+*@input:usename และpassword
+*@output:-
+*@auther:พนิดา ถำวาปี และรวิชญ์ พิบูลศิลป์ 64160299
+*@Date: 04-04-2566
+* -->
 
 @section('content')
 <div class="container">

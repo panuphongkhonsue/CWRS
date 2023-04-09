@@ -1,5 +1,14 @@
 {{-- หน้าแสดงประวัติ หลังจากกด แสดงรายการ --}}
 
+<!--
+/*
+*v_show_history.blade.php
+*แสดงประวัติการเบิกพนักงานพนักงาน
+*@input:กดแถบเมนูเพื่อเข้าไปหน้าประวัติ
+*@output:แสดงประวัติการเบิก
+*@auther:ชษิตา โตชาวนา รวิชญ์ พิบูลศิลป์ 64160299 ณัฐภาคย์ จูสุวรรณศิริ และศรัณต์ เรื่องไทย
+*@Date: 06-04-2566
+* -->
 @extends('employees.v_employee_nav')
 
 @section('content')
@@ -301,6 +310,7 @@
             </div>
         </div>
     </div>
+    <!-- // แสดงหน้าต่างผลซ้อนยกเลิกคำขอ-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">

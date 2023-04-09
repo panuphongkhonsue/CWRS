@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Group_request;
@@ -9,14 +10,33 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
+
+
 class Manage_request_controller extends Controller
 {
+    /*
+    * index()
+    * ส่งค่า่ไปที่หน้าจอ v_manage_request(รอ)
+    * @input : -
+    * @output : หน้าหลักของผู้ใช้
+    * @author : Rawich Piboonsin 64160299
+    * @Create Date : 2023-03-11
+    */
+
     public function index()
     {
         $requests = Single_request::where('status', 0)->get();
         // Check for search input
         return view('v_manage_request', ['requests' => $requests]);
     }
+     /*
+    * confirm_request()
+    * อนุมัติ ไม่อนุมัติ
+    * @input : -
+    * @output : หน้าหลักของผู้ใช้
+    * @author : Rawich Piboonsin 64160299
+    * @Create Date : 2023-03-11
+    */
 
     public function confirm_request($id, Request $request)
     {
@@ -43,7 +63,14 @@ class Manage_request_controller extends Controller
 
         return redirect()->route('manage_request');
     }
-
+    /*
+    * headindex()
+    * แสดงค่าหน้าจอ leaders.v_leader_home(รอ)
+    * @input : -
+    * @output : หน้าหลักของผู้ใช้
+    * @author : Rawich Piboonsin 64160299
+    * @Create Date : 2023-03-11
+    */
     public function headindex()
     {
         $requests = Group_request::where('status', 0)->orderBy('id', 'desc');

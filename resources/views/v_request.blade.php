@@ -1,5 +1,15 @@
 {{-- หน้าขอเบิกสวัสดิการแบบบุคคล --}}
 
+<!--
+/*
+*v_request.blade.php
+*แสดงใบเบิกแบบบุคคลพนักงาน
+*@input:กดเมนูบุคคเพื่อเข้าสู่หน้าใบเบิกแบบบุคคล
+*@output:แสดงฟอร์มใบเบิก
+*@auther:เบญจมาภรณ์ วงวิริยะ 641650165 รวิชญ์ พิบูลศิลป์ 64160299 และศรัณต์ เรืองไทย
+*@Date: 04-04-2566
+* -->
+
 @extends(((Auth::user()->type == "E") ? 'employees.v_employee_nav' : 'leaders.v_leader_nav'))
 
 @section('content')
@@ -212,7 +222,7 @@
 <script type="text/javascript">
     var rowCount = 1;
     var fileCount = 1;
-
+//ฟังก์ชัน ลบตาราง
     function deleteRow(ele) {
         if (rowCount > 1) {
             var tb = ele.closest("tr");
@@ -224,7 +234,7 @@
             updateTotal();
         }
     }
-
+//ฟังก์ชัน อัปโหลดไฟล์
     function updateTotal() {
         var col = document.getElementsByClassName("price");
         let total = 0;
@@ -236,6 +246,7 @@
         let fixed = total.toLocaleString('en-US') + ".00";
         $("#total").val(fixed);
     }
+    //ฟังก์ชันเพิ่มตาราง
 
     $(document).ready(function() {
 
@@ -279,6 +290,8 @@
             }
         });
 
+        //ตรวจสอบการกรอกข้อมุล
+
         $('#welfare').change(function() {
             var val = $(this).val();
             var text = JSON.parse(val);
@@ -312,7 +325,7 @@
             if (valid == false) {
                 alert('กรุณากรอกข้อมูลให้ครบถ้วน')
             }
-
+//หน้าต่างผลซ้อนยืนยัน และยกเลิก
             if (valid) {
                 Swal.fire({
                 title: 'คุณแน่ใจหรือไม่ ?',

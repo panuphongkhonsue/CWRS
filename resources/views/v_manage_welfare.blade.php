@@ -1,5 +1,17 @@
 @extends('humanresources.v_humanresource_nav')
 
+<!--
+/*
+*v_manag_walfare.blade.php
+*หน้าจัดการประเภทสวัสดิการ
+*@input:กดแถบข้างเพื่อเข้าหน้าจอจัดการประเภทสวัสดิการ ,กดปุ่มประเภทเพิ่มสวัสดิการ และกดปุ่มแก้ไขประเภทสวัสดิการ
+*@output:แสดงประเภทรายการสวัสดิการ
+*@auther:พนิดา ถำนิดา 64160167  และรวิชญ์ พิบูลศิลป์ 64160299
+@date:05-04-2566
+*/
+-->
+
+
 @section('content')
     <div class="row justify-content-center">
         <div class="col-lg-13">
@@ -12,7 +24,7 @@
                             <div class="row">
                                 <label class="col-auto col-form-label">รูปแบบสวัสดิการ :</label>
 
-                                <!-- ตัวเลือกหลายรายการของรูปแบบสวัสดิการ -->
+                                <!--  //ตัวเลือกหลายรายการของรูปแบบสวัสดิการ -->
                                 <div class="col-sm-4">
 
                                     <livewire:filter-welfare/>
@@ -34,6 +46,7 @@
             </div>
         </div>
     </div>
+    {{-- // แก้ไขประเภทสวัสดิการ --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {

@@ -1,5 +1,15 @@
 {{-- หน้าขอเบิกสวัสดิการแบบบุคคล --}}
 
+<!--
+/*
+*v_group_request.blade.php
+*แสดงใบเบิกแบบสันทนาการพนักงาน
+*@input:กดเมนูสันทนาการเพื่อเข้าสู่หน้าใบเบิกแบบสันทนาการ
+*@output:แสดงฟอร์มใบเบิก
+*@auther:ภูรินทร์ ลามากุล 64160284 ,รวิชญ์ พิบูลศิลป์ 64160299 ,ภานุพงศ์ คนซื่อ 64160282 และศรัณต์ เรื่องไทย 64160288
+*@Date: 04-04-2566
+* -->
+
 @extends(Auth::user()->type == 'E' ? 'employees.v_employee_nav' : 'leaders.v_leader_nav')
 <style>
     tbody tr{
@@ -243,6 +253,8 @@
         var id = [];
         var element_name = [];
 
+        //ลบตาราง
+
         function
         deleteRow(ele) {
             var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
@@ -330,14 +342,14 @@
         //     // Disable the selected option
         //     selected_option.disabled = true;
         // }
-
+//ฟังก์ชัน ตรวจสอบสมาชิก
         function check_table() {
             if (rowCount < 2) {
                 alert("ต้องมีสมาชิก 2 คนขึ้นไป");
             }
         }
 
-
+//ฟังก์ชัน เพิ่มตาราง
         $(document).ready(function() {
             $("#btn_add").click(function() {
                 if (rowCount < 20) {
