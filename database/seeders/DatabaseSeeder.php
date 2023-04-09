@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Department;
+use App\Models\Group_request;
 use App\Models\Welfare;
 
 
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartmentsSeeder::class);
         $this->call(UsersSeeder::class);
         $this->call(WelfaresSeeder::class);
+        $this->call(Group_request::class);
     }
 }

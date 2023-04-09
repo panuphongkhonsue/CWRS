@@ -7,6 +7,8 @@ use App\Models\Single_request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Builder\Function_;
+use PhpParser\Node\Expr\FuncCall;
 
 class Manage_request_controller extends Controller
 {
@@ -54,4 +56,30 @@ class Manage_request_controller extends Controller
 
         return view('leaders.v_leader_home', ['requests' => $requests]);
     }
+    public Function confirm_request_head($id, Request $request){
+        $requests = Group_request::where('id', $id)->first();
+
+        if ($request->dec == "accept") {
+            $requests->status = 1;
+        }
+        else if ($request->dec == 'reject') {
+            $requests->status = -2;
+        }
+
+        $month = date("m");
+        $year = date("Y") + 543;
+        $day = date("d");
+        $str = $year . '/' . $month . '/' . $day;
+        $date = date("Y-m-d", strtotime($str));
+
+        $requests->note = $request->note;
+        $requests->head_approve_date = $date;
+        $requests->head_approver_id = Auth::user()->id;
+        $requests->save();
+
+        sleep(1);
+
+        return redirect()->route('manage_request');
+    }
+
 }

@@ -64,11 +64,13 @@ Route::group(['middleware' => 'auth'], function()
         Route::post('/request/single/create', [Request_controller::class, 'create_single'])->name('create.single');
         Route::get('/history/{id}', [User_history_controller::class, 'show_request'])->name('show_history');
         Route::post('/request/group/create', [Request_controller::class, 'create_group'])->name('create.group');
+        Route::get('/group-head', [Manage_request_controller::class, 'confirm_request_head'])->name('group-head');
    });
 
    Route::group(['middleware' => 'hrlead'], function()
    {
         Route::get('/manage_request/{id}', [User_history_controller::class, 'show_approve'])->name('show_approve_request');
         Route::patch('/manage_request/{id}/comfirm', [Manage_request_controller::class, 'confirm_request'])->name('confirm');
+        Route::get('/manage_request_head/{id}', [User_history_controller::class, 'show_approve_head'])->name('show_approve_request_head');
    });
 });

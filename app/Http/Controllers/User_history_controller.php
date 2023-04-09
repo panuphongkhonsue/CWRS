@@ -7,6 +7,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group_request;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Welfare;
@@ -86,5 +87,16 @@ class User_history_controller extends Controller
         }
 
         return view('v_show_approve', ['history' => $history]);
+    }
+
+    public function show_approve_head($id)
+    {
+        $history = Group_request::where('id', $id)->first();
+
+        if ($history == NULL) {
+            abort(404);
+        }
+
+        return view('v_show_approve_head', ['history' => $history]);
     }
 }
