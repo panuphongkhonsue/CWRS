@@ -7,8 +7,8 @@ use App\Models\Single_request;
 
 class ReportFilter extends Component
 {
-    public $report_status = 999;
-    public $report_type = 999;
+    public $report_status = 1;
+    public $report_type = "S";
     public $report_year = 999;
 
     public function render()
