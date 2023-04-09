@@ -33,9 +33,10 @@
             // echo $year1[0]->id
             // echo $welfares
              ?>
+            @php ($colsum = [0,0,0,0,0])
+
             @foreach ($welfares as $index => $welfare)
                     <tr>
-
                             @switch($welfare->type)
                             @case('S')
                                 @php ($text = 'บุคคล')
@@ -53,7 +54,8 @@
                                     @foreach ($year1 as $yearIndex=>$year)
                                         @if ($welfares[$index]->id == $year1[$yearIndex]->id)
                                         <?php $sum += $year1[$yearIndex]->sum ?>
-                                        <td class="text-end">{{ $year1[$yearIndex]->sum }}</td>
+                                        <?php $colsum[0] += $year1[$yearIndex]->sum ?>
+                                        <td class="text-end">{{ number_format($year1[$yearIndex]->sum, 2) }}</td>
                                         @break
                                         @endif
                                         @if ($yearIndex + 1 == COUNT($year1))
@@ -72,7 +74,8 @@
                                 @foreach ($year2 as $yearIndex=>$year)
                                         @if ($welfares[$index]->id == $year2[$yearIndex]->id)
                                         <?php $sum += $year2[$yearIndex]->sum ?>
-                                        <td class="text-end">{{ $year2[$yearIndex]->sum }}</td>
+                                        <?php $colsum[1] += $year2[$yearIndex]->sum ?>
+                                        <td class="text-end">{{ number_format($year2[$yearIndex]->sum, 2) }}</td>
                                         @break
                                         @endif
                                         @if ($yearIndex + 1 == COUNT($year2))
@@ -94,7 +97,8 @@
                                 @foreach ($year3 as $yearIndex=>$year)
                                         @if ($welfares[$index]->id == $year3[$yearIndex]->id)
                                         <?php $sum += $year3[$yearIndex]->sum ?>
-                                        <td class="text-end">{{ $year3[$yearIndex]->sum }}</td>
+                                        <?php $colsum[2] += $year3[$yearIndex]->sum ?>
+                                        <td class="text-end">{{ number_format($year3[$yearIndex]->sum, 2) }}</td>
                                         @break
                                         @endif
                                         @if ($yearIndex + 1 == COUNT($year3))
@@ -107,7 +111,8 @@
                                 @foreach ($year4 as $yearIndex=>$year)
                                     @if ($welfares[$index]->id == $year4[$yearIndex]->id)
                                     <?php $sum += $year4[$yearIndex]->sum ?>
-                                    <td class="text-end">{{ $year4[$yearIndex]->sum }}</td>
+                                    <?php $colsum[3] += $year4[$yearIndex]->sum ?>
+                                    <td class="text-end">{{ number_format($year4[$yearIndex]->sum, 2) }}</td>
                                     @break
                                     @endif
                                     @if ($yearIndex + 1 == COUNT($year4))
@@ -121,24 +126,25 @@
                                 @foreach ($year5 as $yearIndex=>$year)
                                     @if ($welfares[$index]->id == $year5[$yearIndex]->id)
                                     <?php $sum += $year5[$yearIndex]->sum ?>
-                                    <td class="text-end">{{ $year5[$yearIndex]->sum }}</td>
+                                    <?php $colsum[4] += $year5[$yearIndex]->sum ?>
+                                    <td class="text-end">{{ number_format($year5[$yearIndex]->sum, 2) }}</td>
                                     @break
                                     @endif
                                     @if ($yearIndex + 1 == COUNT($year5))
                                     <td class="text-end">0</td>
                                     @endif
                                 @endforeach
-                                <td class="text-end">{{ $sum }}</td>
+                                <td class="text-end">{{ number_format($sum, 2) }}</td>
 
                     </tr>
                 @endforeach
                 <tr>
                     <td class="text-center">รวม</td>
-                    <td class="text-end">{{ $colsum[0] }}</td>
-                    <td class="text-end">{{ $colsum[1] }}</td>
-                    <td class="text-end">{{ $colsum[2] }}</td>
-                    <td class="text-end">{{ $colsum[3] }}</td>
-                    <td class="text-end">{{ $colsum[4] }}</td>
+                    <td class="text-end">{{ number_format($colsum[0], 2) }}</td>
+                    <td class="text-end">{{ number_format($colsum[1], 2) }}</td>
+                    <td class="text-end">{{ number_format($colsum[2], 2) }}</td>
+                    <td class="text-end">{{ number_format($colsum[3], 2) }}</td>
+                    <td class="text-end">{{ number_format($colsum[4], 2) }}</td>
                     <td class="text-end"></td>
                 </tr>
         </tbody>
