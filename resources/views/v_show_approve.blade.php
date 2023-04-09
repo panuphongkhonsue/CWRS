@@ -1,6 +1,15 @@
-{{-- หน้าแสดงประวัติ หลังจากกด แสดงรายการ --}}
+
 
 @extends('humanresources.v_humanresource_nav')
+<!--
+/*
+* v_show_approve.blade.php
+* แสดงประวัติของการเบิกในจำนวนเงินทั้งหมด
+* @input : กดแถบข้างเพื่อเข้าหน้าอนุมัติใบเบิกแบบบุคคล
+* @output : แสดงข้อมูลการเบิกพนักงานแบบบุคคล
+* @author : เบญจมาภรณ์ วงค์วิริยะ 64160165 และรวิชญ์ พิบูลย์ศิลป์ 64160299
+* @Create Date : 2023-04-05
+*/ -->
 
 @section('content')
     <div class="row justify-content-center">

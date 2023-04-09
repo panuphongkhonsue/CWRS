@@ -1,4 +1,13 @@
 {{-- แถบเมนูของหัวหน้าแผนก --}}
+<!--
+/*
+* v_leader_home.blade.php
+* แสดงแถบเมนูของหัวหน้าแผนก
+* @input  : -
+* @output : แสดงข้อมูลคำร้องขอของพนักงาน
+* @author : รวิชญ์ พิบูลย์ศิลป์ 64160299
+* @Create Date : 2023-04-02
+*/ -->
 
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">

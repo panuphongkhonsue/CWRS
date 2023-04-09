@@ -1,4 +1,14 @@
-{{-- หน้าขอเบิกสวัสดิการแบบบุคคล --}}
+
+
+<!--
+/*
+* v_group_reqest.blade.php
+* หน้าจอขอเบิกสวัสดิการแบบสันทนาการ
+* @input : กดแถบข้างเพื่อเข้าหน้ารายงานสรุปการเบิก
+* @output : แสดงรายการคำขอสวัสดิการพนักงาน
+* @author : ภูรินทร์ ลามากุล 64160284 รวิชญ์ พิบูลย์ศิลป์ 64160299 ภานุพงศ์ คนซื่อ 64160282 และศรัณต์ เรื่องไทย 64160288
+* @Create Date : 2023-04-05
+*/ -->
 
 @extends(Auth::user()->type == 'E' ? 'employees.v_employee_nav' : 'leaders.v_leader_nav')
 <style>
@@ -20,33 +30,33 @@
                     <form id = "form_reGroup" method="POST" action="{{ route('create.group') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
-                            {{-- วันที่ --}}
+                            {{-- //วันที่ --}}
                             <div class="row">
                                 <label for="budget"
                                     class="col-auto col-form-label ms-auto fw-bolder ">{{ 'วัน/เดือน/ปี : ' }}</label>
                                 <div class="col-sm-2">
-                                    {{-- generate วันที่ --}}
+                                    {{-- //generate วันที่ --}}
                                     <input type="text" id="date" name="date"
                                         class="form-control border-0 bg-transparent fs-16px" value="{{ date('d/m/Y') }}">
                                 </div>
                             </div>
 
-                            {{-- รหัสพนักงาน --}}
+                            {{-- //รหัสพนักงาน --}}
                             <div class="row ms-5 mt-1">
                                 <label for="id" class="col-sm-2 col-form-label fw-bold">{{ 'รหัสพนักงาน : ' }}</label>
                                 <div class="col-sm-3">
-                                    {{-- generate รหัสพนักงาน --}}
+                                    {{-- //generate รหัสพนักงาน --}}
                                     <input name="user-id" type="text"
                                         class="form-control border-0 bg-transparent fs-16px" value="{{ Auth::user()->id }}"
                                         disabled>
                                 </div>
                             </div>
 
-                            {{-- ชื่อ นามกุล --}}
+                            {{-- //ชื่อ นามกุล --}}
                             <div class="row ms-5 mt-1">
                                 <label for="name" class="col-sm-2 col-form-label fw-bold ">{{ 'ชื่อ-สกุล : ' }}</label>
                                 <div class="col-sm-3">
-                                    {{-- generate ชื่อ-นามสกุล --}}
+                                    {{-- //generate ชื่อ-นามสกุล --}}
                                     <input type="text"
                                         class="form-control border-0 bg-transpa
                                 rent fs-16px"
@@ -55,18 +65,18 @@
                             </div>
 
 
-                            {{-- แผนก --}}
+                            {{-- //แผนก --}}
                             <div class="row ms-5 mt-1 ">
                                 <label for="department" class="col-sm-2 col-form-label fw-bold">{{ 'แผนก : ' }}</label>
                                 <div class="col-sm-3">
-                                    {{-- generate แผนก --}}
+                                    {{-- //generate แผนก --}}
                                     <input type="text" class="form-control border-0 bg-transparent fs-16px"
                                         value="{{ Auth::user()->department->name }}" disabled>
                                 </div>
                             </div>
                         </div>
 
-                        {{-- แถบเลือกประเภท --}}
+                        {{-- //แถบเลือกประเภท --}}
                         <div class="row mt-3 mx-5">
                             <label for="welfare" class="col-auto col-form-label">{{ __('ประเภทสวัสดิการ : ') }}</label>
                             <div class="col-md-5">
@@ -74,7 +84,7 @@
                                     onclick="updateTotal()">
                                     <option selected disabled>เลือกประเภทสวัสดิการ</option>
 
-                                    {{-- 3 บรรทัดนี้ ห้ามแก้ --}}
+
                                     @foreach ($welfares as $welfare)
                                         <option value='{"id":{{ $welfare->id }}, "budget":{{ $welfare->budget }}}'>
                                             {{ $welfare->title }}</option>
@@ -83,7 +93,7 @@
                                 </select>
                             </div>
 
-                            {{-- จำนวนเงิน --}}
+                            {{-- //จำนวนเงิน --}}
                             <label for="budget"
                                 class="col-auto col-form-label ms-auto ">{{ __('จำนวนเงินที่เบิกได้ : ') }}</label>
                             <div class="col-sm-2">
@@ -97,7 +107,7 @@
                         <br>
 
 
-                        {{-- text-inputที่ใส่ชื่อหรือรหัสพนักงาน --}}
+                        {{-- //เพิ่มชื่อพนักงาน --}}
                         <div class="addpeople row ">
                             <div class="col">
                                 <label>รายชื่อพนักงานเข้าร่วมกิจกรรม
@@ -108,7 +118,7 @@
                         <div class="addpeople row">
                             <label for="budget" class="col-auto col-form-label">{{ __('เพิ่มสมาชิก : ') }}</label>
                             <div class="col-sm-4 mt-2">
-                                {{-- ช่องที่ต้องใส่หรือรหัสพนักงาน --}}
+
                                 <select class="get_user_name form-control" name="userselect" id="get_user">
                                     <option selected disabled>ชื่อ-นามสกุล,รหัสพนักงาน</option>
                                     @foreach ($departments_user as $user)
@@ -135,7 +145,7 @@
 
 
 
-                        {{-- ตารางสมาชิก --}}
+                        {{-- //ตารางสมาชิก --}}
                         <div class="row wfh mx-5">
                             <div class="col-sm-11 p-0">
 
@@ -162,7 +172,7 @@
                             </div>
                             <div class="col-sm-1 mx-auto">
 
-                                {{-- ปุ่มรายเพิ่มตาราง ลบตาราง --}}
+                                {{-- //ปุ่มรายเพิ่มตาราง ลบตาราง --}}
                                 <table class="table">
                                     <thead>
                                         <tr>

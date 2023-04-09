@@ -1,4 +1,13 @@
 @extends('humanresources.v_humanresource_nav')
+<!--
+/*
+* v_manage_reqest.blade.php
+* หน้าจอรายการคำขออนุมัติ
+* @input : กดแถบข้างเพื่อเข้าสู่หน้าคำขออนุมัติ
+* @output : แสดงรายการคำขอสวัสดิการพนักงาน
+* @author : ภูรินทร์ ลามากุล 64160284 รวิชญ์ พิบูลย์ศิลป์ 64160299 และณัฐภาคย์ จูสุวรรณสิริ 64160160
+* @Create Date : 2023-04-05
+*/ -->
 
 @section('content')
     <div class="row">
@@ -10,7 +19,7 @@
                 <div class="card-body">
                     <div class="row mt-4">
                         <div class="col-md-13">
-                            
+
 
 
                             {{-- ในส่วนของตาราง --}}

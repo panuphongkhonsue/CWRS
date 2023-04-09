@@ -1,4 +1,13 @@
 @extends('humanresources.v_humanresource_nav')
+<!--
+/*
+* v_manage_welfare.blade.php
+* แสดงประวัติของการเบิกในจำนวนเงินทั้งหมด
+* @input : กดแถบข้างเพื่อเข้าหน้ารายงานสรุปการเบิก
+* @output : แสดงข้อมูลประวัติย้อนหลัง 5 ปี และแสดงข้อมูลประวัติแต่ละปี
+* @author : พนิดา ถำวาปี 64160167 และรวิชญ์ พิบูลย์ศิลป์ 64160299
+* @Create Date : 2023-04-06
+*/ -->
 
 @section('content')
     <div class="row justify-content-center">
@@ -11,6 +20,7 @@
                         <div class="col">
                             <div class="row">
                                 <label class="col-auto col-form-label">รูปแบบสวัสดิการ :</label>
+
 
                                 <!-- ตัวเลือกหลายรายการของรูปแบบสวัสดิการ -->
                                 <div class="col-sm-4">
