@@ -12,7 +12,7 @@
 
                 <div class="card-body ">
 
-                    <form id = "form_reGroup" method="POST" action="{{ route('create_group') }}" enctype="multipart/form-data">
+                    <form id = "form_reGroup" method="POST" action="{{ route('create.group') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
                             {{-- วันที่ --}}
@@ -191,7 +191,7 @@
                                             hidden>
                                     </div>
                                     <div class="row ">
-                                        <label for="total" class="col-auto col-form-label ms-auto">จำนวนคนทั้งหมด :
+                                        <label for="total" class="col-auto col-form-label ms-auto mb-3">จำนวนคนทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
                                             <input name="num_peo" type="text" class="form-control text-end border-0"
@@ -202,7 +202,7 @@
                                             <label style="color:#fff">__</label></label>
                                     </div>
                                     <div class="row ">
-                                        <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด :
+                                        <label for="total" class="col-auto col-form-label ms-auto mb-3">จำนวนเงินทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
                                             <input name="total_money" type="text"
@@ -220,7 +220,7 @@
                         {{-- ปุ่มส่งเบิก --}}
                         <div class="row">
                             <div class="col-sm-2 ms-auto">
-                                <button type = "button" class="btn btn-success" id ="mmn">ส่งเบิก</button>
+                                <button type = "button" class="btn btn-success mb-5" id ="mmn">ส่งเบิก</button>
                             </div>
                         </div>
                     </form>
