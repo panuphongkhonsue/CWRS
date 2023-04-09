@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth'], function()
    Route::group(['middleware' => 'user:M'], function()
    {
         Route::get('/manage-request-head', [Manage_request_controller::class, 'headindex'])->name('lead_manage_request');
+        Route::get('/group-head', [Manage_request_controller::class, 'confirm_request_head'])->name('group-head');
+        Route::patch('/manage_request/{id}/comfirm/leader', [Manage_request_controller::class, 'confirm_request_head'])->name('confirm_leader');
    });
 
    Route::group(['middleware' => 'user:H'], function()
@@ -64,7 +66,7 @@ Route::group(['middleware' => 'auth'], function()
         Route::post('/request/single/create', [Request_controller::class, 'create_single'])->name('create.single');
         Route::get('/history/{id}', [User_history_controller::class, 'show_request'])->name('show_history');
         Route::post('/request/group/create', [Request_controller::class, 'create_group'])->name('create.group');
-        Route::get('/group-head', [Manage_request_controller::class, 'confirm_request_head'])->name('group-head');
+
    });
 
    Route::group(['middleware' => 'hrlead'], function()
