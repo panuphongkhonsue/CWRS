@@ -191,7 +191,7 @@
                                 <div class=" p-0">
                                     {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
                                     <div class="row ">
-                                        <label for="total" class="col-auto col-form-label ms-auto">จำนวนคนทั้งหมด :
+                                        <label for="total" class="col-auto col-form-label ms-auto mb-3">จำนวนคนทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
                                             <input type="text" class="form-control text-end border-0" id = "total_people"
@@ -201,7 +201,7 @@
                                             <label style="color:#fff">__</label></label>
                                     </div>
                                     <div class="row ">
-                                        <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด :
+                                        <label for="total" class="col-auto col-form-label ms-auto mb-5">จำนวนเงินทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
                                             <input type="text" class="form-control text-end border-0" id = "total_money"
@@ -218,7 +218,7 @@
                         {{-- ปุ่มส่งเบิก --}}
                         <div class="row">
                             <div class="col-sm-2 ms-auto">
-                                <button type="submit" class="btn btn-success">ส่งเบิก</button>
+                                <button type="submit" class="btn btn-success mb-5">ส่งเบิก</button>
                             </div>
                         </div>
                     </form>
