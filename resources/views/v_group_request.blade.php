@@ -12,7 +12,7 @@
 
                 <div class="card-body ">
 
-                    <form method="POST" action="{{ route('create_group') }}" enctype="multipart/form-data">
+                    <form id = "form_reGroup" method="POST" action="{{ route('create_group') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
                             {{-- วันที่ --}}
@@ -220,7 +220,7 @@
                         {{-- ปุ่มส่งเบิก --}}
                         <div class="row">
                             <div class="col-sm-2 ms-auto">
-                                <button id = "sendForm" type="button" class="btn btn-success">ส่งเบิก</button>
+                                <button type = "button" class="btn btn-success" id ="mmn">ส่งเบิก</button>
                             </div>
                         </div>
                     </form>
@@ -240,16 +240,16 @@
 
         function
         deleteRow(ele) {
-            var btn_del = $('.btn_delete').length;
             var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
             var selected_near_option = document.getElementById("get_user");
-            if (rowCount == 1 ) {
+            var length_count = $('.count_people').length;
+            if (length_count == 1 ) {
                 var button_index = getRowIndex(ele)
                 var selected_option = document.getElementById("get_user").options[document.getElementById("get_user")
                     .selectedIndex];
                 $(".count_people").val('.')
                 $(".count_people").css('color', 'white')
-                $(".count_role").html('.')
+                $(".count_role").html(' ')
                 $(".count_role").css('color', 'white')
                 num1 = 'a';
                 rowCount = 0;
@@ -366,21 +366,21 @@
 
                         updateTotal();
                     } else if (rowCount == 0 && $('#get_user').val() != null) {
-                        console.log('test');
                         var selected_option = document.getElementById("get_user").options[document
-                            .getElementById("get_user").selectedIndex];
+                        .getElementById("get_user").selectedIndex];
                         var x = $('#get_user').val();
                         var text = x.split('|');
                         var name = text[1] + " " + text[2];
                         var role = text[3];
                         id.push(text[0]);
                         $('#tb-name').val(name)
-                        $('#tb-name').css("color", "black")
+                        $('.count_people').css("color", "black")
                         $('#tb-role').html(role)
                         $('.count_role').css("color", "black")
 
                         // disable_select();
                         rowCount++;
+
                         selected_option.disabled = true;
 
                         updateTotal();
@@ -405,4 +405,56 @@
 
         });
     </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="{{ URL::asset('/css/home.css') }}">
+<script>
+$("#mmn").click(function() {
+    Swal.fire({
+  title: 'คุณแน่ใจหรือไม่ ?',
+  text: 'คุณต้องการยืนยันการเบิกสวัสดิการหรือไม่',
+  imageUrl: '{{ URL::asset('img/aleart1.png') }} ',
+  imageWidth: 150,
+  imageHeight: 150,
+  denyButtonText: 'ยกเลิก',
+  confirmButtonText: 'ยืนยัน',
+  confirmButtonColor: '#32cd32',
+  denyButtonColor: '#ff0000',
+  showDenyButton: true,
+  showCloseButton: true,
+  reverseButtons: true,
+  customClass: {
+    confirmButton: 'confirm-button-class',
+    denyButton: 'deny-button-class'
+  },
+  preConfirm: () => {
+    document.getElementById('form_reGroup').submit();
+  }
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire({
+  imageUrl: '{{ URL::asset('img/correct-1.png') }} ',
+  title: 'สำเร็จ',
+  text: 'คุณยืนยันการเบิกสวัสดิการสำเร็จ',
+  showConfirmButton: false,
+  imageWidth: 150,
+  imageHeight: 150,
+  timer: 1500
+})
+} else if (result.isDenied) {
+    Swal.fire({
+  imageUrl: '{{ URL::asset('img/cancel_welfare.png') }} ',
+  title: 'ไม่สำเร็จ',
+  showConfirmButton: false,
+  text: 'คุณยืนยันการเบิกสวัสดิการไม่สำเร็จ',
+  imageWidth: 150,
+  imageHeight: 150,
+  timer: 1500
+})
+  }
+})
+});
+</script>
 @endsection
