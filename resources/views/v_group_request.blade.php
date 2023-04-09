@@ -146,7 +146,7 @@
                                     <tbody id="b-detail">
                                         <tr>
                                             <td class="count_people"><input id="tb-name" type="text" name="user_info[]"
-                                                    class="form-control border-0 bg-white us" style="color:#ffff"></td>
+                                                    class="form-control border-0 bg-white us"></td>
                                             <td class="count_role form-control text-end border-0"><label id="tb-role"
                                                     type="text" name="role[]" class="form-control text-end border-0">
                                             </td>
@@ -155,7 +155,7 @@
                                 </table>
 
                             </div>
-                            <div class="col-sm-1 mx-auto ">
+                            <div class="col-sm-1 mx-auto">
 
                                 {{-- ปุ่มรายเพิ่มตาราง ลบตาราง --}}
                                 <table class="table">
@@ -171,19 +171,6 @@
 
                                         </tr>
                                     </thead>
-
-                                    <tbody id="b-detail-2">
-                                        <tr class="detail">
-                                            <td class="border-0">
-                                                <button type="button" id="btn_delete_1"
-                                                    class="btn_delete border-0 bg-transparent remove-row btn"
-                                                    onclick="deleteRow(this)">
-                                                    <img src="{{ URL::asset('img/delete_group_requst.png') }}"
-                                                        width="27" height="17">
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -191,6 +178,13 @@
                         <div class="row">
                             <div class="col-md-8 ms-auto">
                                 <div class=" p-0">
+                                    <div class="debtn mb-2 pb-2">
+                                        <button type="button" id="btn_delete_1"
+                                                    class="btn_delete border-0 bg-transparent remove-row btn"
+                                                    onclick="deleteRow(this)">
+                                                    <img src="{{ URL::asset('img/delete_group_requst.png') }}"
+                                                        width="27" height="17">
+                                    </div>
                                     {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
                                     <div class="get_user">
                                         <input type="text" id="us_id" class="id_user_table" name="get_user_id[]"
@@ -244,31 +238,39 @@
         var id = [];
         var element_name = [];
 
-        function deleteRow(ele) {
+        function
+        deleteRow(ele) {
             var btn_del = $('.btn_delete').length;
-            var selected_option = document.getElementById("get_user").options[document.getElementById("get_user")
-                .selectedIndex];
+            var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
             var selected_near_option = document.getElementById("get_user");
-
-            if (btn_del == 1 || rowCount == 0) {
+            if (rowCount == 1 ) {
                 var button_index = getRowIndex(ele)
                 var selected_option = document.getElementById("get_user").options[document.getElementById("get_user")
                     .selectedIndex];
-                $("#tb-name").html('.')
-                $("#tb-name").css('color', 'white')
-                $("#tb.role").html('.')
-                $("#tb-role").css('color', 'white')
+                $(".count_people").val('.')
+                $(".count_people").css('color', 'white')
+                $(".count_role").html('.')
+                $(".count_role").css('color', 'white')
                 num1 = 'a';
                 rowCount = 0;
+
                 if (rowCount == 0) {
                     var selected_option = document.getElementById("get_user");
                     for (let index = 0; index < selected_option.length; index++) {
                         if (index != 0) {
                             selected_option.options[index].disabled = false;
-
                         }
                     }
+                    $('#b-detail').html(
+                            `
+                        <tr>
+                        <td class="count_people"><label type="text" id="tb-name" name="user_info[]" form-control border-0 bg-white us" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td class="count_role"><label type="text" id="tb-role" name="role[]" class="form-control border-0 bg-white us" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                    </tr>
+                    `
+                        );
                 }
+
                 updateTotal();
                 if (rowCount > -1) { // only splice array when item is found
                     id.splice(0, 1); //
@@ -276,13 +278,15 @@
                 console.log("Rowcount = " + rowCount);
                 $("#us_id").val(id);
                 console.log("index = " + button_index);
+
             } else {
+                var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
                 var button_index = getRowIndex(ele)
                 //เรียกฟังก์ชันหา indexจากปุ่มที่กด
                 var tb = ele.closest("tr");
-                let row = tb.rowIndex;
+                // let row = tb.rowIndex;
                 $(tb).remove();
-                document.getElementById("b-detail").deleteRow(row - 1);
+                document.getElementById("b-detail").deleteRow(rowCount - 1);
                 rowCount--;
                 console.log("RowCount = " + rowCount);
 
@@ -293,7 +297,7 @@
                     id.splice(button_index - 1, 1);
                 }
                 num2 = 's';
-                $("#us_id").val(id);
+                // $("#us_id").val(id);
                 console.log("index = " + button_index);
             }
         }
@@ -333,25 +337,15 @@
         $(document).ready(function() {
             $("#btn_add").click(function() {
                 if (rowCount < 20) {
+                    console.log($('#get_user').val());
                     if (rowCount > 0 && $('#get_user').val() != null) {
                         var l = $('#get_user').val(); /* เก็บค่าที่ Input มา */
                         var i = rowCount;
                         $('#b-detail').append(
                             `
                         <tr>
-                        <td class="count_people"><label type="text" id="label_gen" name="user_info[]" class="form-control border-0" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
-                        <td class="count_role"><label type="text" id ="role_gen" name="role[]" class="form-control text-end border-0" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
-                    </tr>
-                    `
-                        );
-                        $('#b-detail-2').append(
-                            `
-                    <tr class="detail">
-                    <td class="border-0">
-                            <button type="button" class="btn_delete border-0 bg-transparent remove-row btn" onclick="deleteRow(this)">
-                                <img src="{{ url('./img/delete_group_requst.png') }}"  width="27" height="17">
-                            </button>
-                        </td>
+                        <td class="count_people"><label type="text" id="name_gen`+ i +`" name="user_info[]" class="form-control border-0" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td class="count_role"><label type="text" id="role_gen`+ i +`" name="role[]" class="form-control border-0 bg-white us text-end" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
                     </tr>
                     `
                         );
@@ -363,15 +357,16 @@
                         var name = text[1] + " " + text[2];
                         var role = text[3];
                         id.push(text[0]);
-                        $('#label_gen').html(name)
-                        $('#label_gen').css("color", "black")
-                        $('#role_gen').html(role)
-                        $('#role_gen').css("color", "black")
+                        $('#name_gen'+i).html(name)
+                        $('.count_people').css("color", "black")
+                        $('#role_gen'+i).html(role)
+                        $('.count_role').css("color", "black")
                         rowCount++;
                         selected_option.disabled = true;
 
                         updateTotal();
                     } else if (rowCount == 0 && $('#get_user').val() != null) {
+                        console.log('test');
                         var selected_option = document.getElementById("get_user").options[document
                             .getElementById("get_user").selectedIndex];
                         var x = $('#get_user').val();
@@ -382,7 +377,7 @@
                         $('#tb-name').val(name)
                         $('#tb-name').css("color", "black")
                         $('#tb-role').html(role)
-                        $('#tb-role').css("color", "black")
+                        $('.count_role').css("color", "black")
 
                         // disable_select();
                         rowCount++;
