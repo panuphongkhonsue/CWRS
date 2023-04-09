@@ -102,10 +102,7 @@ class ReportShow extends Component
             $this->requests = $this->requests->whereNotIn('id', $welId);
             $this->requests = $this->requests->whereYear('create_date', $report_year)->get();
 
-            for ($i = 0 ; $i < 12 ; $i++) {
-                $this->month[$i] = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereMonth('create_date', $i+1)->get();
-                return dd()
-            }
+            
 
             $this->year2 = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', 2022)->get();
             $this->year3 = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', 2021)->get();
