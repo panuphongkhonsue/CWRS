@@ -125,7 +125,7 @@ class Request_controller extends Controller
         $welfare_id[0] = NULL;
 
         foreach ($requests as $index => $request) {
-            if (date("Y", strtotime($request->create_date)) == date("Y")) {
+            if (date("Y", strtotime($request->create_date)) == date("Y")+543) {
                 $welfare_id[$index] = $request->welfare_id;
             }
         }
@@ -169,6 +169,13 @@ class Request_controller extends Controller
         // Retrieve the input values from the form
         $group_sumMoney = $request->input('sum-money');
         $group_welfare = $request->input('welfare');
+
+        /* create BE date */
+        $month = date("m");
+        $year = date("Y") + 543;
+        $day = date("d");
+        $str = $year . '/' . $month . '/' . $day;
+        $date = date("Y-m-d", strtotime($str));
 
         // Create a new group instance using the Eloquent model
 
