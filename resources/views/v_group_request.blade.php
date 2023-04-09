@@ -89,7 +89,7 @@
                             <div class="col-sm-2">
                                 <input name="wel-budget" type="text" id="money"
                                     class="text-end form-control border-0" style=" background-color: #eee;"
-                                    value="{{ __('0.00') }} ">
+                                    value="{{ __('0.00') }} " readonly>
                             </div>
 
                             <label for="id" class="col-auto col-form-label">{{ __('บาท') }}</label>
