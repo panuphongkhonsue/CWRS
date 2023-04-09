@@ -1,6 +1,11 @@
 {{-- หน้าขอเบิกสวัสดิการแบบบุคคล --}}
 
 @extends(Auth::user()->type == 'E' ? 'employees.v_employee_nav' : 'leaders.v_leader_nav')
+<style>
+    tbody tr{
+        height: 55px;
+    }
+</style>
 
 @section('content')
     <div class="row justify-content-center">
@@ -12,7 +17,7 @@
 
                 <div class="card-body ">
 
-                    <form method="POST" action="{{ route('create_group') }}" enctype="multipart/form-data">
+                    <form id = "form_reGroup" method="POST" action="{{ route('create.group') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
                             {{-- วันที่ --}}
@@ -145,16 +150,17 @@
 
                                     <tbody id="b-detail">
                                         <tr>
-                                            <td class="count_people"><input id="tb-name" type="text" name="user_info[]"
-                                                    class="form-control border-0 bg-white us" style="color:#ffff"></td>
-                                            <td><label id="tb-role" type="text" name="role[]"
-                                                    class="form-control text-end border-0 bg-white"></td>
+                                            <td class="count_people"><label id="tb-name" type="text" name="user_info[]"
+                                                    class="form-control border-0 bg-white us"> </label></td>
+                                            <td class="count_role form-control border-0"><label id="tb-role"
+                                                    type="text" name="role[]" class="form-control border-0"> </label>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
 
                             </div>
-                            <div class="col-sm-1 mx-auto ">
+                            <div class="col-sm-1 mx-auto">
 
                                 {{-- ปุ่มรายเพิ่มตาราง ลบตาราง --}}
                                 <table class="table">
@@ -170,19 +176,6 @@
 
                                         </tr>
                                     </thead>
-
-                                    <tbody id="b-detail-2">
-                                        <tr class="detail">
-                                            <td class="border-0">
-                                                <button type="button" id="btn_delete_1"
-                                                    class="border-0 bg-transparent remove-row btn"
-                                                    onclick="deleteRow(this)">
-                                                    <img src="{{ URL::asset('img/delete_group_requst.png') }}"
-                                                        width="27" height="17">
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -190,12 +183,19 @@
                         <div class="row">
                             <div class="col-md-8 ms-auto">
                                 <div class=" p-0">
+                                    <div class="debtn mb-2 pb-2">
+                                        <button type="button" id="btn_delete_1"
+                                                    class="btn_delete border-0 bg-transparent remove-row btn"
+                                                    onclick="deleteRow(this)">
+                                                    <img src="{{ URL::asset('img/delete_group_requst.png') }}"
+                                                        width="27" height="17">
+                                    </div>
                                     {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
                                     <div class="get_user">
                                         <input type="text" id="us_id" class="id_user_table" name="get_user_id[]"
                                             hidden>
                                     </div>
-                                    <div class="row ">
+                                    <div class="row mt-2">
                                         <label for="total" class="col-auto col-form-label ms-auto">จำนวนคนทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
@@ -206,7 +206,7 @@
                                         <label for="id" class="col-auto col-form-label me-5">{{ 'คน' }}
                                             <label style="color:#fff">__</label></label>
                                     </div>
-                                    <div class="row ">
+                                    <div class="row mt-3">
                                         <label for="total" class="col-auto col-form-label ms-auto">จำนวนเงินทั้งหมด :
                                         </label>
                                         <div class="col-sm-2">
@@ -223,9 +223,9 @@
                         </div>
 
                         {{-- ปุ่มส่งเบิก --}}
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-sm-2 ms-auto">
-                                <button type="submit" class="btn btn-success">ส่งเบิก</button>
+                                <button type = "button" class="btn btn-success" id ="mmn">ส่งเบิก</button>
                             </div>
                         </div>
                     </form>
@@ -238,66 +238,72 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         var rowCount = 0;
-        let user_id = [];
-        let selected = [];
+        var num1 = '';
+        var num2 = '';
         var id = [];
+        var element_name = [];
 
-        function deleteRow(ele) {
-            if (ele.id != '') {
-                if (rowCount > -1) { // only splice array when item is found
-                    id.splice(rowCount-1, 1); // 2nd parameter means remove one item only
-                }
+        function
+        deleteRow(ele) {
+            var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+            var selected_near_option = document.getElementById("get_user");
+            var length_count = $('.count_people').length;
+            if (length_count == 1 ) {
+                var button_index = getRowIndex(ele)
                 var selected_option = document.getElementById("get_user").options[document.getElementById("get_user")
                     .selectedIndex];
-
-                console.log("ss")
-                $("#tb-name").val('.')
-                $("#tb-name").css('color', 'white')
-                $("#tb-role").html('.')
-                $("#tb-role").css('color', 'white')
-                // selected_option.removeAttribute('disabled');
-                selected_option.disabled = false;
-
+                num1 = 'a';
                 rowCount = 0;
-
-                console.log(rowCount);
 
                 if (rowCount == 0) {
                     var selected_option = document.getElementById("get_user");
                     for (let index = 0; index < selected_option.length; index++) {
                         if (index != 0) {
                             selected_option.options[index].disabled = false;
-
                         }
                     }
+                    $('#b-detail').html(
+                            `
+                        <tr>
+                        <td class="count_people"><label type="text" id="tb-name" name="user_info[]" form-control border-0 bg-white us" readonly> .</label></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td class="count_role"><label type="text" id="tb-role" name="role[]" class="form-control border-0 bg-white us" readonly> </label></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                    </tr>
+                    `
+                        );
                 }
+                $("#tb-name").html('.')
+                $(".count_people").css('color', 'white')
+                $(".count_role").css('color', 'white')
                 updateTotal();
                 if (rowCount > -1) { // only splice array when item is found
                     id.splice(0, 1); //
                 }
+                console.log("Rowcount = " + rowCount);
                 $("#us_id").val(id);
-                console.log($("#us_id").val())
+                console.log("index = " + button_index);
 
             } else {
-                var selected_option = document.getElementById("get_user").options[document.getElementById("get_user")
-                    .selectedIndex];
+                var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+                var button_index = getRowIndex(ele)
+                //เรียกฟังก์ชันหา indexจากปุ่มที่กด
                 var tb = ele.closest("tr");
-                let row = tb.rowIndex;
+                // let row = tb.rowIndex;
                 $(tb).remove();
-                document.getElementById("b-detail").deleteRow(row - 1);
-                // console.log($('#tb-name'))
+                document.getElementById("b-detail").deleteRow(rowCount - 1);
                 rowCount--;
+                console.log("RowCount = " + rowCount);
+
+                // console.log($('#tb-name'))
                 selected_option.disabled = false;
                 updateTotal();
-                console.log(rowCount);
                 if (rowCount > -1) { // only splice array when item is found
-                    var index = rowCount
-                    id.splice(index, 1); //
+                    id.splice(rowCount, 1);
                 }
+                num2 = 's';
                 $("#us_id").val(id);
+                console.log("index = " + button_index);
             }
-            console.log(id);
-            console.log($("#us_id").val())
+            console.log(id)
         }
 
         function updateTotal() {
@@ -308,14 +314,22 @@
 
         }
 
-
-        function disable_select() {
-            // Get the selected option element
-            var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
-
-            // Disable the selected option
-            selected_option.disabled = true;
+        //ฟังก์ชันหา index ของ ปุ่มลบ
+        function getRowIndex(button) {
+            var row = button.parentNode.parentNode;
+            var rowIndex = row.rowIndex;
+            return rowIndex;
         }
+
+
+
+        // function disable_select() {
+        //     // Get the selected option element
+        //     var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+
+        //     // Disable the selected option
+        //     selected_option.disabled = true;
+        // }
 
         function check_table() {
             if (rowCount < 2) {
@@ -326,27 +340,16 @@
 
         $(document).ready(function() {
             $("#btn_add").click(function() {
-
                 if (rowCount < 20) {
+                    console.log($('#get_user').val());
                     if (rowCount > 0 && $('#get_user').val() != null) {
                         var l = $('#get_user').val(); /* เก็บค่าที่ Input มา */
                         var i = rowCount;
                         $('#b-detail').append(
                             `
                         <tr>
-                        <td><input type="text" id="label_gen` + i + `" name="user_info[]" class="form-control border-0 bg-white us" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
-                        <td><label type="text" id ="role_gen` + i + `" name="role[]" class="form-control text-end border-0" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
-                    </tr>
-                    `
-                        );
-                        $('#b-detail-2').append(
-                            `
-                    <tr class="detail">
-                        <td class="border-0">
-                            <button type="button" class="btn_delete border-0 bg-transparent remove-row btn" onclick="deleteRow(this)">
-                                <img src="{{ URL::asset('img/delete_group_requst.png') }}"  width="27" height="17">
-                            </button>
-                        </td>
+                        <td class="count_people"><label type="text" id="gen-name`+ i +`" name="user_info[]" class="form-control border-0" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td class="count_role"><label type="text" id="gen-role`+ i +`" name="role[]" class="form-control border-0 bg-white us" readonly> </label></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
                     </tr>
                     `
                         );
@@ -358,39 +361,34 @@
                         var name = text[1] + " " + text[2];
                         var role = text[3];
                         id.push(text[0]);
-
-                        $('#label_gen' + i).val(name)
-                        console.log(id)
-                        $('#label_gen ').css("color", "black")
-                        $('#role_gen' + i).html(role)
-                        $('#role_gen ').css("color", "black")
-                        //disable_select();
+                        $('#gen-name'+i).html(name)
+                        $('#gen-role'+i).html(role)
                         rowCount++;
                         selected_option.disabled = true;
-                        console.log(rowCount);
-                         updateTotal();
+
+                        updateTotal();
                     } else if (rowCount == 0 && $('#get_user').val() != null) {
                         var selected_option = document.getElementById("get_user").options[document
-                            .getElementById("get_user").selectedIndex];
-
+                        .getElementById("get_user").selectedIndex];
                         var x = $('#get_user').val();
                         var text = x.split('|');
                         var name = text[1] + " " + text[2];
                         var role = text[3];
                         id.push(text[0]);
-                        $('#tb-name').val(name)
-                        $('#tb-name').css("color", "black")
+                        $('#tb-name').html(name)
+                        $('.count_people').css("color", "black")
                         $('#tb-role').html(role)
-                        $('#tb-role').css("color", "black")
+                        $('.count_role').css("color", "black")
 
-                        //disable_select();
+                        // disable_select();
                         rowCount++;
+
                         selected_option.disabled = true;
-                        console.log(rowCount);
+
                         updateTotal();
                     }
                     $("#us_id").val(id);
-                    console.log($("#us_id").val())
+                    console.log(id)
                 }
             });
 
@@ -409,4 +407,56 @@
 
         });
     </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="{{ URL::asset('/css/home.css') }}">
+<script>
+$("#mmn").click(function() {
+    Swal.fire({
+  title: 'คุณแน่ใจหรือไม่ ?',
+  text: 'คุณต้องการยืนยันการเบิกสวัสดิการหรือไม่',
+  imageUrl: '{{ URL('./img/alert1.png') }} ',
+  imageWidth: 150,
+  imageHeight: 150,
+  denyButtonText: 'ยกเลิก',
+  confirmButtonText: 'ยืนยัน',
+  confirmButtonColor: '#32cd32',
+  denyButtonColor: '#ff0000',
+  showDenyButton: true,
+  showCloseButton: true,
+  reverseButtons: true,
+  customClass: {
+    confirmButton: 'confirm-button-class',
+    denyButton: 'deny-button-class'
+  },
+  preConfirm: () => {
+    document.getElementById('form_reGroup').submit();
+  }
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire({
+  imageUrl: '{{ URL('./img/correct1.png') }} ',
+  title: 'สำเร็จ',
+  text: 'คุณยืนยันการเบิกสวัสดิการสำเร็จ',
+  showConfirmButton: false,
+  imageWidth: 150,
+  imageHeight: 150,
+  timer: 1500
+})
+} else if (result.isDenied) {
+    Swal.fire({
+  imageUrl: '{{ URL('./img/cancelreq.png') }} ',
+  title: 'ไม่สำเร็จ',
+  showConfirmButton: false,
+  text: 'คุณยืนยันการเบิกสวัสดิการไม่สำเร็จ',
+  imageWidth: 150,
+  imageHeight: 150,
+  timer: 1500
+})
+  }
+})
+});
+</script>
 @endsection

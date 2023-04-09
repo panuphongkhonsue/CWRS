@@ -183,6 +183,7 @@ class Request_controller extends Controller
         $group->welfare_id = $welfareId;
         $group->total_price = (str_replace(",","",$welfareTotal));
         $group->welfare_name = $welfareName->title;
+        $group->cancel_date = null;
         $group->save();
         // Redirect to the history route after creating the group
 

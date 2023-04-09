@@ -17,6 +17,7 @@ class Group_request extends Model
 {
     use HasFactory;
     protected $table = 'groups_welfares';
+    public $timestamps = false;
 
     public function get_welfare()
     {
