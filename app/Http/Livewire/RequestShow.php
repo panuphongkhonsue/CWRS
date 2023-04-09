@@ -28,16 +28,18 @@ class RequestShow extends Component
 
     public function reload($status)
     {
+        $this->resetPage();
         $this->status = $status;
         $this->requests = Single_request::query();
 
         if ($this->status != 999) {
-            $this->requests = $this->requests->where('status', $this->status);
+            $this->requests = $this->requests->where('status', $this->status)->get();
+        }else{
+            $this->requests = $this->requests->whereNot('status',-2)->get();
         }
 
-        $this->requests->get();
 
-        $this->resetPage();
+
 
     }
 
