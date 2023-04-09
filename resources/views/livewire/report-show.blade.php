@@ -1,5 +1,6 @@
-{{-- ในส่วนของตาราง --}}
-@if($report_year =='999')
+<div>
+    {{-- ในส่วนของตาราง --}}
+
 <table class="table table-bordered align-items-center" >
     <thead class="text-center text-light " id="bg" >
         <tr>
@@ -20,23 +21,21 @@
             background-color: #DCDCDC;
             }
         </style >
-            @php ($count = count($requests))
-            @for ($i = 0; $i<$count-1;$i++)
-            @for ($j = $i+1; $j<$count;$j++)
-                @if(date("d/m/Y", strtotime($requests[$i]->create_date)) == date("d/m/Y", strtotime($requests[$j]->create_date)))
-                    @if($requests[$i]->welfare_id == $requests[$j]->welfare_id)
-                        @php ($requests[$i]->total_price = $requests[$i]->total_price + $requests[$j]->total_price)
-                        @php ($requests[$j]->total_price = 0)
-                    @endif
-                @endif
-            @endfor
-        @endfor
-        @foreach ($requests as $index => $request)
-            @php ($total_year = number_format(array_sum(json_decode($request->price)), 2))
+        @php
+        function check($array, $key)
+        {
+            if (isset($array[$key])) {
+                if (is_null($array[$key])) {
+                    return false;
+                }
+                return true;
+            }
+        }
+        @endphp
+        @foreach ($welfares as $index => $welfare)
                 <tr>
-                    @php ($total = number_format(array_sum(json_decode($request->price)), 2))
-                        
-                        @switch($request->get_welfare->type)
+
+                        @switch($welfare->type)
                         @case('S')
                             @php ($text = 'บุคคล')
                             @break
@@ -44,30 +43,24 @@
                             @php ($text = 'สันทนาการ')
                             @break
                         @endswitch
-                        @if($report_year =='999')
-                            <td class="text-center">{{ $request->get_welfare->title }}</td>
-                            <td class="text-center">{{ $total_year }}</td>
-                            <td class="text-center">บุคคล</td>
-                            <td></td>
-                            <td class="text-end">{{ $total }}</td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                        @elseif($report_year==date("Y",strtotime($request->create_date)))
-                            <td class="text-center">{{ date("d/m/Y", strtotime($request->create_date)) }}</td>
-                            <td class="text-center">{{ $request->id }}</td>
-                            <td class="text-center">บุคคล</td>
-                            <td>{{ $request->get_welfare->title }}</td>
-                            <td class="text-end">{{ $total }}</td>
-                            <td class="text-center"><img src="{{ URL::asset('/img/'. $icon) }}" width="32" height="32"></td>
-                            <td class="text-center"><a href="{{ route('show_history', ['id' => $request->id]) }}" class="btn btn-sm btn-primary">แสดงรายการ</a></td>
-                @endif
-            
+
+                            <td class="text-center">{{ $welfare->title }}</td>
+                            @if (isset($year1[$index]))
+                                <td class="text-end">{{ $year1[$index]->sum }}</td>
+                            @else
+                                <td class="text-end">0</td>
+                            @endif
+                           <td class="text-end">0</td>
+                           <td class="text-end">0</td>
+                           <td class="text-end">0</td>
+                           <td class="text-end">0</td>
+                           <td class="text-end">0</td>
+
             </tr>
             @endforeach
     </tbody>
  </table>
 
-@else
 <div class="row mt-3">
     <div class="col-md-13">
         <table class="table table-bordered align-items-center" >
@@ -89,10 +82,11 @@
                     <td class="col-sm-1">ก.ย.</td>
                     <td class="col-sm-1">ต.ค.</td>
                     <td class="col-sm-1">พ.ย.</td>
-                    <td class="col-sm-1">ธ.ค.</td>                    
+                    <td class="col-sm-1">ธ.ค.</td>
                 </tr>
             </thead>
         </table>
     </div>
 </div>
-@endif
+
+</div>
