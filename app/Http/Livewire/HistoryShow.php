@@ -20,9 +20,9 @@ class HistoryShow extends Component
 
     public function render()
     {
-        $single = Single_request::where('user_id', Auth::user()->id)->select('id', 'status', 'create_date', 'total_price', 'welfare_name');
+        $single = Group_request::where('user_id', Auth::user()->id)->select('id', 'status', 'create_date', 'total_price', 'welfare_name', 'welfare_id');
 
-        $requests = Group_request::where('user_id', Auth::user()->id)->select('id', 'status', 'create_date', 'total_price', 'welfare_name')->union($single);
+        $requests = Single_request::where('user_id', Auth::user()->id)->select('id', 'status', 'create_date', 'total_price', 'welfare_name', 'welfare_id')->union($single);
 
         if ($this->status == 999 ) {
             return view('livewire.history-show', ['requests' => $requests->get()]);
