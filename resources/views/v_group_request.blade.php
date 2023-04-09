@@ -120,7 +120,7 @@
                             </div>
                             <div class="col mt-2 mr-2 ps-1">
                                 <button type="button" class="border-0 bg-transparent add-table"><img
-                                        src="{{ URL::asset('img/add.png') }}" width="20" height="20"
+                                        src="{{ URL('./img/add.png') }}" width="20" height="20"
                                         id="btn_add"></button>
                             </div>
                             <div class="row">
@@ -169,7 +169,7 @@
 
                                             <td class="border-0">
                                                 <button type="button" class="add-row border-0 bg-transparent ms-1">
-                                                    <img src="{{ URL::asset('img/add.png') }}" width="27"
+                                                    <img src="{{ URL('./img/add.png') }}" width="27"
                                                         height="27" hidden>
                                                 </button>
                                             </td>
@@ -187,7 +187,7 @@
                                         <button type="button" id="btn_delete_1"
                                                     class="btn_delete border-0 bg-transparent remove-row btn"
                                                     onclick="deleteRow(this)">
-                                                    <img src="{{ URL::asset('img/delete_group_requst.png') }}"
+                                                    <img src="{{ URL('./img/delete_group_requst.png') }}"
                                                         width="27" height="17">
                                     </div>
                                     {{-- จำนวนเงินทั้งหมด ที่อยู่ข้างล่างตาราง --}}
@@ -235,7 +235,7 @@
     </div>
 
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">
         var rowCount = 0;
         var num1 = '';
@@ -411,7 +411,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
-<link rel="stylesheet" href="{{ URL::asset('/css/home.css') }}">
+<link rel="stylesheet" href="{{ URL('./css/home.css') }}">
 <script>
 $("#mmn").click(function() {
     Swal.fire({
