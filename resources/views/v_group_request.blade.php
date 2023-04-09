@@ -309,13 +309,13 @@
         }
 
 
-        // function disable_select() {
-        //     // Get the selected option element
-        //     var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
+        function disable_select() {
+            // Get the selected option element
+            var selected_option = document.getElementById("get_user").options[document.getElementById("get_user").selectedIndex];
 
-        //     // Disable the selected option
-        //     selected_option.disabled = true;
-        // }
+            // Disable the selected option
+            selected_option.disabled = true;
+        }
 
         function check_table() {
             if (rowCount < 2) {
@@ -364,7 +364,7 @@
                         $('#label_gen ').css("color", "black")
                         $('#role_gen' + i).html(role)
                         $('#role_gen ').css("color", "black")
-                        // disable_select();
+                        //disable_select();
                         rowCount++;
                         selected_option.disabled = true;
                         console.log(rowCount);
@@ -383,7 +383,7 @@
                         $('#tb-role').html(role)
                         $('#tb-role').css("color", "black")
 
-                        // disable_select();
+                        //disable_select();
                         rowCount++;
                         selected_option.disabled = true;
                         console.log(rowCount);
