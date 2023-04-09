@@ -1,6 +1,11 @@
 {{-- หน้าขอเบิกสวัสดิการแบบบุคคล --}}
 
 @extends(Auth::user()->type == 'E' ? 'employees.v_employee_nav' : 'leaders.v_leader_nav')
+<style>
+    tbody tr{
+        height: 55px;
+    }
+</style>
 
 @section('content')
     <div class="row justify-content-center">
@@ -12,7 +17,7 @@
 
                 <div class="card-body ">
 
-                    <form id = "form_reGroup" method="POST" action="{{ route('create_group') }}" enctype="multipart/form-data">
+                    <form id = "form_reGroup" method="POST" action="{{ route('create.group') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card mx-5 px-4 py-3 mb-0 border-0 " style=" background-color: #eee;">
                             {{-- วันที่ --}}
@@ -145,10 +150,10 @@
 
                                     <tbody id="b-detail">
                                         <tr>
-                                            <td class="count_people"><input id="tb-name" type="text" name="user_info[]"
-                                                    class="form-control border-0 bg-white us"></td>
-                                            <td class="count_role form-control text-end border-0"><label id="tb-role"
-                                                    type="text" name="role[]" class="form-control text-end border-0">
+                                            <td class="count_people"><label id="tb-name" type="text" name="user_info[]"
+                                                    class="form-control border-0 bg-white us"> </label></td>
+                                            <td class="count_role form-control border-0"><label id="tb-role"
+                                                    type="text" name="role[]" class="form-control border-0"> </label>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -247,10 +252,6 @@
                 var button_index = getRowIndex(ele)
                 var selected_option = document.getElementById("get_user").options[document.getElementById("get_user")
                     .selectedIndex];
-                $(".count_people").val('.')
-                $(".count_people").css('color', 'white')
-                $(".count_role").html(' ')
-                $(".count_role").css('color', 'white')
                 num1 = 'a';
                 rowCount = 0;
 
@@ -264,13 +265,15 @@
                     $('#b-detail').html(
                             `
                         <tr>
-                        <td class="count_people"><label type="text" id="tb-name" name="user_info[]" form-control border-0 bg-white us" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
-                        <td class="count_role"><label type="text" id="tb-role" name="role[]" class="form-control border-0 bg-white us" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td class="count_people"><label type="text" id="tb-name" name="user_info[]" form-control border-0 bg-white us" readonly> .</label></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td class="count_role"><label type="text" id="tb-role" name="role[]" class="form-control border-0 bg-white us" readonly> </label></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
                     </tr>
                     `
                         );
                 }
-
+                $("#tb-name").html('.')
+                $(".count_people").css('color', 'white')
+                $(".count_role").css('color', 'white')
                 updateTotal();
                 if (rowCount > -1) { // only splice array when item is found
                     id.splice(0, 1); //
@@ -344,8 +347,8 @@
                         $('#b-detail').append(
                             `
                         <tr>
-                        <td class="count_people"><label type="text" id="name_gen`+ i +`" name="user_info[]" class="form-control border-0" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
-                        <td class="count_role"><label type="text" id="role_gen`+ i +`" name="role[]" class="form-control border-0 bg-white us text-end" readonly></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td class="count_people"><label type="text" id="gen-name`+ i +`" name="user_info[]" class="form-control border-0" readonly></td>                /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
+                        <td class="count_role"><label type="text" id="gen-role`+ i +`" name="role[]" class="form-control border-0 bg-white us" readonly> </label></td>      /* นำข้อมูลที่จะเพิ่มลงมาใส่ในแต่ละช่อง */
                     </tr>
                     `
                         );
@@ -357,10 +360,8 @@
                         var name = text[1] + " " + text[2];
                         var role = text[3];
                         id.push(text[0]);
-                        $('#name_gen'+i).html(name)
-                        $('.count_people').css("color", "black")
-                        $('#role_gen'+i).html(role)
-                        $('.count_role').css("color", "black")
+                        $('#gen-name'+i).html(name)
+                        $('#gen-role'+i).html(role)
                         rowCount++;
                         selected_option.disabled = true;
 
@@ -373,7 +374,7 @@
                         var name = text[1] + " " + text[2];
                         var role = text[3];
                         id.push(text[0]);
-                        $('#tb-name').val(name)
+                        $('#tb-name').html(name)
                         $('.count_people').css("color", "black")
                         $('#tb-role').html(role)
                         $('.count_role').css("color", "black")
