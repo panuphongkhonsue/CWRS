@@ -11,41 +11,24 @@ class RequestShow extends Component
     use WithPagination;
     public $status = 0;
     public $query;
-    public $requests;
     protected $listeners = ['reload'];
 
     protected $paginationTheme = 'bootstrap';
 
-    public function mount()
-    {
-        $this->requests = Single_request::where('status', 0)->get();
-    }
-
     public function render()
     {
-        return view('livewire.request-show');
+
+        if ($this->status != 999) {
+            return view('livewire.request-show', ['requests' => Single_request::where('status', $this->status)->paginate(10)]);
+        }
+
+        return view('livewire.request-show', ['requests' => Single_request::whereNot('status', -2)->paginate(10)]);
     }
 
     public function reload($status)
     {
         $this->resetPage();
         $this->status = $status;
-        $this->requests = Single_request::query();
-
-        if ($this->status != 999) {
-            $this->requests = $this->requests->where('status', $this->status)->get();
-        }else{
-            $this->requests = $this->requests->whereNot('status',-2)->get();
-        }
-
-
-
 
     }
-
-    public function query()
-    {
-        $this->reload($this->status);
-    }
-
 }
