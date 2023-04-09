@@ -25,10 +25,10 @@ class HistoryShow extends Component
         $requests = Single_request::where('user_id', Auth::user()->id)->select('id', 'status', 'create_date', 'total_price', 'welfare_name', 'welfare_id')->union($single);
 
         if ($this->status == 999 ) {
-            return view('livewire.history-show', ['requests' => $requests->get()]);
+            return view('livewire.history-show', ['requests' => $requests->orderby('id', 'desc')->get()]);
         }
         else {
-            return view('livewire.history-show', ['requests' => $requests->where('status', $this->status)->get()]);
+            return view('livewire.history-show', ['requests' => $requests->where('status', $this->status)->orderby('id', 'desc')->get()]);
         }
     }
 // whereYear('create_date', $this->walfare_year)->
