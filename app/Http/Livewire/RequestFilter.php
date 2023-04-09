@@ -7,7 +7,9 @@ use App\Models\Single_request;
 
 class RequestFilter extends Component
 {
-    public $req_status;
+    public $req_status = 999;
+    public $manage_year = 999;
+    public $manage_type = 999;
 
     public $countAll;
     public $countWait;
@@ -30,6 +32,6 @@ class RequestFilter extends Component
     public function filter($status)
     {
         $this->req_status = $status;
-        $this->emitTo('request-show', 'reload', $this->req_status);
+        $this->emitTo('request-show', 'reload', $this->req_status,$this->manage_type,$this->manage_year);
     }
 }

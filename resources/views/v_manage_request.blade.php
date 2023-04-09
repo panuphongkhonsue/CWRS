@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="row mt-4">
                         <div class="col-md-13">
-                            
+                            <livewire:request-filter2>
 
 
                             {{-- ในส่วนของตาราง --}}
