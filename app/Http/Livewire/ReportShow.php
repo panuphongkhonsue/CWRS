@@ -81,11 +81,11 @@ class ReportShow extends Component
             $this->requests = Single_request::where('status', $this->report_status);
             $this->requests = $this->requests->whereIn('welfare_id', $welId);
 
-            $this->year1 = $this->requests->groupBy('welfare_id')->selectRaw('*, sum(welfare_budget) as sum')->whereYear('create_date', 2023)->orderBy('welfare_id')->get();
-            $this->year2 = $this->requests->groupBy('welfare_id')->selectRaw('*, sum(welfare_budget) as sum')->whereYear('create_date', 2022)->orderBy('welfare_id')->get();
-            $this->year3 = $this->requests->groupBy('welfare_id')->selectRaw('*, sum(welfare_budget) as sum')->whereYear('create_date', 2021)->orderBy('welfare_id')->get();
-            $this->year4 = $this->requests->groupBy('welfare_id')->selectRaw('*, sum(welfare_budget) as sum')->whereYear('create_date', 2020)->orderBy('welfare_id')->get();
-            $this->year5 = $this->requests->groupBy('welfare_id')->selectRaw('*, sum(welfare_budget) as sum')->whereYear('create_date', 2019)->orderBy('welfare_id')->get();
+            $this->year1 = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', 2023)->orderBy('welfare_id')->get();
+            $this->year2 = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', 2022)->orderBy('welfare_id')->get();
+            $this->year3 = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', 2021)->orderBy('welfare_id')->get();
+            $this->year4 = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', 2020)->orderBy('welfare_id')->get();
+            $this->year5 = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', 2019)->orderBy('welfare_id')->get();
 
             $this->requests = 1;
 
@@ -117,11 +117,6 @@ class ReportShow extends Component
             $this->month[9] = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', $report_year)->whereMonth('create_date', 10)->get();
             $this->month[10] = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', $report_year)->whereMonth('create_date', 11)->get();
             $this->month[11] = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', $report_year)->whereMonth('create_date', 12)->get();
-
-            $this->year2 = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', 2022)->get();
-            $this->year3 = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', 2021)->get();
-            $this->year4 = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', 2020)->get();
-            $this->year5 = $this->requests->groupBy('welfare_id')->selectRaw('sum(welfare_budget) as sum')->whereYear('create_date', 2019)->get();
 
             $this->requests = 1;
         }

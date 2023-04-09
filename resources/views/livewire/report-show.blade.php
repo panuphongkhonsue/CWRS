@@ -45,9 +45,12 @@
 
                                 <td class="text-center">{{ $welfare->title }}</td>
                                 @php ($sum = 0)
+                                @php ($colsum = [0,0,0,0,0])
+                                @php ($allSum)
                                 @if (isset($year1[$index]->sum))
                                     <td class="text-end">{{ $year1[$index]->sum }}</td>
                                     @php ($sum += $year1[$index]->sum)
+                                    @php ($colsum[0] += $year1[$index]->sum)
                                 @else
                                     <td class="text-end">0</td>
                                 @endif
@@ -55,6 +58,7 @@
                                 @if (isset($year2[$index]->sum))
                                     <td class="text-end">{{ $year2[$index]->sum }}</td>
                                     @php ($sum += $year2[$index]->sum)
+                                    @php ($colsum[1] += $year1[$index]->sum)
                                 @else
                                     <td class="text-end">0</td>
                                 @endif
@@ -62,6 +66,7 @@
                                 @if (isset($year3[$index]->sum))
                                     <td class="text-end">{{ $year3[$index]->sum }}</td>
                                     @php ($sum += $year3[$index]->sum)
+                                    @php ($colsum[2] += $year1[$index]->sum)
                                 @else
                                      <td class="text-end">0</td>
                                 @endif
@@ -69,12 +74,14 @@
                                 @if (isset($year4[$index]->sum))
                                     <td class="text-end">{{ $year4[$index]->sum }}</td>
                                     @php ($sum += $year4[$index]->sum)
+                                    @php ($colsum[3] += $year1[$index]->sum)
                                 @else
                                     <td class="text-end">0</td>
                                 @endif
                                 @if (isset($year5[$index]->sum))
                                     <td class="text-end">{{ $year5[$index]->sum }}</td>
                                     @php ($sum += $year5[$index]->sum)
+                                    @php ($colsum[4] += $year1[$index]->sum)
                                 @else
                                     <td class="text-end">0</td>
                                 @endif
@@ -82,6 +89,15 @@
 
                     </tr>
                 @endforeach
+                <tr>
+                    <td class="text-center">รวม</td>
+                    <td class="text-end">{{ $colsum[0] }}</td>
+                    <td class="text-end">{{ $colsum[1] }}</td>
+                    <td class="text-end">{{ $colsum[2] }}</td>
+                    <td class="text-end">{{ $colsum[3] }}</td>
+                    <td class="text-end">{{ $colsum[4] }}</td>
+                    <td class="text-end"></td>
+                </tr>
         </tbody>
      </table>
      @endif
