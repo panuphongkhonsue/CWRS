@@ -1,6 +1,6 @@
 {{-- หน้าข้อมูลคำร้อง --}}
 
-<!-- 
+<!--
 /*
 * v_report.blade.php
 * แสดงประวัติของการเบิกในจำนวนเงินทั้งหมด
@@ -15,7 +15,6 @@
 @section('content')
 
 
-<div class="container">
     <div class="col-lg-20">
         <div class="card">
             <div class="card-header fs-4 py-3">{{ __('รายงานเบิกสวัสดิการส่วนบุคคล') }}</div>
@@ -27,7 +26,6 @@
             </div>
         </div>
     </div>
-</div>
 
-            
+
 @endsection

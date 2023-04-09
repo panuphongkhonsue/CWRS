@@ -13,15 +13,4 @@
             <option value="G">สันทนาการ</option>
         </select>
     </div>
-    <label for="budget" class="col-auto col-form-label"> ปี พ.ศ. : </label>
-    <div class="col-md-2">
-        <select class="form-control form-select" wire:model="report_year" wire:change="filter">
-            <option value="999" selected="">ทั้งหมด</option>
-            <option value="2023">2566</option>
-            <option value="2022">2565</option>
-            <option value="2021">2564</option>
-            <option value="2020">2563</option>
-            <option value="2019">2562</option>
-        </select>
-    </div>
 </div>

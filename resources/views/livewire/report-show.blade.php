@@ -29,7 +29,10 @@
                 }
             }
             @endphp
-            
+            <?php
+            // echo $year1[0]->id
+            // echo $welfares
+             ?>
             @foreach ($welfares as $index => $welfare)
                     <tr>
 
@@ -45,39 +48,85 @@
 
                                 <td class="text-center">{{ $welfare->title }}</td>
                                 @php ($sum = 0)
-                                @if (isset($year1[$index]->sum))
-                                    <td class="text-end">{{ $year1[$index]->sum }}</td>
-                                    @php ($sum += $year1[$index]->sum)
-                                @else
-                                    <td class="text-end">0</td>
-                                @endif
+                                {{-- @if (isset($year1[$index]->sum)) --}}
 
-                                @if (isset($year2[$index]->sum))
+                                    @foreach ($year1 as $yearIndex=>$year)
+                                        @if ($welfares[$index]->id == $year1[$yearIndex]->id)
+                                        <?php $sum += $year1[$yearIndex]->sum ?>
+                                        <td class="text-end">{{ $year1[$yearIndex]->sum }}</td>
+                                        @break
+                                        @endif
+                                        @if ($yearIndex + 1 == COUNT($year1))
+                                        <td class="text-end">0</td>
+                                        @endif
+                                    @endforeach
+
+                                    {{-- <td class="text-end">{{ $year1[$index]->sum }}</td>
+                                    @php ($sum += $year1[$index]->sum) --}}
+                                {{-- @else --}}
+                                    {{-- <td class="text-end">0</td> --}}
+                                {{-- @endif --}}
+                                @if (COUNT($year2) == 0)
+                                    <td class="text-end">0</td>
+                                    @endif
+                                @foreach ($year2 as $yearIndex=>$year)
+                                        @if ($welfares[$index]->id == $year2[$yearIndex]->id)
+                                        <?php $sum += $year2[$yearIndex]->sum ?>
+                                        <td class="text-end">{{ $year2[$yearIndex]->sum }}</td>
+                                        @break
+                                        @endif
+                                        @if ($yearIndex + 1 == COUNT($year2))
+                                        <td class="text-end">0</td>
+                                        @endif
+                                    @endforeach
+
+
+                                {{-- @if (isset($year2[$index]->sum))
                                     <td class="text-end">{{ $year2[$index]->sum }}</td>
                                     @php ($sum += $year2[$index]->sum)
                                 @else
                                     <td class="text-end">0</td>
+                                @endif --}}
+                                @if (COUNT($year3) == 0)
+                                <td class="text-end">0</td>
                                 @endif
-
-                                @if (isset($year3[$index]->sum))
-                                    <td class="text-end">{{ $year3[$index]->sum }}</td>
-                                    @php ($sum += $year3[$index]->sum)
-                                @else
-                                     <td class="text-end">0</td>
-                                @endif
-
-                                @if (isset($year4[$index]->sum))
-                                    <td class="text-end">{{ $year4[$index]->sum }}</td>
-                                    @php ($sum += $year4[$index]->sum)
-                                @else
+                                @foreach ($year3 as $yearIndex=>$year)
+                                        @if ($welfares[$index]->id == $year3[$yearIndex]->id)
+                                        <?php $sum += $year3[$yearIndex]->sum ?>
+                                        <td class="text-end">{{ $year3[$yearIndex]->sum }}</td>
+                                        @break
+                                        @endif
+                                        @if ($yearIndex + 1 == COUNT($year3))
+                                        <td class="text-end">0</td>
+                                        @endif
+                                    @endforeach
+                                    @if (COUNT($year4) == 0)
                                     <td class="text-end">0</td>
-                                @endif
-                                @if (isset($year5[$index]->sum))
-                                    <td class="text-end">{{ $year5[$index]->sum }}</td>
-                                    @php ($sum += $year5[$index]->sum)
-                                @else
+                                    @endif
+                                @foreach ($year4 as $yearIndex=>$year)
+                                    @if ($welfares[$index]->id == $year4[$yearIndex]->id)
+                                    <?php $sum += $year4[$yearIndex]->sum ?>
+                                    <td class="text-end">{{ $year4[$yearIndex]->sum }}</td>
+                                    @break
+                                    @endif
+                                    @if ($yearIndex + 1 == COUNT($year4))
                                     <td class="text-end">0</td>
-                                @endif
+                                    @endif
+                                @endforeach
+
+                                @if (COUNT($year5) == 0)
+                                    <td class="text-end">0</td>
+                                    @endif
+                                @foreach ($year5 as $yearIndex=>$year)
+                                    @if ($welfares[$index]->id == $year5[$yearIndex]->id)
+                                    <?php $sum += $year5[$yearIndex]->sum ?>
+                                    <td class="text-end">{{ $year5[$yearIndex]->sum }}</td>
+                                    @break
+                                    @endif
+                                    @if ($yearIndex + 1 == COUNT($year5))
+                                    <td class="text-end">0</td>
+                                    @endif
+                                @endforeach
                                 <td class="text-end">{{ $sum }}</td>
 
                     </tr>
@@ -112,7 +161,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($welfares as $welfare)
+                    @foreach ($welfares as $index => $welfare)
                         @php ($sum = 0)
                         <tr>
                             @switch($welfare->type)
@@ -124,7 +173,19 @@
                                 @break
                             @endswitch
                             <td class="text-center">{{ $welfare->title }}</td>
-
+                            @for ($i = 0; $i < 12; $i++)
+                                <td class="text-end">
+                                    @foreach ($month as $monthIndex=>$month)
+                                        @if ($welfares[$index]->id == $month[$i][$monthIndex]->id)
+                                        <td class="text-end">{{ $month[$i][$momthIndex]->sum }}</td>
+                                        @break
+                                        @endif
+                                        @if ($monthIndex + 1 == COUNT($month[$i]))
+                                        <td class="text-end">0</td>
+                                        @endif
+                                    @endforeach
+                                </td>
+                            @endfor
                             <td class="text-end">{{ $sum }}</td>
                         </tr>
                     @endforeach
