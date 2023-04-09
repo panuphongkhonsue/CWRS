@@ -13,6 +13,7 @@ use App\Models\Welfare;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Single_request;
+use App\Models\Group_request;
 use Illuminate\Support\Facades\DB;
 
 class User_history_controller extends Controller
@@ -27,7 +28,13 @@ class User_history_controller extends Controller
     */
     public function index()
     {
-        $requests = Single_request::where('user_id', Auth::user()->id)->orderBy('create_date', 'desc');
+        
+        $single = Single_request::where('user_id', Auth::user()->id)
+                    ->select('status', 'create_date', 'total_price', 'welfare_name');
+
+        $requests = Group_request::where('user_id', Auth::user()->id)
+                    ->select('status', 'create_date', 'total_price', 'welfare_name')
+                    ->union($single)->orderBy('create_date', 'desc')->get();
 
         return view('v_history', ['requests' => $requests]);
     }
@@ -45,7 +52,10 @@ class User_history_controller extends Controller
         $history = Single_request::where('id', $id)->first();
 
         if ($history == NULL) {
-            abort(404);
+            $history = Group_request::where('id', $id)->first();
+            if ($history == NULL) {
+                abort(404);
+            }
         }
 
         return view('v_show_history', ['history' => $history]);

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User_group_welfare;
 
+
 class Request_controller extends Controller
 {
     /*
@@ -136,12 +137,10 @@ class Request_controller extends Controller
             $data = Welfare::where('type', 'G')->whereNotIn('id', $welfare_id)->get();
         }
 
-
-
         return view('v_group_request', ['welfares' => $data],['departments_user'=> $department_user]);
     }
 
-    /*
+   /*
     * group_request()
     * แสดงหน้าจอเบิกสวัสดิการแบบสันทนาการ
     * @input : User Info, Welfare Info , Member, Total Price , Total People
@@ -159,7 +158,6 @@ class Request_controller extends Controller
         $selected_user_id = $request->input('get_user_id'); // get the value of the input field
         $welfare_obj1 = json_decode($request->welfare);
         $user_id = explode(',', $request->get_user_id[0]);
-        return dd(user_id);
         $welfareBudget = $welfare_obj1->budget;
         $welfareObj2 = json_decode($request->welfare);
         $welfareId = $welfareObj2->id;
@@ -197,6 +195,5 @@ class Request_controller extends Controller
 
         return redirect()->route('history');
     }
-
 
 }

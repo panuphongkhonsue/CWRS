@@ -29,6 +29,9 @@
                             @case(-1)
                                 @php ($icon = 'cancel2.png')
                                 @break
+                            @case(2)
+                                @php ($icon = 'wait.png')
+                                @break
                         @endswitch
                         @switch($request->get_welfare->type)
                         @case('S')
@@ -79,5 +82,5 @@
             @endforeach
         </tbody>
     </table>
-    {!! $requests->links() !!}
+
 </div>
