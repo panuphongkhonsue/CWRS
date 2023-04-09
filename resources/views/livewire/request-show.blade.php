@@ -1,59 +1,6 @@
 
     <div wire:loading.remove>
-        <div class="row">
-            {{-- ข้อความ --}}
-            <div class="aa col-auto mt-2">
-                <label class="oo">(ชื่อ-นามสกุล,รหัสพนักงาน,เลขที่ใบเบิก) :</label>
-            </div>
-
-                {{-- กล่องค้นหา --}}
-            <div class="col-auto ll mt-2">
-                <input wire:model="query" wire:keyup.debounce="query" type="text" class="form-control  jj" placeholder=""
-                        aria-label="Recipient's username" aria-describedby="button-addon2"
-                        style="height: 30px">
-            </div>
-            {{-- ปุ่มค้นหา --}}
-            <div class="ll col-auto ">
-                <button class="btn" type="button" id="button-addon2"><img src="./img/image1.png"
-                        width="18" height="18"></button>
-            </div>
-
-            {{-- ข้อความ --}}
-            <div class="col-auto  mt-1">
-                <label for="budget" class="col-auto col-form-label oo" style="margin-left: 260px ">
-                    รูปแบบสวัสดิการ : </label>
-            </div>
-
-            {{-- ตัวเลือกรายหลายการ : รูปแบบสวัสดิการ --}}
-            <div class="col-auto mt-2">
-                <select class="form-control form-select colortext" name="welfare" id="welfare"
-                    style="height: 34px">
-                    <option selected=""value="1"> ทั้งหมด </option>
-
-                    <option value="2">บุคคล</option>
-                    <option value="3">สันทนาการ</option>
-                </select>
-
-            </div>
-
-            {{-- ข้อความ --}}
-            <div class="col-auto mt-1">
-                <label for="budget" class="col-auto col-form-label oo"> ปี พ.ศ. : </label>
-            </div>
-
-            {{-- ตัวเลือกรายหลายการ : ปีพ.ศ.ย้อนหลัง5ปี รวมปีปัจจุบัน --}}
-            <div class="col-auto mt-2 ">
-                <select class="form-control form-select colortext " name="welfare" id="welfare"
-                    style="height: 34px">
-                    <option selected="" value="1">ทั้งหมด</option>
-                    <option value="2">2566</option>
-                    <option value="3">2565</option>
-                    <option value="4">2564</option>
-                    <option value="5">2563</option>
-                    <option value="6">2562</option>
-                </select>
-            </div>
-        </div><br>
+        
 
         <table class="table table-bordered align-items-center table-striped">
             <thead class="text-center text-light" id="bg">
@@ -100,7 +47,7 @@
                         <td scope="col" class="">{{ $request->get_user->fname }}</td>
                         <td scope="col" class="col-md-3">{{ $request->welfare_name }}</td>
                         <td scope="col" class="col-sm-2 text-end">{{ number_format($request->total_price, 2) }}</td>
-                        <td scope="col" class="col-sm-1 text-center"><img src="{{ URL('./img/'. $icon) }}" width="32" height="32"</td>
+                        <td scope="col" class="col-sm-1 text-center"><img src="{{ URL('./img/. $icon') }}" width="32" height="32"</td>
                         <td scope="col" class="col-sm-1 text-center"><a href="{{ url('./manage_request/'. $request->id) }}" class="btn btn-sm btn-primary"  style="font-size: 10px">แสดงรายการ</a>
                         </td>
                     </tr>
