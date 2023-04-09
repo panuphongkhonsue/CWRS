@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Single_request;
+use App\Models\Group_request;
 use Livewire\WithPagination;
 
 class HistoryShow extends Component
@@ -19,11 +20,15 @@ class HistoryShow extends Component
 
     public function render()
     {
+        $single = Single_request::where('user_id', Auth::user()->id)->select('id', 'status', 'create_date', 'total_price', 'welfare_name');
+
+        $requests = Group_request::where('user_id', Auth::user()->id)->select('id', 'status', 'create_date', 'total_price', 'welfare_name')->union($single);
+
         if ($this->status == 999 ) {
-            return view('livewire.history-show', ['requests' => Single_request::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
+            return view('livewire.history-show', ['requests' => $requests->get()]);
         }
         else {
-            return view('livewire.history-show', ['requests' => Single_request::where('status', $this->status)->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10)]);
+            return view('livewire.history-show', ['requests' => $requests->where('status', $this->status)->get()]);
         }
     }
 // whereYear('create_date', $this->walfare_year)->
