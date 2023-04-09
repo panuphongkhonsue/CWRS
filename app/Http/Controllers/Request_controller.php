@@ -18,7 +18,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\User_group_welfare;
 
 class Request_controller extends Controller
 {
@@ -141,9 +141,62 @@ class Request_controller extends Controller
         return view('v_group_request', ['welfares' => $data],['departments_user'=> $department_user]);
     }
 
-    public function create_group(Request $request)
-    {
+    /*
+    * group_request()
+    * แสดงหน้าจอเบิกสวัสดิการแบบสันทนาการ
+    * @input : User Info, Welfare Info , Member, Total Price , Total People
+    * @output : หน้าจอประวัติการเบิกสวัสดิการ
+    * @author : Rawich Piboonsin 64160299
+    * @Create Date : 2023-03-15
+    * @Update Date : 2023-04-05 Panuphong Khonsue 64160282 call data to show
+    * @Update Date : 2023-04-06 Panuphong Khonsue 64160282 Query Data To Show in Table
+    * @Update Date : 2023-04-08 Panuphong Khonsue 64160282 GetValue to save in DataBase
+    * @Update Date : 2023-04-08 Sarun Reaungthai 64160288 GetValue to save in DataBase
+    */
+    public function create_group(Request $request){
+        $user = Auth::user();
+        $date = date("Y-m-d");
+        $selected_user_id = $request->input('get_user_id'); // get the value of the input field
+        $welfare_obj1 = json_decode($request->welfare);
+        $user_id = explode(',', $request->get_user_id[0]);
+        return dd(user_id);
+        $welfareBudget = $welfare_obj1->budget;
+        $welfareObj2 = json_decode($request->welfare);
+        $welfareId = $welfareObj2->id;
+        $welfareTotal = $request->total_money;
+        $welfareName = Welfare::where('id', $welfareId)->first();
+
+        /*return dd($request->emp_id);*/
+        // Retrieve the input values from the form
+        $group_sumMoney = $request->input('sum-money');
+        $group_welfare = $request->input('welfare');
+
+        // Create a new group instance using the Eloquent model
+
+        $group = new Group_request;
+        if($user->type == "E"){
+            $group->status = 2;
+        }
+        $group->user_id = $user->id;
+        $group->create_date = $date;
+        $group->total_price = $group_sumMoney;
+        $group->welfare_budget = $welfareBudget;
+        $group->welfare_id = $welfareId;
+        $group->total_price = (str_replace(",","",$welfareTotal));
+        $group->welfare_name = $welfareName->title;
+        $group->save();
+        // Redirect to the history route after creating the group
+
+
+        foreach($user_id as $index => $user2){
+            $group1 = new User_group_welfare;
+            $group1->group_welfare_id = $welfareId;
+            $group1->user_id = $user2;
+            $group1->save();
+        }
+
         return redirect()->route('history');
     }
+
 
 }
