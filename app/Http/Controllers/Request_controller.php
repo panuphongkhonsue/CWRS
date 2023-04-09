@@ -159,7 +159,6 @@ class Request_controller extends Controller
         $selected_user_id = $request->input('get_user_id'); // get the value of the input field
         $welfare_obj1 = json_decode($request->welfare);
         $user_id = explode(',', $request->get_user_id[0]);
-        return dd(user_id);
         $welfareBudget = $welfare_obj1->budget;
         $welfareObj2 = json_decode($request->welfare);
         $welfareId = $welfareObj2->id;
